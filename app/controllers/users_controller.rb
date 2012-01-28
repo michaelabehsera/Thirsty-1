@@ -11,7 +11,7 @@ class UsersController < InheritedResources::Base
   end
 
   def auth
-    if user = login(params[:email], params[:password], true)
+    if user = login(params[:user][:email], params[:user][:password], true)
       redirect_to '/'
     else
       render inline: 'fail'

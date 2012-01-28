@@ -2,7 +2,7 @@ Thirsty::Application.routes.draw do
 
   get '/signup' => 'users#signup'
   get '/signout' => 'users#signout'
-  get '/org_signup' => 'users#org_signup'
+  get '/signin' => 'users#signin'
 
   match '/:controller/:action'
   match '/:action' => 'site'

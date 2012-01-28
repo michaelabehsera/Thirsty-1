@@ -76,6 +76,7 @@ GEM
       tzinfo (~> 0.3.22)
     multi_json (1.0.4)
     multipart-post (1.1.4)
+    nokogiri (1.5.0)
     oauth (0.4.5)
     oauth2 (0.5.2)
       faraday (~> 0.7)
@@ -108,6 +109,7 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     responders (0.6.4)
+    rest-open-uri (1.0.0)
     sass (3.1.12)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
@@ -148,7 +150,9 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   mongoid
+  nokogiri
   rails
+  rest-open-uri
   sass-rails (~> 3.2.3)
   sorcery
   uglifier (>= 1.0.3)

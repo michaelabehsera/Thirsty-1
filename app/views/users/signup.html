@@ -1,0 +1,39 @@
+ <div id="wrap"> 
+      <div id="signup">
+        <img src="/images/thirsty_signup.png" style="float:left; margin:-75px 20px 150px 0" width="" height="" alt="">
+        <h1>Create a Thirsty account</h1>
+        <% if @user %>
+          <ul>
+            <% @user.errors.messages.each do |message| %>
+            <li>
+              <%= message.first %>
+              <ul>
+                <% message.last.each do |reason| %>
+                  <li> <%= reason %> </li>
+                <% end %>
+              </ul>
+            </li>
+            <% end %>
+          </ul>
+        <% end %>
+         <%= form_for :user, url: '/users/create' do |f| %>
+           <p>First Name</p>
+           <%= f.text_field :first_name, placeholder: 'First Name', autocomplete: 'off' %>
+           <p>Last Name</p>
+           <%= f.text_field :last_name, placeholder: 'Last Name', autocomplete: 'off' %>
+           <p>Password</p>
+           <%= f.password_field :password, placeholder: 'password', autocomplete: 'off' %>
+           <p>Email Address</p>
+           <%= f.email_field :email, placeholder: 'email', autocomplete: 'off' %>
+           <%= f.select :business_type, options_for_select({:Startup => :startup, :'Local Business' => :local, :'Small Business' => :small, :'Medium Business' => :medium, :'Large Business' => :large}) %>
+  <button class="button_submit_page" style="margin:20px 1px 0 9px">Sign up</button>
+  <a href="/signin">Have an account? Sign in</a>
+         <% end %>
+
+
+
+      </div>
+
+
+
+  </div><!--End of wrap-->

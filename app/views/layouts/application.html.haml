@@ -5,15 +5,11 @@
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
   %body
-    #header
-      #nav
-        - if !logged_in?
-          = form_tag '/users/auth', style: 'display:inline-block' do
-            = email_field_tag :email, '', placeholder: 'email', autocomplete: 'off'
-            = password_field_tag :password, '', placeholder: 'password', autocomplete: 'off'
-            = submit_tag :login
-          = link_to 'signup', '/signup'
-        - else
-          Welcome back, #{current_user.email}!
-          = link_to 'logout', '/signout'
     = yield
+    #footer-bottom-bar
+      #footer_nav
+        %ul
+          %li= link_to 'Contact', 'mailto:mike@thirsty.com'
+          %li= link_to 'Support', '#'
+          %li= link_to 'Blog', 'http://blog.thirsty.com'
+          %li= link_to 'Follow us on Twitter', 'http://twitter.com/thirstyapp'
