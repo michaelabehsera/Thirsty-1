@@ -1,8 +1,10 @@
-class User
+class Campaign
   include Mongoid::Document
-  include Sorcery::Model
-  include Sorcery::Model::Adapters::Mongoid
-  authenticates_with_sorcery!
+  field :uuid, type: String
+  index :uuid, unique: true
 
-  field :email, type: String
+  field :loading, type: Boolean, default: true
+
+  belongs_to :user
+  has_many :pages
 end
