@@ -1,17 +1,14 @@
-<div class="header"> 
+<div class="header">
     <img src="images/logo.png" width="" height="">
-      
       <ul>
-
           <li><a href="#">Home</a>
           <li><a href="#">Notifications</a>
           <li><a href="#">My campaigns</a>
           <li><a href="#">Signout</a>
-
+          <li><%= link_to 'paymint', 'http://paymint.thirsty.com', rel: 'shadowbox' %></li>
       </ul>
-
 </div>
-    
+
 </div>
 
   <div class="clear"></div>
@@ -21,7 +18,7 @@
 <div id="container" style="margin-left:145px">
 <div id="inner_container" style="margin:0 auto 60px;width:835px">
       <div id="wrap">
-      
+
           <div id="user_guide">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ac metus in leo sagittis tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor fermentum ipsum, posuere dapibus mi luctus eu.</p>
 
@@ -36,42 +33,14 @@
               <p>Pick a marketing cocktail</p>
             </div>
           <div id="pick_campaign">
+              <% Cocktail.all.each do |cocktail| %>
               <div class="campaign_box">
-              <p>I want to kick ass with
-              local SEO</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ac metus in leo sagittis tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>What do I get?</p>
-              
-              <ul>
-
-                  <li>#1 benfit</li>
-                  <li>#2 benfit</li>
-                  <li>#3 benfit</li>
-                  <li>#4 benfit</li>
-                  <li>#5 benfit</li>
-
-              </ul>
-              <p>Price: $299</p>
-              <button class="button_black">Pick me!</button>
+              <p><%= cocktail.title %></p>
+              <p><%= cocktail.description %></p>
+              <p>Price: $<%= cocktail.price %></p>
+              <%= link_to 'pick me!', "http://paymint.thirsty.com/?amount=#{cocktail.price}&shadowbox=true&email=#{current_user.email}", rel: 'shadowbox', class: 'pickme' %>
               </div>
-                 <div class="campaign_box">
-              <p>I want to kick ass with
-              local SEO</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ac metus in leo sagittis tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>What do I get?</p>
-              
-              <ul>
-
-                  <li>#1 benfit</li>
-                  <li>#2 benfit</li>
-                  <li>#3 benfit</li>
-                  <li>#4 benfit</li>
-                  <li>#5 benfit</li>
-
-              </ul>
-              <p>Price: $299</p>
-              <button class="button_black">Pick me!</button>
-              </div>
+          <% end %>
               <button class="button_black" style="margin-top:10px">Suggest a campaign</button>
           </div></div>
 
@@ -83,4 +52,20 @@
 
 
   </div><!--End of wrap-->
-<div class="clear"></div>
+  <div class="clear"></div>
+
+<script>
+  window.addEventListener('message', function(e) {
+    console.log(e)
+    if (e.data.paid == true) {
+      setTimeout(function(){
+        var domain = e.data.domain.split(/\/+/g)
+        if (typeof domain[1] != 'undefined' ) {
+          window.location = '/campaigns/create/' + domain[1].replace('www.', '').replace('.', '-')
+        } else {
+          window.location = '/campaigns/create/' + domain[0].replace('www.', '').replace('.', '-')
+        }
+      }, 4500)
+    }
+  }, false)
+</script>

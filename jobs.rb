@@ -9,15 +9,21 @@ job 'campaign.load' do |args|
   campaign = get_campaign(args['id'])
   urls = sitemap('http://' + args['domain'], args['domain'])
   urls.each do |url|
-    html = Nokogiri::HTML open(url)
     begin
-      title = html.css('title').first.children.first.text
+      html = Nokogiri::HTML open(url)
     rescue
-      title = nil
+      html = nil
     end
-    page = Page.new(url: url, title: title)
-    page.campaign = campaign
-    page.save
+    if html
+      begin
+        title = html.css('title').first.children.first.text
+      rescue
+        title = nil
+      end
+      page = Page.new(url: url, title: title)
+      page.campaign = campaign
+      page.save
+    end
   end
   campaign.loading = false
   campaign.save

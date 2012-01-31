@@ -3,14 +3,6 @@
     %strong loading...
   #info{style: 'display:none'}
     %ul{style: 'color:white'}
-- else
-  %ul{style: 'color:white'}
-    - campaign.pages.each do |page|
-      %li= page.url
-      - if page.title
-        %ul
-          %li= 'title: ' + page.title
-
   :javascript
     var jug = new Juggernaut
     jug.subscribe('/campaigns/#{campaign.id}', function(rsp){
@@ -18,6 +10,15 @@
       $('#info').delay(400).fadeIn()
       for (var i=0; i < rsp.sitemap.length; i++) {
         $('#info ul').first().append('<li>' + rsp.sitemap[i].url + '<ul></ul></li>')
-        $('#info ul li ul').last().append('<li>title: ' + rsp.sitemap[i].title + '</li>')
+        if (rsp.sitemap[i].title) {
+          $('#info ul li ul').last().append('<li>title: ' + rsp.sitemap[i].title + '</li>')
+        }
       }
     })
+- else
+  %ul{style: 'color:white'}
+    - campaign.pages.each do |page|
+      %li= page.url
+      - if page.title
+        %ul
+          %li= 'title: ' + page.title

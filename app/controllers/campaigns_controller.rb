@@ -6,7 +6,7 @@ class CampaignsController < ApplicationController
     campaign = Campaign.new(uuid: UUID.new.generate)
     campaign.user = current_user
     domain = params[:domain].gsub('-', '.')
-    Stalker.enqueue('campaign.load', id: campaign.id, domain: domain)
+    Stalker.enqueue('campaign.load', { id: campaign.id, domain: domain }, ttr: 9999)
     if campaign.save
       redirect_to "/campaigns/#{campaign.uuid}"
     else
