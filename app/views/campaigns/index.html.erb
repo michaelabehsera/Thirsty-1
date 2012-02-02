@@ -1,0 +1,62 @@
+<div class="header">
+    <img src="/images/logo.png" width="" height="">
+      <ul>
+          <li><a href="#">Home</a>
+          <li><a href="#">Notifications</a>
+          <li><a href="#">My campaigns</a>
+          <li><a href="#">Signout</a>
+          <li><%= link_to 'paymint', 'http://paymint.thirsty.com', rel: 'shadowbox' %></li>
+      </ul>
+</div>
+
+</div>
+
+  <div class="clear"></div>
+
+
+<!--End of header-->
+<div id="container" style="margin-left:145px">
+<div id="inner_container" style="margin:0 auto 60px;width:835px">
+      <div id="wrap">
+
+          <div id="company_menu">
+              <h1>Campaign: <%= campaign.cocktail.title %></h1>
+          <ul>
+            <li><a href="#">Company info</a></li>
+            <li><a href="#">Current on page SEO</a></li>
+            <li><a href="#">Goals to hit monthly</a></li>
+          </ul>
+          </div>
+
+          <div id="company_info">
+          <h1><%= campaign.title %></h1>
+          <h4 style="color:white"><%= campaign.url %></h4>
+          <p>Notes: <%= campaign.notes %></p>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+
+
+  </div><!--End of wrap-->
+  <div class="clear"></div>
+<% if campaign.loading == true %>
+  <script>
+    var jug = new Juggernaut
+    jug.subscribe('/campaigns/#{campaign.id}', function(rsp){
+      $('#loading').fadeOut()
+      $('#info').delay(400).fadeIn()
+      for (var i=0; i < rsp.sitemap.length; i++) {
+        $('#info ul').first().append('<li>' + rsp.sitemap[i].url + '<ul></ul></li>')
+        if (rsp.sitemap[i].title) {
+          $('#info ul li ul').last().append('<li>title: ' + rsp.sitemap[i].title + '</li>')
+        }
+      }
+    })
+  </script>
+<% end %>

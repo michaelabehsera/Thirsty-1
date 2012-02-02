@@ -38,7 +38,7 @@
               <p><%= cocktail.title %></p>
               <p><%= cocktail.description %></p>
               <p>Price: $<%= cocktail.price %></p>
-              <%= link_to 'pick me!', "http://paymint.thirsty.com/?amount=#{cocktail.price}&shadowbox=true&email=#{current_user.email}", rel: 'shadowbox', class: 'pickme' %>
+              <%= link_to 'pick me!', "http://paymint.thirsty.com/?id=#{cocktail.id}&amount=#{cocktail.price}&shadowbox=true&email=#{current_user.email}", rel: 'shadowbox', class: 'pickme' %>
               </div>
           <% end %>
               <button class="button_black" style="margin-top:10px">Suggest a campaign</button>
@@ -56,14 +56,14 @@
 
 <script>
   window.addEventListener('message', function(e) {
-    console.log(e)
     if (e.data.paid == true) {
       setTimeout(function(){
         var domain = e.data.domain.split(/\/+/g)
+        var extras = '/?id=' + e.data.id + '&name=' + e.data.name + '&url=' + e.data.url + '&notes=' + e.data.notes
         if (typeof domain[1] != 'undefined' ) {
-          window.location = '/campaigns/create/' + domain[1].replace('www.', '').replace('.', '-')
+          window.location = '/campaigns/create/' + domain[1].replace('www.', '').replace('.', '-') + extras
         } else {
-          window.location = '/campaigns/create/' + domain[0].replace('www.', '').replace('.', '-')
+          window.location = '/campaigns/create/' + domain[0].replace('www.', '').replace('.', '-') + extras
         }
       }, 4500)
     }
