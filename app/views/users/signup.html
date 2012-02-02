@@ -25,7 +25,7 @@
            <%= f.password_field :password, placeholder: 'password', autocomplete: 'off' %>
            <p>Email Address</p>
            <%= f.email_field :email, placeholder: 'email', autocomplete: 'off' %>
-           <%= f.select :business_type, options_for_select({:Startup => :startup, :'Local Business' => :local, :'Small Business' => :small, :'Medium Business' => :medium, :'Large Business' => :large}) %>
+           <%= f.select :type, options_for_select({:Marketer => :marketer, :Startup => :startup, :'Local Business' => :local, :'Small Business' => :small, :'Medium Business' => :medium, :'Large Business' => :large}) %>
   <button class="button_submit_page" style="margin:20px 1px 0 9px">Sign up</button>
   <a href="/signin">Have an account? Sign in</a>
          <% end %>

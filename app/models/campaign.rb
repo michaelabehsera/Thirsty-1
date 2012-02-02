@@ -12,4 +12,5 @@ class Campaign
   belongs_to :user
   belongs_to :cocktail
   has_many :pages
+  has_many :comments
 end

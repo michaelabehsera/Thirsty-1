@@ -7,7 +7,7 @@ class User
   field :first_name, type: String
   field :last_name, type: String
   field :email, type: String
-  field :business_type, type: Symbol
+  field :type, type: Symbol
 
   validates_presence_of :email
   validates_presence_of :first_name
@@ -15,4 +15,5 @@ class User
   validates_uniqueness_of :email
 
   has_many :campaigns
+  has_many :comments
 end
