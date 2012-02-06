@@ -2,7 +2,10 @@ class User
   include Mongoid::Document
   include Sorcery::Model
   include Sorcery::Model::Adapters::Mongoid
+  include Gravtastic
   authenticates_with_sorcery!
+  is_gravtastic
+  gravtastic size: 35
 
   field :first_name, type: String
   field :last_name, type: String

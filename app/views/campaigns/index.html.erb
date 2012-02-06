@@ -1,95 +1,124 @@
-<div class="header">
-    <img src="/images/logo.png" width="" height="">
+<div id="idea-sub" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Submit an idea</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_for :comment, url: '/comments/create', html: { remote: true, class: 'form-horizontal', style: 'text-align:center' } do |f| %>
+      <%= hidden_field_tag :id, campaign.id %>
+      <div class="control-group">
+        <div class="controls" style="margin-left:0">
+          <%= f.text_field :title, placeholder: 'Title', style: 'width: 350px' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls" style="margin-left:0">
+          <%= f.text_area :message, placeholder: 'Explanation', style: 'height: 150px; width: 350px' %>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal-footer" style="text-align:center">
+      <%= f.submit :submit, value: 'Submit idea', class: 'btn btn-success', style: 'float:none' %>
+    <% end %>
+  </div>
+</div>
+
+<div id="header">
+    <img src="/images/logo.png" style="margin:0 0 0 -2px;" width="" height="">
       <ul>
-          <li><a href="#">Home</a>
-          <li><a href="#">Notifications</a>
+          <li><a href="#">Pick a cocktail</a>
           <li><a href="#">My campaigns</a>
-          <li><a href="#">Signout</a>
+          <li><a href="#">Notifications</a>
+          <li><a href="#">Support</a>
+          <li><a href="#">Logout</a>
       </ul>
 </div>
 
-</div>
-
-  <div class="clear"></div>
-
-
-<!--End of header-->
-<div id="container" style="margin-left:145px">
-<div id="inner_container" style="margin:0 auto 60px;width:835px">
       <div id="wrap">
-
           <div id="company_menu">
               <h1>Campaign: <%= campaign.cocktail.title %></h1>
-          <ul>
-            <li><a href="#">Company info</a></li>
-            <li><a href="#">Current on page SEO</a></li>
-            <li><a href="#">Goals to hit monthly</a></li>
-          </ul>
           </div>
+          <div class="tabbable">
+          <div id="menu_one">
+
+            <ul class="nav nav-tabs" data-tabs="tabs">
+              <li><a class="active" href="#info-tab" data-toggle="tab">Company Info</a></li>
+              <li><a href="#goals-tab" data-toggle="tab">Monthly Goals</a></li>
+            </ul>
+
+          </div>
+
+
 
           <div id="company_info">
-          <h1><%= campaign.title %></h1>
-          <h4 style="color:white"><%= campaign.url %></h4>
-          <p>Notes: <%= campaign.notes %></p>
-          </div>
 
-          <textarea style="width:500px;height:250px" id="send-area"></textarea>
-          <%= link_to 'submit', 'javascript:void(0)', id: 'send' %>
+            <div class="tab-content">
 
-          <%= form_for :comment, url: '/comments/create', html: { remote: true } do |f| %>
-            <%= f.text_field :message, placeholder: 'Enter a comment' %>
-            <%= hidden_field_tag :id, campaign.id %>
-            <%= f.submit %>
-          <% end %>
-
-          <div id="comments">
-            <% campaign.comments.desc(:created_at).each do |comment| %>
-              <div class="comment">
-                  <%= comment.user.first_name %>: <%= comment.message %>
+              <div id="info-tab" class="tab-pane active">
+                <img src="/images/profile.png" style="margin:1px 10px 0 0" align="left" width="50" height="50">
+                <br />
+                <h1><%= campaign.title %></h1>
+                <p>Company Notes: <%= campaign.notes %></p>
               </div>
-            <% end %>
+
+              <div id="goals-tab" class="tab-pane">
+                <p>Testing</p>
+                <p>Goals</p>
+              </div>
+
+            </div>
+
+          </div>
           </div>
 
+       <div class="tabbable">
+
+       <div id="marketers_tab">
+
+       <p>Marketers:</p>
+
+
+          <ul class="nav nav-tabs" data-tabs="tabs">
+            <li><a class="active" href="#ideas-tab" data-toggle="tab">Ideas</a></li>
+            <li><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
+            <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
+            <li><a href="#reports-tab" data-toggle="tab">Reports</a></li>
+            <li><a href="#writers-tab" data-toggle="tab">Winning writers</a></li>
+          </ul>
         </div>
 
-      </div>
+          <div class="tab-content">
 
+            <div id="ideas-tab" class="tab-pane active">
 
+              <div id="ideas">
+                <h3>Have any marketing ideas for this campaign? <button class="button_submit" href="#idea-sub" data-toggle="modal">Submit an idea</button></h1>
+                <div id="comments">
 
+                <% campaign.comments.reverse.each do |comment| %>
+                  <%= render comment %>
+                <% end %>
 
+              </div>
+              </div>
 
-  </div><!--End of wrap-->
-  <div class="clear"></div>
+            </div>
 
-<script>
-  $(document).ready(function(){
-    nicEditors.allTextAreas()
-    $('.nicEdit-main').parent().css('background-color', 'white')
-    $('#send').click(function(){
-      $.post(
-        '/campaigns/submit',
-        { id: '<%= current_user.id %>', content: $('.nicEdit-main').html() },
-        function(rsp){
-          $('.nicEdit-main').html('')
-        },
-        'json'
-      )
-    })
-  })
-</script>
+            <div id="articles-tab" class="tab-pane">
+            </div>
 
-<% if campaign.loading == true %>
-  <script>
-    var jug = new Juggernaut
-    jug.subscribe('/campaigns/#{campaign.id}', function(rsp){
-      $('#loading').fadeOut()
-      $('#info').delay(400).fadeIn()
-      for (var i=0; i < rsp.sitemap.length; i++) {
-        $('#info ul').first().append('<li>' + rsp.sitemap[i].url + '<ul></ul></li>')
-        if (rsp.sitemap[i].title) {
-          $('#info ul li ul').last().append('<li>title: ' + rsp.sitemap[i].title + '</li>')
-        }
-      }
-    })
-  </script>
-<% end %>
+            <div id="tools-tab" class="tab-pane">
+            </div>
+
+            <div id="reports-tab" class="tab-pane">
+            </div>
+
+            <div id="writers-tab" class="tab-pane">
+            </div>
+
+          </div>
+        </div>
+
+        </div>

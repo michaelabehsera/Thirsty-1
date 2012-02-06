@@ -19,7 +19,7 @@ class CampaignsController < ApplicationController
 
     post = Atom::Entry.new do |post|
       post.title = "Test Title"
-      post.authors << Atom::Person.new(:name => user.first_name + ' ' + user.last_name)
+      post.authors << Atom::Person.new(:name => 'tfwatf', uri: 'sup')
       post.categories << Atom::Category.new(post_cat)
       post.updated = Time.now
       post.content = Atom::Content::Html.new params[:content]

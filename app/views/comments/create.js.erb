@@ -1,2 +1,4 @@
-$('#comments').prepend('<div class="comment"><%= @comment.user.first_name + ': ' + @comment.message %></div>')
+$('#comment_title').val('')
 $('#comment_message').val('')
+$('#idea-sub').modal('hide')
+$('#comments').prepend('<%= escape_javascript(render @comment) %>')

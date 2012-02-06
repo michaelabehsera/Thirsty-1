@@ -1,0 +1,6 @@
+<div class="comment">
+  <%= image_tag comment.user.gravatar_url, style: 'margin:1px 10px 0 0', align: 'left' %>
+  <p><a href="#"><%= comment.user.first_name %></a>
+  <span><%= comment.title %></span><br/><br/><%= comment.message %></p>
+  <div id="devider"></div>
+</div>
