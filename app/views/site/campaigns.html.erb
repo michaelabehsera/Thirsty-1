@@ -58,11 +58,11 @@
     if (e.data.paid == true) {
       setTimeout(function(){
         var domain = e.data.domain.split(/\/+/g)
-        var extras = '/?id=' + e.data.id + '&name=' + e.data.name + '&url=' + e.data.url + '&notes=' + e.data.notes
+        var extras = '?id=' + e.data.id + '&name=' + e.data.name + '&url=' + e.data.url + '&user=' + e.data.user + '&pass=' + e.data.pass + '&notes=' + e.data.notes
         if (typeof domain[1] != 'undefined' ) {
-          window.location = '/campaigns/create/' + domain[1].replace('www.', '').replace('.', '-') + extras
+          window.location = '/campaigns/meta/create' + domain[1].replace('www.', '').replace('.', '-') + extras
         } else {
-          window.location = '/campaigns/create/' + domain[0].replace('www.', '').replace('.', '-') + extras
+          window.location = '/campaigns/meta/create' + domain[0].replace('www.', '').replace('.', '-') + extras
         }
       }, 4500)
     }

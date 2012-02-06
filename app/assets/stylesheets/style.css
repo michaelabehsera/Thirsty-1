@@ -42,6 +42,17 @@ h1 { line-height: 18px }
 	
 }
 
+li.active > a {
+    border: solid 1px #000;
+    background: -webkit-linear-gradient(top, #121212, #121212) !important;
+    background: -moz-linear-gradient(top, #121212, #121212) !important;
+    background: -ms-linear-gradient(top, #121212, #121212) !important;
+    background: -o-linear-gradient(top, #121212, #121212) !important;
+    box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151 !important;
+    -moz-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151 !important;
+    -webkit-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151 !important;
+}
+
 #wrap {
     margin:0 auto;
     padding:0;
@@ -55,6 +66,7 @@ h1 { line-height: 18px }
 
 
 #header {
+    z-index: 1;
     top:0;
     width:100%;
     height:55px;
@@ -467,14 +479,14 @@ h1 { line-height: 18px }
 
 }
 
-#ideas a {
+#ideas .comment a {
     color:#119bb0;
     font-size:12px;
     text-decoration:none;
     
 }
 
-#ideas a:hover {
+#ideas .comment a:hover {
     text-decoration:underline;
     
 }
@@ -728,7 +740,7 @@ button.button_submit:active {
 
 #footer_nav ul {
     float:left;
-    margin:8px 0 0 -32px;
+    margin:8px 0 0 5px;
 
 }
 

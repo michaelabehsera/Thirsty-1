@@ -44,7 +44,7 @@
           <div id="menu_one">
 
             <ul class="nav nav-tabs" data-tabs="tabs">
-              <li><a class="active" href="#info-tab" data-toggle="tab">Company Info</a></li>
+              <li class="active"><a href="#info-tab" data-toggle="tab">Company Info</a></li>
               <li><a href="#goals-tab" data-toggle="tab">Monthly Goals</a></li>
             </ul>
 
@@ -81,7 +81,7 @@
 
 
           <ul class="nav nav-tabs" data-tabs="tabs">
-            <li><a class="active" href="#ideas-tab" data-toggle="tab">Ideas</a></li>
+            <li class="active"><a href="#ideas-tab" data-toggle="tab">Ideas</a></li>
             <li><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
             <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
             <li><a href="#reports-tab" data-toggle="tab">Reports</a></li>
@@ -107,6 +107,11 @@
             </div>
 
             <div id="articles-tab" class="tab-pane">
+              <div id="ideas">
+                <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>
+                <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
+                <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
+              </div>
             </div>
 
             <div id="tools-tab" class="tab-pane">
@@ -122,3 +127,23 @@
         </div>
 
         </div>
+
+<script>
+  $(document).ready(function(){
+    new nicEditor().panelInstance('send-area')
+    $('.nicEdit-main').parent().css('background-color', 'white')
+    $('#send').click(function(){
+      $(this).text('Submitting..')
+      $.post(
+        '/campaigns/<%= campaign.uuid %>/submit',
+        { id: '<%= current_user.id %>', content: $('.nicEdit-main').html(), title: $('#title').val() },
+        function(rsp){
+          $('#title').val('')
+          $('.nicEdit-main').html('')
+          $('#send').text('Submit')
+        },
+        'json'
+      )
+    })
+  })
+</script>

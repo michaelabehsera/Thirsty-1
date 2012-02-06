@@ -12,6 +12,8 @@ class UsersController < InheritedResources::Base
 
   def auth
     if user = login(params[:user][:email], params[:user][:password], true)
+      remember_me!
+      cookies[:thirsty_uid] = user.id
       redirect_to '/'
     else
       render inline: 'fail'
@@ -20,6 +22,7 @@ class UsersController < InheritedResources::Base
 
   def signout
     logout
+    cookies[:thirsty_uid] = nil
     redirect_to '/'
   end
 
