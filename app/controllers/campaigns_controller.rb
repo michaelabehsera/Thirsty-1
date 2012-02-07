@@ -5,6 +5,13 @@ class CampaignsController < ApplicationController
   before_filter :authorize, except: :submit
 
   expose(:campaign) { Campaign.where(uuid: params[:uuid]).first }
+  expose(:con) {
+    OAuth::Consumer.new('811319492611.apps.googleusercontent.com', 'MgExVYkbVQQViVGtTnScO8Lg',
+      {:site => 'https://www.google.com',
+       :request_token_path => '/accounts/OAuthGetRequestToken',
+       :access_token_path => '/accounts/OAuthGetAccessToken',
+       :authorize_path => '/accounts/OAuthAuthorizeToken'})
+  }
 
   def authorize
     redirect_to '/signin' unless logged_in?
@@ -25,7 +32,10 @@ class CampaignsController < ApplicationController
       post.content = Atom::Content::Html.new params[:content]
     end
 
-    blog.publish_post post
+    rsp = blog.publish_post post
+    article = campaign.articles.new(url: rsp.id, title: rsp.title)
+    article.user = user
+    article.save
 
     render json: { success: true }
   end
@@ -39,6 +49,7 @@ class CampaignsController < ApplicationController
     campaign.notes = params[:notes]
     campaign.username = params[:user]
     campaign.pass = params[:pass]
+    campaign.analytics_id = params[:aid]
     if campaign.save
       redirect_to "/campaigns/#{campaign.uuid}"
     else
@@ -46,7 +57,22 @@ class CampaignsController < ApplicationController
     end
   end
 
-  def index
+  def callback
+    rt = OAuth::RequestToken.new(con, session[:rt_token], session[:rt_secret])
+    Garb::Session.access_token = rt.get_access_token oauth_verifier: params[:oauth_verifier]
+    profile = Garb::Management::Profile.all.detect { |p| p.web_property_id =~ /#{campaign.analytics_id}/ }
+    campaign.articles.each do |article|
+      page = profile.pageviews.detect { |p| p.page_path =~ /#{article.title}/ }
+      article.update_attribute(:unique_pageviews, page.unique_pageviews.to_i) if page
+    end
+    redirect_to "/campaigns/#{campaign.uuid}"
+  end
+
+  def auth
+    rt = con.get_request_token({oauth_callback: root_url + "campaigns/#{campaign.uuid}/callback"}, {:scope => 'https://www.google.com/analytics/feeds/data'})
+    session[:rt_token] = rt.token
+    session[:rt_secret] = rt.secret
+    redirect_to rt.authorize_url
   end
 
 end

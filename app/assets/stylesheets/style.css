@@ -53,6 +53,7 @@ li.active > a {
     -webkit-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151 !important;
 }
 
+
 #wrap {
     margin:0 auto;
     padding:0;
@@ -61,6 +62,7 @@ li.active > a {
 
 }
 
+.writer { padding: 15px }
 
 /*-------------------------Header end-------------------------*/
 
@@ -1040,9 +1042,8 @@ button.button_submit:active {
 }
 
 #writers {
-    padding:7px;
     margin:0 0 0 0;
-    width:776px;
+    width:790px;
     border-left:1px solid #000;
     border-right:1px solid #000;
     background:url(/images/noise.gif)repeat;

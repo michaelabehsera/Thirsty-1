@@ -36,6 +36,7 @@ GEM
     bson_ext (1.5.2)
       bson (= 1.5.2)
     builder (3.0.0)
+    clockwork (0.3.4)
     coderay (0.9.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -46,6 +47,7 @@ GEM
     coffee-script-source (1.2.0)
     commonjs (0.2.0)
       therubyracer (~> 0.9.9)
+    crack (0.3.1)
     decent_exposure (1.0.1)
     domain_name (0.5.2)
       unf (~> 0.0.3)
@@ -56,6 +58,9 @@ GEM
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
+    garb (0.9.1)
+      activesupport (>= 2.2.0)
+      crack (>= 0.1.6)
     gravtastic (3.2.6)
     haml (3.1.4)
     has_scope (0.5.1)
@@ -197,8 +202,10 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
+  clockwork
   coffee-rails (~> 3.2.0)
   decent_exposure
+  garb
   gravtastic
   haml
   inherited_resources
@@ -208,6 +215,7 @@ DEPENDENCIES
   mechanize
   mongoid
   nokogiri
+  oauth
   pry
   rails
   ratom

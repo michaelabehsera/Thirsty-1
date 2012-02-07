@@ -2,16 +2,21 @@
 %html
   %head
     %title= yield :title
-    = stylesheet_link_tag 'application'
+    - if request.path == '/signin'
+      = stylesheet_link_tag 'signup'
+    - else
+      = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
-    :javascript
-      Shadowbox.init()
+    - if request.path != '/signin'
+      :javascript
+        Shadowbox.init()
   %body
     = yield
-    #footer-bottom-bar
-      #footer_nav
-        %ul
-          %li= link_to 'Contact', 'mailto:mike@thirsty.com'
-          %li= link_to 'Support', '#'
-          %li= link_to 'Blog', 'http://blog.thirsty.com'
-          %li= link_to 'Follow us on Twitter', 'http://twitter.com/thirstyapp'
+    - if request.path != '/signin'
+      #footer-bottom-bar
+        #footer_nav
+          %ul
+            %li= link_to 'Contact', 'mailto:mike@thirsty.com'
+            %li= link_to 'Support', '#'
+            %li= link_to 'Blog', 'http://blog.thirsty.com'
+            %li= link_to 'Follow us on Twitter', 'http://twitter.com/thirstyapp'

@@ -95,13 +95,7 @@
 
               <div id="ideas">
                 <h3>Have any marketing ideas for this campaign? <button class="button_submit" href="#idea-sub" data-toggle="modal">Submit an idea</button></h1>
-                <div id="comments">
-
-                <% campaign.comments.reverse.each do |comment| %>
-                  <%= render comment %>
-                <% end %>
-
-              </div>
+                <div id="comments"><%= render campaign.comments.reverse %></div>
               </div>
 
             </div>
@@ -121,6 +115,15 @@
             </div>
 
             <div id="writers-tab" class="tab-pane">
+              <div id="winning_writers">
+                <h1 style="display:inline">Writers organized by the best results</h1>
+                <% if current_user == campaign.user %>
+                  <%= link_to 'Update results', "/campaigns/#{campaign.uuid}/auth", class: 'btn btn-primary' %>
+                <% end %>
+              </div>
+              <div id="devider_line3"></div>
+              <div id="writers"><%= render campaign.articles.desc(:unique_pageviews) %></div>
+              <div id="devider_end2"></div>
             </div>
 
           </div>

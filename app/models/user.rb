@@ -19,4 +19,5 @@ class User
 
   has_many :campaigns
   has_many :comments
+  has_many :articles
 end
