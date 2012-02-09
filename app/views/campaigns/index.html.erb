@@ -102,6 +102,7 @@
 
             <div id="articles-tab" class="tab-pane">
               <div id="ideas">
+                <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
                 <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>
                 <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
                 <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
@@ -128,7 +129,7 @@
                 <% end %>
               </div>
               <div id="devider_line3"></div>
-              <div id="writers"><%= render campaign.articles.desc(:unique_pageviews) %></div>
+              <div id="writers"><%= render campaign.articles.where(month: campaign.month).desc(:unique_pageviews) %></div>
               <div id="devider_end2"></div>
             </div>
 
