@@ -1,0 +1,7 @@
+.notification
+  - child = notification.comment || notification.article
+  - user_name = child.user.first_name + ' ' + child.user.last_name
+  - if notification.comment
+    #{user_name} suggests: #{child.message}
+  - else
+    #{user_name} wrote: #{link_to child.title, child.url}

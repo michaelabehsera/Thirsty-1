@@ -1,4 +1,5 @@
 $('#comment_title').val('')
 $('#comment_message').val('')
 $('#idea-sub').modal('hide')
+$('#idea-sub .btn').val('Submit idea')
 $('#comments').prepend('<%= escape_javascript(render @comment) %>')

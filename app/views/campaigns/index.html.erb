@@ -20,7 +20,7 @@
   </div>
 
   <div class="modal-footer" style="text-align:center">
-      <%= f.submit :submit, value: 'Submit idea', class: 'btn btn-success', style: 'float:none' %>
+      <%= f.submit :submit, value: 'Submit idea', class: 'btn btn-success', style: 'float:none', onclick: 'javascript:$(this).val("Submitting..")' %>
     <% end %>
   </div>
 </div>
@@ -112,6 +112,12 @@
             </div>
 
             <div id="reports-tab" class="tab-pane">
+              <% notifications = (campaign.articles.map {|c|c.notification} + campaign.comments.map {|c|c.notification}).compact.sort_by(&:created_at).reverse %>
+              <div id="reports_menu">
+                <div id="devider_line2"></div>
+                <h1><%= notifications.size %> Reports</h1>
+              </div>
+              <div id="writers"><%= render notifications %></div>
             </div>
 
             <div id="writers-tab" class="tab-pane">

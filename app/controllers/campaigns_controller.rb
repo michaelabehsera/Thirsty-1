@@ -35,9 +35,12 @@ class CampaignsController < ApplicationController
     rsp = blog.publish_post post
     article = campaign.articles.new(url: rsp.id, title: rsp.title)
     article.user = user
-    article.save
-
-    render json: { success: true }
+    if article.save
+      article.create_notification
+      render json: { success: true }
+    else
+      render json: { success: false }
+    end
   end
 
   def create
@@ -51,6 +54,7 @@ class CampaignsController < ApplicationController
     campaign.pass = params[:pass]
     campaign.analytics_id = params[:aid]
     if campaign.save
+      campaign.create_notification
       redirect_to "/campaigns/#{campaign.uuid}"
     else
       render inline: 'fail'
@@ -62,7 +66,7 @@ class CampaignsController < ApplicationController
     Garb::Session.access_token = rt.get_access_token oauth_verifier: params[:oauth_verifier]
     profile = Garb::Management::Profile.all.detect { |p| p.web_property_id =~ /#{campaign.analytics_id}/ }
     campaign.articles.each do |article|
-      page = profile.pageviews.detect { |p| p.page_path =~ /#{article.title}/ }
+      page = profile.pageviews.detect { |p| p.page_path =~ /#{article.url.gsub(campaign.url, '')}/ }
       article.update_attribute(:unique_pageviews, page.unique_pageviews.to_i) if page
     end
     redirect_to "/campaigns/#{campaign.uuid}"

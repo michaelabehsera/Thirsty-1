@@ -5,7 +5,7 @@ class CommentsController < InheritedResources::Base
     @comment = Comment.new params[:comment]
     @comment.user = current_user
     @comment.campaign = Campaign.find(params[:id])
-    @comment.save
+    @comment.create_notification if @comment.save
   end
 
 end

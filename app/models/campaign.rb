@@ -16,6 +16,7 @@ class Campaign
 
   belongs_to :user
   belongs_to :cocktail
+  has_one :notification
   has_many :pages
   has_many :comments
   has_many :articles

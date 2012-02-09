@@ -36,7 +36,6 @@ GEM
     bson_ext (1.5.2)
       bson (= 1.5.2)
     builder (3.0.0)
-    clockwork (0.3.4)
     coderay (0.9.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -116,6 +115,8 @@ GEM
       faraday (~> 0.7)
       multi_json (~> 1.0)
     polyglot (0.3.3)
+    pony (1.4)
+      mail (> 2.0)
     pry (0.9.7.4)
       coderay (~> 0.9.8)
       method_source (~> 0.6.7)
@@ -202,7 +203,6 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
-  clockwork
   coffee-rails (~> 3.2.0)
   decent_exposure
   garb
@@ -216,6 +216,7 @@ DEPENDENCIES
   mongoid
   nokogiri
   oauth
+  pony
   pry
   rails
   ratom
