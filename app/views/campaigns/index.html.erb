@@ -129,7 +129,7 @@
                 <div id="devider_line2"></div>
                 <h1><%= notifications.size %> Reports</h1>
               </div>
-              <div id="writers"><%= render notifications %></div>
+              <div id="reports"><%= render notifications %></div>
             </div>
 
             <div id="writers-tab" class="tab-pane">
@@ -145,6 +145,18 @@
             </div>
 
             <div id="chat-tab" class="tab-pane">
+              <div id="chat">
+                <div id="users">
+                  <% campaign.subscriptions.each do |user| %>
+                    <div class="user" id="user<%= user.id %>"><%= user.name %></div>
+                  <% end %>
+                </div>
+                <div id="chat_messages"></div>
+                <%= form_tag "/campaigns/#{campaign.uuid}/chat_message", id: 'chat_form', remote: true do %>
+                  <%= text_field_tag :message, '', style: 'width:700px' %>
+                  <%= submit_tag :submit, style: 'display:none' %>
+                <% end %>
+              </div>
             </div>
 
           </div>
@@ -154,8 +166,41 @@
 
 <script>
   $(document).ready(function(){
+    function new_message(message, username) {
+      return '<div class="chat_message"><span class="username">' + username + ': </span><span class="message_content">' + message + '</span></div>'
+    }
+
     var jug = new Juggernaut
+    jug.meta = {
+      user_id: '<%= current_user.id %>',
+      campaign_id: '<%= campaign.id %>'
+    }
     jug.subscribe('<%= campaign.uuid %>', function(data) {
+      if (data.message && data.message != '') {
+        $('#chat_messages').append(new_message(data.message, data.username))
+        $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
+        $('#message').val('')
+      } else if (data.event_type == 'subscribe') {
+        $('#users').append('<div class="user" id="user' + data.user_id + '">' + data.username + '</div>')
+      } else if (data.event_type == 'unsubscribe') {
+        $('#user' + data.user_id).fadeOut()
+      }
+    })
+
+    var session_check = setInterval(function(){
+      if (jug.sessionID) {
+        clearInterval(session_check)
+        $('#chat_form').append('<input type="hidden" name="sessionID" value="' + jug.sessionID + '">')
+      }
+    }, 100)
+
+    $('#chat_form').submit(function(){
+      var message = $('#message').val()
+      if (message != '') {
+        $('#chat_messages').append(new_message(message, '<%= current_user.name %>'))
+        $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
+        $('#message').val('')
+      }
     })
 
     new nicEditor().panelInstance('send-area')

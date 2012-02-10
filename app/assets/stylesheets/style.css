@@ -62,6 +62,11 @@ li.active > a {
 
 }
 
+#users {
+  float: right;
+  margin: 20px 20px 0 0
+}
+
 .writer { padding: 15px }
 
 /*-------------------------Header end-------------------------*/
@@ -1040,6 +1045,33 @@ button.button_submit:active {
     margin:2px 0 0 0;
 
 }
+
+#chat {
+    margin:0 0 0 0;
+    height: 250px;
+    position: relative;
+    width:790px;
+    border-left:1px solid #000;
+    border-right:1px solid #000;
+    background:url(/images/noise.gif)repeat;
+
+}
+
+#chat form { margin: 0 0 0 7px }
+
+#chat #chat_form { position: absolute; bottom: 0 }
+#chat #chat_messages { height: 200px; overflow-x: hidden }
+
+
+#reports {
+    margin:0 0 0 0;
+    width:790px;
+    border-left:1px solid #000;
+    border-right:1px solid #000;
+    background:url(/images/noise.gif)repeat;
+
+}
+
 
 #writers {
     margin:0 0 0 0;

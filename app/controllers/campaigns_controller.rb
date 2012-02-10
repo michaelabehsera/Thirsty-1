@@ -17,6 +17,11 @@ class CampaignsController < ApplicationController
     redirect_to '/signin' unless logged_in?
   end
 
+  def chat_message
+    Juggernaut.publish campaign.uuid, { message: params[:message], username: current_user.name }, except: params[:sessionID]
+    render nothing: true
+  end
+
   def submit
     user = User.find(params[:id])
     article = campaign.articles.new(content: params[:content], title: params[:title])
