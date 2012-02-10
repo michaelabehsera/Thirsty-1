@@ -20,4 +20,8 @@ class User
   has_many :campaigns
   has_many :comments
   has_many :articles
+
+  def name
+    self.first_name + ' ' + self.last_name
+  end
 end

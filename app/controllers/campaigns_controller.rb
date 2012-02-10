@@ -19,27 +19,45 @@ class CampaignsController < ApplicationController
 
   def submit
     user = User.find(params[:id])
-    blog = Wordpress::Blog.new(campaign.url,campaign.username,campaign.pass)
-
-    post_cat = {:term => "Category", :label => "Category", :scheme => "category"}
-    blog.add_category post_cat unless blog.category_exists? post_cat
-
-    post = Atom::Entry.new do |post|
-      post.title = params[:title]
-      post.authors << Atom::Person.new(:name => user.first_name + ' ' + user.last_name)
-      post.categories << Atom::Category.new(post_cat)
-      post.updated = Time.now
-      post.content = Atom::Content::Html.new params[:content]
-    end
-
-    rsp = blog.publish_post post
-    article = campaign.articles.new(url: rsp.id, title: rsp.title)
+    article = campaign.articles.new(content: params[:content], title: params[:title])
     article.user = user
     if article.save
       article.create_notification
       render json: { success: true }
     else
       render json: { success: false }
+    end
+  end
+
+  def deny
+    @article = Article.find(params[:id])
+    @article.update_attribute(:approved, false)
+    render 'deny'
+  end
+
+  def approve
+    article = Article.find(params[:id])
+    blog = Wordpress::Blog.new(campaign.url,campaign.username,campaign.pass)
+
+    #post_cat = {:term => "Category", :label => "Category", :scheme => "category"}
+    #blog.add_category post_cat unless blog.category_exists? post_cat
+
+    post = Atom::Entry.new do |post|
+      post.title = article.title
+      post.authors << Atom::Person.new(:name => article.user.name)
+      #post.categories << Atom::Category.new(post_cat)
+      post.updated = article.created_at
+      post.content = Atom::Content::Html.new article.content
+    end
+
+    rsp = blog.publish_post post
+    article.update_attribute(:url, rsp.id)
+    if article.save && article.url
+      article.update_attribute(:approved, true)
+      @article = article
+      render 'approve'
+    else
+      render nothing: true
     end
   end
 

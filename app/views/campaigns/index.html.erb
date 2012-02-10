@@ -102,10 +102,20 @@
 
             <div id="articles-tab" class="tab-pane">
               <div id="ideas">
-                <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
-                <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>
-                <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
-                <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
+                <% if current_user.type == :marketer %>
+                  <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
+                  <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>
+                  <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
+                  <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
+                <% else %>
+                  <% campaign.articles.where(approved: nil).each do |article| %>
+                    <div class="article" id="article<%= article.id %>">
+                       "<%= article.title %>" written by: <%= article.user.name %>
+                       <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true %>
+                       <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true %>
+                     </div>
+                  <% end %>
+                <% end %>
               </div>
             </div>
 
@@ -125,11 +135,11 @@
               <div id="winning_writers">
                 <h1 style="display:inline">Writers organized by the best results</h1>
                 <% if current_user == campaign.user %>
-                  <%= link_to 'Update results', "/campaigns/#{campaign.uuid}/auth", class: 'btn btn-primary' %>
+                  <%= link_to 'Update results', "/campaigns/#{campaign.uuid}/auth", class: 'btn btn-info' %>
                 <% end %>
               </div>
               <div id="devider_line3"></div>
-              <div id="writers"><%= render campaign.articles.where(month: campaign.month).desc(:unique_pageviews) %></div>
+              <div id="writers"><%= render campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews) %></div>
               <div id="devider_end2"></div>
             </div>
 
@@ -148,9 +158,13 @@
         '/campaigns/<%= campaign.uuid %>/submit',
         { id: '<%= current_user.id %>', content: $('.nicEdit-main').html(), title: $('#title').val() },
         function(rsp){
-          $('#title').val('')
-          $('.nicEdit-main').html('')
-          $('#send').text('Submit')
+          if (rsp.success == true) {
+            $('#title').val('')
+            $('.nicEdit-main').html('')
+            $('#send').text('Submit')
+          } else {
+            $('#send').text('Failed :(')
+          }
         },
         'json'
       )

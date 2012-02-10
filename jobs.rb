@@ -15,7 +15,7 @@ job 'notification.send' do |args|
     end
   message =
     if notification.article
-      "#{user_name} just submitted an article for your #{child.campaign.title} campaign. Check it out <a href=\"#{child.url}\">here</a>."
+      "#{user_name} just submitted an article for your <a href=\"#{child.campaign.url}\">#{child.campaign.title}</a> campaign. Check it out in your article submissions tab."
     elsif notification.comment
       "#{user_name} just suggested an idea for your #{child.campaign.title} campaign.<br/><br/>#{child.title}:<br/>#{child.message}"
     elsif notification.campaign
@@ -43,7 +43,7 @@ job 'notification.send' do |args|
     end
   else
     Pony.mail(
-      to: child.user.email,
+      to: child.campaign.user.email,
       from: 'mike@thirsty.com',
       subject: title,
       body: message,
