@@ -2,17 +2,16 @@
 %html
   %head
     %title= yield :title
-    - if request.path == '/signin'
+    - if request.path == '/signin' || request.path == '/signup'
       = stylesheet_link_tag 'signup'
     - else
       = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
-    - if request.path != '/signin'
-      :javascript
-        Shadowbox.init()
+    :javascript
+      Shadowbox.init()
   %body
     = yield
-    - if request.path != '/signin'
+    - if request.path != '/signin' && request.path != '/signup'
       #footer-bottom-bar
         #footer_nav
           %ul
