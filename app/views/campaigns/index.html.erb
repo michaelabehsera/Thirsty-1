@@ -86,6 +86,7 @@
             <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
             <li><a href="#reports-tab" data-toggle="tab">Reports</a></li>
             <li><a href="#writers-tab" data-toggle="tab">Winning writers</a></li>
+            <li><a href="#chat-tab" data-toggle="tab">Chat with your marketers</a></li>
           </ul>
         </div>
 
@@ -135,12 +136,15 @@
               <div id="winning_writers">
                 <h1 style="display:inline">Writers organized by the best results</h1>
                 <% if current_user == campaign.user %>
-                  <%= link_to 'Update results', "/campaigns/#{campaign.uuid}/auth", class: 'btn btn-info' %>
+                  <%= link_to 'Update results', "/campaigns/#{campaign.uuid}/auth", class: 'btn btn-primary' %>
                 <% end %>
               </div>
               <div id="devider_line3"></div>
               <div id="writers"><%= render campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews) %></div>
               <div id="devider_end2"></div>
+            </div>
+
+            <div id="chat-tab" class="tab-pane">
             </div>
 
           </div>
@@ -150,6 +154,10 @@
 
 <script>
   $(document).ready(function(){
+    var jug = new Juggernaut
+    jug.subscribe('<%= campaign.uuid %>', function(data) {
+    })
+
     new nicEditor().panelInstance('send-area')
     $('.nicEdit-main').parent().css('background-color', 'white')
     $('#send').click(function(){
