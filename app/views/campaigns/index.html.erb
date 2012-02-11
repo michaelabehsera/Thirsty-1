@@ -25,23 +25,7 @@
   </div>
 </div>
 
-<div id="header">
-    <img src="/images/logo.png" style="margin:0 0 0 -2px;" width="" height="">
-      <ul>
-          <li><a href="#">Pick a cocktail</a></li>
-          <li class="dropdown" data-dropdown="dropdown"><a data-toggle="dropdown" href="javascript:void(0)">My campaigns</a>
-            <ul class="dropdown-menu">
-              <% current_user.active_campaigns.each do |campaign| %>
-                <li><a href="<%= campaign.url %>"><%= campaign.title %></a></li>
-              <% end %>
-            </ul>
-          </li>
-          <li><a href="#">Notifications</a></li>
-          <li><a href="#">Support</a></li>
-          <li><a href="#">Logout</a></li>
-      </ul>
-</div>
-
+<%= render partial: 'site/notifications' %>
       <div id="wrap">
           <div id="company_menu">
               <h1>Campaign: <%= campaign.cocktail.title %></h1>
@@ -78,8 +62,14 @@
               </div>
 
               <div id="goals-tab" class="tab-pane">
-                <p>Testing</p>
-                <p>Goals</p>
+                <% campaign.goals.each do |goal| %>
+                  <p style="display:inline"><%= pluralize goal.num, goal.type.to_s %></p>
+                  <% if goal.achieved %>
+                    <div class="label label-success" style="display:inline">achieved</div>
+                  <% else %>
+                    <div class="label label-important" style="display:inline">not achieved</div>
+                  <% end %>
+                <% end %>
               </div>
 
             </div>
@@ -147,7 +137,7 @@
             </div>
 
             <div id="reports-tab" class="tab-pane">
-              <% notifications = (campaign.articles.map {|c|c.notification} + campaign.comments.map {|c|c.notification}).compact.sort_by(&:created_at).reverse %>
+                <% notifications = (campaign.goals.map {|g| g.notification} + campaign.articles.map {|a|a.notification} + campaign.comments.map {|c|c.notification}).compact.sort_by(&:created_at).reverse %>
               <div id="reports_menu">
                 <div id="devider_line2"></div>
                 <h1><%= notifications.size %> Reports</h1>

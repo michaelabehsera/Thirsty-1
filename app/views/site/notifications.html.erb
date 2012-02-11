@@ -1,13 +1,4 @@
-<div id="header"> 
-    <img src="images/logo.png" style="margin:0 0 0 -2px;" width="" height="">
-      <ul>
-          <li><a href="#">Pick a cocktail</a>
-          <li><a href="#">My campaigns</a>
-          <li><a href="#">Notifications</a>
-          <li><a href="#">Support</a>
-          <li><a href="#">Logout</a>
-      </ul>
-</div>
+<%= render partial: 'site/notifications' %>
       <div id="wrap">
           <div id="notifications_menu">
           <div id="devider_line2"></div>
@@ -17,7 +8,7 @@
           <% if current_user.type == :marketer %>
             <% notifications = Campaign.all.map{|c|c.notification}.compact %>
           <% else %>
-            <% notifications = current_user.campaigns.map{|campaign| (campaign.articles.map {|c|c.notification} + campaign.comments.map {|c|c.notification})}.flatten.compact.sort_by(&:created_at).reverse %>
+            <% notifications = current_user.campaigns.map {|campaign| (campaign.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification} + campaign.comments.map {|c|c.notification})}.flatten.compact.sort_by(&:created_at).reverse %>
           <% end %>
           <%= render notifications %>
           <div id="devider_end"></div>

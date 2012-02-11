@@ -1,10 +1,14 @@
 .notification
-  - child = notification.comment || notification.article || notification.campaign
-  - user_name = child.user.name unless notification.campaign
+  - child = notification.comment || notification.article || notification.campaign || notification.goal
+  - user_name = child.user.name unless notification.campaign || notification.goal
   - if notification.comment
     #{user_name} suggests: #{child.message}
   - elsif notification.article
     #{user_name} wrote: #{link_to child.title, child.url}
-  - else
+  - elsif notification.campaign
     A new campaign has been created! Check it out at #{child.url}.
+  - elsif notification.goal
+    A goal has been reached!
+    - if child.type == :article
+      You've approved #{pluralize child.num, child.type.to_s} within this last month :)
   #devider_line

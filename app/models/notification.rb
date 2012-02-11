@@ -7,6 +7,7 @@ class Notification
   belongs_to :comment
   belongs_to :article
   belongs_to :campaign
+  belongs_to :goal
 
   def notify
     Stalker.enqueue 'notification.send', id: self.id

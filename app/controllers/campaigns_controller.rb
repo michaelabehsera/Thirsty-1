@@ -15,7 +15,15 @@ class CampaignsController < ApplicationController
   }
 
   def associate
-    current_user.active_campaigns << campaign
+    if params[:id]
+      begin
+        user = User.find params[:id]
+        user.active_campaigns << campaign if user.type == :marketer
+      rescue
+      end
+    elsif current_user
+      current_user.active_campaigns << campaign if current_user.type == :marketer
+    end
   end
 
   def authorize
@@ -87,6 +95,8 @@ class CampaignsController < ApplicationController
     article.update_attribute(:url, rsp.id)
     if article.save && article.url
       article.update_attribute(:approved, true)
+      goal = campaign.goals.where(type: :article).first
+      goal.update_attribute(:achieved, true) if campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
       @article = article
       render 'approve'
     else

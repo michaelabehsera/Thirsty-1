@@ -7,8 +7,9 @@
     - else
       = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
-    :javascript
-      Shadowbox.init()
+    - if request.path != '/signin' && request.path != '/signup'
+      :javascript
+        Shadowbox.init()
   %body
     = yield
     - if request.path != '/signin' && request.path != '/signup'
