@@ -3,6 +3,7 @@ require 'atom/pub'
 class CampaignsController < ApplicationController
 
   before_filter :authorize, except: :submit
+  before_filter :associate, except: [:authorize, :index]
 
   expose(:campaign) { Campaign.where(uuid: params[:uuid]).first }
   expose(:con) {
@@ -13,6 +14,10 @@ class CampaignsController < ApplicationController
        :authorize_path => '/accounts/OAuthAuthorizeToken'})
   }
 
+  def associate
+    current_user.active_campaigns << campaign
+  end
+
   def authorize
     redirect_to '/signin' unless logged_in?
   end
@@ -20,6 +25,13 @@ class CampaignsController < ApplicationController
   def chat_message
     Juggernaut.publish campaign.uuid, { message: params[:message], username: current_user.name }, except: params[:sessionID]
     render nothing: true
+  end
+
+  def create_comment
+    @comment = campaign.comments.new params[:comment]
+    @comment.user = current_user
+    @comment.create_notification if @comment.save
+    respond_to :js
   end
 
   def link

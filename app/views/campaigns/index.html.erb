@@ -5,7 +5,7 @@
   </div>
 
   <div class="modal-body">
-    <%= form_for :comment, url: '/comments/create', html: { remote: true, class: 'form-horizontal', style: 'text-align:center' } do |f| %>
+    <%= form_for :comment, url: "/campaigns/#{campaign.uuid}/create_comment", html: { remote: true, class: 'form-horizontal', style: 'text-align:center' } do |f| %>
       <%= hidden_field_tag :id, campaign.id %>
       <div class="control-group">
         <div class="controls" style="margin-left:0">

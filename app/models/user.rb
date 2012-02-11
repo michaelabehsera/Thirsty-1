@@ -19,6 +19,7 @@ class User
   validates_uniqueness_of :email
 
   has_many :campaigns
+  has_and_belongs_to_many :active_campaigns, class_name: 'Campaign', inverse_of: :marketers
   has_many :comments
   has_many :articles
 
