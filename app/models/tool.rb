@@ -4,5 +4,6 @@ class Tool
 
   field :url, type: String
   field :desc, type: String
+  field :title, type: String
   belongs_to :campaign
 end

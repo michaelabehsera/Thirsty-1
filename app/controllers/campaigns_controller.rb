@@ -34,12 +34,18 @@ class CampaignsController < ApplicationController
     respond_to :js
   end
 
+  def upload_image
+    campaign.update_attribute(:image, params[:image])
+    respond_to :js
+  end
+
   def link
     embedly = EmbedLy.oembed url: params[:link]
-    tool = campaign.tools.new
-    tool.url = params[:link]
-    tool.desc = embedly.first.description
-    tool.save
+    @tool = campaign.tools.new
+    @tool.url = params[:link]
+    @tool.title = embedly.first.title
+    @tool.desc = embedly.first.description
+    @tool.save
     respond_to :js
   end
 

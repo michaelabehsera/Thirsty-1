@@ -28,11 +28,17 @@
 <div id="header">
     <img src="/images/logo.png" style="margin:0 0 0 -2px;" width="" height="">
       <ul>
-          <li><a href="#">Pick a cocktail</a>
-          <li><a href="#">My campaigns</a>
-          <li><a href="#">Notifications</a>
-          <li><a href="#">Support</a>
-          <li><a href="#">Logout</a>
+          <li><a href="#">Pick a cocktail</a></li>
+          <li class="dropdown" data-dropdown="dropdown"><a data-toggle="dropdown" href="javascript:void(0)">My campaigns</a>
+            <ul class="dropdown-menu">
+              <% current_user.active_campaigns.each do |campaign| %>
+                <li><a href="<%= campaign.url %>"><%= campaign.title %></a></li>
+              <% end %>
+            </ul>
+          </li>
+          <li><a href="#">Notifications</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Logout</a></li>
       </ul>
 </div>
 
@@ -57,8 +63,16 @@
             <div class="tab-content">
 
               <div id="info-tab" class="tab-pane active">
-                <img src="/images/profile.png" style="margin:1px 10px 0 0" align="left" width="50" height="50">
-                <br />
+                <div id="campaign_image">
+                <% if campaign.image %>
+                  <img src="<%= campaign.image %>" style="height:100px;margin:1px 10px 0 0" align="left">
+                <% elsif current_user != campaign.user %>
+                  <%= form_tag "/campaigns/#{campaign.uuid}/upload_image", style: 'margin-bottom:10px', remote: true do %>
+                    <%= text_field_tag :image, '', placeholder: 'Enter an image url for your campaign', style: 'width:350px' %>
+                    <%= submit_tag :submit, style: 'display:none' %>
+                  <% end %>
+                <% end %>
+                </div>
                 <h1><%= campaign.title %></h1>
                 <p>Company Notes: <%= campaign.notes %></p>
               </div>
@@ -124,7 +138,7 @@
 
             <div id="tools-tab" class="tab-pane">
               <div id="tools">
-                <div id="tool-list"><%= render campaign.tools %></div>
+                <div id="tool-list" style="padding-bottom:60px"><%= render campaign.tools %></div>
                 <%= form_tag "/campaigns/#{campaign.uuid}/link", id: 'tool_form', remote: true do %>
                   <%= text_field_tag :link, '', placeholder: 'Link a new tool', style: 'width:700px' %>
                   <%= submit_tag :submit, style: 'display:none' %>
@@ -214,11 +228,7 @@
     })
 
     $('#tool_form').submit(function(e){
-      e.preventDefault()
-      this.submit()
-      setTimeout(function(){
-        $('#link').attr('disabled', 'true')
-      }, 100)
+      $('#link').attr('readonly', 'true')
     })
 
     new nicEditor().panelInstance('send-area')

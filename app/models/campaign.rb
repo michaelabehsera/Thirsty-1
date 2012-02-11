@@ -11,6 +11,7 @@ class Campaign
   field :notes, type: String
   field :url, type: String
   field :analytics_id, type: String
+  field :image, type: String
 
   field :month, type: Integer, default: 0
   field :start_day, type: Integer
