@@ -102,13 +102,14 @@
             </div>
 
             <div id="articles-tab" class="tab-pane">
-              <div id="ideas">
-                <% if current_user.type == :marketer %>
-                  <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
-                  <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>
-                  <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
-                  <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
-                <% else %>
+              <div id="articles">
+                <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
+                <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>
+                <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
+                <%= text_area_tag :'bio', '', style: 'width:500px;height:75px;display:block' %>
+                <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
+                <% if current_user.type != :marketer %>
+                  <div id="unread-articles">
                   <% campaign.articles.where(approved: nil).each do |article| %>
                     <div class="article" id="article<%= article.id %>">
                        "<%= article.title %>" written by: <%= article.user.name %>
@@ -116,11 +117,19 @@
                        <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true %>
                      </div>
                   <% end %>
+                  </div>
                 <% end %>
               </div>
             </div>
 
             <div id="tools-tab" class="tab-pane">
+              <div id="tools">
+                <div id="tool-list"><%= render campaign.tools %></div>
+                <%= form_tag "/campaigns/#{campaign.uuid}/link", id: 'tool_form', remote: true do %>
+                  <%= text_field_tag :link, '', placeholder: 'Link a new tool', style: 'width:700px' %>
+                  <%= submit_tag :submit, style: 'display:none' %>
+                <% end %>
+              </div>
             </div>
 
             <div id="reports-tab" class="tab-pane">
@@ -175,6 +184,7 @@
       user_id: '<%= current_user.id %>',
       campaign_id: '<%= campaign.id %>'
     }
+
     jug.subscribe('<%= campaign.uuid %>', function(data) {
       if (data.message && data.message != '') {
         $('#chat_messages').append(new_message(data.message, data.username))
@@ -203,13 +213,24 @@
       }
     })
 
+    $('#tool_form').submit(function(e){
+      e.preventDefault()
+      this.submit()
+      setTimeout(function(){
+        $('#link').attr('disabled', 'true')
+      }, 100)
+    })
+
     new nicEditor().panelInstance('send-area')
+    new nicEditor().panelInstance('bio')
     $('.nicEdit-main').parent().css('background-color', 'white')
+    $('.nicEdit-main').first().html('article')
+    $('.nicEdit-main').last().html('<%= current_user.bio || "bio" %>')
     $('#send').click(function(){
       $(this).text('Submitting..')
       $.post(
         '/campaigns/<%= campaign.uuid %>/submit',
-        { id: '<%= current_user.id %>', content: $('.nicEdit-main').html(), title: $('#title').val() },
+        { id: '<%= current_user.id %>', content: $('.nicEdit-main').first().html(), title: $('#title').val(), bio: $('.nicEdit-main').last().html() },
         function(rsp){
           if (rsp.success == true) {
             $('#title').val('')

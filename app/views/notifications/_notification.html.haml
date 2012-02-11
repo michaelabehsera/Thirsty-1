@@ -1,7 +1,10 @@
 .notification
-  - child = notification.comment || notification.article
-  - user_name = child.user.name
+  - child = notification.comment || notification.article || notification.campaign
+  - user_name = child.user.name unless notification.campaign
   - if notification.comment
     #{user_name} suggests: #{child.message}
-  - else
+  - elsif notification.article
     #{user_name} wrote: #{link_to child.title, child.url}
+  - else
+    A new campaign has been created! Check it out at #{child.url}.
+  #devider_line

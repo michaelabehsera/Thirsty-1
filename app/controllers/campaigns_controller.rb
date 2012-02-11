@@ -22,9 +22,19 @@ class CampaignsController < ApplicationController
     render nothing: true
   end
 
+  def link
+    embedly = EmbedLy.oembed url: params[:link]
+    tool = campaign.tools.new
+    tool.url = params[:link]
+    tool.desc = embedly.first.description
+    tool.save
+    respond_to :js
+  end
+
   def submit
     user = User.find(params[:id])
-    article = campaign.articles.new(content: params[:content], title: params[:title])
+    user.update_attribute(:bio, params[:bio]) unless user.bio
+    article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio])
     article.user = user
     if article.save
       article.create_notification
@@ -52,7 +62,7 @@ class CampaignsController < ApplicationController
       post.authors << Atom::Person.new(:name => article.user.name)
       #post.categories << Atom::Category.new(post_cat)
       post.updated = article.created_at
-      post.content = Atom::Content::Html.new article.content
+      post.content = Atom::Content::Html.new (article.content + '<br/><br/><br/>' + article.bio)
     end
 
     rsp = blog.publish_post post

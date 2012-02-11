@@ -6,6 +6,7 @@ class Article
 
   field :title, type: String
   field :content, type: String
+  field :bio, type: String
   field :url, type: String
   field :unique_pageviews, type: Integer, default: 0
   field :month, type: Integer
