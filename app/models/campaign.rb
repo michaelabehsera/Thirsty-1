@@ -18,6 +18,11 @@ class Campaign
   field :start_day, type: Integer
   field :end_date, type: Date
 
+  field :ftp_domain, type: String
+  field :ftp_user, type: String
+  field :ftp_pass, type: String
+  field :root_dir, type: String
+
   field :username, type: String
   field :pass, type: String
 
