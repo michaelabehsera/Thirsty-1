@@ -3208,7 +3208,7 @@ var Juggernaut = function(options){
   this.options = options || {};
   
   this.options.host = this.options.host || window.location.hostname;
-  this.options.port = this.options.port || 8080;
+  this.options.port = this.options.port || 8081;
   
   this.handlers = {};
   this.meta     = this.options.meta;
