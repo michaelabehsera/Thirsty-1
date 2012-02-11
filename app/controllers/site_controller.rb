@@ -1,13 +1,7 @@
 class SiteController < ApplicationController
 
   def index
-    if logged_in?
-      if current_user.type == :marketer
-        render 'campaigns'
-      else
-        render 'cocktails'
-      end
-    end
+    render 'cocktails' if logged_in?
   end
 
   def callback
