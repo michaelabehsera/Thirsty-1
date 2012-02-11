@@ -6,6 +6,7 @@ require 'rails'
   action_controller
   action_mailer
   active_resource
+  sprockets
   rails/test_unit
 ).each do |framework|
   begin
