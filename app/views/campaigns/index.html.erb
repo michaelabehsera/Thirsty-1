@@ -117,8 +117,8 @@
                   <% campaign.articles.where(approved: nil).each do |article| %>
                     <div class="article" id="article<%= article.id %>">
                        "<%= article.title %>" written by: <%= article.user.name %>
-                       <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true %>
-                       <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true %>
+                       <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true, class: 'accept' %>
+                       <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true, class: 'deny' %>
                      </div>
                   <% end %>
                   </div>
@@ -179,6 +179,20 @@
 
 <script>
   $(document).ready(function(){
+    $('.article .accept').click(function(){
+      setTimeout(function(){
+        $(this).attr('href', '')
+      }, 500)
+      $(this).text('accepting..')
+      $(this).parent().children('.deny').remove()
+    })
+    $('.article .deny').click(function(){
+      setTimeout(function(){
+        $(this).attr('href', '')
+      }, 500)
+      $(this).text('denying..')
+      $(this).parent().children('.accept').remove()
+    })
     function new_message(message, username) {
       return '<div class="chat_message"><span class="username">' + username + ': </span><span class="message_content">' + message + '</span></div>'
     }
