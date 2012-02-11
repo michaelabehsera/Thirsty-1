@@ -96,7 +96,7 @@ class CampaignsController < ApplicationController
     if article.save && article.url
       article.update_attribute(:approved, true)
       goal = campaign.goals.where(type: :article).first
-      goal.update_attribute(:achieved, true) if campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
+      goal.update_attribute(:achieved, true) if goal && campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
       @article = article
       render 'approve'
     else
