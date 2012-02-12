@@ -1,8 +1,11 @@
 body {
-    background:url(/images/broken_noise.png)repeat;
     margin: 0;
     padding: 0;
+    background-size:cover;
+    -moz-background-size:cover;
+    -webkit-background-size:cover;
     font-family: Arial, sans-serif;
+    background:url(/images/bg.png)no-repeat;
 
 }
 
@@ -11,7 +14,10 @@ img {
 
 }
 
-h1 { line-height: 18px }
+h1 { 
+    line-height: 18px 
+
+}
 
 .clear {
     clear: both;
@@ -65,9 +71,13 @@ li.active > a {
 #users {
   float: right;
   margin: 20px 20px 0 0
+
 }
 
-.writer { padding: 15px }
+.writer { 
+    padding: 15px 
+
+}
 
 /*-------------------------Header end-------------------------*/
 
@@ -76,7 +86,7 @@ li.active > a {
     z-index: 1;
     top:0;
     width:100%;
-    height:55px;
+    height:60px;
     display:block;
     position:fixed;
     background:url(/images/header_bg.png)repeat;
@@ -92,27 +102,6 @@ li.active > a {
 #header li {
     display:inline;
     list-style:none;
-
-}
-
-#header a {
-    color: #fff;
-    font-size:12px;
-    text-decoration:none;
-    margin-right:5px;
-    text-shadow: 0px -1px 0px #000;
-    -moz-text-shadow: 0px -1px 0px #000;
-    -webkit-text-shadow: 0px -1px 0px #000;
-   
-}
-
-#header a:hover {
-    color:#32777E;
-
-}
-
-#header a:active {
-    
 
 }
 
@@ -135,23 +124,29 @@ li.active > a {
 }
 
 #header_info {
-    width:802px;
     padding:1px;
     background-color:#000;
+    border-radius:0 0 5px 5px;
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius:0 0 5px 5px;
 
 }
 
 #header_info p {
    color:#fff;
    font-size:13px;
+   padding:17px;
+   height:13px;
 
 }
 
 #user_guide {
-    width:770px;
     padding:17px;
-    margin-top:-17px;
+    margin-top:57px;
     background-color:#272727;
+    border-radius:5px 5px 0 0;
+    -moz-border-radius:5px 5px 0 0;
+    -webkit-border-radius:5px 5px 0 0;
     
 }
 
@@ -163,12 +158,14 @@ li.active > a {
 }
 
 #user_guide ul {
-    margin:0 0 0 0;
+    margin:0 0 0 -7px;
     
 }
 
 #user_guide li {
-    
+    display:inline;
+    list-style:none;
+    margin:0 0 0 7px;
         
 }
 
@@ -179,6 +176,11 @@ li.active > a {
     text-shadow:0 1px 0 #000;
     -moz-text-shadow:0 1px 0 #000;
     -webkit-text-shadow:0 1px 0 #000;
+
+}
+
+#user_guide a:hover {
+    text-decoration:underline;
 
 }
 
