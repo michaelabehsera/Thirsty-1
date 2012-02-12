@@ -5,9 +5,10 @@ include Stalker
 job 'tool.upload' do |args|
   campaign = Campaign.find(args['cid'])
   plugin = Plugin.find(args['id'])
-  if upload plugin, campaign
+  begin
+    upload plugin, campaign
     Juggernaut.publish campaign.uuid, { event_type: 'install_success', plugin: plugin.id }
-  else
+  rescue
     Juggernaut.publish campaign.uuid, { event_type: 'install_failure', plugin: plugin.id }
   end
 end

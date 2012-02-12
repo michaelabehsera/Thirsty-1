@@ -1,7 +1,7 @@
 class SiteController < ApplicationController
 
   def index
-    render 'cocktails' if logged_in?
+    render 'home' if logged_in?
   end
 
   def callback

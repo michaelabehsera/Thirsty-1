@@ -18,11 +18,12 @@ class CampaignsController < ApplicationController
     if params[:id]
       begin
         user = User.find params[:id]
-        user.active_campaigns << campaign if user.type == :marketer
+        user.active_campaigns << campaign
       rescue
+        current_user.active_campaigns << campaign if current_user
       end
     elsif current_user
-      current_user.active_campaigns << campaign if current_user.type == :marketer
+      current_user.active_campaigns << campaign
     end
   end
 

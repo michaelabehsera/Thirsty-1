@@ -1,0 +1,17 @@
+<%= render partial: 'site/header' %>
+<div id="wrap">
+          <div id="creatives_count">
+            <p>Creatives at your disposal / <span><%= User.where(type: :marketer).count %></span>
+          </div>
+          <div id="your_campaigns">
+          <div id="devider_line2"></div>
+          <h1>Your Projects:</h1>
+          </div>
+          <% current_user.active_campaigns.each do |campaign| %>
+            <div id="personal_projects">
+            <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %></p></a>
+            <div id="devider_line"></div>
+          <% end %>
+          <div id="devider_end"></div>
+  </div>
+  </div>
