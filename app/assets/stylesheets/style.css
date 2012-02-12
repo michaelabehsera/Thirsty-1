@@ -466,7 +466,7 @@ li.active > a {
 
 }
 
-#ideas, #articles {
+#ideas, #articles, #approve {
     padding:10px;
     width:770px;
     margin:0 0 120px 0;

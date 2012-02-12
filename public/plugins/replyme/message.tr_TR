@@ -1,0 +1,19 @@
+﻿<p><b><a href="[posturl]">[posttitle]</a> başlıklı yazıdaki yorumunuza cevap geldi</b></p>
+
+<div style="padding:10px;margin:10px 0;background:#FFFBCC">
+	Yorumunuz buydu:<br />
+	<div style="border:1px solid #919191;margin:5px;padding:4px;"> [commentmsg] </div>
+	[commenter] —— [commenttime]
+</div>
+
+<div style="padding:10px;margin:10px 0;background:#FFFBCC">
+	Yorumunuza gelen cevap bu:<br />
+	<div style="border:1px solid #919191;margin:5px;padding:4px;"> [newcommentmsg] </div>
+	<a href="[newcommenterurl]">[newcommenter]</a> —— [newcommenttime] <br />
+	Ziyaret edin: [newcommenturl]
+</div>
+
+<p>
+	<a href="[blogurl]">[blogname]</a> adresindeki yazılarımızı yorumladığınız için teşekkürler :) <br />
+	[blogurl]
+</p>

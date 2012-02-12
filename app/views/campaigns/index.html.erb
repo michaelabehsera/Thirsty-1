@@ -87,6 +87,9 @@
           <ul class="nav nav-tabs" data-tabs="tabs">
             <li class="active"><a href="#ideas-tab" data-toggle="tab">Ideas</a></li>
             <li><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
+            <% if current_user.type != :marketer %>
+              <li><a href="#approve-tab" data-toggle="tab">Approve articles</a></li>
+            <% end %>
             <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
             <li><a href="#reports-tab" data-toggle="tab">Reports</a></li>
             <li><a href="#writers-tab" data-toggle="tab">Winning writers</a></li>
@@ -112,7 +115,11 @@
                 <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
                 <%= text_area_tag :'bio', '', style: 'width:500px;height:75px;display:block' %>
                 <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
+              </div>
+            </div>
                 <% if current_user.type != :marketer %>
+                  <div id="approve-tab" class="tab-pane">
+                      <div id="approve">
                   <div id="unread-articles">
                   <% campaign.articles.where(approved: nil).each do |article| %>
                     <div class="article" id="article<%= article.id %>">
@@ -123,15 +130,15 @@
                   <% end %>
                   </div>
                 <% end %>
-              </div>
+            </div>
             </div>
 
             <div id="tools-tab" class="tab-pane">
               <div id="tools">
-                <div id="tool-list" style="padding-bottom:60px"><%= render campaign.tools %></div>
-                <%= form_tag "/campaigns/#{campaign.uuid}/link", id: 'tool_form', remote: true do %>
-                  <%= text_field_tag :link, '', placeholder: 'Link a new tool', style: 'width:700px' %>
-                  <%= submit_tag :submit, style: 'display:none' %>
+                <% Plugin.all.each do |plugin| %>
+                  <div class="tool" id="plugin<%= plugin.id %>">
+                    <%= link_to plugin.title, "/campaigns/#{campaign.uuid}/install?id=#{plugin.id}", remote: true %>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -212,6 +219,10 @@
         $('#users').append('<div class="user" id="user' + data.user_id + '">' + data.username + '</div>')
       } else if (data.event_type == 'unsubscribe') {
         $('#user' + data.user_id).fadeOut()
+      } else if (data.event_type == 'install_success') {
+        $('#plugin' + data.plugin).html('installed!')
+      } else if (data.event_type == 'install_failure') {
+        $('#plugin' + data.plugin).html('failed :(')
       }
     })
 
