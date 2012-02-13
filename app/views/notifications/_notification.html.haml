@@ -11,4 +11,6 @@
     A goal has been reached!
     - if child.type == :article
       You've approved #{pluralize child.num, child.type.to_s} within this last month :)
+    - elsif child.type == :idea
+      You've gotten #{pluralize child.num, child.type.to_s} within this last month :)
   #devider_line

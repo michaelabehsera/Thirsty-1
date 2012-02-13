@@ -39,6 +39,8 @@ class CampaignsController < ApplicationController
     @comment = campaign.comments.new params[:comment]
     @comment.user = current_user
     @comment.create_notification if @comment.save
+    goal = campaign.goals.where(type: :idea).first
+    goal.update_attribute(:achieved, true) if goal && campaign.comments.where(month: campaign.month, approved: true).count >= goal.num
     respond_to :js
   end
 
@@ -47,13 +49,9 @@ class CampaignsController < ApplicationController
     respond_to :js
   end
 
-  def link
-    embedly = EmbedLy.oembed url: params[:link]
-    @tool = campaign.tools.new
-    @tool.url = params[:link]
-    @tool.title = embedly.first.title
-    @tool.desc = embedly.first.description
-    @tool.save
+  def install
+    @plugin = Plugin.find params[:id]
+    Stalker.enqueue 'tool.upload', { id: @plugin.id, cid: campaign.id }, ttr: 9999
     respond_to :js
   end
 
@@ -114,6 +112,10 @@ class CampaignsController < ApplicationController
     campaign.username = params[:user]
     campaign.pass = params[:pass]
     campaign.analytics_id = params[:aid]
+    campaign.ftp_user = params[:fuser]
+    campaign.ftp_pass = params[:fpass]
+    campaign.ftp_domain = params[:fdomain]
+    campaign.root_dir = params[:root]
     if campaign.save
       campaign.create_notification
       redirect_to "/campaigns/#{campaign.uuid}"

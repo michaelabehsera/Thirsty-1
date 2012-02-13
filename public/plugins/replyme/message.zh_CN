@@ -1,0 +1,19 @@
+<p><b>您在 <a href="[posturl]">[posttitle]</a> 的留言有了新回复</b></p>
+
+<div style="padding:10px;margin:10px 0;background:#FFFBCC">
+	这是你的评论：<br />
+	<div style="border:1px solid #919191;margin:5px;padding:4px;"> [commentmsg] </div>
+	[commenter] —— [commenttime]
+</div>
+
+<div style="padding:10px;margin:10px 0;background:#FFFBCC">
+	这是新评论：<br />
+	<div style="border:1px solid #919191;margin:5px;padding:4px;"> [newcommentmsg] </div>
+	<a href="[newcommenterurl]">[newcommenter]</a> —— [newcommenttime] <br />
+	浏览： [newcommenturl]
+</div>
+
+<p>
+	感谢您在 <a href="[blogurl]">[blogname]</a> 的留言 :) <br />
+	[blogurl]
+</p>

@@ -1,0 +1,19 @@
+<p><b>Din kommentar på posten <a href="[posturl]">[posttitle]</a> har fått ett nytt svar</b></p>
+
+<div style="padding:10px;margin:10px 0;background:#FFFBCC">
+	Här är din kommentar:<br />
+	<div style="border:1px solid #919191;margin:5px;padding:4px;"> [commentmsg] </div>
+	[commenter] —— [commenttime]
+</div>
+
+<div style="padding:10px;margin:10px 0;background:#FFFBCC">
+	Här är det nya svaret:<br />
+	<div style="border:1px solid #919191;margin:5px;padding:4px;"> [newcommentmsg] </div>
+	<a href="[newcommenterurl]">[newcommenter]</a> —— [newcommenttime] <br />
+	Visit: [newcommenturl]
+</div>
+
+<p>
+	Tack för att du kommenterar på <a href="[blogurl]">[blogname]</a> :) <br />
+	[blogurl]
+</p>

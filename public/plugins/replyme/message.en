@@ -1,0 +1,19 @@
+<p><b>Your comment on the post <a href="[posturl]">[posttitle]</a> has a new reply</b></p>
+
+<div style="padding:10px;margin:10px 0;background:#FFFBCC">
+	Here is your comment:<br />
+	<div style="border:1px solid #919191;margin:5px;padding:4px;"> [commentmsg] </div>
+	[commenter] —— [commenttime]
+</div>
+
+<div style="padding:10px;margin:10px 0;background:#FFFBCC">
+	Here is the new reply:<br />
+	<div style="border:1px solid #919191;margin:5px;padding:4px;"> [newcommentmsg] </div>
+	<a href="[newcommenterurl]">[newcommenter]</a> —— [newcommenttime] <br />
+	Visit: [newcommenturl]
+</div>
+
+<p>
+	Thank you for your commenting on <a href="[blogurl]">[blogname]</a> :) <br />
+	[blogurl]
+</p>

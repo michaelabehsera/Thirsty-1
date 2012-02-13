@@ -2,6 +2,16 @@ require File.expand_path(File.dirname(__FILE__) + "/config/environment")
 include ActionView::Helpers::TextHelper
 include Stalker
 
+job 'tool.upload' do |args|
+  campaign = Campaign.find(args['cid'])
+  plugin = Plugin.find(args['id'])
+  if upload plugin, campaign
+    Juggernaut.publish campaign.uuid, { event_type: 'install_success', plugin: plugin.id }
+  else
+    Juggernaut.publish campaign.uuid, { event_type: 'install_failure', plugin: plugin.id }
+  end
+end
+
 job 'notification.send' do |args|
   notification = Notification.find args['id']
   child = notification.article || notification.comment || notification.campaign || notification.goal
@@ -22,10 +32,12 @@ job 'notification.send' do |args|
     elsif notification.comment
       "#{user_name} just suggested an idea for your #{child.campaign.title} campaign.<br/><br/>#{child.title}:<br/>#{child.message}"
     elsif notification.campaign
-      "There's been a new campaign created on Thirsty! Come check it out at #{child.url}."
+      "There's been a new campaign created on Thirsty! Come check it out at http://thirsty.com/campaigns/#{child.campaign.uuid}."
     elsif notification.goal
       if child.type == :article
         "A goal has been reached! You've approved #{pluralize child.num, child.type.to_s} within this last month on your <a href=\"http://thirsty.com/campaigns/#{child.campaign.uuid}\">#{child.campaign.title}</a> campaign."
+      elsif child.type == :idea
+        "A goal has been reached! You've gotten #{pluralize child.num, child.type.to_s} within this last month on your <a href=\"http://thirsty.com/campaigns/#{child.campaign.uuid}\">#{child.campaign.title}</a> campaign."
       end
     end
   if notification.campaign
