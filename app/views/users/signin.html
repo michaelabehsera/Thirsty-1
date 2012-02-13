@@ -1,21 +1,10 @@
  <%= render partial: 'site/signup_pages_header' %>
  <div id="wrap"> 
-      <div id="signup">
+      <div id="signup" style="text-align:center">
         <h1>Sign in to your Thirsty account</h1>
-        <% if @user %>
-          <ul>
-            <% @user.errors.messages.each do |message| %>
-            <li>
-              <%= message.first %>
-              <ul>
-                <% message.last.each do |reason| %>
-                  <li> <%= reason %> </li>
-                <% end %>
-              </ul>
-            </li>
-            <% end %>
-          </ul>
-        <% end %>
+         <% if flash[:alert] == 'error' %>
+         <label style="display:inline-block;margin-top:10px" class="label label-important">Sign in failed.</label>
+         <% end %>
          <%= form_for :user, url: '/users/auth' do |f| %>
            <p>Email Address</p>
            <%= f.email_field :email, placeholder: 'email', autocomplete: 'off' %>
