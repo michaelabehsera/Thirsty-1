@@ -1,7 +1,6 @@
  <%= render partial: 'site/signup_pages_header' %>
  <div id="wrap"> 
       <div id="signup">
-        <img src="/images/thirsty_signup.png" style="float:left; margin:-75px 20px 150px 0" width="" height="" alt="">
         <h1>Sign in to your Thirsty account</h1>
         <% if @user %>
           <ul>
@@ -23,7 +22,7 @@
            <p>Password</p>
            <%= f.password_field :password, placeholder: 'password', autocomplete: 'off' %>
   <button class="button_submit_page" style="margin:20px 1px 0 9px">Sign in</button>
-  <a href="/signup">Don't have an account? Sign up</a>
+  <a href="/signup" style="margin-top:27px;">Don't have an account? Sign up</a>
          <% end %>
 
 

@@ -1,7 +1,6 @@
  <%= render partial: 'site/signup_pages_header' %>
  <div id="wrap"> 
       <div id="signup">
-        <img src="/images/thirsty_signup.png" style="float:left; margin:-75px 20px 150px 0" width="" height="" alt="">
         <h1>Create a Thirsty account</h1>
         <% if @user %>
           <ul>
@@ -27,10 +26,11 @@
            <p>Email Address</p>
            <%= f.email_field :email, placeholder: 'email', autocomplete: 'off' %>
            <%= f.select :type, options_for_select({:Marketer => :marketer, :Startup => :startup, :'Local Business' => :local, :'Small Business' => :small, :'Medium Business' => :medium, :'Large Business' => :large}) %>
-  <button class="button_submit_page" style="margin:20px 1px 0 9px">Sign up</button>
-  <a href="/signin">Have an account? Sign in</a>
+           <br />
+  <button class="button_submit_page" style="margin:50px 1px 0 9px">Sign up</button>
+  <a href="/signin" style="margin-top:18px;">Have an account? Sign in</a>
          <% end %>
-
+         </div>
 
 
       </div>

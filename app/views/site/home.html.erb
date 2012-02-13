@@ -7,11 +7,15 @@
           <div id="devider_line2"></div>
           <h1>Your Projects:</h1>
           </div>
-          <% current_user.active_campaigns.each do |campaign| %>
-            <div id="personal_projects">
-            <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %></p></a>
-            <div id="devider_line"></div>
+          <div id="personal_projects">
+          <% if current_user.active_campaigns.empty? %>
+          <p>No campaigns started <button class="button_submit_page" style="margin:0 0 0 0">Pick a campaign & get started!</button></p> 
+          <% else %>
+            <% current_user.active_campaigns.each do |campaign| %>
+              <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %></p></a>
+              <div id="devider_line"></div>
+            <% end %>
+            <div id="devider_end"></div>
           <% end %>
-          <div id="devider_end"></div>
   </div>
   </div>

@@ -57,66 +57,75 @@ li.active > a {
     box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151 !important;
     -moz-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151 !important;
     -webkit-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151 !important;
+
 }
 
 #creatives_count {
-padding: 30px;
-margin: 100px 0 0 0;
-border-radius: 5px;
--moz-border-radius: 5px;
--webkit-border-radius: 5px;
-background: url(/images/noise.gif)repeat;
+    padding: 30px;
+    width:730px;
+    margin: 100px 0 0 0;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: url(/images/noise.gif)repeat;
+
 }
 
 #creatives_count p {
-font-size: 30px;
-margin: 0 auto;
-margin-left: 130px;
+    font-size: 30px;
+    margin: 0 auto;
+    margin-left: 150px;
+
 }
 
 #your_campaigns {
-width: 770px;
-margin: 70px 0 0 1px;
-background: linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
-border-bottom: 1px solid rgb(167, 167, 167);
-padding: 10px;
-border-radius: 5px 5px 0 0;
--moz-border-radius: 5px 5px 0 0;
--webkit-border-radius: 5px 5px 0 0;
-background: whiteSmoke;
-background: -moz-linear-gradient(top, whiteSmoke 0%, rgb(231, 231, 231) 100%, whiteSmoke 100%, rgb(118, 72, 135) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,whiteSmoke), color-stop(100%,rgb(231, 231, 231)), 
-color-stop(100%,whiteSmoke), color-stop(100%,rgb(118, 72, 135)));
-background: -webkit-linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
-background: -o-linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
-background: -ms-linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
-background: linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#764887',GradientType=0 );
+    width: 770px;
+    margin: 70px 0 0 1px;
+    background: linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
+    border-bottom: 1px solid rgb(167, 167, 167);
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    background: whiteSmoke;
+    background: -moz-linear-gradient(top, whiteSmoke 0%, rgb(231, 231, 231) 100%, whiteSmoke 100%, rgb(118, 72, 135) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,whiteSmoke), color-stop(100%,rgb(231, 231, 231)), 
+    color-stop(100%,whiteSmoke), color-stop(100%,rgb(118, 72, 135)));
+    background: -webkit-linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
+    background: -o-linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
+    background: -ms-linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
+    background: linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#764887',GradientType=0 );
+
 }
 
 #your_campaigns h1 {
-color: rgb(55, 55, 55);
-font-size: 17px;
-margin: 0 0 0 0;
+    color: rgb(55, 55, 55);
+    font-size: 17px;
+    margin: 0 0 0 0;
+
 }
 
 #personal_projects a {
-color: rgb(91, 91, 91);
-text-decoration: none;
+    color: rgb(91, 91, 91);
+    text-decoration: none;
+
 }
 
 #personal_projects a {
-color: rgb(91, 91, 91);
-text-decoration: none;
+    color: rgb(91, 91, 91);
+    text-decoration: none;
+
 }
 
 #personal_projects p {
-font-size: 13px;
-padding: 7px;
-margin: 0 0 0 1px;
-width: 776px;
-border-bottom: 1px solid rgb(167, 167, 167);
-background: url(/images/noise.gif)repeat;
+    font-size: 13px;
+    padding: 7px;
+    margin: 0 0 0 1px;
+    width: 776px;
+    border-bottom: 1px solid rgb(167, 167, 167);
+    background: url(/images/noise.gif)repeat;
+
 }
 
 #wrap {
@@ -128,8 +137,8 @@ background: url(/images/noise.gif)repeat;
 }
 
 #users {
-  float: right;
-  margin: 20px 20px 0 0
+    float: right;
+    margin: 20px 20px 0 0
 
 }
 
@@ -137,6 +146,7 @@ background: url(/images/noise.gif)repeat;
     padding: 15px 
 
 }
+
 
 /*-------------------------Header end-------------------------*/
 
@@ -170,6 +180,7 @@ background: url(/images/noise.gif)repeat;
 
 /*-------------------------Pick a capaign page-------------------------*/
 
+
 #main_messaging {
     width:720px;
     margin:0 auto;
@@ -177,7 +188,14 @@ background: url(/images/noise.gif)repeat;
 }
 
 #button_width {
-    width:242px;
+    width:417px;
+    margin:0 auto;
+    margin-top:10px;
+
+}
+
+#clients {
+    width:217px;
     margin:0 auto;
 
 }
