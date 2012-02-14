@@ -9,7 +9,7 @@
           </div>
           <div id="personal_projects">
           <% if current_user.active_campaigns.empty? %>
-          <p>No campaigns started <button class="button_submit_page" style="margin:0 0 0 0">Pick a campaign & get started!</button></p> 
+          <p>&nbspNo campaigns started <button class="button_grey" style="margin:0 0 0 10px">Pick a campaign & get started!</button></p> 
           <% else %>
             <% current_user.active_campaigns.each do |campaign| %>
               <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %></p></a>
@@ -17,5 +17,7 @@
             <% end %>
             <div id="devider_end"></div>
           <% end %>
+          <div id="devider_end2"></div>
+
   </div>
   </div>

@@ -72,9 +72,11 @@ li.active > a {
 }
 
 #creatives_count p {
-    font-size: 30px;
+    font-size: 27px;
     margin: 0 auto;
-    margin-left: 150px;
+    margin-left: 181px;
+    color:#A1A1A1;
+    text-shadow:0 1px 0 #fff;
 
 }
 
@@ -855,7 +857,7 @@ button.button_submit:active {
 }
 
 #footer_nav a:hover {
-    color:#32777e;
+    color:#3677D1;
 
 }
 
@@ -871,12 +873,6 @@ button.button_submit:active {
     margin:70px 0 0 0;
     background-color:#f2f2f2;
     border-top:1px solid #fff;
-    box-shadow:0px 3px 3px 0px #000;
-    -moz-box-shadow:0px 3px 3px 0px #000;
-    -webkit-box-shadow:0px 3px 3px 0px #000;
-    border-top:1px solid #000;
-    border-right:1px solid #000;
-    border-left:1px solid #000;
     border-bottom:1px solid #a7a7a7;
     padding:10px;
     border-radius:5px 5px 0 0;
@@ -927,7 +923,7 @@ button.button_submit:active {
 #devider_end {
     width:790px;
     height:10px;
-    margin:0 0 0 1px;
+    margin:0 0 0 0px;
     border-radius:0 0 5px 5px;
     background:url(/images/noise.gif)repeat;
 
@@ -1202,10 +1198,7 @@ button.button_submit:active {
 #devider_end2 {
     width:790px;
     height:5px;
-    margin:0 0 0 0;
-    border-bottom:1px solid #000;
-    border-left:1px solid #000;
-    border-right:1px solid #000;
+    margin:0 0 0 1px;
     border-radius:0 0 5px 5px;
     background:url(/images/noise.gif)repeat;
 
@@ -1213,3 +1206,106 @@ button.button_submit:active {
 
 
 /*-------------------------Winning writers page end-------------------------*/
+
+
+/*-------------------------Buttons-------------------------*/
+
+
+button.button_grey {
+    padding:7px 15px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    color:#373737;
+    border: 1px solid #bebebe;
+    background-color: #eaeaea;
+    cursor:pointer;
+    font-size:12px;
+    text-decoration:none;
+
+}
+
+button.button_grey:hover {
+    cursor:pointer;
+    color:#373737;
+    background-color: #dedede;
+    border: 1px solid #bebebe;
+
+}
+
+button.button_grey:active {
+    border: 1px solid #707070;
+    background-color:#bfbfbf;
+    box-shadow: inset 0px 1px 7px #757575;
+    -moz-box-shadow: inset 0px 1px 7px #757575;
+    -webkit-box-shadow: inset 0px 1px 7px #757575;
+
+}
+
+button.button_submit_page  {
+    color: #fff;
+    font-size:12px;
+    padding:10px 32px;
+    background: #1363D4;
+    background: -webkit-linear-gradient(top, #FA752D, #F25B0A);
+    background: -moz-linear-gradient(top, #FA752D, #F25B0A);
+    background: -ms-linear-gradient(top, #FA752D, #F25B0A);
+    background: -o-linear-gradient(top, #FA752D, #F25B0A);
+    border: solid 1px #000;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    cursor:pointer;
+    text-shadow: 0 -1px 0 #000;
+    -moz-text-shadow: 0 -1px 0 #000;
+    -webkit-text-shadow: 0 -1px 0 #000;
+     
+}
+
+#signup button:hover {
+    border: solid 1px #000;
+    background: #1363D4;
+    background: -webkit-linear-gradient(top, #0247A8, #1363D4);
+    background: -moz-linear-gradient(top, #0247A8, #1363D4);
+    background: -ms-linear-gradient(top, #0247A8, #1363D4);
+    background: -o-linear-gradient(top, #0247A8, #1363D4);
+     
+}
+
+#signup button:active {
+    border: solid 1px #000;
+    background: #1363D4;
+    background: -webkit-linear-gradient(top, #0346A3, #0346A3);
+    background: -moz-linear-gradient(top, #0346A3, #0346A3);
+    background: -ms-linear-gradient(top, #0346A3, #0346A3);
+    background: -o-linear-gradient(top, #0346A3, #0346A3);
+    box-shadow: inset 0px 0px 7px 0px #000;
+    -moz-box-shadow: inset 0px 0px 7px 0px #000;
+    -webkit-box-shadow: inset 0px 0px 7px 0px #000;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------Buttons end-------------------------*/
