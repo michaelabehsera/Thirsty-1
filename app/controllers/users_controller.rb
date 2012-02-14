@@ -16,7 +16,7 @@ class UsersController < InheritedResources::Base
       cookies[:thirsty_uid] = user.id
       redirect_to '/'
     else
-      render inline: 'fail'
+      redirect_to '/signin', alert: 'error'
     end
   end
 
