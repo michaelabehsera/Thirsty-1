@@ -11,7 +11,6 @@
           <% if current_user.active_campaigns.empty? %>
           <p>&nbspNo campaigns started <button class="button_grey" style="margin:0 0 0 10px">Pick a campaign & get started!</button></p> 
           <% else %>
-            <% current_user.active_campaigns.each do |campaign| %>
             <% Campaign.all.each do |campaign| %>
 
               <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %></p></a>
