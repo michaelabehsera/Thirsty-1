@@ -16,7 +16,7 @@
               <p>Pick a marketing cocktail:</p>
             </div>
           <div id="pick_campaign">
-              <% Cocktail.all.each do |cocktail| %>
+              <% Cocktail.all.asc(:price).each do |cocktail| %>
               <div class="campaign_box">
               <p><%= cocktail.title %></p>
               <p><%= cocktail.description %></p>

@@ -34,7 +34,6 @@ class Campaign
   has_many :comments
   has_many :articles
   has_many :tools
-  has_many :goals
   has_and_belongs_to_many :subscriptions, class_name: 'User', inverse_of: nil
 
   def parse_url

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       if current_user.type == :marketer
         Campaign.all.map{|c|c.notification}.compact
       else
-        current_user.campaigns.map {|campaign| (campaign.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification} + campaign.comments.map {|c|c.notification})}.flatten.compact.sort_by(&:created_at).reverse
+        current_user.campaigns.map {|campaign| (campaign.cocktail.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification} + campaign.comments.map {|c|c.notification})}.flatten.compact.sort_by(&:created_at).reverse
       end
     end
   }

@@ -40,8 +40,6 @@ class CampaignsController < ApplicationController
     @comment = campaign.comments.new params[:comment]
     @comment.user = current_user
     @comment.create_notification if @comment.save
-    goal = campaign.goals.where(type: :idea).first
-    goal.update_attribute(:achieved, true) if goal && campaign.comments.where(month: campaign.month, approved: true).count >= goal.num
     respond_to :js
   end
 

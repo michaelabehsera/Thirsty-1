@@ -62,7 +62,7 @@
               </div>
 
               <div id="goals-tab" class="tab-pane">
-                <% campaign.goals.each do |goal| %>
+                <% campaign.cocktail.goals.each do |goal| %>
                   <p style="display:inline"><%= pluralize goal.num, goal.type.to_s %></p>
                   <% if goal.achieved %>
                     <div class="label label-success" style="display:inline">achieved</div>
@@ -144,7 +144,6 @@
             </div>
 
             <div id="reports-tab" class="tab-pane">
-                <% notifications = (campaign.goals.map {|g| g.notification} + campaign.articles.map {|a|a.notification} + campaign.comments.map {|c|c.notification}).compact.sort_by(&:created_at).reverse %>
               <div id="reports_menu">
                 <div id="devider_line2"></div>
                 <h1><%= notifications.size %> Reports</h1>

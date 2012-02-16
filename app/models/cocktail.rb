@@ -10,4 +10,5 @@ class Cocktail
   validates_presence_of :price
 
   has_many :campaigns
+  has_many :goals
 end
