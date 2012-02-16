@@ -1,5 +1,4 @@
 <div id="header">
-      
       <ul>
           <li><a href="/" style="border-radius:3px 0px 0px 3px;">Home</a></li>
           <li><a href="/cocktails">Pick a cocktail</a></li>
@@ -10,7 +9,11 @@
               <% end %>
             </ul>
           </li>
-          <li><a href="/notifications">Notifications</a></li>
+          <% if notifications.present? %>
+            <li><a href="/notifications">Notifications</a></li>
+          <% else %>
+            <li><a href="/notifications">No notifications</a></li>
+          <% end %>
           <li><a href="mailto:mike@thirsty.com">Support</a></li>
           <li><a href="/signout" style="border-radius:0px 3px 3px 0px;">Logout</a></li>
       </ul>
