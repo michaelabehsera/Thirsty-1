@@ -7,7 +7,10 @@
     - else
       = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
-    = javascript_include_tag root_url[0..-2] + ':8081/application.js'
+    - if Rails.env == 'development'
+      = javascript_include_tag 'http://localhost:8081/application.js'
+    - else
+      = javascript_include_tag root_url[0..-2] + ':8081/application.js'
     - if request.path != '/signin' && request.path != '/signup'
       :javascript
         Shadowbox.init()

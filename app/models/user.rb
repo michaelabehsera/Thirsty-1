@@ -22,6 +22,7 @@ class User
   has_and_belongs_to_many :active_campaigns, class_name: 'Campaign', inverse_of: :marketers
   has_many :comments
   has_many :articles
+  has_many :bits
 
   def name
     self.first_name.to_s + ' ' + self.last_name.to_s

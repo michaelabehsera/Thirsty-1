@@ -36,6 +36,14 @@ class CampaignsController < ApplicationController
     render nothing: true
   end
 
+  def analytics
+    @article = Article.find params[:id]
+  end
+
+  def user_analytics
+    @bit = BitLy.referrers(Bit.find(params[:id])['hash'])
+  end
+
   def create_comment
     @comment = campaign.comments.new params[:comment]
     @comment.user = current_user
@@ -92,7 +100,7 @@ class CampaignsController < ApplicationController
     article.update_attribute(:url, rsp.id)
     if article.save && article.url
       article.update_attribute(:approved, true)
-      goal = campaign.goals.where(type: :article).first
+      goal = campaign.cocktail.goals.where(type: :article).first
       goal.update_attribute(:achieved, true) if goal && campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
       @article = article
       render 'approve'

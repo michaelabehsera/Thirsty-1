@@ -1,3 +1,29 @@
+<div id="second-analytics-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Analytics</h3>
+  </div>
+  <div class="modal-body">Analyzing...</div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+  </div>
+</div>
+
+<div id="analytics-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Analytics</h3>
+  </div>
+
+  <div class="modal-body">
+    Loading...
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+  </div>
+</div>
+
 <div id="idea-sub" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -93,7 +119,8 @@
             <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
             <li><a href="#reports-tab" data-toggle="tab">Reports</a></li>
             <li><a href="#writers-tab" data-toggle="tab">Winning writers</a></li>
-            <li><a href="#chat-tab" data-toggle="tab">Chat with your marketers</a></li>
+            <li><a href="#chat-tab" data-toggle="tab">Chat</a></li>
+            <li><a href="#analytics-tab" data-toggle="tab">Analytics</a></li>
           </ul>
         </div>
 
@@ -163,6 +190,16 @@
               <div id="devider_end2"></div>
             </div>
 
+            <div id="analytics-tab" class="tab-pane">
+              <div id="analytics">
+                <% campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews).each do |article| %>
+                  <div class="article">
+                    <%= link_to article.title, '#analytics-modal', :'data-toggle' => 'modal', class: 'analytics-link', aid: article.id %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
             <div id="chat-tab" class="tab-pane">
               <div id="chat">
                 <div id="users">
@@ -185,6 +222,14 @@
 
 <script>
   $(document).ready(function(){
+    $('.analytics-link').click(function(){
+      $.post(
+        '/campaigns/analytics',
+        { id: $(this).attr('aid') },
+        function(rsp){ $('#analytics-modal .modal-body').html(rsp) },
+        'html'
+      )
+    })
     $('.article .accept').click(function(){
       setTimeout(function(){
         $(this).attr('href', '')

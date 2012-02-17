@@ -5,7 +5,7 @@
           <li class="dropdown" data-dropdown="dropdown"><a data-toggle="dropdown" href="javascript:void(0)">My campaigns</a>
             <ul class="dropdown-menu">
               <% current_user.active_campaigns.each do |campaign| %>
-                <li><a href="<%= campaign.url %>"><%= campaign.title %></a></li>
+                <li><a href="<%= "/campaigns/#{campaign.uuid}" %>"><%= campaign.title %></a></li>
               <% end %>
             </ul>
           </li>
