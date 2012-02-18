@@ -32,7 +32,7 @@ class CampaignsController < ApplicationController
   end
 
   def chat_message
-    Juggernaut.publish campaign.uuid, { message: params[:message], username: current_user.name }, except: params[:sessionID]
+    Juggernaut.publish campaign.uuid, { message: params[:message], username: current_user.name, timestamp: Time.now.strftime('%H:%M') }, except: params[:sessionID]
     render nothing: true
   end
 

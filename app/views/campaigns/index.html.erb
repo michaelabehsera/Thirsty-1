@@ -244,11 +244,11 @@
       $(this).text('denying..')
       $(this).parent().children('.accept').remove()
     })
-    function new_message(message, username) {
-      return '<div class="chat_message"><span class="username">' + username + ': </span><span class="message_content">' + message + '</span></div>'
+    function new_message(message, username, timestamp) {
+        return '<div class="chat_message"><span class="timestamp">[' + timestamp + ']</span> <span class="username">' + username + ': </span><span class="message_content">' + message + '</span></div>'
     }
 
-    var jug = new Juggernaut
+    var jug = new Juggernaut({port: '8081'})
     jug.meta = {
       user_id: '<%= current_user.id %>',
       campaign_id: '<%= campaign.id %>'
@@ -256,7 +256,7 @@
 
     jug.subscribe('<%= campaign.uuid %>', function(data) {
       if (data.message && data.message != '') {
-        $('#chat_messages').append(new_message(data.message, data.username))
+        $('#chat_messages').append(new_message(data.message, data.username, data.timestamp))
         $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
         $('#message').val('')
       } else if (data.event_type == 'subscribe') {
@@ -280,9 +280,8 @@
     $('#chat_form').submit(function(){
       var message = $('#message').val()
       if (message != '') {
-        $('#chat_messages').append(new_message(message, '<%= current_user.name %>'))
+        $('#chat_messages').append(new_message(message, '<%= current_user.name %>', $.format.date(new Date(), 'HH:mm')))
         $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
-        $('#message').val('')
       }
     })
 
