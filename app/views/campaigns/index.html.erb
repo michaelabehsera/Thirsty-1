@@ -130,7 +130,14 @@
 
               <div id="ideas">
                 <h3>Have any marketing ideas for this campaign? <button class="button_submit" href="#idea-sub" data-toggle="modal">Submit an idea</button></h1>
-                <div id="comments"><%= render campaign.comments.reverse %></div>
+                <div id="comments">
+                  <% comments = campaign.comments.reverse %>
+                  <% if comments.count > 0 %>
+                    <%= render comments %>
+                  <% else %>
+                    no comments
+                  <% end %>
+                </div>
               </div>
 
             </div>
@@ -148,12 +155,17 @@
                   <div id="approve-tab" class="tab-pane">
                       <div id="approve">
                   <div id="unread-articles">
-                  <% campaign.articles.where(approved: nil).each do |article| %>
-                    <div class="article" id="article<%= article.id %>">
-                       "<%= article.title %>" written by: <%= article.user.name %>
-                       <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true, class: 'accept' %>
-                       <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true, class: 'deny' %>
-                     </div>
+                  <% articles = campaign.articles.where(approved: nil) %>
+                  <% if articles.count > 0 %>
+                    <% articles.each do |article| %>
+                      <div class="article" id="article<%= article.id %>">
+                         "<%= article.title %>" written by: <%= article.user.name %>
+                         <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true, class: 'accept' %>
+                         <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true, class: 'deny' %>
+                       </div>
+                    <% end %>
+                  <% else %>
+                    no articles
                   <% end %>
                   </div>
                   </div>
@@ -192,10 +204,15 @@
 
             <div id="analytics-tab" class="tab-pane">
               <div id="analytics">
-                <% campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews).each do |article| %>
-                  <div class="article">
-                    <%= link_to article.title, '#analytics-modal', :'data-toggle' => 'modal', class: 'analytics-link', aid: article.id %>
-                  </div>
+                <% articles = campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews) %>
+                <% if articles.count > 0 %>
+                  <% articles.each do |article| %>
+                    <div class="article">
+                      <%= link_to article.title, '#analytics-modal', :'data-toggle' => 'modal', class: 'analytics-link', aid: article.id %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  no articles
                 <% end %>
               </div>
             </div>

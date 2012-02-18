@@ -110,7 +110,6 @@ class CampaignsController < ApplicationController
   end
 
   def paid
-    campaign = Campaign.where(uuid: params[:uuid]).first
     campaign.update_attribute(:paid, true)
     redirect_to "/campaigns/#{campaign.uuid}"
   end
