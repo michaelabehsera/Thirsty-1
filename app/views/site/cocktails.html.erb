@@ -3,7 +3,7 @@
 <div id="free-plan" class="modal hide fade">
   <div class="modal-header">Start a Campaign</div>
   <div class="modal-body">
-    <%= form_tag '/campaigns/meta/create' do %>
+    <%= form_tag '/campaigns/meta/create', remote: true do %>
       <%= hidden_field_tag :id %>
       <%= text_field_tag :name, '', placeholder: 'Company name', autocomplete: 'off' %>
       <%= text_field_tag :url, '', placeholder: 'Blog URL', autocomplete: 'off' %>
@@ -17,7 +17,7 @@
       <%= text_field_tag :root, '', placeholder: 'wordpress directory path (/srv/wordpress)', autocomplete: 'off' %>
   </div>
   <div class="modal-footer">
-    <%= submit_tag :submit, class: 'btn btn-success' %>
+    <%= submit_tag :submit, id: 'submit', class: 'btn btn-success' %>
     <% end %>
   </div>
 </div>
@@ -64,6 +64,9 @@
   <div class="clear"></div>
 
 <script>
+  $('#submit').click(function(){
+    $(this).val('Submitting...')
+  })
   window.addEventListener('message', function(e) {
     if (e.data.paid == true) {
       setTimeout(function(){

@@ -2,7 +2,6 @@ class Campaign
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
-  before_save :parse_url
   before_create :time_setup
 
   field :uuid, type: String
@@ -35,10 +34,6 @@ class Campaign
   has_many :articles
   has_many :tools
   has_and_belongs_to_many :subscriptions, class_name: 'User', inverse_of: nil
-
-  def parse_url
-    self.url = 'http://' + self.url if self.url[0..6] != 'http://'
-  end
 
   def time_setup
     self.start_day = Time.now.day

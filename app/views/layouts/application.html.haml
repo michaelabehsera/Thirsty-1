@@ -1,7 +1,9 @@
 !!!
 %html
   %head
-    %title= yield :title
+    %title
+      Thirsty | 
+      = yield :title
     - if request.path == '/signin' || request.path == '/signup'
       = stylesheet_link_tag 'signup'
     - else

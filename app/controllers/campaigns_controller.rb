@@ -110,24 +110,47 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    campaign = Campaign.new(uuid: UUID.new.generate)
-    campaign.user = current_user
-    campaign.cocktail = Cocktail.find(params[:id])
-    campaign.title = params[:name]
-    campaign.url = params[:url]
-    campaign.notes = params[:notes]
-    campaign.username = params[:user]
-    campaign.pass = params[:pass]
-    campaign.analytics_id = params[:aid]
-    campaign.ftp_user = params[:fuser]
-    campaign.ftp_pass = params[:fpass]
-    campaign.ftp_domain = params[:fdomain]
-    campaign.root_dir = params[:root]
-    if campaign.save
-      campaign.create_notification
-      redirect_to "/campaigns/#{campaign.uuid}"
+    url = params[:url]
+    url = 'http://' + url if url[0..6] != 'http://'
+    begin
+      Atom::Pub::Collection.new(href: url + '/wp-app.php/posts').publish(Atom::Entry.new, user: params[:user], pass: params[:pass])
+    rescue Exception => e
+      @wordpress = (e.message =~ /Internal/ && true || false)
+    end
+    begin
+      Net::FTP.open params[:fdomain], params[:fuser], params[:fpass] do |ftp|
+        root_dir = params[:root]
+        root_dir += '/' if params[:root][-1] != '/'
+        root_dir += 'wp-content'
+        begin
+          ftp.chdir root_dir
+          @ftp_dir = true
+        rescue Exception
+          @ftp_dir = false
+        end
+      end
+      @ftp = true
+    rescue Exception
+      @ftp = false
+    end
+    if @wordpress && @ftp && (defined?(@ftp_dir) && @ftp_dir || !defined?(@ftp_dir))
+      campaign = Campaign.new(uuid: UUID.new.generate)
+      campaign.user = current_user
+      campaign.cocktail = Cocktail.find(params[:id])
+      campaign.title = params[:name]
+      campaign.url = params[:url]
+      campaign.notes = params[:notes]
+      campaign.username = params[:user]
+      campaign.pass = params[:pass]
+      campaign.analytics_id = params[:aid]
+      campaign.ftp_user = params[:fuser]
+      campaign.ftp_pass = params[:fpass]
+      campaign.ftp_domain = params[:fdomain]
+      campaign.root_dir = params[:root]
+      campaign.create_notification if campaign.save
+      @uuid = campaign.uuid
     else
-      render inline: 'fail'
+      render 'create_fail'
     end
   end
 
