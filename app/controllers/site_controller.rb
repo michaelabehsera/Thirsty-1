@@ -4,8 +4,12 @@ class SiteController < ApplicationController
     render 'home' if logged_in?
   end
 
-  def notifications
-    redirect_to '/' if !logged_in?
+  def my_notifications
+    if logged_in?
+      render 'notifications'
+    else
+      redirect_to '/'
+    end
   end
 
   def callback
