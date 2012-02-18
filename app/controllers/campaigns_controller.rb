@@ -109,6 +109,12 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def paid
+    campaign = Campaign.where(uuid: params[:uuid]).first
+    campaign.update_attribute(:paid, true)
+    redirect_to "/campaigns/#{campaign.uuid}"
+  end
+
   def create
     url = params[:url]
     url = 'http://' + url if url[0..6] != 'http://'
@@ -134,21 +140,20 @@ class CampaignsController < ApplicationController
       @ftp = false
     end
     if @wordpress && @ftp && (defined?(@ftp_dir) && @ftp_dir || !defined?(@ftp_dir))
-      campaign = Campaign.new(uuid: UUID.new.generate)
-      campaign.user = current_user
-      campaign.cocktail = Cocktail.find(params[:id])
-      campaign.title = params[:name]
-      campaign.url = params[:url]
-      campaign.notes = params[:notes]
-      campaign.username = params[:user]
-      campaign.pass = params[:pass]
-      campaign.analytics_id = params[:aid]
-      campaign.ftp_user = params[:fuser]
-      campaign.ftp_pass = params[:fpass]
-      campaign.ftp_domain = params[:fdomain]
-      campaign.root_dir = params[:root]
-      campaign.create_notification if campaign.save
-      @uuid = campaign.uuid
+      @campaign = Campaign.new(uuid: UUID.new.generate)
+      @campaign.user = current_user
+      @campaign.cocktail = Cocktail.find(params[:id])
+      @campaign.title = params[:name]
+      @campaign.url = params[:url]
+      @campaign.notes = params[:notes]
+      @campaign.username = params[:user]
+      @campaign.pass = params[:pass]
+      @campaign.analytics_id = params[:aid]
+      @campaign.ftp_user = params[:fuser]
+      @campaign.ftp_pass = params[:fpass]
+      @campaign.ftp_domain = params[:fdomain]
+      @campaign.root_dir = params[:root]
+      @campaign.create_notification if @campaign.save
     else
       render 'create_fail'
     end

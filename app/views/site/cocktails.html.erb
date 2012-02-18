@@ -1,6 +1,6 @@
 <%= render partial: 'site/header' %>
 
-<div id="free-plan" class="modal hide fade">
+<div id="plan-info" class="modal hide fade">
   <div class="modal-header">Start a Campaign</div>
   <div class="modal-body">
     <%= form_tag '/campaigns/meta/create', remote: true do %>
@@ -43,11 +43,7 @@
               <p><%= cocktail.title %></p>
               <p><%= cocktail.description %></p>
               <p>Price: $<%= cocktail.price %></p>
-              <% if cocktail.price == 0 %>
-                <%= link_to 'pick me!', '#free-plan', class: 'pickme', :'data-toggle' => 'modal', onclick: "javascript:$('#id').val('#{cocktail.id}')" %>
-              <% else %>
-                <%= link_to 'pick me!', "http://paymint.thirsty.com/?id=#{cocktail.id}&amount=#{cocktail.price}&shadowbox=true&email=#{current_user.email}", rel: 'shadowbox', class: 'pickme' %>
-              <% end %>
+              <%= link_to 'pick me!', '#plan-info', class: 'pickme', :'data-toggle' => 'modal', onclick: "javascript:$('#id').val('#{cocktail.id}')" %>
               </div>
           <% end %>
               <button class="button_black" style="margin-top:10px">Suggest a campaign</button>
@@ -69,14 +65,7 @@
   })
   window.addEventListener('message', function(e) {
     if (e.data.paid == true) {
-      setTimeout(function(){
-        var extras = '?id=' + e.data.id + '&fuser=' + e.data.fuser + '&fpass=' + e.data.fpass + '&fdomain=' + e.data.fdomain + '&root=' + e.data.root + '&name=' + e.data.name + '&aid=' + e.data.aid + '&url=' + e.data.url + '&user=' + e.data.user + '&pass=' + e.data.pass + '&notes=' + e.data.notes
-        if (typeof domain[1] != 'undefined' ) {
-          window.location = '/campaigns/meta/create' + extras
-        } else {
-          window.location = '/campaigns/meta/create' + extras
-        }
-      }, 4500)
+      window.location = '/campaigns/' + e.data.uuid + '/paid'
     }
   }, false)
 </script>
