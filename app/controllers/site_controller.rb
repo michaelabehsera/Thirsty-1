@@ -4,6 +4,10 @@ class SiteController < ApplicationController
     render 'home' if logged_in?
   end
 
+  def notifications
+    redirect_to '/' if !logged_in?
+  end
+
   def callback
     rt = OAuth::RequestToken.new(con, session[:rt_token], session[:rt_secret])
     Garb::Session.access_token = rt.get_access_token oauth_verifier: params[:oauth_verifier]
