@@ -259,7 +259,7 @@ background-color: rgb(185, 74, 72);
      
 }
 
-#signup a {
+#signup form a {
     float:right;
     color:#fff;
     font-size:12px;

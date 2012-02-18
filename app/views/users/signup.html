@@ -3,18 +3,20 @@
       <div id="signup">
         <h1>Create a Thirsty account</h1>
         <% if @user %>
-          <ul>
-            <% @user.errors.messages.each do |message| %>
-            <li>
-              <%= message.first %>
+          <% @user.errors.messages.each do |message| %>
+            <div class="alert alert-error">
+              <a class="close" data-dismiss="alert">×</a>
+              <strong><%= message.first %>:</strong>
               <ul>
                 <% message.last.each do |reason| %>
                   <li> <%= reason %> </li>
                 <% end %>
               </ul>
-            </li>
-            <% end %>
-          </ul>
+            </div>
+            <script>
+              $('#signup').css('height', $('#signup').height() + $('.alert').last().height() + 40)
+            </script>
+          <% end %>
         <% end %>
          <%= form_for :user, url: '/users/create' do |f| %>
            <p>First Name</p>
