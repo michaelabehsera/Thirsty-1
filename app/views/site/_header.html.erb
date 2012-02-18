@@ -4,7 +4,7 @@
           <li><a href="/cocktails">Pick a cocktail</a></li>
           <li class="dropdown" data-dropdown="dropdown"><a data-toggle="dropdown" href="javascript:void(0)">My campaigns</a>
             <ul class="dropdown-menu">
-              <% current_user.active_campaigns.each do |campaign| %>
+              <% current_user.active_campaigns.where(paid: true).each do |campaign| %>
                 <li><a href="<%= "/campaigns/#{campaign.uuid}" %>"><%= campaign.title %></a></li>
               <% end %>
             </ul>

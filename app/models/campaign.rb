@@ -7,6 +7,8 @@ class Campaign
   field :uuid, type: String
   index :uuid, unique: true
 
+  field :paid, type: Boolean, default: false
+
   field :title, type: String
   field :notes, type: String
   field :url, type: String
