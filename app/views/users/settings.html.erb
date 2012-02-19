@@ -1,0 +1,87 @@
+<div id="social" class="modal hide fade">
+  <div class="modal-header"><a class="close" data-dismiss="modal">×</a><h2></h2></div>
+  <div class="modal-body">
+    <%= form_tag "/profile/#{user.username}/link", remote: true do %>
+     <%= text_field_tag :url, '', placeholder: 'url', autocomplete: 'off' %>
+     <%= hidden_field_tag :name %>
+  </div>
+  <div class="modal-footer">
+    <%= content_tag :button, 'Save', :'data-dismiss' => 'modal', class: 'btn btn-success' %>
+    <% end %>
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+  </div>
+</div>
+
+<%= render partial: 'site/header' %>
+<div id="settings">
+            <div id="inner_settings">
+            <h1>Your Settings</h1>
+            <%= form_for :user, url: "/profile/#{user.username}/update", html: { remote: true } do |f| %>
+            <p>First Name</p>
+            <%= f.text_field :first_name, value: user.first_name, autocomplete: 'off' %>
+            <p>Last Name</p>
+            <%= f.text_field :last_name, value: user.last_name, autocomplete: 'off' %>
+            <p>Email Address</p>
+            <%= f.text_field :email, value: user.email, autocomplete: 'off' %>
+            <p>Change Password</p>
+            <%= password_field_tag :password, '', autocomplete: 'off' %>
+            <p>Confirm Password</p>
+            <%= password_field_tag :password_confirmation, '', autocomplete: 'off' %>
+            <p>Add an avatar</p>
+            <%= f.text_field :avatar, value: user.avatar, placeholder: 'avatar url', autocomplete: 'off' %>
+            <p>Add a profile background image</p>
+            <%= f.text_field :background, value: user.background, placeholder: 'background image url', autocomplete: 'off' %>
+            <%= f.submit :submit, class: 'btn' %>
+            <% end %>
+
+            <p>Add one of the following links to your profile:</p>
+
+            <ul style="margin-left:-22px;" class="social" id="css3">
+      <li class="dribbble">
+        <a data-toggle="modal" href="#social"><strong>Dribbble</strong></a>
+      </li>
+      <li class="facebook">
+        <a data-toggle="modal" href="#social"><strong>Facebook</strong></a>
+      </li>
+      <li class="twitter">
+        <a data-toggle="modal" href="#social"><strong>Twitter</strong></a>
+      </li>
+      <li class="digg">
+        <a data-toggle="modal" href="#social"><strong>Digg</strong></a>
+      </li>
+      <li class="linkedin">
+        <a data-toggle="modal" href="#social"><strong>LinkedIn</strong></a>
+      </li>
+      <li class="reddit">
+        <a data-toggle="modal" href="#social"><strong>Reddit</strong></a>
+      </li>
+      <li class="google_plus">
+        <a data-toggle="modal" href="#social"><strong>Google +</strong></a>
+      </li>
+      <li class="tumblr">
+        <a data-toggle="modal" href="#social"><strong>Tumblr</strong></a>
+      </li>
+      <li class="posterous">
+        <a data-toggle="modal" href="#social"><strong>Posterous</strong></a>
+      </li>
+      </ul>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h3>Want to delete your account or cancel one of your campaigns?</h3>
+      <p>Call us or email us at: 323-287-7798 or email us at <a href="mailto:mike@thirsty.com">mike@thirsty.com</a></p>
+      </div>
+          </div>
+
+<script>
+  $('.social li a').click(function(){
+    $('#social form #name').val($(this).text())
+    $('#social h2').text('Link your ' + $(this).text())
+  })
+  $('#social .btn-success').click(function(){
+    $('#social form').submit()
+  })
+</script>
