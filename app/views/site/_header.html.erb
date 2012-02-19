@@ -14,6 +14,8 @@
           <% else %>
             <li><a href="/notifications">No notifications</a></li>
           <% end %>
+          <li><a href="/profile/<%= current_user.username %>">Profile</a></li>
+          <li><a href="/profile/<%= current_user.username %>/settings">Settings</a></li>
           <li><a href="mailto:mike@thirsty.com">Support</a></li>
           <li><a href="/signout" style="border-radius:0px 3px 3px 0px;">Logout</a></li>
       </ul>

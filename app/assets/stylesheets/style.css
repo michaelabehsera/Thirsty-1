@@ -60,6 +60,174 @@ li.active > a {
 
 }
 
+#settings {
+    width:420px;
+    padding:30px;
+    margin:0 auto;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    background:url(/images/bg_black.png)repeat;
+
+}
+
+#inner_settings {
+    margin:0 auto;
+    margin-left:37px;
+}
+
+#inner_settings h1 {
+    color:white;
+    font-size:25px;
+    margin:10px 0 0 0;
+    text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000;
+
+}
+
+#inner_settings h3 {
+    color:white;
+    font-weight:normal;
+    font-size:15px;
+    text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000;
+
+}
+
+#inner_settings p {
+    color:white;
+    width:400px;
+    font-size:12px;
+    margin:15px 0 -5px 0;
+    text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000;
+
+}
+
+#inner_settings input {
+    background-color:#fff;
+    border: 1px solid #000;
+    color: #8f8f8f;
+    display: block;
+    font-size: 12px;
+    width: 320px;
+    height: 21px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    margin:10px 0 0 0;
+    padding: 7px;    
+    -webkit-transition: .3s ease-in-out;  
+    -moz-transition: .3s ease-in-out;
+    outline:none;
+
+}
+
+#inner_settings input:focus {
+    border: 1px solid #14807f;
+    box-shadow: 0px 0px 5px 0px #14807f;
+    -moz-box-shadow: 0px 0px 5px 0px #14807f;
+    -webkit-box-shadow: 0px 0px 5px 0px #14807f;
+    -webkit-transition: .3s ease-in-out;  
+    -moz-transition: .3s ease-in-out;
+     
+}
+
+#profile {
+    padding:30px;
+    width:400px;
+    height:230px;
+    margin:50px 0 0 0;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    background:url(/images/bg_black.png)repeat;
+    
+}
+
+#profile h1 {
+    color:white;
+    font-size:25px;
+    margin:-5px 0 0 0;
+    text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000;
+
+}
+
+#profile h2 {
+    color:white;
+    font-weight:normal;
+    font-size:17px;
+    text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000;
+
+}
+
+#profile p {
+    color:white;
+    width:400px;
+    font-size:12px;
+    text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000;
+
+}
+
+#profile ul {
+    margin:0 0 0 -40px;
+
+}
+
+#profile li {
+    color:#fff;
+    display:inline;
+    list-style:none;
+    font-size:12px;
+    text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000;
+
+}
+
+/* SOCIAL ICONS - GENERAL */
+.social { list-style:none;}
+.social li { display:inline; float:left; background-repeat:no-repeat; margin:20px 0 0 -20px; }
+.social li a { display:block; width:48px; height:48px; padding-right:10px; position:relative; text-decoration:none; }
+.social li a strong { font-weight:normal; position:absolute; left:20px; top:-1px; color:#fff; padding:3px; z-index:9999;
+ text-shadow:1px 1px 0 rgba(0, 0, 0, 0.75); background-color:rgba(0, 0, 0, 0.7);
+ -moz-border-radius:3px; -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); -webkit-border-radius:3px; -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); border-radius:3px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+li.dribbble { background-image:url("/images/dribbble.png"); }
+li.digg { background-image:url("/images/digg.png"); }
+li.facebook { background-image:url("/images/facebook.png"); }
+li.google_plus { background-image:url("/images/google_plus.png"); }
+li.linkedin { background-image:url("/images/linkedin.png"); }
+li.reddit { background-image:url("/images/reddit.png"); }
+li.tumblr { background-image:url("/images/tumblr.png"); }
+li.twitter { background-image:url("/images/twitter.png"); }
+li.posterous { background-image:url("/images/posterous.png"); }
+
+/* SOCIAL ICONS - CSS3 */
+#css3:hover li { opacity:0.2; }
+
+#css3 li { -webkit-transition-property: opacity; -webkit-transition-duration: 500ms;
+ -moz-transition-property: opacity; -moz-transition-duration: 500ms; }
+#css3 li a strong { opacity:0;
+ -webkit-transition-property: opacity, top; -webkit-transition-duration: 300ms;
+ -moz-transition-property: opacity, top; -moz-transition-duration: 300ms; }
+
+#css3 li:hover { opacity:1; }
+#css3 li:hover a strong { opacity:1; top:-10px; }
+
+
+/*-------------------------Profile page end-------------------------*/
+
 #creatives_count {
     padding: 30px;
     width:730px;

@@ -19,6 +19,8 @@
           <% end %>
         <% end %>
          <%= form_for :user, url: '/users/create' do |f| %>
+           <p>Username</p>
+           <%= f.text_field :username, placeholder: 'Username', autocomplete: 'off' %>
            <p>First Name</p>
            <%= f.text_field :first_name, placeholder: 'First Name', autocomplete: 'off' %>
            <p>Last Name</p>
