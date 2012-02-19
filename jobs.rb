@@ -43,23 +43,25 @@ job 'notification.send' do |args|
     end
   if notification.campaign
     User.where(type: :marketer).each do |marketer|
-      Pony.mail(
-        to: marketer.email,
-        from: 'mike@thirsty.com',
-        subject: title,
-        body: message,
-        headers: { 'Content-Type' => 'text/html' },
-        via: :smtp,
-        via_options: {
-          address: 'smtp.gmail.com',
-          port: '587',
-          enable_starttls_auto: true,
-          user_name: 'mike@thirsty.com',
-          password: 'AAA123321',
-          authentication: :plain,
-          domain: 'thirsty.com'
-        }
-      )
+      unless marketer == child.user
+        Pony.mail(
+          to: marketer.email,
+          from: 'mike@thirsty.com',
+          subject: title,
+          body: message,
+          headers: { 'Content-Type' => 'text/html' },
+          via: :smtp,
+          via_options: {
+            address: 'smtp.gmail.com',
+            port: '587',
+            enable_starttls_auto: true,
+            user_name: 'mike@thirsty.com',
+            password: 'AAA123321',
+            authentication: :plain,
+            domain: 'thirsty.com'
+          }
+        )
+      end
     end
   else
     Pony.mail(

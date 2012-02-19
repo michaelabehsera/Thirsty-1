@@ -9,22 +9,28 @@ class User
 
   field :first_name, type: String
   field :last_name, type: String
+  field :username, type: String
   field :email, type: String
   field :type, type: Symbol
   field :bio, type: String
+  field :avatar, type: String
+  field :background, type: String
 
   validates_presence_of :email
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_uniqueness_of :email
+  validates_uniqueness_of :username
 
+  has_many :socials
   has_many :campaigns
   has_and_belongs_to_many :active_campaigns, class_name: 'Campaign', inverse_of: :marketers
   has_many :comments
   has_many :articles
+  has_many :bits
 
   def name
-    self.first_name + ' ' + self.last_name
+    self.first_name.to_s + ' ' + self.last_name.to_s
   end
 
   def self.subscribe

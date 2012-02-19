@@ -1,16 +1,21 @@
 <div id="header">
-      
       <ul>
           <li><a href="/" style="border-radius:3px 0px 0px 3px;">Home</a></li>
           <li><a href="/cocktails">Pick a cocktail</a></li>
           <li class="dropdown" data-dropdown="dropdown"><a data-toggle="dropdown" href="javascript:void(0)">My campaigns</a>
             <ul class="dropdown-menu">
-              <% current_user.active_campaigns.each do |campaign| %>
-                <li><a href="<%= campaign.url %>"><%= campaign.title %></a></li>
+              <% current_user.active_campaigns.where(paid: true).each do |campaign| %>
+                <li><a href="<%= "/campaigns/#{campaign.uuid}" %>"><%= campaign.title %></a></li>
               <% end %>
             </ul>
           </li>
-          <li><a href="/notifications">Notifications</a></li>
+          <% if notifications.present? %>
+            <li><a href="/notifications">Notifications</a></li>
+          <% else %>
+            <li><a href="/notifications">No notifications</a></li>
+          <% end %>
+          <li><a href="/profile/<%= current_user.username %>">Profile</a></li>
+          <li><a href="/profile/<%= current_user.username %>/settings">Settings</a></li>
           <li><a href="mailto:mike@thirsty.com">Support</a></li>
           <li><a href="/signout" style="border-radius:0px 3px 3px 0px;">Logout</a></li>
       </ul>

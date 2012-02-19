@@ -8,10 +8,11 @@
           <h1>Available Campaigns:</h1>
           </div>
           <div id="personal_projects">
-          <% if current_user.active_campaigns.empty? %>
+          <% if current_user.active_campaigns.where(paid: true).empty? %>
           <p>&nbspNo campaigns started <button class="button_grey" style="margin:0 0 0 10px">Pick a campaign & get started!</button></p> 
           <% else %>
-            <% current_user.active_campaigns.each do |campaign| %>
+
+            <% Campaign.where(paid: true).each do |campaign| %>
 
               <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %></p></a>
               <div id="devider_line"></div>

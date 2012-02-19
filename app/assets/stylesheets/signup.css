@@ -138,7 +138,7 @@ background-color: rgb(185, 74, 72);
 #signup {
     width:335px;
     padding:25px;
-    height:390px;
+    height:485px;
     margin:0 auto;
     margin-top:80px;
     background-color:#151515;
@@ -256,7 +256,7 @@ background-color: rgb(185, 74, 72);
      
 }
 
-#signup a {
+#signup form a {
     float:right;
     color:#fff;
     font-size:12px;

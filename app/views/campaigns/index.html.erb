@@ -1,3 +1,29 @@
+<div id="second-analytics-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Analytics</h3>
+  </div>
+  <div class="modal-body">Analyzing...</div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+  </div>
+</div>
+
+<div id="analytics-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Analytics</h3>
+  </div>
+
+  <div class="modal-body">
+    Loading...
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+  </div>
+</div>
+
 <div id="idea-sub" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -62,7 +88,7 @@
               </div>
 
               <div id="goals-tab" class="tab-pane">
-                <% campaign.goals.each do |goal| %>
+                <% campaign.cocktail.goals.each do |goal| %>
                   <p style="display:inline"><%= pluralize goal.num, goal.type.to_s %></p>
                   <% if goal.achieved %>
                     <div class="label label-success" style="display:inline">achieved</div>
@@ -93,7 +119,8 @@
             <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
             <li><a href="#reports-tab" data-toggle="tab">Reports</a></li>
             <li><a href="#writers-tab" data-toggle="tab">Winning writers</a></li>
-            <li><a href="#chat-tab" data-toggle="tab">Chat with your marketers</a></li>
+            <li><a href="#chat-tab" data-toggle="tab">Chat</a></li>
+            <li><a href="#analytics-tab" data-toggle="tab">Analytics</a></li>
           </ul>
         </div>
 
@@ -103,7 +130,14 @@
 
               <div id="ideas">
                 <h3>Have any marketing ideas for this campaign? <button class="button_submit" href="#idea-sub" data-toggle="modal">Submit an idea</button></h1>
-                <div id="comments"><%= render campaign.comments.reverse %></div>
+                <div id="comments">
+                  <% comments = campaign.comments.reverse %>
+                  <% if comments.count > 0 %>
+                    <%= render comments %>
+                  <% else %>
+                    no comments
+                  <% end %>
+                </div>
               </div>
 
             </div>
@@ -121,12 +155,17 @@
                   <div id="approve-tab" class="tab-pane">
                       <div id="approve">
                   <div id="unread-articles">
-                  <% campaign.articles.where(approved: nil).each do |article| %>
-                    <div class="article" id="article<%= article.id %>">
-                       "<%= article.title %>" written by: <%= article.user.name %>
-                       <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true, class: 'accept' %>
-                       <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true, class: 'deny' %>
-                     </div>
+                  <% articles = campaign.articles.where(approved: nil) %>
+                  <% if articles.count > 0 %>
+                    <% articles.each do |article| %>
+                      <div class="article" id="article<%= article.id %>">
+                         "<%= article.title %>" written by: <%= article.user.name %>
+                         <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true, class: 'accept' %>
+                         <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true, class: 'deny' %>
+                       </div>
+                    <% end %>
+                  <% else %>
+                    no articles
                   <% end %>
                   </div>
                   </div>
@@ -144,7 +183,6 @@
             </div>
 
             <div id="reports-tab" class="tab-pane">
-                <% notifications = (campaign.goals.map {|g| g.notification} + campaign.articles.map {|a|a.notification} + campaign.comments.map {|c|c.notification}).compact.sort_by(&:created_at).reverse %>
               <div id="reports_menu">
                 <div id="devider_line2"></div>
                 <h1><%= notifications.size %> Reports</h1>
@@ -162,6 +200,21 @@
               <div id="devider_line3"></div>
               <div id="writers"><%= render campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews) %></div>
               <div id="devider_end2"></div>
+            </div>
+
+            <div id="analytics-tab" class="tab-pane">
+              <div id="analytics">
+                <% articles = campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews) %>
+                <% if articles.count > 0 %>
+                  <% articles.each do |article| %>
+                    <div class="article">
+                      <%= link_to article.title, '#analytics-modal', :'data-toggle' => 'modal', class: 'analytics-link', aid: article.id %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  no articles
+                <% end %>
+              </div>
             </div>
 
             <div id="chat-tab" class="tab-pane">
@@ -186,6 +239,14 @@
 
 <script>
   $(document).ready(function(){
+    $('.analytics-link').click(function(){
+      $.post(
+        '/campaigns/analytics',
+        { id: $(this).attr('aid') },
+        function(rsp){ $('#analytics-modal .modal-body').html(rsp) },
+        'html'
+      )
+    })
     $('.article .accept').click(function(){
       setTimeout(function(){
         $(this).attr('href', '')
@@ -200,11 +261,11 @@
       $(this).text('denying..')
       $(this).parent().children('.accept').remove()
     })
-    function new_message(message, username) {
-      return '<div class="chat_message"><span class="username">' + username + ': </span><span class="message_content">' + message + '</span></div>'
+    function new_message(message, username, timestamp) {
+        return '<div class="chat_message"><span class="timestamp">[' + timestamp + ']</span> <span class="username">' + username + ': </span><span class="message_content">' + message + '</span></div>'
     }
 
-    var jug = new Juggernaut
+    var jug = new Juggernaut({port: '8081'})
     jug.meta = {
       user_id: '<%= current_user.id %>',
       campaign_id: '<%= campaign.id %>'
@@ -212,7 +273,7 @@
 
     jug.subscribe('<%= campaign.uuid %>', function(data) {
       if (data.message && data.message != '') {
-        $('#chat_messages').append(new_message(data.message, data.username))
+        $('#chat_messages').append(new_message(data.message, data.username, data.timestamp))
         $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
         $('#message').val('')
       } else if (data.event_type == 'subscribe') {
@@ -236,9 +297,8 @@
     $('#chat_form').submit(function(){
       var message = $('#message').val()
       if (message != '') {
-        $('#chat_messages').append(new_message(message, '<%= current_user.name %>'))
+        $('#chat_messages').append(new_message(message, '<%= current_user.name %>', $.format.date(new Date(), 'HH:mm')))
         $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
-        $('#message').val('')
       }
     })
 

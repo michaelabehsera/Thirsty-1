@@ -1,5 +1,27 @@
 <%= render partial: 'site/header' %>
-<!--End of header-->
+
+<div id="plan-info" class="modal hide fade">
+  <div class="modal-header">Start a Campaign</div>
+  <div class="modal-body">
+    <%= form_tag '/campaigns/meta/create', remote: true do %>
+      <%= hidden_field_tag :id %>
+      <%= text_field_tag :name, '', placeholder: 'Company name', autocomplete: 'off' %>
+      <%= text_field_tag :url, '', placeholder: 'Blog URL', autocomplete: 'off' %>
+      <%= text_area_tag :notes, '', placeholder: 'Important notes to include', autocomplete: 'off' %>
+      <%= text_field_tag :user, '', placeholder: 'Wordpress username', autocomplete: 'off' %>
+      <%= password_field_tag :pass, '', placeholder: 'Wordpress password', autocomplete: 'off' %>
+      <%= text_field_tag :aid, '', placeholder: 'Google analytics site id (UA-XXXXXXX-X)', autocomplete: 'off' %>
+      <%= text_field_tag :fuser, '', placeholder: 'ftp username', autocomplete: 'off' %>
+      <%= password_field_tag :fpass, '', placeholder: 'ftp password', autocomplete: 'off' %>
+      <%= text_field_tag :fdomain, '', placeholder: 'ftp domain/ip', autocomplete: 'off' %>
+      <%= text_field_tag :root, '', placeholder: 'wordpress directory path (/srv/wordpress)', autocomplete: 'off' %>
+  </div>
+  <div class="modal-footer">
+    <%= submit_tag :submit, id: 'submit', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+
       <div id="wrap">
 
           <div id="user_guide">
@@ -16,12 +38,12 @@
               <p>Pick a marketing cocktail:</p>
             </div>
           <div id="pick_campaign">
-              <% Cocktail.all.each do |cocktail| %>
+              <% Cocktail.all.asc(:price).each do |cocktail| %>
               <div class="campaign_box">
               <p><%= cocktail.title %></p>
               <p><%= cocktail.description %></p>
               <p>Price: $<%= cocktail.price %></p>
-              <%= link_to 'pick me!', "http://paymint.thirsty.com/?id=#{cocktail.id}&amount=#{cocktail.price}&shadowbox=true&email=#{current_user.email}", rel: 'shadowbox', class: 'pickme' %>
+              <%= link_to 'pick me!', '#plan-info', class: 'pickme', :'data-toggle' => 'modal', onclick: "javascript:$('#id').val('#{cocktail.id}')" %>
               </div>
           <% end %>
               <button class="button_black" style="margin-top:10px">Suggest a campaign</button>
@@ -38,17 +60,12 @@
   <div class="clear"></div>
 
 <script>
+  $('#submit').click(function(){
+    $(this).val('Submitting...')
+  })
   window.addEventListener('message', function(e) {
     if (e.data.paid == true) {
-      setTimeout(function(){
-        var domain = e.data.domain.split(/\/+/g)
-        var extras = '?id=' + e.data.id + '&fuser=' + e.data.fuser + '&fpass=' + e.data.fpass + '&fdomain=' + e.data.fdomain + '&root=' + e.data.root + '&name=' + e.data.name + '&aid=' + e.data.aid + '&url=' + e.data.url + '&user=' + e.data.user + '&pass=' + e.data.pass + '&notes=' + e.data.notes
-        if (typeof domain[1] != 'undefined' ) {
-          window.location = '/campaigns/meta/create' + domain[1].replace('www.', '').replace('.', '-') + extras
-        } else {
-          window.location = '/campaigns/meta/create' + domain[0].replace('www.', '').replace('.', '-') + extras
-        }
-      }, 4500)
+      window.location = '/campaigns/' + e.data.uuid + '/paid'
     }
   }, false)
 </script>

@@ -1,0 +1,10 @@
+<% if !@wordpress %>
+  $('#plan-info .modal-body').prepend('<div class="alert alert-error hide"><a class="close" data-dismiss="alert">×</a>Invalid wordpress credentials!</div>')
+<% end %>
+<% if !@ftp %>
+  $('#plan-info .modal-body').prepend('<div class="alert alert-error hide"><a class="close" data-dismiss="alert">×</a>Invalid ftp credentials!</div>')
+<% elsif !@ftp_dir %>
+  $('#plan-info .modal-body').prepend('<div class="alert alert-error hide"><a class="close" data-dismiss="alert">×</a>Invalid wordpress directory!</div>')
+<% end %>
+$('#plan-info .alert-error').fadeIn('slow')
+$('#plan-info #submit').val('Submit')

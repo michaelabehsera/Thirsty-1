@@ -7,6 +7,11 @@ Thirsty::Application.routes.draw do
   get '/campaigns/:uuid' => 'campaigns#index'
   match '/campaigns/:uuid/:action' => 'campaigns'
 
+  match '/notifications' => 'site#my_notifications'
+
+  match '/profile/:username' => 'users#show'
+  match '/profile/:username/:action' => 'users'
+
   match '/:controller/meta/:action'
   match '/:controller/:action'
   match '/:action' => 'site'

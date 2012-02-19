@@ -32,16 +32,22 @@ class CampaignsController < ApplicationController
   end
 
   def chat_message
-    Juggernaut.publish campaign.uuid, { message: params[:message], username: current_user.name }, except: params[:sessionID]
+    Juggernaut.publish campaign.uuid, { message: params[:message], username: current_user.name, timestamp: Time.now.strftime('%H:%M') }, except: params[:sessionID]
     render nothing: true
+  end
+
+  def analytics
+    @article = Article.find params[:id]
+  end
+
+  def user_analytics
+    @bit = BitLy.referrers(Bit.find(params[:id])['hash'])
   end
 
   def create_comment
     @comment = campaign.comments.new params[:comment]
     @comment.user = current_user
     @comment.create_notification if @comment.save
-    goal = campaign.goals.where(type: :idea).first
-    goal.update_attribute(:achieved, true) if goal && campaign.comments.where(month: campaign.month, approved: true).count >= goal.num
     respond_to :js
   end
 
@@ -94,7 +100,7 @@ class CampaignsController < ApplicationController
     article.update_attribute(:url, rsp.id)
     if article.save && article.url
       article.update_attribute(:approved, true)
-      goal = campaign.goals.where(type: :article).first
+      goal = campaign.cocktail.goals.where(type: :article).first
       goal.update_attribute(:achieved, true) if goal && campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
       @article = article
       render 'approve'
@@ -103,25 +109,52 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def paid
+    campaign.update_attribute(:paid, true)
+    redirect_to "/campaigns/#{campaign.uuid}"
+  end
+
   def create
-    campaign = Campaign.new(uuid: UUID.new.generate)
-    campaign.user = current_user
-    campaign.cocktail = Cocktail.find(params[:id])
-    campaign.title = params[:name]
-    campaign.url = params[:url]
-    campaign.notes = params[:notes]
-    campaign.username = params[:user]
-    campaign.pass = params[:pass]
-    campaign.analytics_id = params[:aid]
-    campaign.ftp_user = params[:fuser]
-    campaign.ftp_pass = params[:fpass]
-    campaign.ftp_domain = params[:fdomain]
-    campaign.root_dir = params[:root]
-    if campaign.save
-      campaign.create_notification
-      redirect_to "/campaigns/#{campaign.uuid}"
+    url = params[:url]
+    url = 'http://' + url if url[0..6] != 'http://'
+    begin
+      Atom::Pub::Collection.new(href: url + '/wp-app.php/posts').publish(Atom::Entry.new, user: params[:user], pass: params[:pass])
+    rescue Exception => e
+      @wordpress = (e.message =~ /Internal/ && true || false)
+    end
+    begin
+      Net::FTP.open params[:fdomain], params[:fuser], params[:fpass] do |ftp|
+        root_dir = params[:root]
+        root_dir += '/' if params[:root][-1] != '/'
+        root_dir += 'wp-content'
+        begin
+          ftp.chdir root_dir
+          @ftp_dir = true
+        rescue Exception
+          @ftp_dir = false
+        end
+      end
+      @ftp = true
+    rescue Exception
+      @ftp = false
+    end
+    if @wordpress && @ftp && (defined?(@ftp_dir) && @ftp_dir || !defined?(@ftp_dir))
+      @campaign = Campaign.new(uuid: UUID.new.generate)
+      @campaign.user = current_user
+      @campaign.cocktail = Cocktail.find(params[:id])
+      @campaign.title = params[:name]
+      @campaign.url = params[:url]
+      @campaign.notes = params[:notes]
+      @campaign.username = params[:user]
+      @campaign.pass = params[:pass]
+      @campaign.analytics_id = params[:aid]
+      @campaign.ftp_user = params[:fuser]
+      @campaign.ftp_pass = params[:fpass]
+      @campaign.ftp_domain = params[:fdomain]
+      @campaign.root_dir = params[:root]
+      @campaign.create_notification if @campaign.save
     else
-      render inline: 'fail'
+      render 'create_fail'
     end
   end
 
