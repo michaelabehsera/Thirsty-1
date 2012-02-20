@@ -1,11 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    background-size:cover;
-    -moz-background-size:cover;
-    -webkit-background-size:cover;
+    background-color:#151515;
     font-family: Arial, sans-serif;
-    background:url(/images/bg.png)no-repeat;
 
 }
 
@@ -309,7 +306,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 #wrap {
     margin:0 auto;
     padding:0;
-    width:770px;
+    width:780px;
     margin-bottom:150px;
 
 }
@@ -333,7 +330,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
     z-index: 1;
     top:0;
     width:100%;
-    height:60px;
+    height:52px;
     display:block;
     position:fixed;
     background:url(/images/header_bg.png)repeat;
@@ -356,19 +353,70 @@ li.posterous { background-image:url("/images/posterous.png"); }
 /*-------------------------Header end-------------------------*/
 
 
-/*-------------------------Pick a capaign page-------------------------*/
+/*-------------------------Index-------------------------*/
 
 
 #main_messaging {
-    width:720px;
-    margin:0 auto;
+    margin-top:15px;
 
 }
 
 #button_width {
-    width:417px;
+    width:430px;
     margin:0 auto;
-    margin-top:10px;
+    margin-top:20px;
+
+}
+
+#button_width a {
+    padding:12px 20px;
+    border-radius:7px;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    text-shadow: 0 -1px rgba(15, 89, 153, 0.5);
+    -moz-text-shadow: 0 -1px rgba(15, 89, 153, 0.5);
+    -webkit-text-shadow: 0 -1px rgba(15, 89, 153, 0.5);
+    color: white;
+    border: 1px solid #000;
+    background: #15A9BF;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #13a6bc), color-stop(50%, #15A9BF), color-stop(51%, #29B9CF), color-stop(100%, #29B9CF));
+    background: -webkit-linear-gradient(#13a6bc,#15A9BF 50%,#0E9FB5 51%,#0C9DB3);
+    background: -moz-linear-gradient(#13a6bc,#15A9BF 50%,#0E9FB5 51%,#0C9DB3);
+    background: -o-linear-gradient(#13a6bc,#15A9BF 50%,#0E9FB5 51%,#0C9DB3);
+    background: -ms-linear-gradient(#13a6bc,#15A9BF 50%,#0E9FB5 51%,#0C9DB3);
+    background: linear-gradient(#13a6bc,#15A9BF 50%,#0E9FB5 51%,#0C9DB3);
+    cursor:pointer;
+    margin:3px 4px 0 0;
+    text-decoration:none;
+     box-shadow:0px 0px 3px #515151;
+    -moz-box-shadow:0px 0px 3px #515151;
+    -webkit-box-shadow:0px 0px 3px #515151;
+
+}
+
+#button_width a:hover {
+    cursor:pointer;
+    background: #22B1C7;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #22B1C7), color-stop(50%, #22B1C7), color-stop(51%, #22B1C7), color-stop(100%, #22B1C7));
+    background: -webkit-linear-gradient(#22B1C7 51%,#22B1C7, #22B1C7,#22B1C7 50%);
+    background: -moz-linear-gradient(#5CADED 51%,#22B1C7,#22B1C7,#22B1C7 50%);
+    background: -o-linear-gradient(#22B1C7 51%,#22B1C7, #22B1C7,#22B1C7 50%);
+    background: -ms-linear-gradient(#22B1C7 51%,#22B1C7, #22B1C7,#22B1C7 50%);
+    background: linear-gradient(#22B1C7 51%,#22B1C7, #22B1C7,#22B1C7 50%);
+    box-shadow:0px 0px 3px #515151;
+    -moz-box-shadow:0px 0px 3px #515151;
+    -webkit-box-shadow:0px 0px 3px #515151;
+
+}
+
+#button_width a:active {
+    background: -webkit-linear-gradient(top, #0793A8, #0793A8);
+    background: -moz-linear-gradient(top, #0793A8, #0793A8);
+    background: -ms-linear-gradient(top, #0793A8, #0793A8);
+    background: -o-linear-gradient(top, #0793A8, #0793A8);
+    box-shadow: inset 0px 1px 10px #252525, 0px 0px 3px #515151;
+    -moz-box-shadow: inset 0px 1px 10px #252525, 0px 0px 3px #515151;
+    -webkit-box-shadow: inset 0px 1px 10px #252525, 0px 0px 3px #515151;
 
 }
 
@@ -377,6 +425,10 @@ li.posterous { background-image:url("/images/posterous.png"); }
     margin:0 auto;
 
 }
+
+
+/*-------------------------Index end-------------------------*/
+
 
 #header_info {
     padding:1px;
