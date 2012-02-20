@@ -38,10 +38,7 @@ class CampaignsController < ApplicationController
 
   def analytics
     @article = Article.find params[:id]
-  end
-
-  def user_analytics
-    @bit = BitLy.referrers(Bit.find(params[:id])['hash'])
+    @json = @article.bits.map { |bit| { referrers: BitLy.referrers(bit.url).referrers, user: bit.user.name } }.to_json
   end
 
   def create_comment

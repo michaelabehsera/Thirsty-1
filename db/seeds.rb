@@ -2,6 +2,7 @@ puts 'Dropping all the collections in the database'
 Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 
 Rake::Task["db:mongoid:create_indexes"].invoke
+puts 'Generating cocktails'
 Cocktail.create(title: 'free', description: 'blog tools', price: 0)
 Cocktail.create(title: '$149/month', description: '3 articles', price: 149).goals.create(num: 3, type: :article)
 Cocktail.create(title: '$299/month', description: '6 articles', price: 299).goals.create(num: 6, type: :article)

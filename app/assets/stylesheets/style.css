@@ -60,6 +60,14 @@ li.active > a {
 
 }
 
+#analytics-modal {
+  width: 80%;
+  min-height: 575px;
+  left: 10%;
+  top: 5%;
+  margin: 0;
+}
+
 #settings {
     width:420px;
     padding:30px;
