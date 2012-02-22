@@ -40,10 +40,9 @@
           <div id="pick_campaign">
           <div id="campaign_box_devider"></div>
               <% Cocktail.all.asc(:price).each do |cocktail| %>
-              
               <div class="campaign_box">
               <p><%= cocktail.title %></p>
-              <p><%= cocktail.description %></p>
+              <p><%= cocktail.description.gsub("\n", '<br/>').html_safe %></p>
               <p>Price: $<%= cocktail.price %></p>
               <%= link_to 'Pick Me!', '#plan-info', class: 'pickme', :'data-toggle' => 'modal', onclick: "javascript:$('#id').val('#{cocktail.id}')" %>
               </div>
