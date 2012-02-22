@@ -1125,49 +1125,56 @@ button.button_submit:active {
 /*-------------------------Footer-------------------------*/
 
 
+#devider_footer {
+    margin:50px 0 0 0;
+    border-top:1px solid #000;
+    border-bottom:1px solid #252525;
+}
+
+
 #footer-bottom-bar {
     bottom:0;
     width:100%;
-    height:37px;
-    position:fixed;
-    background: #1b1b1b; /* Old browsers */
-    background: -moz-linear-gradient(top,  #1b1b1b 0%, #252525 100%, #490b3b 100%, #2989d8 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1b1b1b), color-stop(100%,#252525), color-stop(100%,#490b3b), color-stop(100%,#2989d8)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #1b1b1b 0%,#252525 100%,#490b3b 100%,#2989d8 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #1b1b1b 0%,#252525 100%,#490b3b 100%,#2989d8 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #1b1b1b 0%,#252525 100%,#490b3b 100%,#2989d8 100%); /* IE10+ */
-    background: linear-gradient(top,  #1b1b1b 0%,#252525 100%,#490b3b 100%,#2989d8 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b1b1b', endColorstr='#2989d8',GradientType=0 ); /* IE6-9 */   
-    border-top:1px solid #000;
- 
+    height:100%;
+
 }
 
-#footer_devider {
-   margin:209px 0 0 0;
-   border-bottom:1px solid #323232; 
+#footer_nav {
+    width:69%;
+    margin:0 auto;
 
 }
 
 #footer_nav ul {
-    float:left;
-    margin:8px 0 0 5px;
+    float:right;
+    margin:18px 0px 5px 0px;
 
 }
 
 #footer_nav li {
+    color:#717171;
     display:inline;
     list-style:none;
+    font-size:13px;
     margin:0 0 0 5px;
-    font-size:12px;
-    text-shadow:0 1px 0 #000;
-    -moz-text-shadow:0 1px 0 #000;
-    -webkit-text-shadow:0 1px 0 #000; 
+    text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000; 
+    -moz-transition: .4s ease-in-out;
+    -webkit-transition: .4s ease-in-out;
+
+}
+
+#footer_nav li:hover {
+    color:#fff;
+    -moz-transition: .4s ease-in-out;
+    -webkit-transition: .4s ease-in-out;
 
 }
 
 #footer_nav a {
-    color:#5F5F5F;
-    font-size:12px;
+    color:#717171;
+    font-size:13px;
     text-decoration:none;
     text-shadow:0 -1px 0 #000;
     -moz-text-shadow:0 -1px 0 #000;
@@ -1178,7 +1185,7 @@ button.button_submit:active {
 }
 
 #footer_nav a:hover {
-    color:#10ABB5;
+    color:#32777e;
 
 }
 
