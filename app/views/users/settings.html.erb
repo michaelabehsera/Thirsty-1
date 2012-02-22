@@ -72,6 +72,7 @@
   $('.social li a').click(function(){
     $('#social form #name').val($(this).text())
     $('#social h2').text('Link your ' + $(this).text())
+    $('#social form #url').val('')
   })
   $('#social .btn-success').click(function(){
     $('#social form').submit()

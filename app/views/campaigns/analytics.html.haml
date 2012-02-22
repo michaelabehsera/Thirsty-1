@@ -1,19 +1,28 @@
 = text_field_tag :link, current_user.bits.where(article_id: @article.id).first.url, readonly: true
 - bits = @article.bits.where(:clicks.gt => 0)
 - if bits.count > 0
-  %h3 Active Marketers:
-  - bits.each do |bit|
-    .bit
-      = link_to bit.user.name, 'javascript:void(0)', uid: bit.user.id, class: 'bitly-user', :'data-dismiss' => 'modal', bid: bit.id
-      = ": #{bit.clicks} clicks"
+  #chart{style: 'width:99%;height:10%'}
 
-:javascript
-  $('.bitly-user').click(function(){
-    $('#second-analytics-modal').modal()
-    $.post(
-      '/campaigns/user_analytics',
-      { id: $(this).attr('bid') },
-      function(rsp){ $('#second-analytics-modal .modal-body').html(rsp) },
-      'html'
-    )
-  })
+  :javascript
+    json = $.parseJSON('#{raw @json}')
+    colors = Highcharts.getOptions().colors
+    referrer_names = _.uniq(_.flatten(_.map(json, function(b){ return _.pluck(b.referrers, 'referrer') })))
+    referrers = _.map(referrer_names, function(n,i) { return { name: n, clicks: 0, color: colors[i] } })
+    _.each(json, function(b){
+      _.each(b.referrers, function(r) {
+        _.each(referrers, function(n) {
+          _.find(referrers, function(r) { return r.name == n.name } ).clicks += r.clicks
+        })
+      })
+    })
+    new Highcharts.Chart({
+      chart: { renderTo: 'chart', type: 'column' },
+      title: { text: 'Analytics' },
+      xAxis: { categories: _.pluck(referrers, 'name') },
+      yAxis: { title: { text: 'Number of Clicks' } },
+      series: [{
+        name: 'Referrers',
+        color: 'white',
+        data: _.map(referrers, function(r) { return { y: r.clicks, color: r.color } })
+      }]
+    })
