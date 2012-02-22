@@ -35,26 +35,21 @@
             </ul>
             </div>
             <div id="header_info">
-              <p>Pick a marketing cocktail:</p>
+              <h2>Pick a marketing cocktail:</h2>
             </div>
           <div id="pick_campaign">
+          <div id="campaign_box_devider"></div>
               <% Cocktail.all.asc(:price).each do |cocktail| %>
+              
               <div class="campaign_box">
               <p><%= cocktail.title %></p>
               <p><%= cocktail.description %></p>
               <p>Price: $<%= cocktail.price %></p>
-              <%= link_to 'pick me!', '#plan-info', class: 'pickme', :'data-toggle' => 'modal', onclick: "javascript:$('#id').val('#{cocktail.id}')" %>
+              <%= link_to 'Pick Me!', '#plan-info', class: 'pickme', :'data-toggle' => 'modal', onclick: "javascript:$('#id').val('#{cocktail.id}')" %>
               </div>
           <% end %>
-              <button class="button_black" style="margin-top:10px">Suggest a campaign</button>
-          </div></div>
-
-        </div>
-        </div>
-
       </div>
-
-
+ <div id="campaign_box_devider2"></div>
 
   </div><!--End of wrap-->
   <div class="clear"></div>

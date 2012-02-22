@@ -9,7 +9,7 @@
           </div>
           <div id="personal_projects">
           <% if current_user.active_campaigns.where(paid: true).empty? %>
-          <p>&nbspNo campaigns started <button class="button_grey" style="margin:0 0 0 10px">Pick a campaign & get started!</button></p> 
+          <p>&nbspNo campaigns started <a href="" class="button_grey" style="margin:0 0 0 10px">Pick a campaign & get started!</a></p> 
           <% else %>
 
             <% Campaign.where(paid: true).each do |campaign| %>
