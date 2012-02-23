@@ -39,6 +39,7 @@ class CampaignsController < ApplicationController
   def analytics
     @article = Article.find params[:id]
     @json = @article.bits.map { |bit| { referrers: BitLy.referrers(bit.url).referrers, user: bit.user.name } }.to_json
+    render layout: false
   end
 
   def create_comment
@@ -140,7 +141,7 @@ class CampaignsController < ApplicationController
       @campaign.user = current_user
       @campaign.cocktail = Cocktail.find(params[:id])
       @campaign.title = params[:name]
-      @campaign.url = params[:url]
+      @campaign.url = url
       @campaign.notes = params[:notes]
       @campaign.username = params[:user]
       @campaign.pass = params[:pass]

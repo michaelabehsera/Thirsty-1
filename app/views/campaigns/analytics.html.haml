@@ -8,6 +8,16 @@
     colors = Highcharts.getOptions().colors
     referrer_names = _.uniq(_.flatten(_.map(json, function(b){ return _.pluck(b.referrers, 'referrer') })))
     referrers = _.map(referrer_names, function(n,i) { return { name: n, clicks: 0, color: colors[i] } })
+    users = {}
+    _.each(referrer_names, function(ref) {
+      users[ref] = []
+    })
+    _.each(referrers, function(referrer) {
+      _.each(json, function(user) {
+        ref = _.find(user.referrers, function(r){ return r.referrer == referrer.name})
+        users[ref.referrer].push({ name: user.user, clicks: ref.clicks })
+      })
+    })
     _.each(json, function(b){
       _.each(b.referrers, function(r) {
         _.each(referrers, function(n) {
@@ -15,14 +25,51 @@
         })
       })
     })
-    new Highcharts.Chart({
+    function setChart(name, categories, data, color) {
+      chart.xAxis[0].setCategories(categories)
+      chart.series[0].remove()
+      chart.addSeries({
+        name: name,
+        data: data,
+        color: color || 'white'
+      })
+    }
+    var name = 'Referrers'
+    var categories = _.pluck(referrers, 'name')
+    var data = _.map(referrers, function(r) { return {
+      y: r.clicks,
+      color: r.color,
+      drilldown: {
+        name: r.name,
+        categories: _.pluck(users[r.name], 'name'),
+        data: _.pluck(users[r.name], 'clicks')
+      }}
+    })
+    var chart = new Highcharts.Chart({
       chart: { renderTo: 'chart', type: 'column' },
       title: { text: 'Analytics' },
-      xAxis: { categories: _.pluck(referrers, 'name') },
+      xAxis: { categories: categories },
       yAxis: { title: { text: 'Number of Clicks' } },
+      plotOptions: {
+        column: {
+          cursor: 'pointer',
+          point: {
+            events: {
+              click: function() {
+                var drilldown = this.drilldown
+                if (drilldown) {
+                  setChart(drilldown.name, drilldown.categories, drilldown.data, colors[0])
+                } else {
+                  setChart(name, categories, data)
+                }
+              }
+            }
+          }
+        }
+      },
       series: [{
-        name: 'Referrers',
+        name: name,
         color: 'white',
-        data: _.map(referrers, function(r) { return { y: r.clicks, color: r.color } })
+        data: data
       }]
     })
