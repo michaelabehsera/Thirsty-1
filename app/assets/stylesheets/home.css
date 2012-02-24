@@ -344,7 +344,7 @@ button.button_main:active {
 
 }
 
-li.index_users { background-image:url("/images/eva.jpg"); width:150px; height:150px;}
+li.index_users { width:150px; height:150px;}
 /* SOCIAL ICONS - CSS3 */
 #css3:hover li { opacity:0.2; }
 

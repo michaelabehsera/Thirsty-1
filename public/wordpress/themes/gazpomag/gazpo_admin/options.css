@@ -1,0 +1,185 @@
+#gazpo-admin {
+	width: 900px;
+	margin-top: 15px; 
+	font-family: Arial,sans-serif;
+	color: #353E34;
+}
+ 
+#gazpo-admin h3 {
+	margin: 0;
+	padding: 0; 
+}
+		
+#gazpo-admin h4 {
+	display: block; 
+	border-bottom: solid 1px #e8e7e3;
+	font-weight:bold;
+	font-size:16px;
+	padding-bottom:15px;
+	margin:10px 0 20px 0;
+}
+
+#gazpo-admin h3 {
+	text-align:center;
+	line-height: 36px;
+	font-size: 24px;
+	font-weight:700;
+}
+
+#gazpo-admin .header{
+	width:900px;
+	height:80px;
+	background: url(images/h1.png) repeat;
+	border-radius: 10px 10px 0 0;
+}
+	
+#gazpo-admin .gazpo-logo{
+	float: left;
+	display: inline;
+	margin: 5px 0 0 20px;
+}
+	
+#gazpo-admin .theme-info{
+	float: right;
+	margin-right: 15px;
+}
+
+#gazpo-admin .theme-info h3{
+	text-align:right;
+	margin-top: 10px; 
+	color: #f6f8f9;
+	font-size:20px;
+	font-weight:700;
+}
+
+#gazpo-admin .theme-info ul{
+	overflow:auto;
+	margin-top: 10px; 
+}
+
+#gazpo-admin .theme-info ul li {
+	padding-left: 20px;
+	float: left;
+	display: inline;
+	margin-left: 10px;
+}
+	
+#gazpo-admin .theme-info ul li.docs{
+	background: url(images/info1.png) no-repeat top left;
+}
+	
+#gazpo-admin .theme-info ul li.support{
+	background: url(images/mail.png) no-repeat top left;
+}
+#gazpo-admin .theme-info ul li  a{
+	text-decoration:none;
+	color:white;
+}
+
+#gazpo-admin .menu{
+	background: #8fb6d9 url(images/menu.png) repeat-x top left;
+	height:40px;
+}
+
+#gazpo-admin .menu ul{
+	width:90%;
+	overflow:auto;
+	padding-top:5px;	
+}
+
+#gazpo-admin .menu ul li {
+	float: left;
+	display: inline;
+	text-align: center;	
+	font-size: 14px;
+}
+	
+#gazpo-admin .menu ul li a {
+	display: block;
+	color: #1d507d;
+	text-decoration: none; 
+	font-weight:bold;
+	font-size:14px;
+	padding: 5px 10px 5px 10px;
+	margin-right:5px;
+	margin-left:10px;
+	border-radius:8px;
+	
+}
+	
+#gazpo-admin .menu ul li:hover a, #gazpo-admin .menu ul li a:hover, #gazpo-admin .menu ul li.active a {
+	background-color:#dddddd;
+	border-radius:8px;
+}
+
+#gazpo-admin .menu  ul li img {
+	margin-bottom: 5px; 
+}
+
+#gazpo-admin .clear{
+	clear:both;
+}
+
+#gazpo-admin .options-form{
+	background-color: #fff;
+	border: solid 1px #dfdfdf;
+	border-top: none;
+	padding: 15px 20px;
+}
+
+#gazpo-admin .options-form .field{
+	margin-bottom:10px;
+	overflow:auto;	
+}
+
+#gazpo-admin .options-form label {
+	font-weight: bold;
+    line-height:2.5;
+    display: inline-block;
+    width:180px;
+    margin-right:10px;
+	text-align:right;	
+}
+	
+#gazpo-admin .options-form input, #gazpo-admin .options-form select{
+	border: 1px solid #d5d5d5;
+	color: #444444;   
+    height:34px;
+	font-size:14px;
+    padding:6px 8px;
+    width:330px;
+    display: inline-block;
+    margin-right:10px;		
+}
+	
+#gazpo-admin .options-form p {
+	font-size: 12px;
+	color:#999999;	
+    display: inline-block;
+    width:300px;
+    line-height:15px;
+    vertical-align: middle;
+}
+
+#gazpo-admin .options-form .textarea{
+	border:1px solid red;
+	border: 1px solid #d5d5d5;
+	color: #444444;   
+    height:90px;
+	font-size:14px;
+    padding:6px 8px;
+    width:330px;
+    display: inline-block;
+	vertical-align: middle;
+    margin-right:10px;	
+}
+
+#gazpo-admin .submit {
+	float:left;
+	margin-right:10px;
+}
+
+#gazpo-admin .options-form  .updated {
+	overflow:auto;
+	padding:3px 5px;	
+}

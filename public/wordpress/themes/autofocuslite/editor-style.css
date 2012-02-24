@@ -1,0 +1,62 @@
+/*
+
+	Styles for use in the visual editor.
+
+*/
+ 
+/*	Main Content Style */
+html .mceContentBody {font: 12px/22px Helvetica, Arial, sans-serif;width:486px;margin:0;padding:0 8px;background:transparent;}
+
+/*	Entry Content */
+h1, h2, h3, h4, h5, h6 {font-family: "Garamond", "Hoefler Text", Times New Roman, Times, serif;font-weight:400}
+h1 {font-size:24px;padding:0 8px;margin:22px 0;font-weight:400}
+h2,
+h3 {font-size:20px;padding:0 8px;margin:22px 0;font-weight:400}
+h4,
+h5,
+h6 {font-size:15px;line-height:22px;padding:0 8px;margin:22px 0;font-weight:400}
+ul {list-style:disc;margin-left:24px;}
+ol {list-style:decimal;margin-left:24px;}
+ol ol {list-style:lower-alpha;margin-left:24px;}
+li {display:list-item;border:none;margin:0;padding:0;}
+div,
+p,
+pre,
+address {padding:0 8px;margin:0 0 22px;}
+object {margin-left:-8px;}
+blockquote {margin:0 0 0;padding:8px 8px 0;border:1px dotted #CCC;border-width:0 0 0 1px;font-style:italic;font-size:15px;letter-spacing:0.025em;font-family: "Garamond", "Hoefler Text", Times New Roman, Times, serif;}
+blockquote blockquote {margin-left:8px;}
+table {border:1px dotted #CCC;border-width:0 0 0 1px}
+th {font-style:italic;font-size:15px;font-weight:400;font-family: "Garamond", "Hoefler Text", Times New Roman, Times, serif;}
+td,
+th {padding:4px 8px;text-align:left;border:1px dotted #CCC;border-width:0 0 1px 1px}
+hr {border:1px dotted #CCC; border-width:1px 0 0; background:transparent; margin-bottom:44px;}
+.gallery {margin-bottom:0;}
+.gallery a img {border:none;}
+.gallery img,
+.gallery dl,
+.gallery dt,
+.gallery dd {margin:0;padding-bottom:0;}
+.gallery-row {margin-bottom:22px;}
+.wp-caption {padding:8px 8px 0;margin-bottom:11px;border:1px dotted #CCC;border-width:0;display:block;text-align:left;background-color:transparent;}
+.wp-caption.alignleft {padding:8px 0 0;margin-right:16px;margin-left:0px;border-width:0 1px 0 0;}
+.wp-caption.alignright {padding-left:16px;padding-right:0;margin-left:16px;margin-right:-8px;border-width:0 0 0 1px;}
+.wp-caption.aligncenter,
+.wp-caption.alignnone {margin-bottom:11px;padding-bottom:11px;border-width:0 0 1px 0;}
+.wp-caption img {margin:0;padding:0;border:none}
+.gallery-caption,
+.wp-caption-dd,
+.wp-caption-text{padding:0;margin:8px 0 0;font-size:10px;line-height:16px;letter-spacing:0.05em;}
+
+/*	Image Styles
+-------------------------------------------------------------- */
+img{margin:0 0 22px 0;}
+.alignleft,
+img.alignleft,
+img.align-left{float:left;margin:0 16px 22px -8px;display:block;}
+.alignright,
+img.alignright,
+img.align-right{display:block;float:right;margin:0 -8px 22px 16px}
+.aligncenter {margin:0 auto 22px auto; display:block; float:none; clear:both}
+.wp-smiley{max-height:13px; margin:0 !important}
+

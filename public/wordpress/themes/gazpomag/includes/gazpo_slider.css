@@ -1,0 +1,121 @@
+#featured{ 
+	width:700px; 
+	height:300px; 
+	background:#fff;
+	margin:10px 5px;
+}
+
+#featured .slider_image{
+	width: 480px;
+	height: 300px;
+	float:left;
+}
+
+#featured .slider_thumb{
+	width: 70px;
+	height: 50px;
+	float:left;
+}
+
+#featured ul.ui-tabs-nav{ 
+	float:right;
+	list-style:none; 
+	padding:0; 
+	margin:0; 
+	width:219px; 
+	border-top:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+
+#featured ul.ui-tabs-nav li{ 
+	font-size:12px; 
+	color:#666;
+	
+	border-bottom:1px solid #dbdbdb;
+}
+
+#featured ul.ui-tabs-nav li img{ 
+	float:left; margin:2px 5px; 
+	background:#fff; 
+	padding:2px; 
+	border:1px solid #eee;
+}
+
+#featured ul.ui-tabs-nav li span{ 
+	font-size:11px; 
+	line-height:18px; 
+}
+
+#featured li.ui-tabs-nav-item a{ 
+	display:block; 
+	height:68px; 
+	color:#333;  
+	background:#fff; 
+	padding-top:6px;
+	line-height:18px;
+	text-decoration:none;
+}
+
+#featured  .ui-tabs-nav-item .title{
+	font-weight:bold;
+	font-size:12px;
+	overflow:auto;
+	clear:both;
+}
+
+#featured  .ui-tabs-nav-item .date{
+	
+	font-size:12px;
+}
+
+#featured li.ui-tabs-nav-item a:hover{ 
+	background:#f0f0f0; 
+}
+
+#featured ul.ui-tabs-nav li.ui-tabs-selected a{ 
+	background:#f3f3f3; 
+	
+}
+
+#featured .ui-tabs-panel{ 
+	width:480px; 
+	height:300px; 
+	background:#999; 
+	float:left;
+	position:relative;	
+}
+
+#featured .ui-tabs-panel .info{ 
+	position:absolute;
+	top:230px;
+	width:480px;
+	height:70px; 
+	left:0px;
+	background: url('../images/tr-bg.png');
+}
+
+#featured .info h2{ 
+	font-size:18px; 
+	font-family: 'Droid Serif', Arial;
+	color:#fff; padding:5px; margin:0;
+	overflow:hidden; 
+}
+
+#featured .info p{ 
+	margin:0 5px; 
+	font-size:12px; 
+	line-height:15px; color:#f0f0f0;
+}
+
+#featured .info a{ 
+	text-decoration:none; 
+	color:#fff; 
+}
+
+#featured .info a:hover{ 
+	text-decoration:underline; 
+}
+
+#featured .ui-tabs-hide{ 
+	display:none; 
+}

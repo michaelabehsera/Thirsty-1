@@ -1,0 +1,13 @@
+
+@font-face {
+	font-family: 'Lobster1.3Regular';
+	src: url('../fonts/lobster/Lobster_1.3-webfont.eot');
+	src: local('?'), url('../fonts/lobster/Lobster_1.3-webfont.woff') format('woff'), url('../fonts/lobster/Lobster_1.3-webfont.ttf') format('truetype'), url('../fonts/Lobster/lobster_1.3-webfont.svg#webfontcOtP3oQb') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body{ font-family: Helvetica, sans-serif;color; color:#999; font-size:13px;}
+
+h1, h2, h3, h4, h5, h6, .block_cat a{font-family: 'Lobster1.3Regular'; font-style:normal; clear:both; font-weight:normal;}
+#topmenu ul li a, .block_comm .comments a, #latest_posts .comments a, #single_posts .comments a, #submit, #related a, .poptitle, .sbutton, #error_wrap #single_posts a, #error_wrap #single_posts a{font-family: 'Lobster1.3Regular'; font-style:normal;}

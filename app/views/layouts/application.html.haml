@@ -16,7 +16,7 @@
       = javascript_include_tag 'http://localhost:8081/application.js'
     - else
       = javascript_include_tag root_url[0..-2] + ':8081/application.js'
-    - if request.path =~ /\/cocktails/
+    - if request.path =~ /\/cocktails/ || request.path == '/' && !logged_in?
       :javascript
         Shadowbox.init()
     <link href='http://fonts.googleapis.com/css?family=Signika+Negative|Acme|Ropa+Sans|Quicksand:400,700|Gudea:400,700|Ubuntu+Condensed|Homenaje|Balthazar|Terminal+Dosis:400,700|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>    

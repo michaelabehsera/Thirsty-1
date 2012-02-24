@@ -1,0 +1,41 @@
+body { background-color: #D9E5F4; }
+#main { background: #F0F3F7; }
+a { color: #5798CD; ; }
+a:hover { color: #545656; }
+.navigation .floatleft a, .navigation .floatright a { background: url("../images/arrows_blue.png") no-repeat; }
+.navigation .floatright a { background-position: -61px 0; }
+.navigation .floatleft a:hover { background-position: 0 -59px; }
+.navigation .floatright a:hover { background-position: -61px -59px; }
+.post .meta .date { background: url("../images/date_blue.png") no-repeat 0 1px; }
+.post .meta .comments { background: url("../images/comments_blue.png") no-repeat 0 2px; }
+#welcome h2 { color: #5798CD; }
+#heading h1 { color: #5798CD; }
+#logo { background: #5798CD; }
+.dropdown ul { background: #5798CD; }
+.dropdown li:hover { background: #5798CD; }
+.dropdown a:hover { background: #5798CD; }
+.dropdown ul li a:hover { color: #A6D1FF; }
+li.current-menu-item a,  
+li.current_page_item a,  
+li.current-menu-ancestor a,  
+li.current-menu-parent a,  
+li.current_page_parent  a { background: #5798CD; }
+.sf-sub-indicator { color: #A6D1FF; }
+.post .meta .readmore { background: #5798CD; }
+.post .post_icon a { background: url("../images/ico-post_blue.png") no-repeat; }
+.format-image .post_icon a { background-position: 0 -139px; }
+.format-link .post_icon a { background-position: -2px -95px; }
+.format-video .post_icon a { background-position: 0 -49px; }
+.format-quote .post_icon a { background-position: -2px -179px; }
+.format-audio .post_icon a { background-position: -2px -212px; }
+.post .meta .readmore:hover { background: #5798CD; }
+.tags a { background: #5798CD; }
+.tags a:hover { background: #5798CD; }
+#sidebar .widget h3 { background: #5798CD; ; }
+.widget ul.gallery li img { border: 3px solid #5798CD; }
+.widget ul.gallery li img:hover { border-color: #5798CD; }
+.wpzoom-recent-comments img, .wpzoom-recent-news img { border: 2px solid #5798CD; background: #fff; }
+.widget .social li a:hover { color: #5798CD; }
+#footer { background: #242221; border-top: 5px solid #5798CD; }
+#respond #formLabels p, #formContent p { background: #E5EDF1; }
+#footer a { color: #5798CD; }

@@ -1,0 +1,13 @@
+*** AutoFocus 2.0 Lite Changelog ***
+
+Last edited on 2011.07.13 by Allan Cole
+
+2011.07.13 - version 2.0.1
+--------------------------
+	* Change default settings for Footer to include Blog Title
+	* Fixed font-size for Comments, Reply and Browse
+
+2011.07.13 - version 2.0
+--------------------------
+	* Initial release! 
+	* Recoded almost entirely from scratch.

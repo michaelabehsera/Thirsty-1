@@ -1,0 +1,267 @@
+/*
+Theme Name: Shadows
+Theme URI: http://www.wpexplorer.com
+Description: Shadows WordPress theme by AJ Clarke from WPExplorer.com
+Author: AJ Clarke
+Version: 1.0
+*/
+
+/*-----------------------------------------------------------------------------------*
+/*Reset
+/*-----------------------------------------------------------------------------------*/
+*{margin:0; padding:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline}
+a img, 
+a{outline:0; border:0}
+caption, th, td{text-align:left; font-weight:normal}
+blockquote:before, 
+blockquote:after, 
+q:before, 
+q:after{content:""}
+blockquote, 
+q{quotes:""""}
+.clear{clear:both}
+.clearfix:after	{ display: block; visibility: hidden; content: "."; clear: both; text-indent: -9999px; height: 0; }
+
+/*-----------------------------------------------------------------------------------*
+/*Body, Common Classes &Structure
+/*-----------------------------------------------------------------------------------*/
+body{background:#FFF; font-size:14px; line-height:1.5em; color:#000; font-family: Georgia, "Times New Roman", Times, serif; margin: 30px 0;}
+a{text-decoration:none; color:#004b91}
+a:hover{text-decoration:underline; color: #ff4b33;}
+p{margin:0 0 1em}
+strong{font-weight:700}
+em{font-style:italic}
+blockquote{margin: 20px 0; background: #EEE; border: 1px solid #CCC; padding: 20px;}
+#main{width: 100%; background: #FFF; margin: 30px 0;}
+
+/*-----------------------------------------------------------------------------------*
+/*Headings
+/*-----------------------------------------------------------------------------------*/
+h1, 
+h2, 
+h3, 
+h4{font-family: Arial, Helvetica, sans-serif; color:#000; line-height:1.5em; font-weight:bold; text-transform:capitalize; letter-spacing:1px;}
+h1{font-size:30px; margin-bottom:20px}
+h2{font-size:24px}
+h3{font-size:16px}
+h4{font-size:14px}
+
+h1 a, h2 a, h3 a, h4 a{color:#000}
+
+#post-header{margin:0 0 40px;font-size:18px; color:#999}
+
+/*-----------------------------------------------------------------------------------*
+/*WordPress Styles
+/*-----------------------------------------------------------------------------------*/
+.aligncenter{display:block; margin:0 auto}
+.alignright{float:right; margin:10px 0 10px 10px}
+.alignleft{float:left; margin:10px 10px 10px 0}
+.floatleft{float:left}
+.floatright{float:right}
+.textcenter{text-align:center}
+.textright{text-align:right}
+.textleft{text-align:left}
+
+.wp-caption{border:1px solid #ddd; text-align:center; background-color:#f3f3f3; padding-top:4px; margin:10px; -moz-border-radius:3px; -khtml-border-radius:3px; -webkit-border-radius:3px; border-radius:3px}
+.wp-caption img{margin:0; padding:0; border:0 none}
+.wp-caption p.wp-caption-text{font-size:11px; line-height:17px; padding:0 4px 5px; margin:0}
+
+#calendar_wrap{font-size: 11px; border:1px solid #E3E3E3;-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 0px 4px #EEE;  -webkit-box-shadow:0px 0px 4px #EEE;   box-shadow:0px 0px 4px #EEE}
+#wp-calendar th{font-style:normal; text-transform:capitalize}
+
+#wp-calendar thead th{font-style:normal; text-transform:capitalize; text-align:center}
+
+#wp-calendar td{color:#CCC; height: 15px; line-height: 15px; text-align:center}
+#wp-calendar a{display: block;color:#09F}
+#wp-calendar td:hover{color:#333}
+#wp-calendar #today{display: block;background:#EEE; color:#333}
+#wp-calendar{empty-cells:show; margin:0; width:100%}
+
+#wp-calendar caption{border-bottom: 1px solid #E3E3E3; padding:5px 10px; font-size:14px; color:#666; font-style:italic; text-align:center}
+
+.tagcloud a{float: left; display: block; padding: 5px 10px; margin-right: 7px; margin-bottom: 7px; border:1px solid #E3E3E3; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 0px 4px #EEE;   -webkit-box-shadow:0px 0px 4px #EEE;   box-shadow:0px 0px 4px #EEE}
+
+/*-----------------------------------------------------------------------------------*
+/*Header
+/*-----------------------------------------------------------------------------------*/
+#header-wrap{width: 100%;}
+#header{width:990px; margin:0 auto; position: relative; margin-bottom: 20px;}
+#header-ad{position: absolute; right: 0px; top: 0px; width: 468px; height: 60px;moz-box-shadow: 0px 0px 4px #CCC;-webkit-box-shadow: 0px 0px 4px #CCC;box-shadow: 0px 0px 4px #CCC}
+
+
+#logo{float: left;}
+#logo h2, 
+#logo h1{margin:0; line-height: 1em; font-size:36px;text-shadow: 1px 1px 3px #CCC;}
+#logo h2 a, 
+#logo h1 a{text-decoration: none}
+#logo p{font-size:14px; color:#666; font-style:italic}
+
+/*-----------------------------------------------------------------------------------*
+/*Navigation
+/*-----------------------------------------------------------------------------------*/
+#navigation-wrap{width:100%;height: 31px;border-bottom: 1px solid #CCC;moz-box-shadow: 0px 5px 8px -2px #F5F5F5;-webkit-box-shadow: 0px 5px 8px -2px #F5F5F5;box-shadow: 0px 5px 8px -2px #F5F5F5;}
+#navigation{margin:0 auto; width:980px;border-left: 1px solid #CCC}
+#navigation ul{list-style:none;}
+#navigation li{float:left; display:block; letter-spacing:1px;}
+#navigation a{float:left; display:block; height: 30px; line-height:30px; position:relative; padding:0 10px; color:#333; text-decoration:none; border: 1px solid #CCC; border-bottom: none; border-left: none;}
+#navigation a:hover, 
+.current-menu-item a{background: #EEE; text-shadow: 1px 1px 1px #FFF;}
+
+.sf-menu, .sf-menu *{margin:0; padding:0; list-style:none}
+.sf-menu ul{position:absolute; top:-999em; border: 1px solid #CCC; border-top: none !important;-moz-box-shadow:0px 2px 4px #CCC;   -webkit-box-shadow:0px 2px 4px #CCC; box-shadow:0px 2px 4px #CCC}
+.sf-menu ul ul{border-top: 1px solid #CCC !important}
+.sf-menu ul li{width:100%;}
+.sf-menu ul li a{ background: #FCFCFC !important; width:210px; border-bottom: 1px solid #CCC; border-left: none; border-right: none !important; border-top: none !important}
+.sf-menu ul li a:hover{ color: #ff4b33 !important; text-shadow: 1px 1px 1px #CCC !important}
+.sf-menu li:hover{visibility:inherit}
+.sf-menu li{float:left; position:relative}
+.sf-menu li:hover ul, 
+.sf-menu li.sfHover ul{left:0; top:32px; z-index:99}
+ul.sf-menu li:hover li ul, 
+ul.sf-menu li.sfHover li ul{top:-999em}
+ul.sf-menu li li:hover ul, 
+ul.sf-menu li li.sfHover ul{left:15em; top:0}
+ul.sf-menu li li:hover li ul, 
+ul.sf-menu li li.sfHover li ul{top:-999em}
+ul.sf-menu li li li:hover ul, 
+ul.sf-menu li li li.sfHover ul{left:15em; top:0}
+
+/*-----------------------------------------------------------------------------------*
+/*Featured Posts
+/*-----------------------------------------------------------------------------------*/
+#feat-posts-wrap{}
+#feat-posts{}
+
+/*-----------------------------------------------------------------------------------*
+/*Posts &Pages
+/*-----------------------------------------------------------------------------------*/
+#post-wrap{width: 980px;margin: 0 auto;f}
+#post-content{float:left; width:650px; position: relative;}
+#single-wrap{padding:20px; border:1px solid #E3E3E3; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;-moz-box-shadow:0px 0px 4px #EEE;-webkit-box-shadow:0px 0px 4px #EEE;   box-shadow:0px 0px 4px #EEE}
+.post-entry{position: relative; width: 608px; margin-bottom:30px; padding:20px; border:1px solid #E3E3E3; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 0px 4px #EEE;   -webkit-box-shadow:0px 0px 4px #EEE;   box-shadow:0px 0px 4px #EEE}
+.full-width-wrap{padding:20px !important; width: 940px !important; margin-bottom: 20px !important; border:1px solid #E3E3E3; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 0px 4px #EEE;   -webkit-box-shadow:0px 0px 4px #EEE;   box-shadow:0px 0px 4px #EEE}
+#post-tags{margin-top:30px}
+#post-tags span{font-style:italic; color:#999; margin-right:5px}
+.post-entry-date{color: #666; margin: 7px 0; font-style: italic}
+.post-entry-featured-image{float: left; height: 140px; width: 140px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; background: #EEE; padding: 4px; border: 1px solid #DDD;}
+.post-entry-content{float: right; width: 438px }
+.post-entry-read-more{}
+.post-entry-read-more:hover{}
+.post-entry-comments{display:block; height: 30px; width: 29px; position: absolute; right: 0; top: 0px; text-align: center; line-height: 23px; background: url(images/bubble.png) no-repeat; font-size: 12px;}
+.post-entry-comments a{ color: #000; font-weight: bold; }
+.post-entry-meta{padding-bottom: 10px; border-bottom: 1px solid #EEE;  margin-bottom: 20px; font-size: 12px; color: #666; font-family: Georgia, "Times New Roman", Times, serif; font-style: italic }
+#single-featured-image{ float: left; height: 140px; width: 140px; margin-right: 20px; margin-bottom: 10px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; background: #EEE; padding: 4px; border: 1px solid #DDD;}
+
+#post-content ul, ol{ margin-left: 50px; margin-bottom: 10px; }
+#post-content h2, h3{margin-top: 30px; margin-bottom: 20px;}
+
+#post-wrap h1{font-size:24px; margin-bottom: 0px}
+#post-header h1{margin-bottom:20px}
+.post-entry h2{line-height: 1em; margin: 0 !important; font-size:20px;}
+.post-entry h2 a{text-decoration: none}
+.page-title{margin-bottom:20px !important}
+
+.social{margin-top: 10px;}
+.tweet-this{float:left}
+
+/*-----------------------------------------------------------------------------------*
+/*Post Author Section
+/*-----------------------------------------------------------------------------------*/
+#post-author{margin:30px 0; padding-top:20px; border-top: 1px solid #EEE}
+#author-avatar{float:left; width:70px}
+#author-avatar img{padding:4px;border: 1px solid #CCC; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+#author-description{float:right; width:530px}
+
+/*-----------------------------------------------------------------------------------*
+/*Related Posts
+/*-----------------------------------------------------------------------------------*/
+#related-posts{padding-top:20px; border-top: 1px solid #EEE}
+#related-posts ul{list-style:none; margin-right:-22px; margin-left: 0 !important}
+#related-posts li{position:relative; display:block; float:left; width:190px; height: 130px; margin-right:20px}
+#related-posts img{background:url(images/related-shadow.png) bottom center no-repeat;box-shadow:2px 2px 2px #949494;-webkit-box-shadow:2px 2px 2px #949494;-moz-box-shadow:2px 2px 2px #949494}
+
+
+#related-posts h3{margin: 0 0 20px}
+#related-posts h4{width: 180px; position:absolute; bottom: 0px; left: 0px; background:#000; font-size:10px;
+filter: alpha(opacity=85);-moz-opacity: 0.85;-khtml-opacity: 0.85;opacity: 0.85; padding: 5px;color:#FFF}
+
+/*-----------------------------------------------------------------------------------*
+/*Comments
+/*-----------------------------------------------------------------------------------*/
+#comments{border-top: 1px solid #EEE; padding-top: 30px; margin-bottom:30px}
+#commentsbox{margin-top:20px;}
+#commentsbox ol, 
+#commentsbox ul{list-style:none; margin-left: 0 !important}
+#commentsbox li{margin-bottom:30px}
+.children{list-style:none; margin:30px 0 0; text-indent:0}
+.children li.depth-2{margin:0 0 0px 50px}
+.children li.depth-3{margin:0 0 0px 50px}
+.children li.depth-4{margin:0 0 0px 50px}
+.children li.depth-5{margin:0 0 0px 50px}
+.comment-body{position:relative; margin-left:90px; padding:20px; border:1px solid #E3E3E3; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;-moz-box-shadow:0px 0px 4px #EEE;   -webkit-box-shadow:0px 0px 4px #EEE;   box-shadow:0px 0px 4px #EEE}
+.comment-body:after{content:''; position:absolute; top:10px; left:-12px; width:12px; height:20px; background:url(images/comment-arrow.png) no-repeat}
+.comment-author:after{content:''; position:absolute; top:0px; left:-95px; width:64px; height:64px; border:1px solid #CCC; background:url(images/avatar-overlay.png) no-repeat; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px}
+#commentsbox .avatar{position:absolute; left:-90px; top:6px;}
+.comment-author{font-size:12px; color:#000; font-weight:bold; line-height:1em}
+.says{display:none}
+.comment-meta a{margin-bottom:10px; font-family:'Droid Serif',arial,serif; font-size:10px; font-style:italic; color:#666}
+.comment-reply-link{display:none; font-size:10px; position:absolute; bottom:0; right:0; border:1px solid #E3E3E3; padding:0 8px; border-bottom:none; background:#EEE; color:#666}
+.comment-body:hover .comment-reply-link{display:block}
+.cancel-comment-reply a{color:#F00 !important; line-height:20px; height:20px;}
+#respond{margin:40px 0 15px}
+#comments-respond{margin:0 0 10px; padding: 0; clear: both}
+#commentform label{display:block; font-size:11px;}
+#commentform input{margin-bottom:10px; width:40%}
+#commentform textarea{margin-top:10px; display:block; width:70%}
+#commentform input, 
+#commentform textarea{padding:7px 10px; background:#FFF; border:none; outline:none; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; background:#F3F3F3}
+#commentform input:focus, 
+#commentform textarea:focus{background: #F9F9F9}
+#commentSubmit{width: 130px !important; margin-top:-10px; cursor:pointer; background: #1C1F20 !important; color: #FFF; padding: 5px 15px}
+#commentSubmit:hover{background: #3E4244 !important}
+#commentSubmit:active{background: #303334 !important}
+#commentSubmit:focus{background: #333 !important}
+
+
+/*-----------------------------------------------------------------------------------*
+/*Sidebar
+/*-----------------------------------------------------------------------------------*/
+#sidebar{float:right; width:300px}
+
+.sidebar-box{margin-bottom:30px;padding:20px; border:1px solid #E3E3E3; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;-moz-box-shadow:0px 0px 4px #EEE;   -webkit-box-shadow:0px 0px 4px #EEE;   box-shadow:0px 0px 4px #EEE}
+.sidebar-box h4{ margin-bottom: 20px; padding-bottom: 5px; font-size:16px; font-weight:bold; border-bottom: 1px solid #EEE;}
+.sidebar-box ul{list-style:none; margin: 0 0 20px;}
+.sidebar-box li{margin-bottom: 5px}
+.sidebar-box li a{}
+.sidebar-box li a:hover{}
+
+/*-----------------------------------------------------------------------------------*
+/*Pagination
+/*-----------------------------------------------------------------------------------*/
+.pagination{clear:both; position:relative; font-size:11px; line-height:13px}
+.pagination span, 
+.pagination a{height: 20px; line-height: 20px; display:block; float:left; margin:2px 5px 20px 0; padding:0 9px; text-decoration:none; width:auto; color:#666; background:#EEE-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+.pagination a:hover{color:#FFF; background: #1C1F20 url(images/grid.png) repeat; }
+.pagination .current{height: 20px; line-height: 20px;padding:0 9px; color:#FFF; background: #000; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px;}
+
+/*-----------------------------------------------------------------------------------*
+/*Footer
+/*-----------------------------------------------------------------------------------*/
+#footer-wrap{width:100%;border-top: 1px solid #CCC;moz-box-shadow: 0px -5px 8px -2px #EEE;-webkit-box-shadow: 0px -5px 8px -2px #EEE;box-shadow: 0px -5px 8px -2px #EEE;}
+#footer{margin:0 auto; width:980px; color:#666;}
+#footer-widgets{margin-right: -40px;}
+.footer-widget{width:215px; padding:10px 0; margin-right:40px; float:left}
+.footer-box{position:relative; margin-bottom:20px}
+.footer-box ul{list-style: none}
+.footer-box li{margin-bottom:5px}
+.footer-box h4{font-size:16px; font-weight: bold; margin:20px 0;}
+#footer-bottom{padding:5px 20px 5px 20px}
+#copyright{color: #666; text-align:right; font-size:10px}
+
+/*-----------------------------------------------------------------------------------*
+/*Search Bar
+/*-----------------------------------------------------------------------------------*/
+#searchbar{display:block; position:relative; width:260px}
+#search{position:relative; background:#F3F3F3; width:222px; padding:5px 30px 5px 5px; outline:none; border:1px solid #E1E1E1; color:#999; text-shadow:1px 1px 1px #FFF}
+#search:focus{background:#F8F8F8;}
+#searchsubmit{position:absolute; right:7px; top:6px; background:url(images/search.png) no-repeat; text-indent:-9999px; border:none; outline:none; width:15px; height:15px}

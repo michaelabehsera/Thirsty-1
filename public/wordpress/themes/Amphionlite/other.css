@@ -1,0 +1,78 @@
+/*POPULAR, RANDOM, FEATURED WIDGETs*/
+.pop_frame{width:100px; height:60px; display:block; background:url(images/blank_img3.png) no-repeat; float:left; margin-right:10px;}
+.widget-popular-posts img, .widget-random-posts img, #featured-widget img{ width:100px; float:left; padding:1px; background:#f6f6f6; border:1px solid #ddd; height:auto;}
+.pop_img_wrap{ width:98px; height:80px; overflow:hidden; float:left; margin-right:10px;}
+.widget-popular-posts p, .widget-random-posts p, #featured-widget p{ width:170px; display:inline-block; margin:5px 0px; min-height:60px;}
+#sidebar .widgets ul li .poptitle{ color:#323232;}
+
+
+/*Special Button*/
+.sbutton{display: inline-block; height:30px; font-size:13px; color:#000; background:url(images/sbutton_right.png) no-repeat right; text-decoration:none;}
+.sbutton span{ background:url(images/sbutton_left.png) left no-repeat;display: inline-block; height:20px; padding:5px 10px;}
+#single_posts .post_mid a.sbutton{ color:#222;}
+
+
+/*social links*/
+.social_links{ width:127px; height:27px; float:right; background:url(images/social_bg.png) no-repeat; margin-top:-4px; margin-right:7px; padding-top:5px; padding-left:11px;}
+
+.ep_facebook{width:15px; float:left; height:15px; position:relative; margin-right:5px;}
+.fb_hover{ float:left; width:15px; height:15px; background:url(images/fb-link.png) no-repeat top; text-indent:-9999px; margin-top:-15px;}
+.fb{width:15px; height:15px; background:url(images/fb-link.png) no-repeat bottom; text-indent:-9999px; float:left;}
+
+.ep_twitter{ width:16px; height:15px; position:relative; margin-right:5px; float:left;}
+.twitt_hover{ width:16px; height:15px; background:url(images/twitter_link.png) no-repeat 0px 0px; text-indent:-9999px; float:left; margin-top:-15px;}
+.twitt{ width:16px; height:15px; background:url(images/twitter_link.png) no-repeat 0px -16px; text-indent:-9999px; float:left;}
+
+.ep_stumble{ width:16px; height:15px; position:relative; margin-right:5px; float:left;}
+.stumble_hover{ width:16px; height:15px; background:url(images/stumble_link.png) no-repeat 0px 0px; text-indent:-9999px; float:left; margin-top:-15px;}
+.stumble{ width:16px; height:15px; background:url(images/stumble_link.png) no-repeat 0px -16px; text-indent:-9999px; float:left;}
+
+.ep_delicious{ width:16px; height:15px; position:relative; margin-right:5px;  float:left;}
+.delicious_hover{width:16px; height:15px; background:url(images/del_link.png) no-repeat 0px 0px; text-indent:-9999px; float:left; margin-top:-15px;}
+.delicious{ width:16px; height:15px; background:url(images/del_link.png) no-repeat 0px -16px; text-indent:-9999px; float:left;}
+
+
+.ep_gbuzz{ width:15px; height:15px; position:relative; margin-right:5px;  float:left;}
+.gbuzz_hover{ width:15px; height:15px; background:url(images/gbuzz_link.png) no-repeat 0px 0px; text-indent:-9999px; float:left; margin-top:-15px;}
+.gbuzz{ width:15px; height:15px; background:url(images/gbuzz_link.png) no-repeat 0px -16px; text-indent:-9999px; float:left;}
+
+/*SOCIAL ICONS*/
+body > .social{  position: fixed; left: 0px; top: 0px; }
+.social{ position:fixed; clear:both; margin-top:210px; z-index:9999999; background:url(images/social_top.png) no-repeat; width:38px;}
+.social ul{ margin:0; padding:0; background:url(images/social_bg2.png) repeat-y; width:38px; margin-top:8px;}
+.social_bottom{ background:url(images/social_bottom.png) no-repeat bottom; width:38px; height:8px;}
+.social ul li{ list-style-type:none;}
+.social ul li a { text-decoration:none; color:#FFF; width: 32px; height:32px; display:block; text-indent:-9999px;  padding-bottom:2px;}
+.social ul li a.ang_tw{background:url(images/Social.png);}
+.social ul li a.ang_fb{background:url(images/Social.png) 0px -34px;}
+.social ul li a.ang_ms{background:url(images/Social.png) 0px -68px;}
+.social ul li a.ang_rss{background:url(images/Social.png) 0px -102px;}
+.social ul li a.ang_tw:hover{background:url(images/Social.png) 34px 0px;}
+.social ul li a.ang_fb:hover{background:url(images/Social.png) 34px -34px;}
+.social ul li a.ang_ms:hover{background:url(images/Social.png) 34px -68px;}
+.social ul li a.ang_rss:hover{background:url(images/Social.png) 34px -102px;}
+
+/*OPTIONS PAGE*/
+.submit{ clear:both;}
+#tabs ul li{ float:left; padding:10px 15px; margin-bottom:0; position:relative; z-index:2; background:url(images/bg2.png); display:block; border:1px solid #222; border-left:none;}
+#tabs ul .upgrade{background:url(images/upgrade.png); color:#fff; font-weight:bold;border: 1px solid #7a0909;}
+#tabs ul .upgrade a{ color:#fff;}
+#tabs ul li a{ color:#f2f2f2; text-decoration:none;}
+#tabs ul li.active{ background:url(images/bg.png); border:1px solid #e8e8e8; border-bottom:none; display:block;}
+#tabs ul li.active a{ color:#323232; text-decoration:none; font-weight:bold;}
+.amp_section{ background:url(images/bg.png); float:left; padding:15px; border:1px solid #e8e8e8; margin-top:-2px;}
+.upgrade-table{ width:600px; border-collapse:collapse; border:1px solid #ddd;}
+.tableizer-firstrow{ height:28px; background:#ddd;}
+.upgrade-table td{ border-left:1px solid #ddd; border-bottom:1px solid #ddd; background:#ededed;}
+.upgrade-table .yes, .upgrade-table .yes:hover{ background:#d8ffe7; display:block; padding:5px; color:#333;} 
+.upgrade-table .no, .upgrade-table .no:hover { background:#ffd8d8; display:block; padding:5px;color:#333;}
+.amp_section .sbutton{ color:#fff; font-weight:bold;}
+.upgrade-table .tdo{ padding:5px; padding-left:10px; width:250px;}
+.admin_social{ float:left; display:block; width:100px; margin-right:20px;}
+.admin_fb{ display:block; width:15px; height:15px; background:url(images/fb-link.png) bottom; text-indent:-99999px; margin-top:10px; float:left; margin-right:10px;}
+.admin_twitter{ display:block; width:16px; height:16px; background:url(images/twitter_link.png) bottom; text-indent:-99999px; margin-top:10px;float:left;margin-right:10px;}
+.admin_web{ display:block; width:16px; height:16px; background:url(images/web_link.png) bottom; text-indent:-99999px; margin-top:10px;float:left;margin-right:10px;}
+.divider{ background:url(images/border.png) bottom repeat-x; padding-bottom:15px; margin:15px 0 10px 0; width:700px; float:left;}
+.divider a, .divider a:hover{ font-weight:bold; color:#222;}
+.divider label{ width:350px; display:inline-block;}
+.divider select{ min-width:200px;}

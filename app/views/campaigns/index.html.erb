@@ -43,7 +43,7 @@
 <%= render partial: 'site/header' %>
       <div id="wrap">
           <div id="company_menu">
-              <h1>Campaign: <%= campaign.cocktail.title %></h1>
+              <h1>Campaign: <%= campaign.cocktail.title.html_safe %></h1>
           </div>
           <div class="tabbable">
           <div id="menu_one">
@@ -102,10 +102,11 @@
           <ul class="nav nav-tabs" data-tabs="tabs">
             <li class="active"><a href="#ideas-tab" data-toggle="tab">Ideas</a></li>
             <li><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
-            <% if current_user.type != :marketer %>
+            <% if current_user == campaign.user %>
               <li><a href="#approve-tab" data-toggle="tab">Approve articles</a></li>
             <% end %>
             <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
+            <li><a href="#themes-tab" data-toggle="tab">Themes</a></li>
             <li><a href="#reports-tab" data-toggle="tab">Reports</a></li>
             <li><a href="#writers-tab" data-toggle="tab">Winning writers</a></li>
             <li><a href="#chat-tab" data-toggle="tab">Chat</a></li>
@@ -140,7 +141,7 @@
                 <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
               </div>
             </div>
-                <% if current_user.type != :marketer %>
+                <% if current_user == campaign.user %>
                   <div id="approve-tab" class="tab-pane">
                       <div id="approve">
                   <div id="unread-articles">
@@ -166,6 +167,16 @@
                 <% Plugin.all.each do |plugin| %>
                   <div class="tool" id="plugin<%= plugin.id %>">
                     <%= link_to plugin.title, "/campaigns/#{campaign.uuid}/install?id=#{plugin.id}", remote: true %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div id="themes-tab" class="tab-pane">
+              <div id="themes">
+                <% Theme.all.each do |plugin| %>
+                  <div class="tool" id="plugin<%= plugin.id %>">
+                    <%= link_to plugin.title, "/campaigns/#{campaign.uuid}/theme?id=#{plugin.id}", remote: true %>
                   </div>
                 <% end %>
               </div>

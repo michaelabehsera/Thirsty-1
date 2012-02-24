@@ -1,0 +1,38 @@
+.clear{clear:both}
+
+.wrap{}
+#panel-content{position:relative; width:808px; margin-bottom:40px; background:#21242B; -webkit-border-top-left-radius:5px; -webkit-border-bottom-left-radius:5px; -moz-border-radius-topleft:5px; -moz-border-radius-bottomleft:5px; border-top-left-radius:5px; border-bottom-left-radius:5px}
+#wrap-left{float:left; width:208px}
+#wrap-right{float:left; width:600px; margin-bottom:-1px}
+
+.tabs{margin:0; list-style:none; height:40px; width:206px; padding-top:10px}
+.tabs li{margin:0; padding:0; height:40px; line-height:40px; overflow:hidden; position:relative}
+.tabs li a{text-decoration:none; font-weight:bold; color:#FFF; display:block; font-size:12px; padding:0 20px; outline:none}
+.tabs li a:hover{background:#EEE199; color:#000}
+html .tabs li.active a{background:#EEE199; color:#000 !important}
+
+.tab_container{min-height:400px; border:2px solid #CCC; border-left:none; overflow:hidden; clear:both; float:left; width:600px; margin-left:-2px; background:#FFF}
+.tab_content{padding:20px; font-size:1.2em}
+
+.tab_content ul li{margin-bottom:40px; padding-bottom:30px; border-bottom:1px solid #CCC}
+.tab_content h3{font-family:Arial,Helvetica,sans-serif; color:#2c2c2c; font-weight:bold; font-size:18px; margin-bottom:20px}
+.tab_content select, 
+.tab_content input, 
+.tab_content textarea{margin:20px 0}
+
+.tab_content textarea{width:540px; height: 300px;}
+.tab_content select, 
+.tab_content input{width:180px}
+.tab_content input[type=checkbox]{width:20px; float:left; margin:1px 8px 0 0; }
+.tab_content label{font-family:Arial,Helvetica,sans-serif; font-size:12px; display:block; color:#565656; cursor:auto; margin-right:20px}
+
+.wrap h2{margin-bottom:20px}
+.submit-changes{position:absolute; left:0; top:290px}
+.save-changes-btn{background:#090 !important; display:block; height:30px; line-height:30px; width:205px; border:none !important; outline:none !important; cursor:pointer; font-size:12px; font-weight:bold; color:#FFF !important; text-shadow:1px 1px 1px #000; -webkit-border-radius:0 !important; -moz-border-radius:0 !important; border-radius:0 !important}
+.save-changes-btn:hover{background:#0C0 !important}
+small{color:#09F; font-weight:bold; font-size:12px}
+input#upload_image_button:hover{cursor:pointer}
+
+.sponsor{margin-bottom: 20px;}
+.sponsor a img{border: 5px solid #EEE}
+.sponsor a:hover img{border: 5px solid #000}

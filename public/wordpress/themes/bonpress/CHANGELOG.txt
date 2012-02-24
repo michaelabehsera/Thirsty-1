@@ -1,0 +1,19 @@
+BonPress Theme
+http://www.wpzoom.com/themes/bonpress
+ 
+CHANGELOG
+---------
+
+V 1.2 (16 September, 2011)
+	
+	- bug fix in shortcodes manager: functions/js/shortcode-generator/js/dialog-js.php
+	
+ 
+V 1.1 (6 August, 2011)
+
+	- An important security fix: /scripts/timthumb.php has been updated to 2.0
+
+
+V 1.0  
+	
+	- initial release

@@ -1,0 +1,51 @@
+/*	  
+Theme Name: Sample AutoFocus Lite 2.0 Child Theme
+Theme URI: http://fthrwght.com/autofocus
+Description: Sample AutoFocus II Child Theme is a starter child theme for on AutoFocus II.
+Author: allancole
+Author URI: http://fthrwght.com
+Template: autofocuslite
+Version: 1.0
+Tags: two-columns, fixed-width, sticky-post, translation-ready, microformats, custom-header, custom-background, rtl-language-support, editor-style
+License: GNU General Public License
+License URI: license.txt
+
+.
+This theme is released under GNU General Public License (GPL): 
+http://www.gnu.org/licenses/gpl.html
+.
+
+*/
+
+/* Import default High Art styles (optional) */ 
+@import url(../autofocuslite/style.css);
+
+/* Add custom style below */
+
+
+
+/* Change Titles to bold Helvetica 
+-------------------------------------------------------------- */
+#site-title,
+.menu li a[title="Home"], 
+#content blockquote, 
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6, 
+#content .entry-title,
+#content .entry-title a,
+#content .entry-date,
+#content .page-title span,
+.single #content header .entry-title,
+.single #content header .entry-date,
+header .entry-date,
+header .entry-date, 
+.af-blog-template #content header .entry-date,
+.af-default #content .entry-title,
+.af-default #content .entry-date,
+#content .entry-content .pull-quote p, 
+#content .entry-content .large-image .image-description, 
+#comments .commentlist .comment-author, 
+#comments .commentlist .comment-body blockquote,
+#comments .reply, 
+#comments .pinglist li .comment-author a.url, 
+#cancel-comment-reply, 
+aside .widget-title {font-family: "Helvetica Neue",Helvetica,Arial,"Nimbus Sans L",sans-serif;font-weight: 800}

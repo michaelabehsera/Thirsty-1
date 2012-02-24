@@ -1450,7 +1450,7 @@ button.button_submit:active {
 
 }
 
-#tools, #analytics {
+#tools, #analytics, #themes {
     margin:0 0 0 0;
     min-height: 100px;
     position: relative;

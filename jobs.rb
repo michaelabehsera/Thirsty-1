@@ -13,6 +13,17 @@ job 'tool.upload' do |args|
   end
 end
 
+job 'theme.upload' do |args|
+  campaign = Campaign.find(args['cid'])
+  plugin = Theme.find(args['id'])
+  begin
+    upload plugin, campaign
+    Juggernaut.publish campaign.uuid, { event_type: 'install_success', plugin: plugin.id }
+  rescue
+    Juggernaut.publish campaign.uuid, { event_type: 'install_failure', plugin: plugin.id }
+  end
+end
+
 job 'notification.send' do |args|
   notification = Notification.find args['id']
   child = notification.article || notification.comment || notification.campaign || notification.goal

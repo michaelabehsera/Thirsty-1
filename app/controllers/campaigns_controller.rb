@@ -60,6 +60,12 @@ class CampaignsController < ApplicationController
     respond_to :js
   end
 
+  def theme
+    @plugin = Theme.find params[:id]
+    Stalker.enqueue 'theme.upload', { id: @plugin.id, cid: campaign.id }, ttr: 9999
+    respond_to :js
+  end
+
   def submit
     user = User.find(params[:id])
     user.update_attribute(:bio, params[:bio]) unless user.bio

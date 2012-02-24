@@ -1,0 +1,176 @@
+/*
+Theme Name:Twenty Ten
+*/
+/*
+RTL Basics
+*/
+body{direction:rtl; unicode-bidi:embed}
+
+/*
+LAYOUT:Two-Column (Right)
+DESCRIPTION:Two-column fixed layout with one sidebar right of content
+*/
+#container{float:right; margin:0}
+#content{margin:0 0 22px}
+#primary, 
+#secondary{float:left}
+#secondary{clear:left}
+
+/* =Fonts
+-------------------------------------------------------------- */
+body, 
+input, 
+textarea, 
+.page-title span, 
+.pingback a.url, 
+h3#comments-title, 
+h3#reply-title, 
+#access .menu, 
+#access div.menu ul, 
+#cancel-comment-reply-link, 
+.form-allowed-tags, 
+#site-info, 
+#site-title, 
+#wp-calendar, 
+.comment-meta, 
+.comment-body tr th, 
+.comment-body thead th, 
+.entry-content label, 
+.entry-content tr th, 
+.entry-content thead th, 
+.entry-meta, 
+.entry-title, 
+.entry-utility, 
+#respond label, 
+.navigation, 
+.page-title, 
+.pingback p, 
+.reply, 
+.widget-title, 
+input[type=submit],
+#site-title,
+.menu li a[title="Home"], 
+#content blockquote, 
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6, 
+#content .entry-title,
+#content .entry-title a,
+#content .entry-date,
+#content .page-title span,
+.single #content header .entry-title,
+.single #content header .entry-date,
+header .entry-date,
+header .entry-date, 
+.af-blog-template #content header .entry-date,
+.af-default #content .entry-title,
+.af-default #content .entry-date,
+#content .entry-content .pull-quote p, 
+#content .entry-content .large-image .image-description, 
+#comments .commentlist .comment-author, 
+#comments .commentlist .comment-body blockquote,
+#comments .reply, 
+#comments .pinglist li .comment-author a.url, 
+#cancel-comment-reply, 
+aside .widget-title {font-family:Arial,Tahoma,sans-serif}
+
+/* =Structure
+-------------------------------------------------------------- */
+/* The main theme structure */
+#footer-widget-area .widget-area{float:right; margin-left:16px; margin-right:0}
+#footer-widget-area #fourth{margin-left:0}
+#site-info{float:right}
+#site-generator{float:left}
+
+/* =Global Elements
+-------------------------------------------------------------- */
+/* Text elements */
+ul{margin:0 1.5em 18px 0}
+blockquote{font-style:normal}
+
+/* Text meant only for screen readers */
+.screen-reader-text{left:auto; text-indent:-9000px; overflow:hidden}
+
+/* =Header
+-------------------------------------------------------------- */
+#site-title{float:right}
+#site-description{clear:left; float:right; font-style:normal}
+
+/* =Menu
+-------------------------------------------------------------- */
+#access{float:right}
+
+#access .menu-header, 
+div.menu{ margin-right:12px;  margin-left:0}
+
+#access .menu-header li, 
+div.menu li{float:right}
+
+#access ul ul{left:auto; right:0; float:right}
+#access ul ul ul{left:auto; right:100%}
+
+/* =Content
+-------------------------------------------------------------- */
+#content table{text-align:right; margin:0 0 24px -1px}
+#content .page-title {border-right: 1px dotted #CCC; border-left-width: 0; margin-right: 188px; margin-left: 0; padding-right: 16px}
+.entry-title {}
+.entry-date{float: left}
+
+.entry-content input.file, 
+.entry-content input.button{margin-left:24px; margin-right:0}
+.entry-content blockquote.left{float:right; margin-right:0; margin-left:24px; text-align:left}
+.entry-content blockquote.right{float:left; margin-right:24px; margin-left:0; text-align:right}
+#entry-author-info #author-avatar{float:right; margin:0 0 0 -104px}
+#entry-author-info #author-description{float:right; margin:0 104px 0 0}
+
+.af-default #sticky-area {margin-right: 4px;}
+
+.page #content article footer {clear: right;float: right;margin-left: -612px; width: 188px;}
+
+.archive .normal-layout #content header .entry-title {margin-right: 188px}
+.archive .normal-layout #content header .entry-date {position: absolute;}
+
+.af-blog-template #content {}
+.af-blog-template #content header .entry-title {margin-right: 188px; padding-right: 16px} 
+.af-blog-template #content header .entry-date {float: left; position: absolute; } 
+.af-blog-template #content .entry-content {float: left;margin: 0 0 88px 114px;} 
+.af-blog-template #content footer {margin-left: -612px;width:188px; float: right; display: block; clear: right}
+
+/* Gallery listing
+-------------------------------------------------------------- */
+.category-gallery .gallery-thumb{float:right;  margin-left:20px; margin-right:0}
+
+/* Images
+-------------------------------------------------------------- */
+#content .gallery .gallery-caption{margin-right:0}
+
+#content .gallery .gallery-item{float:right}
+
+/* =Navigation
+-------------------------------------------------------------- */
+.nav-previous{float:right}
+.nav-next{float:left; text-align:left}
+
+/* =Comments
+-------------------------------------------------------------- */
+.commentlist li.comment{padding:0 56px 0 0}
+.commentlist .avatar{right:0; left:auto}
+.comment-author .says, #comments .pingback .url{font-style:normal}
+#comments .commentlist li .avatar {left: 16px; right: inherit}
+
+/* Comments form */
+.children #respond{margin:0 0 0 48px}
+
+/* =Widget Areas
+-------------------------------------------------------------- */
+.widget-area ul{margin-right:0}
+.widget-area ul ul{margin-right:0; margin-left:0}
+#wp-calendar caption{text-align:right}
+#wp-calendar tfoot #next{text-align:left}
+
+/* Main sidebars */
+#main .widget-area ul{margin-right:0; padding:0 0 0 16px}
+#main .widget-area ul ul{margin-right:0; margin-left:0}
+
+/* =Footer
+-------------------------------------------------------------- */
+#site-generator{font-style:normal}
+#site-generator a{background-position:right center; padding-right:20px; padding-left:0}

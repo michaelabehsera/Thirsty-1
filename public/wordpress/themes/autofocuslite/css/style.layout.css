@@ -1,0 +1,41 @@
+/* =Layout
+-------------------------------------------------------------- */
+/* HTML5 elements need display: block */
+header,nav,section,article,aside,figure,footer { display:block; }
+
+/* The main theme structure */
+#colophon, #main, #wrapper {margin:0 auto; width:800px}
+#main{clear:both; overflow:visible; padding:0}
+#wrapper {margin-top:22px; padding:0 16px; position: relative; z-index: 1;}
+
+/* Structure the header area */
+header {display:table; vertical-align:middle; position:relative; padding:22px 0 44px;}
+
+/* Structure the footer area */
+footer { margin-bottom:22px; clear:both; width:100%; }
+#footer-widget-area {overflow:hidden}
+#footer-widget-area .widget-area {float:left; margin-right:16px; width:188px}
+#footer-widget-area #fourth {margin-right:0}
+#site-info {width: 784px}
+#site-generator {float:right; width:172px}
+
+/*
+TEMPLATE:Two columns (Default)
+DESCRIPTION:Two-column fixed layout with one sidebar right of content
+*/
+#container{float:left; margin:0 0 44px; width:100%}
+#content{margin:0}
+#footer{clear:both; width:100%}
+
+/*
+TEMPLATE:One column, no sidebar
+DESCRIPTION:One centered column with no sidebar
+*/
+.one-column #content{margin:0 auto; width:800px}
+.page .one-column #content .entry-content {margin:0; width:800px}
+
+/*
+TEMPLATE:Full width, no sidebar
+DESCRIPTION:Full width content with no sidebar; used for attachment pages
+*/
+.single-attachment #content{margin:0 auto; width:800px}

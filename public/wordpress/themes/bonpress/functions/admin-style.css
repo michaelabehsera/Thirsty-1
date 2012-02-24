@@ -1,0 +1,43 @@
+#wpzoom_post_embed_code {
+	font-size:20px;
+	}
+ 
+#wpzoom_post_embed_code {
+    background:#F4F4F4;
+    color: #444444;
+    font-size: 11px;
+	margin: 3px 0 10px;
+    padding: 5px;
+    font-family: Consolas,Monaco,Courier,monospace;
+	}
+ 
+.wpzoom_post_embed_code {
+    background:#F4F4F4;
+    color: #444444;
+    font-size: 11px;
+	margin: 3px 0 0;
+    padding: 5px;
+    font-family: Consolas,Monaco,Courier,monospace;
+	}
+ 
+.wpz_video {
+	background:url(images/media-button-video.gif) no-repeat;
+	padding:0 0 0 18px;
+	}
+
+.wpz_list {
+	font-size:11px;
+	}
+
+.wpz_self_input {
+	border:1px solid #DFDFDF;
+	border-radius: 4px 4px 4px 4px;
+	width:230px;
+	color:#444444;
+	background:#F4F4F4;
+	}
+
+.wpz_border {
+	border-bottom:1px solid #EEEEEE;
+	padding:0 0 10px;
+	}

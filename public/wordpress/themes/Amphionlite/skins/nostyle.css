@@ -1,0 +1,19 @@
+/*AMPHION Nostyle*/
+#ribbon { background:url(../images/ribbon_nos.png) no-repeat;}
+#topmenu ul li ul li:hover{ background:url(../images/sub-menu_mid_hover_nos.gif) no-repeat;}
+#topmenu ul li ul li a:hover{ color:#323232;}
+ol#controls li a{background:url(../images/slider_control_nos.png) no-repeat;color:#555;}
+ol#controls li.current a{ background:url(../images/slider_control_nos.png) no-repeat; background-position:-12px 0;}
+.amp_current{background:url(../images/pagination_nos.png) right no-repeat;}
+.amp_page:hover, .amp_next:hover, .amp_prev:hover{background:url(../images/pagination_nos.png) right no-repeat;}
+#submit{background:url(../images/submit_nos.png) no-repeat; color:#fff;}
+.logged-in-as a, .widgets a, .post_content_main a, .post_mid a, .fn a, .citeping a, .comment-body p a{ color:#323232;}
+#sidebar .widgets ul li h2 { background:url(../images/widget_top_nos.png) no-repeat;}
+.sbutton{background:url(../images/sbutton_nos_right.png) no-repeat right;}
+.sbutton span{ background:url(../images/sbutton_nos_left.png) left no-repeat;}
+#single_posts .post_mid a.sbutton {color:#fff; }
+#comments a { color:#000;}
+.orbit-bullets li {background: url(../images/bullets_nos.png) no-repeat 0 0;}
+.nivo-controlNav a {background:url(../images/bullets_nos.png) no-repeat;}
+
+
