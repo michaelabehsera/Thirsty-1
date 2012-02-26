@@ -16,16 +16,12 @@
       = javascript_include_tag 'http://localhost:8081/application.js'
     - else
       = javascript_include_tag root_url[0..-2] + ':8081/application.js'
-    - if request.path =~ /\/cocktails/ || request.path == '/' && !logged_in?
-      :javascript
-        Shadowbox.init()
     <link href='http://fonts.googleapis.com/css?family=Signika+Negative|Acme|Ropa+Sans|Quicksand:400,700|Gudea:400,700|Ubuntu+Condensed|Homenaje|Balthazar|Terminal+Dosis:400,700|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>    
   %body
     = yield
     #devider_footer
     #footer-bottom-bar
       #footer_nav
-        = image_tag("/images/footer_logo.png")
         %ul
           %li= link_to 'Contact', 'mailto:mike@thirsty.com'
           %li= link_to 'Support', '#'
@@ -33,4 +29,4 @@
           %li= link_to 'Blog', 'http://blog.thirsty.com'
           %li= link_to 'Follow us on Twitter', 'http://twitter.com/thirstyapp'
           %li= '323-287-7798'
-          %li= 'Copyright &copy; Thirsty 2012'
+          %li= 'Copyright Thirsty 2012'
