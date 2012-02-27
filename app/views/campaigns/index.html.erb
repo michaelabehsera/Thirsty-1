@@ -106,7 +106,6 @@
 
 
           <ul class="nav nav-tabs" data-tabs="tabs">
-            <li class="active"><a href="#ideas-tab" data-toggle="tab">Ideas</a></li>
             <li><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
             <% if current_user == campaign.user %>
               <li><a href="#approve-tab" data-toggle="tab">Approve articles</a></li>
@@ -121,22 +120,6 @@
         </div>
 
           <div class="tab-content">
-
-            <div id="ideas-tab" class="tab-pane active">
-
-              <div id="ideas">
-                <h3>Have any marketing ideas for this campaign? <button class="button_submit" href="#idea-sub" data-toggle="modal">Submit an idea</button></h1>
-                <div id="comments">
-                  <% comments = campaign.comments.reverse %>
-                  <% if comments.count > 0 %>
-                    <%= render comments %>
-                  <% else %>
-                    no comments
-                  <% end %>
-                </div>
-              </div>
-
-            </div>
 
             <div id="articles-tab" class="tab-pane">
               <div id="articles">
