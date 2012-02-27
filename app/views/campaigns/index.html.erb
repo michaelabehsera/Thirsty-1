@@ -78,12 +78,18 @@
 
               <div id="goals-tab" class="tab-pane">
                 <% campaign.goals.each do |goal| %>
-                  <p style="display:inline"><%= pluralize goal.num, goal.type.to_s %></p>
-                  <% if goal.achieved %>
-                    <div class="label label-success" style="display:inline">achieved</div>
-                  <% else %>
-                    <div class="label label-important" style="display:inline">not achieved</div>
-                  <% end %>
+                  <div class="goal">
+                    <% if goal.type == :traffic %>
+                      <p style="display:inline"><%= goal.num %> additional unique visitors</p>
+                    <% else %>
+                      <p style="display:inline"><%= pluralize goal.num, goal.type.to_s %></p>
+                    <% end %>
+                    <% if goal.achieved %>
+                      <div class="label label-success" style="display:inline">achieved</div>
+                    <% else %>
+                      <div class="label label-important" style="display:inline">not achieved</div>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
 
