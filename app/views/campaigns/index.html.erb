@@ -77,7 +77,7 @@
               </div>
 
               <div id="goals-tab" class="tab-pane">
-                <% campaign.cocktail.goals.each do |goal| %>
+                <% campaign.goals.each do |goal| %>
                   <p style="display:inline"><%= pluralize goal.num, goal.type.to_s %></p>
                   <% if goal.achieved %>
                     <div class="label label-success" style="display:inline">achieved</div>

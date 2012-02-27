@@ -104,7 +104,7 @@ class CampaignsController < ApplicationController
     article.update_attribute(:url, rsp.id)
     if article.save && article.url
       article.update_attribute(:approved, true)
-      goal = campaign.cocktail.goals.where(type: :article).first
+      goal = campaign.goals.where(type: :article).first
       goal.update_attribute(:achieved, true) if goal && campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
       @article = article
       render 'approve'
