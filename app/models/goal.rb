@@ -8,9 +8,9 @@ class Goal
   field :type, type: Symbol
   field :achieved, type: Boolean, default: false
 
-  validates_uniqueness_of :type, scope: :cocktail_id
+  validates_uniqueness_of :type, scope: :campaign_id
 
-  belongs_to :cocktail
+  belongs_to :campaign
   has_one :notification
 
   def check_success

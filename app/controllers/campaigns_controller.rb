@@ -104,7 +104,7 @@ class CampaignsController < ApplicationController
     article.update_attribute(:url, rsp.id)
     if article.save && article.url
       article.update_attribute(:approved, true)
-      goal = campaign.cocktail.goals.where(type: :article).first
+      goal = campaign.goals.where(type: :article).first
       goal.update_attribute(:achieved, true) if goal && campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
       @article = article
       render 'approve'
@@ -156,6 +156,27 @@ class CampaignsController < ApplicationController
       @campaign.ftp_pass = params[:fpass]
       @campaign.ftp_domain = params[:fdomain]
       @campaign.root_dir = params[:root]
+      case @campaign.cocktail.price
+        when 149
+          @campaign.goals.create(num: 3, type: :article)
+        when 299
+          @campaign.goals.create(num: 6, type: :article)
+        when 499
+          @campaign.goals.create(num: 12, type: :article)
+          @campaign.goals.create(num: 500, type: :traffic)
+        when 999
+          @campaign.goals.create(num: 21, type: :article)
+          @campaign.goals.create(num: 1500, type: :traffic)
+        when 1999
+          @campaign.goals.create(num: 45, type: :article)
+          @campaign.goals.create(num: 4000, type: :traffic)
+        when 4999
+          @campaign.goals.create(num: 100, type: :article)
+          @campaign.goals.create(num: 10000, type: :traffic)
+        when 9999
+          @campaign.goals.create(num: 200, type: :article)
+          @campaign.goals.create(num: 25000, type: :traffic)
+      end
       @campaign.create_notification if @campaign.save
     else
       render 'create_fail'

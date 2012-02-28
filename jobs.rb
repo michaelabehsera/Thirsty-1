@@ -48,8 +48,8 @@ job 'notification.send' do |args|
     elsif notification.goal
       if child.type == :article
         "A goal has been reached! You've approved #{pluralize child.num, child.type.to_s} within this last month on your <a href=\"http://thirsty.com/campaigns/#{child.campaign.uuid}\">#{child.campaign.title}</a> campaign."
-      elsif child.type == :idea
-        "A goal has been reached! You've gotten #{pluralize child.num, child.type.to_s} within this last month on your <a href=\"http://thirsty.com/campaigns/#{child.campaign.uuid}\">#{child.campaign.title}</a> campaign."
+      elsif child.type == :traffic
+        "A goal has been reached! You've gotten #{child.num} additional unique visitors within this last month on your <a href=\"http://thirsty.com/campaigns/#{child.campaign.uuid}\">#{child.campaign.title}</a> campaign."
       end
     end
   if notification.campaign
