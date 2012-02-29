@@ -1,0 +1,17 @@
+ <%= render partial: 'site/signup_pages_header' %>
+ <div id="wrap">
+      <div id="signin" style="text-align:center">
+        <h1>Forgot Password</h1>
+         <%= form_tag '/users/forgot_email' do %>
+           <p>Email Address</p>
+           <%= email_field_tag :email, '', placeholder: 'Email', autocomplete: 'off' %>
+  <button class="button_submit_page" style="margin:19px -2px 0 9px">Send</button>
+         <% end %>
+
+
+
+      </div>
+
+
+
+  </div><!--End of wrap-->

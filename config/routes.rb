@@ -12,6 +12,8 @@ Thirsty::Application.routes.draw do
   match '/profile/:username' => 'users#show'
   match '/profile/:username/:action' => 'users'
 
+  match '/forgot/:id' => 'users#forgot'
+
   match '/:controller/meta/:action'
   match '/:controller/:action'
   match '/:action' => 'site'

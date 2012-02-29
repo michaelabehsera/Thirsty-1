@@ -1,0 +1,18 @@
+ <%= render partial: 'site/signup_pages_header' %>
+ <div id="wrap">
+      <div id="signin" style="text-align:center">
+        <h1>Reset Password</h1>
+         <%= form_tag '/users/reset_pass' do %>
+           <p>Enter Your New Password</p>
+           <%= hidden_field_tag :id, params[:id] %>
+           <%= password_field_tag :password, '', placeholder: 'New Password', autocomplete: 'off' %>
+  <button class="button_submit_page" style="margin:19px -2px 0 9px">Reset</button>
+         <% end %>
+
+
+
+      </div>
+
+
+
+  </div><!--End of wrap-->

@@ -2,6 +2,37 @@ class UsersController < InheritedResources::Base
 
   expose(:user) { User.where(username: params[:username]).first }
 
+  def reset_pass
+    user = User.find(params[:id])
+    user.change_password!(params[:password])
+    user.save
+    redirect_to '/signin'
+  end
+
+  def forgot_email
+    user = User.where(email: params[:email]).first
+    if user
+      Pony.mail(
+        to: params[:email],
+        from: 'mike@thirsty.com',
+        subject: 'Forgot your Thirsty pass?',
+        body: "<a href=\"http://thirsty.com/forgot/#{user.id}\">Click here</a> to reset it.",
+        headers: { 'Content-Type' => 'text/html' },
+        via: :smtp,
+        via_options: {
+          address: 'smtp.gmail.com',
+          port: '587',
+          enable_starttls_auto: true,
+          user_name: 'mike@thirsty.com',
+          password: 'AAA123321',
+          authentication: :plain,
+          domain: 'thirsty.com'
+        }
+      )
+    end
+    redirect_to '/signin'
+  end
+
   def link
     social = user.socials.where(name: params[:name]).first || user.socials.new(name: params[:name])
     social.url = params[:url]

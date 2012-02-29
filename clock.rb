@@ -14,7 +14,7 @@ handler do |job|
             bit.update_attribute(:clicks, BitLy.clicks(bit['hash']).user_clicks)
           end
         end
-        goal = campaign.where(type: :traffic).first
+        goal = campaign.goals.where(type: :traffic).first
         goal.update_attribute(:achieved, true) if goal && campaign.articles.map{|a|a.bits.map{|b|b.clicks}}.flatten.compact.reduce(:+) >= goal.num
       end
   end
