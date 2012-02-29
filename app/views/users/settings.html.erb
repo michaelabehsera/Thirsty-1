@@ -31,6 +31,12 @@
             <%= f.text_field :avatar, value: user.avatar, placeholder: 'avatar url', autocomplete: 'off' %>
             <p>Add a profile background image</p>
             <%= f.text_field :background, value: user.background, placeholder: 'background image url', autocomplete: 'off' %>
+            <p>Add a title</p>
+            <%= f.text_field :title, value: user.title, placeholder: 'title', autocomplete: 'off' %>
+            <p>Add some tags that describe you</p>
+            <%= f.text_area :bio, value: user.bio, placeholder: 'bio', autocomplete: 'off' %>
+            <p>Add some tags that describe you</p>
+            <%= f.text_field :tags, value: user.tags, placeholder: 'tag', autocomplete: 'off' %>
             <%= f.submit :submit, class: 'blue_button' %>
             <% end %>
 

@@ -151,7 +151,7 @@
 
 
           <ul class="nav nav-tabs" data-tabs="tabs">
-            <li><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
+            <li class="active"><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
             <% if current_user == campaign.user %>
               <li><a href="#approve-tab" data-toggle="tab">Approve articles</a></li>
             <% end %>
@@ -166,7 +166,7 @@
 
           <div class="tab-content">
 
-            <div id="articles-tab" class="tab-pane">
+            <div id="articles-tab" class="tab-pane active">
               <div id="articles">
                 <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
                 <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>

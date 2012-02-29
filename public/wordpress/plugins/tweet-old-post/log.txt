@@ -1,0 +1,10 @@
+  1328977340 Signature base string is: POST&http%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fupdate.xml&oauth_consumer_key%3DofaYongByVpa3NDEbXa2g%26oauth_nonce%3Dec9d7bcfaf6e0f68917055d7281808d3%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1328977340%26oauth_token%3D91804964-eAZvUDZD3qvtfa82ByNzjcPx6LqDrYeFa0P1YSSpa%26oauth_version%3D1.0%26status%3DAccess%2520Master%2520Page%2520Controls%2520from%2520Content%2520Pages%2520without%2520using%2520FindControl%2520%2520
+  1328977340 Doing POST request, OAUTH header is OAuth oauth_consumer_key="ofaYongByVpa3NDEbXa2g", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1328977340", oauth_nonce="ec9d7bcfaf6e0f68917055d7281808d3", oauth_version="1.0", oauth_token="91804964-eAZvUDZD3qvtfa82ByNzjcPx6LqDrYeFa0P1YSSpa", oauth_signature="nsgWtgDzbDRX3jr%2FT8QPKdy%2FpQM%3D"
+  1328977340 ..using CURL transport
+  1328977340 ..POST parameters are Array
+(
+    [0] => status=Access+Master+Page+Controls+from+Content+Pages+without+using+FindControl++
+)
+
+  1328977340 ..CURLOPT_FOLLOWLOCATION is ON
+  1328977341 ..CURL returned a status code of 200

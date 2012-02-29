@@ -1,0 +1,687 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: thankmelater\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-11 22:15-0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Brendon <brendon@22talk.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../thankmelater.php:226
+#, php-format
+msgid "%sOpt out of 'Thank You' e-mails.%s"
+msgstr ""
+
+#: ../thankmelater.php:234
+#, php-format
+msgid "We use %sThank Me Later%s"
+msgstr ""
+
+#: ../thankmelater.php:234
+msgid "Powered by Wordpress plugin, Thank Me Later"
+msgstr ""
+
+#: ../thankmelater.php:245
+#: ../tml_includes/opt_out.php:72
+#: ../tml_includes/admin/admin.php:41
+msgid "Thank Me Later"
+msgstr ""
+
+#: ../tml_includes/common.php:91
+#, php-format
+msgid "Thank you for your comment at %1$s"
+msgstr ""
+
+#: ../tml_includes/common.php:94
+#, php-format
+msgid ""
+"Hi <$AUTHOR>\n"
+"\n"
+"Thank you for your comment at %1$s (%2$s). Be sure to come back soon. \n"
+"\n"
+"Thank you,\n"
+"%1$s\n"
+"\n"
+"You posted the following comment:\n"
+"---------------------------------\n"
+"<$CONTENT>"
+msgstr ""
+
+#: ../tml_includes/opt_out.php:75
+#: ../tml_includes/opt_out.php:122
+#: ../tml_includes/opt_out.php:127
+msgid "E-mail Preferences"
+msgstr ""
+
+#: ../tml_includes/opt_out.php:78
+#, php-format
+msgid "This page allows you to opt-out or subscribe to 'Thank Me Later' e-mails. These are e-mails sent when you leave a comment at %s."
+msgstr ""
+
+#: ../tml_includes/opt_out.php:82
+#: ../tml_includes/opt_out.php:95
+#, php-format
+msgid "Your e-mail address: <strong>%s</strong>"
+msgstr ""
+
+#: ../tml_includes/opt_out.php:85
+msgid "You are currently <strong>subscribed</strong> to receive e-mails. Click 'Opt Out' if you wish to opt-out of these e-mails:"
+msgstr ""
+
+#: ../tml_includes/opt_out.php:87
+msgid "Opt Out"
+msgstr ""
+
+#: ../tml_includes/opt_out.php:89
+msgid "You are <strong>not subscribed</strong> to receive e-mails. Click 'Opt In' if you wish to receive e-mails again:"
+msgstr ""
+
+#: ../tml_includes/opt_out.php:91
+msgid "Opt In"
+msgstr ""
+
+#: ../tml_includes/opt_out.php:96
+msgid "Get Preferences &raquo;"
+msgstr ""
+
+#: ../tml_includes/opt_out.php:101
+msgid "Sorry, this feature is disabled."
+msgstr ""
+
+#: ../tml_includes/admin/admin.php:7
+#: ../tml_includes/admin/admin_head.php:7
+#: ../tml_includes/admin/form_functions.php:6
+#: ../tml_includes/admin/additional_options/additional_options.php:7
+#: ../tml_includes/admin/additional_options/global/global.php:6
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:6
+#: ../tml_includes/admin/additional_options/misc/misc.php:7
+#: ../tml_includes/admin/help/help.php:7
+#: ../tml_includes/admin/help/install/install.php:7
+msgid "Sorry: you can not configure Thank Me Later with your account."
+msgstr ""
+
+#: ../tml_includes/admin/admin.php:23
+msgid "Messages"
+msgstr ""
+
+#: ../tml_includes/admin/admin.php:24
+msgid "Additional Options"
+msgstr ""
+
+#: ../tml_includes/admin/admin.php:25
+msgid "Installation and Information"
+msgstr ""
+
+#: ../tml_includes/admin/admin.php:34
+msgid "WP-Cron doesn't seem to be working. Thank Me Later is emulating the behaviour of WP-Cron, which may slightly slow down some page loads. You may wish to seek a solution to this problem, although the impact is usually negligible."
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:12
+msgid "seconds"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:12
+msgid "second"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:13
+msgid "minutes"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:13
+msgid "minute"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:14
+msgid "hours"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:14
+msgid "hour"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:15
+msgid "days"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:15
+msgid "day"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:16
+msgid "weeks"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:16
+msgid "week"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:161
+msgid "Include all excluding:"
+msgstr ""
+
+#: ../tml_includes/admin/form_functions.php:162
+msgid "Include only:"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/additional_options.php:15
+msgid "Global Options"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/additional_options.php:16
+msgid "Message Defaults"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/additional_options.php:17
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:55
+msgid "'Max messages' must be a non-negative integer."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:58
+msgid "'Comment Gap' must be non-negative."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:61
+msgid "'Send Gap' must be non-negative."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:70
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:77
+#: ../tml_includes/admin/additional_options/misc/misc.php:44
+msgid "The options have been saved."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:95
+msgid "Maximum number of messages"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:101
+msgid "After this amount of messages are sent to an e-mail address, no more will be sent. Use '0' for no limit."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:106
+#: ../tml_includes/admin/additional_options/global/global.php:111
+msgid "Send unique messages only"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:116
+#, php-format
+msgid "%1$s Do not send the same message twice to the same address %2$s unless all messages have been sent."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:128
+msgid "Comment Gap"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:136
+#: ../tml_includes/admin/additional_options/global/global.php:155
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:142
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:167
+#, php-format
+msgid "%1$s%2$s"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:142
+msgid "The amount of time for Thank Me Later to ignore comments after the last comment made by the user."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:147
+msgid "Send Gap"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:161
+msgid "The amount of time to wait before sending another message. For example, '2 weeks' will mean the user gets at most one email in any 2 week period. Enter '0' to remove this constraint. (Be aware that '0' may cause e-mails to arrive in a different order. It may be sensible to choose a non-zero value). This option is similar to 'Comment Gap', but is probably more useful."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:166
+#: ../tml_includes/admin/additional_options/global/global.php:171
+msgid "Opt out"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:176
+#, php-format
+msgid "%1$s Allow visitors to opt-out at %2$s"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:186
+#, php-format
+msgid "%1$s Show the opt-out link under the comment form."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:197
+#: ../tml_includes/admin/additional_options/global/global.php:202
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:178
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:183
+msgid "Restrict by Users"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:207
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:188
+#, php-format
+msgid "%1$s Only send e-mails to %2$slogged in%3$slogged out%4$s users"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/global/global.php:226
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:207
+#: ../tml_includes/admin/additional_options/misc/misc.php:92
+msgid "Update Options"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:65
+msgid "'Message Delay' time must be non-negative."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:98
+msgid "These options can be overridden on a per-message basis."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:104
+msgid "Message Delay"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:113
+#, php-format
+msgid "%1$s%2$s &plusmn; %3$s%4$s"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:127
+msgid "Restrict by Tags"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:147
+msgid "Comma separated list of tag <strong>slugs</strong> to restrict."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:153
+msgid "Restrict by Categories"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/message_defaults/message_defaults.php:172
+msgid "Comma separated list of category <strong>slugs</strong> to restrict."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/misc/misc.php:61
+#: ../tml_includes/admin/additional_options/misc/misc.php:66
+msgid "Syntax Highlighting"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/misc/misc.php:68
+msgid "Enable syntax highlighting for editing messages."
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/misc/misc.php:75
+#: ../tml_includes/admin/additional_options/misc/misc.php:80
+msgid "Promote TML"
+msgstr ""
+
+#: ../tml_includes/admin/additional_options/misc/misc.php:82
+msgid "Add the 'We use Thank Me Later' link back below the comment form. (It's nofollow'd)."
+msgstr ""
+
+#: ../tml_includes/admin/help/help.php:15
+msgid "Test and Status"
+msgstr ""
+
+#: ../tml_includes/admin/help/help.php:17
+#: ../tml_includes/admin/help/install/install.php:69
+msgid "Re-install"
+msgstr ""
+
+#: ../tml_includes/admin/help/install/install.php:21
+msgid "Deleting settings... "
+msgstr ""
+
+#: ../tml_includes/admin/help/install/install.php:28
+#: ../tml_includes/admin/help/install/install.php:44
+msgid "Done"
+msgstr ""
+
+#: ../tml_includes/admin/help/install/install.php:39
+#, php-format
+msgid "Dropping table '%s'... "
+msgstr ""
+
+#: ../tml_includes/admin/help/install/install.php:51
+msgid "Complete! Thank Me Later has been re-installed."
+msgstr ""
+
+#: ../tml_includes/admin/help/install/install.php:59
+#, php-format
+msgid "Need help? %sVisit the support forum%s."
+msgstr ""
+
+#: ../tml_includes/admin/help/install/install.php:63
+msgid "<strong>Warning</strong>: Clicking 'Re-install' below will delete all saved settings and data associated with Thank Me Later. This feature is only designed <em>just in-case</em> and has no legitimate use when Thank Me Later is working correctly."
+msgstr ""
+
+#: ../tml_includes/admin/help/test_status/test_status.php:26
+#, php-format
+msgid "Table '%s' has been repaired."
+msgstr ""
+
+#: ../tml_includes/admin/help/test_status/test_status.php:35
+msgid "OK"
+msgstr ""
+
+#: ../tml_includes/admin/help/test_status/test_status.php:40
+#, php-format
+msgid "Error: %sRepair Table%s."
+msgstr ""
+
+#: ../tml_includes/admin/help/test_status/test_status.php:46
+#, php-format
+msgid "Table '%s'"
+msgstr ""
+
+#: ../tml_includes/admin/help/test_status/test_status.php:55
+msgid "Environment Status"
+msgstr ""
+
+#: ../tml_includes/admin/help/test_status/test_status.php:57
+msgid "The following parameters have been tested. Any parameter which may cause a problem with TML's operation will be labelled 'Error'."
+msgstr ""
+
+#: ../tml_includes/admin/help/test_status/test_status.php:63
+msgid "Parameter"
+msgstr ""
+
+#: ../tml_includes/admin/help/test_status/test_status.php:64
+msgid "Status"
+msgstr ""
+
+#: ../tml_includes/admin/messages/messages.php:15
+msgid "Messages Overview"
+msgstr ""
+
+#: ../tml_includes/admin/messages/messages.php:16
+msgid "Add New Message"
+msgstr ""
+
+#: ../tml_includes/admin/messages/messages.php:17
+msgid "Edit Message"
+msgstr ""
+
+#: ../tml_includes/admin/messages/messages.php:18
+msgid "Delete Message"
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:19
+#: ../tml_includes/admin/messages/edit_message/edit_message.php:26
+msgid "Message ID or checksum not provided."
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:26
+#: ../tml_includes/admin/messages/edit_message/edit_message.php:33
+msgid "Message does not exist."
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:34
+#: ../tml_includes/admin/messages/edit_message/edit_message.php:41
+msgid "The message checksum is incorrect."
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:78
+#, php-format
+msgid "Your message has been deleted. %sGo to messages overview &raquo;%s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:90
+#: ../tml_includes/admin/messages/edit_message/message_form.php:24
+msgid "From Name"
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:98
+#: ../tml_includes/admin/messages/edit_message/message_form.php:33
+msgid "From E-mail"
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:106
+#: ../tml_includes/admin/messages/edit_message/message_form.php:41
+msgid "Message Subject"
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:114
+#: ../tml_includes/admin/messages/edit_message/message_form.php:65
+msgid "Message Body"
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:126
+msgid "Warning! If you delete this message, thank you e-mails will not be sent for any comments associated with this message. You may set the probability of this message to 0 rather than deleting it, if you wish. Are you sure you wish to delete this message?"
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:131
+msgid "Yes, delete this message"
+msgstr ""
+
+#: ../tml_includes/admin/messages/delete_message/delete_message.php:134
+msgid "No, do not delete this message"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/edit_message.php:137
+#: ../tml_includes/admin/messages/new_message/new_message.php:126
+msgid "Message Delay time must not be negative."
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/edit_message.php:140
+#: ../tml_includes/admin/messages/new_message/new_message.php:129
+msgid "Message Delay plus-minus time must not be negative."
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/edit_message.php:152
+#, php-format
+msgid "Your message has been saved. %sGo to messages overview &raquo;%s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/edit_message.php:193
+#: ../tml_includes/admin/messages/new_message/new_message.php:179
+#, php-format
+msgid "A sample e-mail was sent to %s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:28
+msgid "Who is the e-mail from?"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:49
+#: ../tml_includes/admin/messages/edit_message/message_form.php:54
+msgid "Message Settings"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:56
+msgid "Use HTML"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:58
+msgid "Turn line breaks into <br>'s (when using HTML)"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:89
+#, php-format
+msgid "You can turn off syntax highlighting from '%sAdditional Options%s'."
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:104
+#, php-format
+msgid "You can turn on syntax highlighting from '%sAdditional Options%s'."
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:116
+#, php-format
+msgid "%sShow Tag and PHP Reference%s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:119
+#, php-format
+msgid "%sHide Tag and PHP Reference%s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:124
+msgid "Tag and PHP Reference"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:127
+msgid "In all of the above text fields, you are able to use the following tags to insert pre-formed data:"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:131
+msgid "ID of the comment"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:133
+msgid "ID of the post"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:135
+msgid "Author's name"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:137
+msgid "Author's e-mail address"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:139
+msgid "Author's website URL"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:141
+msgid "Author's IP address"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:143
+msgid "Date of the comment (as YYYY-MM-DD HH:MM:SS)"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:145
+msgid "GMT date of the comment (as YYYY-MM-DD HH:MM:SS)"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:147
+msgid "Content of the comment"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:149
+msgid "Author's agent string"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:151
+msgid "Comment's parent"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:153
+msgid "Author's user ID"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:158
+msgid "Any text contained within <?php and ?> will be evaluated as PHP code. Advanced users can use this to make more personal messages. Use the $comment_id variable to get the ID of the current comment."
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:160
+msgid "Example code to display URL of the post:"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:166
+msgid "If you use PHP, send a sample e-mail. If, after saving, a blank page appears, there is a fatal error in the PHP code which needs to be corrected."
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:183
+#: ../tml_includes/admin/messages/edit_message/message_form.php:210
+#: ../tml_includes/admin/messages/edit_message/message_form.php:239
+#: ../tml_includes/admin/messages/edit_message/message_form.php:267
+msgid "Use Default"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:297
+msgid "Sample E-mail"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:303
+#, php-format
+msgid "%1$s Send sample e-mail to %2$s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:342
+msgid "Update Message"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:344
+msgid "Save Message"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:349
+msgid "Save as Draft"
+msgstr ""
+
+#: ../tml_includes/admin/messages/edit_message/message_form.php:355
+#: ../tml_includes/admin/messages/overview/overview.php:172
+msgid "Delete"
+msgstr ""
+
+#: ../tml_includes/admin/messages/new_message/new_message.php:137
+#, php-format
+msgid "Your message has been added. %sGo to messages overview &raquo;%s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:37
+msgid "Probability must be greater than 0, inclusive"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:54
+msgid "The message probabilities have been updated."
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:77
+#, php-format
+msgid "You have not created any messages yet. %sCreate one now &raquo;%s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:82
+msgid "All probabilities are set to 0. Thank Me Later will not send any e-mails until at least one message has a non-zero, positive probability."
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:120
+msgid "Subject"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:121
+msgid "Message"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:122
+msgid "Send Probability, p"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:123
+msgid "Options"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:156
+#, php-format
+msgid "<strong><em>[Draft]</em></strong> %s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:168
+msgid "Edit"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:189
+#, php-format
+msgid "&Sigma;p = %1$s"
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:195
+msgid "Probabilities must add to equal 1. If not, all values will be reduced or inflated such that the sum is equal to 1. Setting a message's probability to 0 will ensure it is never sent."
+msgstr ""
+
+#: ../tml_includes/admin/messages/overview/overview.php:198
+msgid "Update"
+msgstr ""
+
