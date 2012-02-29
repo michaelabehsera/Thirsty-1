@@ -7,7 +7,7 @@
     - if request.path == '/signin' || request.path == '/signup' || request.path == '/users/create'
       = stylesheet_link_tag 'signup'
       = stylesheet_link_tag 'twitter-bootstrap'
-    - elsif request.path == '/' && !logged_in?
+    - elsif (request.path == '/about' || request.path == '/') && !logged_in?
       = stylesheet_link_tag 'home'
     - else
       = stylesheet_link_tag 'application'

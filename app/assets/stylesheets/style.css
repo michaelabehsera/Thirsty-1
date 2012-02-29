@@ -22,17 +22,17 @@ h1 {
 }
 
 ::selection {
-    background: #38d1e8; 
+    background: #FFF891; 
 
 }
 
 ::-moz-selection {
-    background: #38d1e8; /* Firefox */
+    background: #FFF891; /* Firefox */
 
 }
 
 ::-webkit-selection {
-    background: #38d1e8; /* Chrome */
+    background: #FFF891; /* Chrome */
 
 }
 

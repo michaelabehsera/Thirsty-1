@@ -17,17 +17,17 @@ img {
 }
 
 ::selection {
-    background: #38d1e8; 
+    background: #FFF891; 
 
 }
 
 ::-moz-selection {
-    background: #38d1e8; /* Firefox */
+    background: #FFF891; /* Firefox */
 
 }
 
 ::-webkit-selection {
-    background: #38d1e8; /* Chrome */
+    background: #FFF891; /* Chrome */
 
 }
 
@@ -108,6 +108,7 @@ img {
     -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #3d3d3d;
     cursor:pointer;
     font-weight:normal;
+    font-family: 'Homenaje', sans-serif;
    
 }
 
@@ -197,6 +198,8 @@ img {
     -webkit-text-shadow: 0px -1px 0px #000;
     text-decoration: none;
     border-radius:30px;
+    -moz-border-radius:30px;
+    -webkit-border-radius:30px;
     font-size:13px;
     padding:8px 30px 8px 30px;
     background: #ededed;
@@ -315,47 +318,51 @@ img {
 }
 
 #signin button {
-    color: #005459;
-    text-shadow: 0px 1px 0px #3ACDD6;
-    -moz-text-shadow: 0px 1px 0px #3ACDD6;
-    -webkit-text-shadow: 0px 1px 0px #00818A;
+    color: #fff;
+    text-shadow: 0px -1px 0px #000;
+    -moz-text-shadow: 0px -1px 0px #000;
+    -webkit-text-shadow: 0px -1px 0px #000;
     text-decoration: none;
+    border-radius:30px;
+    -moz-border-radius:30px;
+    -webkit-border-radius:30px;
     font-size:13px;
-    padding:7px 43px 7px 43px;
+    padding:8px 30px 8px 30px;
     background: #ededed;
-    background: -webkit-linear-gradient(top, #10ABB5, #00818A);
-    background: -moz-linear-gradient(top, #10ABB5, #00818A);
-    background: -ms-linear-gradient(top, #10ABB5, #00818A);
-    background: -o-linear-gradient(top, #10ABB5, #00818A);
-    border:solid 1px #00373B;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    background: -webkit-linear-gradient(top, #427ebd, #1a5796);
+    background: -moz-linear-gradient(top, #427ebd, #1a5796);
+    background: -ms-linear-gradient(top, #427ebd, #1a5796);
+    background: -o-linear-gradient(top, #427ebd, #1a5796);
+    border:solid 1px #002041;
+    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
+    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
+    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
     cursor:pointer;
     font-weight:normal;
     float:right;
-
+       
 }
 
 #signin button:hover {
-    border: solid 1px #00373B;
     text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #00818A, #03959E);
-    background: -moz-linear-gradient(top, #00818A, #03959E);
-    background: -ms-linear-gradient(top, #00818A, #03959E);
-    background: -o-linear-gradient(top, #00818A, #03959E);
+    background: -webkit-linear-gradient(top, #1a5796, #2d6eb2);
+    background: -moz-linear-gradient(top, #1a5796, #2d6eb2);
+    background: -ms-linear-gradient(top, #1a5796, #2d6eb2);
+    background: -o-linear-gradient(top, #1a5796, #2d6eb2);
+    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
+    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
+    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
 
 }
 
 #signin button:active {
-    border: solid 1px #00373B;
-    background: -webkit-linear-gradient(top, #007780, #007780);
-    background: -moz-linear-gradient(top, #007780, #007780);
-    background: -ms-linear-gradient(top, #007780, #007780);
-    background: -o-linear-gradient(top, #007780, #007780);
-    box-shadow: inset 0px 0px 7px #003033;
-    -moz-box-shadow: inset 0px 0px 7px #003033;
-    -webkit-box-shadow: inset 0px 0px 7px #003033;
+    background: -webkit-linear-gradient(top, #16508d, #16508d);
+    background: -moz-linear-gradient(top, #16508d, #16508d);
+    background: -ms-linear-gradient(top, #16508d, #16508d);
+    background: -o-linear-gradient(top, #16508d, #16508d);
+    box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
+    -moz-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
+    -webkit-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
 
 }
 
@@ -367,7 +374,7 @@ img {
 
 #signin form a {
     float:right;
-    color:#10ABB5;
+    color:#1a5796;
     font-size:12px;
     text-decoration:none;
      
