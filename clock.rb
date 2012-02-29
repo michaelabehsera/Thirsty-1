@@ -15,7 +15,8 @@ handler do |job|
           end
         end
         goal = campaign.goals.where(type: :traffic).first
-        goal.update_attribute(:achieved, true) if goal && campaign.articles.map{|a|a.bits.map{|b|b.clicks}}.flatten.compact.reduce(:+) >= goal.num
+        clicks = campaign.articles.map{|a|a.bits.map{|b|b.clicks}}.flatten.compact.reduce(:+)
+        goal.update_attribute(:achieved, true) if goal && clicks && clicks >= goal.num
       end
   end
 end
