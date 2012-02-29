@@ -11,10 +11,6 @@
       <%= text_field_tag :user, '', placeholder: 'Wordpress username', autocomplete: 'off' %>
       <%= password_field_tag :pass, '', placeholder: 'Wordpress password', autocomplete: 'off' %>
       <%= text_field_tag :aid, '', placeholder: 'Google analytics site id (UA-XXXXXXX-X)', autocomplete: 'off' %>
-      <%= text_field_tag :fuser, '', placeholder: 'ftp username', autocomplete: 'off' %>
-      <%= password_field_tag :fpass, '', placeholder: 'ftp password', autocomplete: 'off' %>
-      <%= text_field_tag :fdomain, '', placeholder: 'ftp domain/ip', autocomplete: 'off' %>
-      <%= text_field_tag :root, '', placeholder: 'wordpress directory path (/srv/wordpress)', autocomplete: 'off' %>
   </div>
   <div class="modal-footer">
     <%= submit_tag :submit, id: 'submit', class: 'btn btn-success' %>

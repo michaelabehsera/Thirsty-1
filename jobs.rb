@@ -6,10 +6,10 @@ job 'tool.upload' do |args|
   campaign = Campaign.find(args['cid'])
   plugin = Plugin.find(args['id'])
   begin
-    upload plugin, campaign
-    Juggernaut.publish campaign.uuid, { event_type: 'install_success', plugin: plugin.id }
+    upload plugin, args['creds']
+    Juggernaut.publish campaign.uuid, { event_type: 'install_success' }
   rescue
-    Juggernaut.publish campaign.uuid, { event_type: 'install_failure', plugin: plugin.id }
+    Juggernaut.publish campaign.uuid, { event_type: 'install_failure' }
   end
 end
 
@@ -17,7 +17,7 @@ job 'theme.upload' do |args|
   campaign = Campaign.find(args['cid'])
   plugin = Theme.find(args['id'])
   begin
-    upload plugin, campaign
+    upload plugin, args['creds']
     Juggernaut.publish campaign.uuid, { event_type: 'install_success', plugin: plugin.id }
   rescue
     Juggernaut.publish campaign.uuid, { event_type: 'install_failure', plugin: plugin.id }

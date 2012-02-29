@@ -55,15 +55,17 @@ class CampaignsController < ApplicationController
   end
 
   def install
-    @plugin = Plugin.find params[:id]
-    Stalker.enqueue 'tool.upload', { id: @plugin.id, cid: campaign.id }, ttr: 9999
-    respond_to :js
+    plugin = Plugin.find params[:pid]
+    creds = { user: params[:fuser], pass: params[:fpass], domain: params[:fdomain], root: params[:root] }
+    Stalker.enqueue 'tool.upload', { id: @plugin.id, cid: campaign.id, cid: campaign.id }, ttr: 9999
+    render nothing: true
   end
 
   def theme
-    @plugin = Theme.find params[:id]
-    Stalker.enqueue 'theme.upload', { id: @plugin.id, cid: campaign.id }, ttr: 9999
-    respond_to :js
+    plugin = Theme.find params[:tid]
+    creds = { user: params[:fuser], pass: params[:fpass], domain: params[:fdomain], root: params[:root] }
+    Stalker.enqueue 'theme.upload', { id: plugin.id, cid: campaign.id, creds: creds }, ttr: 9999
+    render nothing: true
   end
 
   def submit
@@ -126,23 +128,7 @@ class CampaignsController < ApplicationController
     rescue Exception => e
       @wordpress = (e.message =~ /Internal/ && true || false)
     end
-    begin
-      Net::FTP.open params[:fdomain], params[:fuser], params[:fpass] do |ftp|
-        root_dir = params[:root]
-        root_dir += '/' if params[:root][-1] != '/'
-        root_dir += 'wp-content'
-        begin
-          ftp.chdir root_dir
-          @ftp_dir = true
-        rescue Exception
-          @ftp_dir = false
-        end
-      end
-      @ftp = true
-    rescue Exception
-      @ftp = false
-    end
-    if @wordpress && @ftp && (defined?(@ftp_dir) && @ftp_dir || !defined?(@ftp_dir))
+    if @wordpress
       @campaign = Campaign.new(uuid: UUID.new.generate)
       @campaign.user = current_user
       @campaign.cocktail = Cocktail.find(params[:id])
@@ -152,10 +138,6 @@ class CampaignsController < ApplicationController
       @campaign.username = params[:user]
       @campaign.pass = params[:pass]
       @campaign.analytics_id = params[:aid]
-      @campaign.ftp_user = params[:fuser]
-      @campaign.ftp_pass = params[:fpass]
-      @campaign.ftp_domain = params[:fdomain]
-      @campaign.root_dir = params[:root]
       case @campaign.cocktail.price
         when 149
           @campaign.goals.create(num: 3, type: :article)

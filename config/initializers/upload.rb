@@ -1,12 +1,12 @@
 require 'net/ftp'
 require 'pry'
 
-def upload(resource, campaign)
+def upload(resource, creds)
   path = (Rails.root + 'public/wordpress' + (resource.is_a?(Plugin) && 'plugins' || 'themes')).to_s + '/'
   Archive.read_open_filename(path + resource.filename) do |ar|
-    Net::FTP.open(campaign.ftp_domain, campaign.ftp_user, campaign.ftp_pass) do |ftp|
-      root_dir = campaign.root_dir
-      root_dir += '/' if campaign.root_dir[-1] != '/'
+    Net::FTP.open(creds['domain'], creds['user'], creds['pass']) do |ftp|
+      root_dir = creds['root']
+      root_dir += '/' if creds['root'][-1] != '/'
       root_dir += 'wp-content'
       root_dir += (resource.is_a?(Plugin) && '/plugins/' || '/themes/')
       ftp.chdir root_dir

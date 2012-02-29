@@ -1,3 +1,48 @@
+<div id="plugin-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Install Plugin</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_tag "/campaigns/#{campaign.uuid}/install", remote: true do %>
+      <%= hidden_field_tag :pid %>
+      <%= text_field_tag :fuser, '', placeholder: 'ftp username', autocomplete: 'off' %>
+      <%= text_field_tag :fpass, '', placeholder: 'ftp password', autocomplete: 'off' %>
+      <%= text_field_tag :fdomain, '', placeholder: 'ftp domain/ip' %>
+      <%= text_field_tag :root, '', placeholder: 'wordpress root directory' %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= content_tag :button, 'Submit', class: 'plugin-submit btn btn-success', onclick: "javascript:$('#plugin-modal form').submit();$('#plugin-modal .btn-success').text('Submitting..')" %>
+  </div>
+</div>
+
+<div id="theme-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Install Theme</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_tag "/campaigns/#{campaign.uuid}/theme", remote: true do %>
+      <%= hidden_field_tag :tid %>
+      <%= text_field_tag :fuser, '', placeholder: 'ftp username', autocomplete: 'off' %>
+      <%= password_field_tag :fpass, '', placeholder: 'ftp password', autocomplete: 'off' %>
+      <%= text_field_tag :fdomain, '', placeholder: 'ftp domain/ip' %>
+      <%= text_field_tag :root, '', placeholder: 'wordpress root directory' %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= content_tag :button, 'Submit', class: 'plugin-submit btn btn-success', onclick: "javascript:$('#theme-modal form').submit();$('#theme-modal .btn-success').text('Submitting..')" %>
+  </div>
+</div>
+
+
 <div id="analytics-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -155,7 +200,7 @@
               <div id="tools">
                 <% Plugin.all.each do |plugin| %>
                   <div class="tool" id="plugin<%= plugin.id %>">
-                    <%= link_to plugin.title, "/campaigns/#{campaign.uuid}/install?id=#{plugin.id}", remote: true %>
+                    <%= link_to plugin.title, '#plugin-modal', :'data-toggle' => 'modal', class: 'plugin-link', pid: plugin.id, filename: plugin.filename %>
                   </div>
                 <% end %>
               </div>
@@ -165,7 +210,9 @@
               <div id="themes">
                 <% Theme.all.each do |plugin| %>
                   <div class="tool" id="plugin<%= plugin.id %>">
-                    <%= link_to plugin.title, "/campaigns/#{campaign.uuid}/theme?id=#{plugin.id}", remote: true %>
+                    <%= plugin.title %>
+                    <%= link_to 'install', '#theme-modal', :'data-toggle' => 'modal', class: 'theme-link', tid: plugin.id, filename: plugin.filename %>
+                    <%= link_to 'download', "/wordpress/themes/#{plugin.filename}" %>
                   </div>
                 <% end %>
               </div>
@@ -228,6 +275,14 @@
 
 <script>
   $(document).ready(function(){
+    $('.plugin-link').click(function(){
+      $('#pid').val( $(this).attr('tid') )
+      $('.plugin-submit').text('Submit')
+    })
+    $('.theme-link').click(function(){
+      $('#tid').val( $(this).attr('tid') )
+      $('.plugin-submit').text('Submit')
+    })
     $('.analytics-link').click(function(){
       $.post(
         '/campaigns/analytics',
@@ -270,9 +325,9 @@
       } else if (data.event_type == 'unsubscribe') {
         $('#user' + data.user_id).fadeOut()
       } else if (data.event_type == 'install_success') {
-        $('#plugin' + data.plugin).html('installed!')
+        $('.plugin-submit').html('installed!')
       } else if (data.event_type == 'install_failure') {
-        $('#plugin' + data.plugin).html('failed :(')
+        $('.plugin-submit').html('failed :(')
       }
     })
 
