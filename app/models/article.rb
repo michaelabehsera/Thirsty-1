@@ -12,6 +12,7 @@ class Article
   field :unique_pageviews, type: Integer, default: 0
   field :month, type: Integer
   field :approved, type: Boolean
+  field :tags, type: String
 
   has_many :bits
   has_one :notification

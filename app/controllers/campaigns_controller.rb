@@ -33,11 +33,16 @@ class CampaignsController < ApplicationController
 
   def chat_message
     Juggernaut.publish campaign.uuid, { message: params[:message], username: current_user.name, timestamp: Time.now.strftime('%H:%M') }, except: params[:sessionID]
-    render nothing: true
+    chat = Chat.new
+    chat.campaign = campaign
+    chat.user = current_user
+    chat.message = params[:message]
+    chat.timestamp = Time.now.strftime('%H:%M')
+    chat.save
   end
 
   def analytics
-    @article = Article.find params[:id]
+   @article = Article.find params[:id]
     @json = @article.bits.map { |bit| { referrers: BitLy.referrers(bit.url).referrers, user: bit.user.name } }.to_json
     render layout: false
   end
@@ -97,7 +102,6 @@ class CampaignsController < ApplicationController
     post = Atom::Entry.new do |post|
       post.title = article.title
       post.authors << Atom::Person.new(:name => article.user.name)
-      #post.categories << Atom::Category.new(post_cat)
       post.updated = article.created_at
       post.content = Atom::Content::Html.new (article.content + '<br/><br/><br/>' + article.bio)
     end

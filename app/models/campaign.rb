@@ -14,6 +14,7 @@ class Campaign
   field :url, type: String
   field :analytics_id, type: String
   field :image, type: String
+  field :guidelines, type: String
 
   field :month, type: Integer, default: 0
   field :start_day, type: Integer
@@ -31,6 +32,7 @@ class Campaign
   belongs_to :cocktail
   has_one :notification
   has_and_belongs_to_many :marketers, class_name: 'User', inverse_of: :active_campaigns
+  has_many :chats
   has_many :goals
   has_many :pages
   has_many :comments

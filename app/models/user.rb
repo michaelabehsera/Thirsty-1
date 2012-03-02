@@ -24,6 +24,7 @@ class User
   validates_uniqueness_of :email
   validates_uniqueness_of :username
 
+  has_many :chats
   has_many :socials
   has_many :campaigns
   has_and_belongs_to_many :active_campaigns, class_name: 'Campaign', inverse_of: :marketers

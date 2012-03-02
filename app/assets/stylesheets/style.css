@@ -977,7 +977,6 @@ button.button_submit:active {
 }
 
 #signup input {
-    float:left;
     background-color:#fff;
     border: 1px solid #000;
     color: #8f8f8f;
@@ -1432,7 +1431,7 @@ button.button_submit:active {
 
 }
 
-#tools, #analytics, #themes {
+#tools, #analytics, #themes, #guidelines {
     margin:0 0 0 0;
     min-height: 100px;
     position: relative;

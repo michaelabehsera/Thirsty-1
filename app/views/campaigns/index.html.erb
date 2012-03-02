@@ -96,6 +96,7 @@
             <ul class="nav nav-tabs" data-tabs="tabs">
               <li class="active"><a href="#info-tab" data-toggle="tab">Company Info</a></li>
               <li><a href="#goals-tab" data-toggle="tab">Monthly Goals</a></li>
+              <li><a href="#guidelines-tab" data-toggle="tab">Guidelines</a></li>
             </ul>
 
           </div>
@@ -120,6 +121,12 @@
                 <h1><%= campaign.title %></h1>
                 <p>Company Notes: <%= campaign.notes %></p>
               </div>
+
+            <div id="guidelines-tab" class="tab-pane">
+              <div id="guidelines">
+                <p><%= campaign.guidelines %></p>
+              </div>
+            </div>
 
               <div id="goals-tab" class="tab-pane">
                 <% campaign.goals.each do |goal| %>
@@ -253,6 +260,7 @@
               </div>
             </div>
 
+
             <div id="chat-tab" class="tab-pane">
               <div id="chat">
                 <div id="users">
@@ -260,7 +268,15 @@
                     <div class="user" id="user<%= user.id %>"><%= user.name %></div>
                   <% end %>
                 </div>
-                <div id="chat_messages"></div>
+                <div id="chat_messages">
+                <% campaign.chats.each do |chat| %>
+                  <div class="chat_message">
+                    <span class="timestamp">[<%= chat.timestamp %>]</span>
+                    <span class="username"><%= chat.user.name %>: </span>
+                    <span class="message_content"><%= chat.message %></span>
+                  </div>
+                <% end %>
+                </div>
                 <%= form_tag "/campaigns/#{campaign.uuid}/chat_message", id: 'chat_form', remote: true do %>
                   <%= text_field_tag :message, '', style: 'width:700px' %>
                   <%= submit_tag :submit, style: 'display:none' %>
