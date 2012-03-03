@@ -158,9 +158,9 @@
 
 
           <ul class="nav nav-tabs" data-tabs="tabs">
-            <li class="active"><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
+            <li id="articles-link" class="active"><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
             <% if current_user == campaign.user %>
-              <li><a href="#approve-tab" data-toggle="tab">Approve articles</a></li>
+              <li id="approve-link"><a href="#approve-tab" data-toggle="tab">Approve articles</a></li>
             <% end %>
             <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
             <li><a href="#themes-tab" data-toggle="tab">Themes</a></li>
@@ -186,13 +186,19 @@
                   <div id="approve-tab" class="tab-pane">
                       <div id="approve">
                   <div id="unread-articles">
-                  <% articles = campaign.articles.where(approved: nil) %>
-                  <% if articles.count > 0 %>
-                    <% articles.each do |article| %>
+                  <% if campaign.articles.count > 0 %>
+                    <% campaign.articles.each do |article| %>
                       <div class="article" id="article<%= article.id %>">
-                         "<%= article.title %>" written by: <%= article.user.name %>
+                         "<%= article.title %>" written by: <%= article.user.name %> -- 
+                         <% if article.approved %>
+                         <span class="approved-status approved">Approved</span>
+                         <% elsif article.approved == false %>
+                         <span class="approved-status denied">Denied</span>
+                         <% else %>
                          <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true, class: 'accept' %>
                          <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true, class: 'deny' %>
+                         <% end %>
+                         <%= link_to 'edit', 'javascript:void(0)', class: 'view', aid: article.id %>
                        </div>
                     <% end %>
                   <% else %>
@@ -364,6 +370,24 @@
 
     $('#tool_form').submit(function(e){
       $('#link').attr('readonly', 'true')
+    })
+
+    $('.view').click(function(){
+      $.post(
+        '/campaigns/view',
+        { id: $(this).attr('aid') },
+        function(rsp) {
+          console.log(rsp)
+          $('#approve-tab').removeClass('active')
+          $('#approve-link').removeClass('active')
+          $('#articles-tab').addClass('active')
+          $('#articles-link').addClass('active')
+          $('#title').val(rsp.title)
+          $('.nicEdit-main').first().html(rsp.article)
+          $('.nicEdit-main').last().html(rsp.bio)
+        },
+        'json'
+      )
     })
 
     new nicEditor().panelInstance('send-area')
