@@ -307,14 +307,14 @@
         'html'
       )
     })
-    $('.article .accept').click(function(){
+    $('.article .accept').live('click', function(){
       setTimeout(function(){
         $(this).attr('href', '')
       }, 500)
       $(this).text('accepting..')
       $(this).parent().children('.deny').remove()
     })
-    $('.article .deny').click(function(){
+    $('.article .deny').live('click', function(){
       setTimeout(function(){
         $(this).attr('href', '')
       }, 500)
@@ -381,6 +381,11 @@
             $('#title').val('')
             $('.nicEdit-main').html('')
             $('#send').text('Submit')
+            $('#articles-tab').prepend('<div style="margin-top:10px;width:100px" class="alert alert-success"><a class="close">x</a>Article submitted!</div>')
+            if ( !($('#unread-articles').html().search('no articles') == -1)) {
+              $('#unread-articles').html('')
+            }
+            $('#unread-articles').append('<div class="article" id="article' + rsp.id + '">' + rsp.title + ' written by: ' + rsp.name + ' <a href="/campaigns/<%=campaign.uuid%>/approve?id=' + rsp.id + '" data-remote="true" class="accept">accept</a> <a href="/campaigns/<%=campaign.uuid%>/deny?id=' + rsp.id + '" data-remote="true" class="deny">deny</a></div>')
           } else {
             $('#send').text('Failed :(')
           }

@@ -80,7 +80,7 @@ class CampaignsController < ApplicationController
     article.user = user
     if article.save
       article.create_notification
-      render json: { success: true }
+      render json: { success: true, id: article.id, title: article.title, name: user.name }
     else
       render json: { success: false }
     end
@@ -142,6 +142,7 @@ class CampaignsController < ApplicationController
       @campaign.username = params[:user]
       @campaign.pass = params[:pass]
       @campaign.analytics_id = params[:aid]
+      @campaign.guidelines = params[:guidelines]
       case @campaign.cocktail.price
         when 149
           @campaign.goals.create(num: 3, type: :article)
