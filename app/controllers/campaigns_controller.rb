@@ -14,7 +14,7 @@ class CampaignsController < ApplicationController
        :authorize_path => '/accounts/OAuthAuthorizeToken'})
   }
   expose(:campaign_notifications) {
-    (campaign.notification + campaign.cocktail.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification}).flatten.compact.sort_by(&:created_at).reverse if current_user
+    ([campaign.notification] + campaign.cocktail.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification}).flatten.compact.sort_by(&:created_at).reverse if current_user
   }
 
   def associate
