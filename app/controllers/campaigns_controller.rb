@@ -63,8 +63,8 @@ class CampaignsController < ApplicationController
   end
 
   def upload_image
-    campaign.update_attribute(:image, params[:image])
-    respond_to :js
+    campaign.update_attributes params[:campaign]
+    redirect_to "/campaigns/#{campaign.uuid}"
   end
 
   def install

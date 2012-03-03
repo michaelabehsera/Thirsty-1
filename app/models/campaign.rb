@@ -13,7 +13,6 @@ class Campaign
   field :notes, type: String
   field :url, type: String
   field :analytics_id, type: String
-  field :image, type: String
   field :guidelines, type: String
 
   field :month, type: Integer, default: 0
@@ -27,6 +26,8 @@ class Campaign
 
   field :username, type: String
   field :pass, type: String
+
+  mount_uploader :image, CampaignImage
 
   belongs_to :user
   belongs_to :cocktail

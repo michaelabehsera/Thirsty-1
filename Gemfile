@@ -8,6 +8,8 @@ group :assets do
   gem 'bootstrap-sass'
 end
 
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'rmagick'
 gem 'jquery-rails'
 gem 'unicorn'
 gem 'sorcery'

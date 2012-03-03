@@ -1,3 +1,21 @@
+<div id="image-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Upload Image</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_for :campaign, url: "/campaigns/#{campaign.uuid}/upload_image" do |f| %>
+      <%= f.file_field :image %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= content_tag :button, 'Submit', class: 'btn btn-success', onclick: "javascript:$('#image-modal form').submit();$('#image-modal .btn-success').text('Submitting..')" %>
+  </div>
+</div>
+
 <div id="plugin-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -109,13 +127,10 @@
 
               <div id="info-tab" class="tab-pane active">
                 <div id="campaign_image">
-                <% if campaign.image %>
-                  <img src="<%= campaign.image %>" style="height:100px;margin:1px 10px 0 0" align="left">
+                <% if campaign.image && campaign.image.url %>
+                  <img src="<%= campaign.image %>" style="margin:1px 10px 0 0" align="left">
                 <% elsif current_user == campaign.user %>
-                  <%= form_tag "/campaigns/#{campaign.uuid}/upload_image", style: 'margin-bottom:10px', remote: true do %>
-                    <%= text_field_tag :image, '', placeholder: 'Enter an image url for your campaign', style: 'width:350px' %>
-                    <%= submit_tag :submit, style: 'display:none' %>
-                  <% end %>
+                  <img id="image" src="/images/no_image.jpg" style="height:50px;width:50px;margin:1px 10px 0 0" align="left">
                 <% end %>
                 </div>
                 <h1><%= campaign.title %></h1>
@@ -297,6 +312,10 @@
 
 <script>
   $(document).ready(function(){
+    $('#image').click(function(){
+      $('#image-modal').modal()
+      $('#image-modal').modal('show')
+    })
     $('.plugin-link').click(function(){
       $('#pid').val( $(this).attr('tid') )
       $('.plugin-submit').text('Submit')
