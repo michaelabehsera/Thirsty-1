@@ -1,3 +1,21 @@
+<div id="headline-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Submit Your Headline</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_tag "/campaigns/#{campaign.uuid}/headline", remote: true do %>
+      <%= text_field_tag :headline, '', placeholder: 'enter your headline' %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= content_tag :button, 'Submit', class: 'btn btn-success', onclick: "javascript:$('#headline-modal form').submit();$('#headline-modal .btn-success').text('Submitting..')" %>
+  </div>
+</div>
+
 <div id="image-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -190,6 +208,10 @@
 
             <div id="articles-tab" class="tab-pane active">
               <div id="articles">
+                <div id="headline">
+                  <h3>Have an article idea?</h3>
+                  <button href="#headline-modal" class="btn btn-primary" data-toggle="modal">Submit your headline!</button>
+                </div>
                 <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
                 <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>
                 <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
@@ -201,10 +223,26 @@
                   <div id="approve-tab" class="tab-pane">
                       <div id="approve">
                   <div id="unread-articles">
-                  <% if campaign.articles.count > 0 %>
-                    <% campaign.articles.each do |article| %>
+                    <% campaign.headlines.desc(:created_at).each do |headline| %>
+                      <div class="article" id="headline<%=headline.id%>">
+                         <%= headline.user.name %> suggested the headline "<%= headline.title %>"
+                         <%= distance_of_time_in_words Time.now, headline.created_at %>
+                         -- 
+                         <% if headline.approved %>
+                         <span class="approved-status approved">Approved</span>
+                         <% elsif headline.approved == false %>
+                         <span class="approved-status denied">Denied</span>
+                         <% else %>
+                         <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve_headline?id=#{headline.id}", remote: true, class: 'accept' %>
+                         <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny_headline?id=#{headline.id}", remote: true, class: 'deny' %>
+                         <% end %>
+                      </div>
+                    <% end %>
+                    <% campaign.articles.desc(:created_at).each do |article| %>
                       <div class="article" id="article<%= article.id %>">
-                         "<%= article.title %>" written by: <%= article.user.name %> -- 
+                         "<%= article.title %>" was written by: <%= article.user.name %>
+                         <%= distance_of_time_in_words Time.now, article.created_at %> ago
+                         -- 
                          <% if article.approved %>
                          <span class="approved-status approved">Approved</span>
                          <% elsif article.approved == false %>
@@ -216,7 +254,7 @@
                          <%= link_to 'edit', 'javascript:void(0)', class: 'view', aid: article.id %>
                        </div>
                     <% end %>
-                  <% else %>
+                  <% if campaign.articles.count == 0 && campaign.headlines.count == 0 %>
                     no articles
                   <% end %>
                   </div>

@@ -33,6 +33,7 @@ class Campaign
   belongs_to :cocktail
   has_one :notification
   has_and_belongs_to_many :marketers, class_name: 'User', inverse_of: :active_campaigns
+  has_many :headlines
   has_many :chats
   has_many :goals
   has_many :pages

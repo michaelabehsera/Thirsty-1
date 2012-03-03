@@ -34,6 +34,13 @@ class CampaignsController < ApplicationController
     redirect_to '/signin' unless logged_in?
   end
 
+  def headline
+    headline = campaign.headlines.new(title: params[:headline])
+    headline.user = current_user
+    headline.save
+    respond_to :js
+  end
+
   def view
     article = Article.find params[:id]
     render json: { success: true, title: article.title, article: article.content, bio: article.bio }
@@ -98,6 +105,34 @@ class CampaignsController < ApplicationController
     @article = Article.find(params[:id])
     @article.update_attribute(:approved, false)
     render 'deny'
+  end
+
+  def approve_headline
+    @headline = Headline.find params[:id]
+    @headline.update_attribute(:approved, true)
+    Pony.mail(
+      to: @headline.user.email,
+      from: 'mike@thirsty.com',
+      subject: 'Your headline has been approved!',
+      body: "Your \"#{@headline.title}\" headline has been approved! Get started on that article ;).",
+      via: :smtp,
+      via_options: {
+        address: 'smtp.gmail.com',
+        port: '587',
+        enable_starttls_auto: true,
+        user_name: 'mike@thirsty.com',
+        password: 'AAA123321',
+        authentication: :plain,
+        domain: 'thirsty.com'
+      }
+    )
+    respond_to :js
+  end
+
+  def deny_headline
+    @headline  = Headline.find params[:id]
+    @headline.update_attribute(approved: false)
+    respond_to :js
   end
 
   def approve

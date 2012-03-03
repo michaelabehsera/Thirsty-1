@@ -24,6 +24,7 @@ class User
   validates_uniqueness_of :email
   validates_uniqueness_of :username
 
+  has_many :headlines
   has_many :chats
   has_many :socials
   has_many :campaigns
