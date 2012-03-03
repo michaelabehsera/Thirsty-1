@@ -2,7 +2,7 @@ class Campaign
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
-  before_create :time_setup
+  before_create :time_setup, :check_price
 
   field :uuid, type: String
   index :uuid, unique: true
@@ -39,6 +39,10 @@ class Campaign
   has_many :articles
   has_many :tools
   has_and_belongs_to_many :subscriptions, class_name: 'User', inverse_of: nil
+
+  def check_price
+    self.paid = true if self.cocktail.price == 0
+  end
 
   def time_setup
     self.start_day = Time.now.day

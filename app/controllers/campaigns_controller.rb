@@ -163,7 +163,10 @@ class CampaignsController < ApplicationController
           @campaign.goals.create(num: 200, type: :article)
           @campaign.goals.create(num: 25000, type: :traffic)
       end
-      @campaign.create_notification if @campaign.save
+      if @campaign.save
+        @campaign.create_notification
+        current_user.active_campaigns << @campaign
+      end
     else
       render 'create_fail'
     end
