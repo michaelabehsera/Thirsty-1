@@ -8,12 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   expose(:notifications) {
-    if current_user
-      if current_user.type == :marketer
-        Campaign.where(paid: true).map{|c|c.notification}.compact
-      else
-        current_user.campaigns.where(paid: true).map {|campaign| (campaign.cocktail.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification} + campaign.comments.map {|c|c.notification})}.flatten.compact.sort_by(&:created_at).reverse
-      end
-    end
+    current_user.campaigns.where(paid: true).map {|campaign| (Campaign.where(paid: true).map{|c|c.notification} + campaign.cocktail.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification})}.flatten.compact.sort_by(&:created_at).reverse if current_user
   }
 end

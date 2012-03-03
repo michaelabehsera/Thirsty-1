@@ -228,9 +228,9 @@
             <div id="reports-tab" class="tab-pane">
               <div id="reports_menu">
                 <div id="devider_line2"></div>
-                <h1><%= notifications.size %> Reports</h1>
+                <h1><%= campaign_notifications.size %> Reports</h1>
               </div>
-              <div id="reports"><%= render notifications %></div>
+              <div id="reports"><%= render campaign_notifications %></div>
             </div>
 
             <div id="writers-tab" class="tab-pane">
@@ -370,7 +370,7 @@
     new nicEditor().panelInstance('bio')
     $('.nicEdit-main').parent().css('background-color', 'white')
     $('.nicEdit-main').first().html('article')
-    $('.nicEdit-main').last().html('<%= current_user.bio || "bio" %>')
+    $('.nicEdit-main').last().html('<%= current_user.bio.html_safe || "bio" %>')
     $('#send').click(function(){
       $(this).text('Submitting..')
       $.post(
