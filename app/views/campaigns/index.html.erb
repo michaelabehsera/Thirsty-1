@@ -213,9 +213,9 @@
                   <button href="#headline-modal" class="btn btn-primary" data-toggle="modal">Submit your headline!</button>
                 </div>
                 <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
-                <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:492px' %>
-                <%= text_area_tag :'send-area', '', style: 'width:500px;height:225px;display:block' %>
-                <%= text_area_tag :'bio', '', style: 'width:500px;height:75px;display:block' %>
+                <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:760px' %>
+                <%= text_area_tag :'send-area', '', style: 'width:767px;height:225px;display:block' %>
+                <%= text_area_tag :'bio', '', style: 'width:767px;height:75px;display:block' %>
                 <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
               </div>
             </div>

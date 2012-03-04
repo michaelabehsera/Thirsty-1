@@ -259,7 +259,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 }
 
-#your_campaigns {
+.your_campaigns {
     width: 770px;
     margin: 70px 0 0 1px;
     background: linear-gradient(top, whiteSmoke 0%,rgb(231, 231, 231) 100%,whiteSmoke 100%,rgb(118, 72, 135) 100%);
@@ -275,7 +275,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 }
 
-#your_campaigns h1 {
+.your_campaigns h1 {
     color: rgb(55, 55, 55);
     font-size: 17px;
     margin: 0 0 0 0;
@@ -283,7 +283,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 }
 
-#personal_projects a {
+.personal_projects a {
     font-size:13px;
     color: rgb(91, 91, 91);
     text-decoration: none;
@@ -291,7 +291,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 }
 
-#personal_projects p {
+.personal_projects p {
     font-size: 15px;
     padding: 10px;
     margin: 0 0 0 1px;
