@@ -548,7 +548,7 @@
     new nicEditor().panelInstance('bio')
     $('.nicEdit-main').parent().css('background-color', 'white')
     $('.nicEdit-main').first().html('article')
-    $('.nicEdit-main').last().html('<%= current_user.bio.html_safe || "bio" %>')
+    $('.nicEdit-main').last().html('<%= current_user.bio && current_user.bio.html_safe || "bio" %>')
     $('#send').click(function(){
       $(this).text('Submitting..')
       $.post(
