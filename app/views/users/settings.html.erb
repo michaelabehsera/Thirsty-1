@@ -16,7 +16,10 @@
 <div id="settings">
             <div id="inner_settings">
             <h1>Your Settings</h1>
-            <%= form_for :user, url: "/profile/#{user.username}/update", html: { remote: true } do |f| %>
+            <% if flash[:notice] == :success %>
+              <div style="margin-top:10px;width:125px" class="alert alert-success"><a class="close">x</a>Settings updated successfully!</div>
+            <% end %>
+            <%= form_for :user, url: "/profile/#{user.username}/update" do |f| %>
             <p>First Name</p>
             <%= f.text_field :first_name, value: user.first_name, autocomplete: 'off' %>
             <p>Last Name</p>
@@ -28,9 +31,9 @@
             <p>Confirm Password</p>
             <%= password_field_tag :password_confirmation, '', autocomplete: 'off' %>
             <p>Add an avatar</p>
-            <%= f.text_field :avatar, value: user.avatar, placeholder: 'avatar url', autocomplete: 'off' %>
+            <%= f.file_field :avatar %>
             <p>Add a profile background image</p>
-            <%= f.text_field :background, value: user.background, placeholder: 'background image url', autocomplete: 'off' %>
+            <%= f.file_field :background %>
             <p>Add a title</p>
             <%= f.text_field :title, value: user.title, placeholder: 'title', autocomplete: 'off' %>
             <p>Add some tags that describe you</p>

@@ -1,16 +1,21 @@
 <%= render partial: 'site/header' %>
+<% if user.background.url %>
+  <style>
+    body { background:url(<%= user.background %>);background-size:100% }
+  </style>
+<% end %>
 <div id="profile">
             <h1><%= user.name %></h1>
             <h2><%= user.title %></h1>
-            <p><%= user.bio.html_safe %></p>
+            <p><%= user.bio && user.bio.html_safe %></p>
             <ul>
 
-                <li style="margin-right:5px;"><%= current_user.tags %></li>
+                <li style="margin-right:5px;"><%= user.tags %></li>
 
             </ul>
 
             <ul style="margin-left:19px;" class="social" id="css3">
-            <% current_user.socials.each do |social| %>
+            <% user.socials.each do |social| %>
               <li class="<%= social.name.downcase %>">
                 <a href="<%= social.url %>"><strong><%= social.name %></strong></a>
               </li>

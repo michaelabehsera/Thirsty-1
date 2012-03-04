@@ -45,7 +45,7 @@ class UsersController < InheritedResources::Base
     pass = params[:password]
     user.change_password!(pass) if pass.present? && pass == params[:password_confirmation]
     user.save
-    respond_to :js
+    redirect_to "/profile/#{user.username}/settings", notice: :success
   end
 
   def create

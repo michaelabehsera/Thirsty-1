@@ -15,9 +15,10 @@ class User
   field :bio, type: String
   field :tags, type: String
   field :title, type: String
-  field :avatar, type: String
-  field :background, type: String
   field :admin, type: Boolean, default: false
+
+  mount_uploader :avatar, AvatarUploader
+  mount_uploader :background, BackgroundUploader
 
   validates_presence_of :email
   validates_presence_of :first_name
