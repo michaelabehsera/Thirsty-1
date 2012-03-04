@@ -18,15 +18,28 @@ class CampaignsController < ApplicationController
   }
 
   def associate
+    user = nil
     if params[:id]
       begin
         user = User.find params[:id]
         user.active_campaigns << campaign
       rescue
-        current_user.active_campaigns << campaign if current_user
+        if current_user
+          current_user.active_campaigns << campaign
+          user = current_user
+        end
       end
     elsif current_user
       current_user.active_campaigns << campaign
+      user = current_user
+    end
+    if campaign
+      campaign.articles.each do |article|
+        bitly = BitLy.shorten("#{self.url}##{user.id}")
+        bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
+        bit.user = user
+        bit.save
+      end
     end
   end
 
@@ -220,6 +233,12 @@ class CampaignsController < ApplicationController
       if @campaign.save
         @campaign.create_notification
         current_user.active_campaigns << @campaign
+        @campaign.articles.each do |article|
+          bitly = BitLy.shorten("#{self.url}##{current_user.id}")
+          bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
+          bit.user = current_user
+          bit.save
+        end
       end
     else
       render 'create_fail'

@@ -6,10 +6,11 @@
   $('#plan-info').modal('hide')
   setTimeout(function(){
     Shadowbox.open({
-        content: 'http://paymint.thirsty.com/?uuid=<%= @campaign.uuid %>&amount=<%= @campaign.cocktail.price %>&email=<%= @campaign.user.email %>&shadowbox=true',
+      content: 'http://paymint.thirsty.com/?uuid=<%= @campaign.uuid %>&amount=<%= @campaign.cocktail.price %>&email=<%= @campaign.user.email %>&shadowbox=true',
       player: 'iframe',
       width: 750,
       height: 500
     })
   }, 500)
+  window.scrollTo(0,0)
 <% end %>
