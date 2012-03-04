@@ -17,6 +17,7 @@ class User
   field :title, type: String
   field :avatar, type: String
   field :background, type: String
+  field :admin, type: Boolean, default: false
 
   validates_presence_of :email
   validates_presence_of :first_name

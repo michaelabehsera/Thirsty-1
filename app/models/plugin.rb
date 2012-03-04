@@ -6,7 +6,8 @@ class Plugin
   field :foldername, type: String
   field :title, type: String
   field :description, type: String
-  field :photo, type: String
+
+  mount_uploader :image, PluginImage
 
   validates_uniqueness_of :filename
 end

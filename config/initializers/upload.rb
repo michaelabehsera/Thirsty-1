@@ -1,5 +1,4 @@
 require 'net/ftp'
-require 'pry'
 
 def upload(resource, creds)
   path = (Rails.root + 'public/wordpress' + (resource.is_a?(Plugin) && 'plugins' || 'themes')).to_s + '/'

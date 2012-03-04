@@ -1,3 +1,45 @@
+<div id="new-theme-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Install a new theme</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_for :theme, url: "/install_theme" do |f| %>
+      <%= text_area_tag :url, '', placeholder: 'theme url' %>
+      <%= f.text_area :title, placeholder: 'title' %>
+      <%= f.text_area :description, placeholder: 'description' %>
+      <%= f.file_field :image %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= content_tag :button, 'Submit', class: 'btn btn-success', onclick: "javascript:$('#new-theme-modal form').submit();$('#new-theme-modal .btn-success').text('Submitting..')" %>
+  </div>
+</div>
+
+<div id="new-plugin-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Install a new plugin</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_for :plugin, url: "/install_plugin" do |f| %>
+      <%= text_area_tag :url, '', placeholder: 'plugin url' %>
+      <%= f.text_area :title, placeholder: 'title' %>
+      <%= f.text_area :description, placeholder: 'description' %>
+      <%= f.file_field :image %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= content_tag :button, 'Submit', class: 'btn btn-success', onclick: "javascript:$('#new-plugin-modal form').submit();$('#new-plugin-modal .btn-success').text('Submitting..')" %>
+  </div>
+</div>
+
 <div id="desc-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -185,7 +227,7 @@
                 <% if campaign.image && campaign.image.url %>
                   <img src="<%= campaign.image %>" style="margin:1px 10px 0 0" align="left">
                 <% elsif current_user == campaign.user %>
-                  <img id="image" src="/images/no_image.jpg" style="height:50px;width:50px;margin:1px 10px 0 0" align="left">
+                  <img id="campaign_image" src="/images/no_image.jpg" style="height:50px;width:50px;margin:1px 10px 0 0" align="left">
                 <% end %>
                 </div>
                 <h1><%= campaign.title %></h1>
@@ -307,19 +349,31 @@
 
             <div id="tools-tab" class="tab-pane">
               <div id="tools">
+                <% if current_user.admin %>
+                  <%= link_to 'Add new', '#new-plugin-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
+                <% end %>
                 <% Plugin.all.each do |plugin| %>
                   <div class="tool" id="plugin<%= plugin.id %>">
-                    <%= link_to plugin.title, '#plugin-modal', :'data-toggle' => 'modal', class: 'plugin-link', pid: plugin.id, filename: plugin.filename %>
+                    <%= plugin.title %>
+                    <img align="left" src="<%= plugin.image %>">
+                    <p><%= plugin.description%></p>
+                    <%= link_to 'install', '#plugin-modal', :'data-toggle' => 'modal', class: 'plugin-link', pid: plugin.id, filename: plugin.filename %>
+                    <%= link_to 'download', "/wordpress/plugins/#{plugin.filename}" %>
                   </div>
                 <% end %>
               </div>
             </div>
 
             <div id="themes-tab" class="tab-pane">
+                <% if current_user.admin %>
+                  <%= link_to 'Add new', '#new-theme-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
+                <% end %>
               <div id="themes">
                 <% Theme.all.each do |plugin| %>
                   <div class="tool" id="plugin<%= plugin.id %>">
                     <%= plugin.title %>
+                    <img align="left" src="<%= plugin.image %>">
+                    <p><%= plugin.description%></p>
                     <%= link_to 'install', '#theme-modal', :'data-toggle' => 'modal', class: 'theme-link', tid: plugin.id, filename: plugin.filename %>
                     <%= link_to 'download', "/wordpress/themes/#{plugin.filename}" %>
                   </div>
@@ -393,7 +447,7 @@
 
 <script>
   $(document).ready(function(){
-    $('#image').click(function(){
+    $('#campaign_image').click(function(){
       $('#image-modal').modal()
       $('#image-modal').modal('show')
     })

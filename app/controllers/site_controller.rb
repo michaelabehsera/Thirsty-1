@@ -4,6 +4,30 @@ class SiteController < ApplicationController
     render 'home' if logged_in?
   end
 
+  def install_theme
+    theme = Theme.new params[:theme]
+    theme.filename = params[:url].split('/').last
+    `wget #{params[:url]} -P #{Rails.root}/public/wordpress/themes`
+    `unzip #{Rails.root}/public/wordpress/themes/#{theme.filename} -d #{Rails.root}/public/wordpress/themes`
+    Archive.read_open_filename("#{Rails.root}/public/wordpress/themes/#{theme.filename}") do |ar|
+      theme.foldername = ar.next_header.pathname
+    end
+    theme.save
+    redirect_to request.referrer
+  end
+
+  def install_plugin
+    plugin = Plugin.new params[:plugin]
+    plugin.filename = params[:url].split('/').last
+    `wget #{params[:url]} -P #{Rails.root}/public/wordpress/plugins`
+    `unzip #{Rails.root}/public/wordpress/plugins/#{plugin.filename} -d #{Rails.root}/public/wordpress/plugins`
+    Archive.read_open_filename("#{Rails.root}/public/wordpress/plugins/#{plugin.filename}") do |ar|
+      plugin.foldername = ar.next_header.pathname
+    end
+    plugin.save
+    redirect_to request.referrer
+  end
+
   def my_notifications
     if logged_in?
       render 'notifications'
