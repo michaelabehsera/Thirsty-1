@@ -57,7 +57,7 @@ class CampaignsController < ApplicationController
   end
 
   def analytics
-   @article = Article.find params[:id]
+    @article = Article.find params[:id]
     @json = @article.bits.map { |bit| { referrers: BitLy.referrers(bit.url).referrers, user: bit.user.name } }.to_json
     render layout: false
   end
@@ -66,6 +66,16 @@ class CampaignsController < ApplicationController
     @comment = campaign.comments.new params[:comment]
     @comment.user = current_user
     @comment.create_notification if @comment.save
+    respond_to :js
+  end
+
+  def update_desc
+    campaign.update_attribute(:notes, params[:notes])
+    respond_to :js
+  end
+
+  def update_guidelines
+    campaign.update_attribute(:guidelines, params[:guidelines])
     respond_to :js
   end
 

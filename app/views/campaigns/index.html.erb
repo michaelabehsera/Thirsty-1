@@ -1,3 +1,40 @@
+<div id="desc-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Edit Campaign Description</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_tag "/campaigns/#{campaign.uuid}/update_desc", remote: true do %>
+      <%= text_area_tag :notes, campaign.notes %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= content_tag :button, 'Submit', class: 'btn btn-success', onclick: "javascript:$('#desc-modal form').submit();$('#desc-modal .btn-success').text('Submitting..')" %>
+  </div>
+</div>
+
+<div id="guidelines-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Edit Campaign Guidelines</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_tag "/campaigns/#{campaign.uuid}/update_guidelines", remote: true do %>
+      <%= text_area_tag :guidelines, campaign.guidelines %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= content_tag :button, 'Submit', class: 'btn btn-success', onclick: "javascript:$('#guidelines-modal form').submit();$('#guidelines-modal .btn-success').text('Submitting..')" %>
+  </div>
+</div>
+
+
 <div id="headline-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -153,11 +190,17 @@
                 </div>
                 <h1><%= campaign.title %></h1>
                 <p>Company Notes: <%= campaign.notes %></p>
+                <% if current_user == campaign.user %>
+                  <%= link_to 'edit', '#desc-modal', :'data-toggle' => 'modal' %>
+                <% end %>
               </div>
 
             <div id="guidelines-tab" class="tab-pane">
               <div id="guidelines">
                 <p><%= campaign.guidelines %></p>
+                <% if current_user == campaign.user %>
+                  <%= link_to 'edit', '#guidelines-modal', :'data-toggle' => 'modal' %>
+                <% end %>
               </div>
             </div>
 
