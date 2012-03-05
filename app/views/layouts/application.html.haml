@@ -13,13 +13,12 @@
       = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = javascript_include_tag '/javascripts/nicEdit.js'
+    = javascript_include_tag '/javascripts/highcharts.js'
     - if Rails.env == 'development'
       = javascript_include_tag 'http://localhost:8081/application.js'
     - else
       = javascript_include_tag root_url[0..-2] + ':8081/application.js'
     <link href='http://fonts.googleapis.com/css?family=Signika+Negative|Acme|Ropa+Sans|Quicksand:400,700|Gudea:400,700|Ubuntu+Condensed|Homenaje|Balthazar|Terminal+Dosis:400,700|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>    
-    :javascript
-      Shadowbox.init({skipSetup: true})
   %body
     = yield
     #devider_footer
