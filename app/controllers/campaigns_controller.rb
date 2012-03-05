@@ -234,7 +234,7 @@ class CampaignsController < ApplicationController
         @campaign.create_notification
         current_user.active_campaigns << @campaign
         @campaign.articles.each do |article|
-          bitly = BitLy.shorten("#{self.url}##{current_user.id}")
+          bitly = BitLy.shorten("#{article.url}##{current_user.id}")
           bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
           bit.user = current_user
           bit.save
