@@ -559,7 +559,7 @@
             $('#title').val('')
             $('.nicEdit-main').html('')
             $('#send').text('Submit')
-            $('#articles-tab').prepend('<div style="margin-top:10px;width:100px" class="alert alert-success"><a class="close">x</a>Article submitted!</div>')
+            $('#articles-tab').prepend('<div style="margin-top:10px;width:100px" class="alert alert-success"><a data-dismiss="alert" class="close">x</a>Article submitted!</div>')
             if ( !($('#unread-articles').html().search('no articles') == -1)) {
               $('#unread-articles').html('')
             }

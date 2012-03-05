@@ -43,6 +43,7 @@ class CampaignsController < ApplicationController
             bit.save
           end
         end
+      rescue
       end
     end
   end
