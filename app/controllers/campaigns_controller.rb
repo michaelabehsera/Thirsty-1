@@ -35,10 +35,12 @@ class CampaignsController < ApplicationController
     end
     if campaign
       campaign.articles.each do |article|
-        bitly = BitLy.shorten("#{self.url}##{user.id}")
-        bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
-        bit.user = user
-        bit.save
+        unless user.bits.where(article_id: article.id).first
+          bitly = BitLy.shorten("#{article.url}##{user.id}")
+          bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
+          bit.user = user
+          bit.save
+        end
       end
     end
   end
@@ -234,10 +236,12 @@ class CampaignsController < ApplicationController
         @campaign.create_notification
         current_user.active_campaigns << @campaign
         @campaign.articles.each do |article|
-          bitly = BitLy.shorten("#{article.url}##{current_user.id}")
-          bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
-          bit.user = current_user
-          bit.save
+          unless current_user.bits.where(article_id: article.id).first
+            bitly = BitLy.shorten("#{article.url}##{current_user.id}")
+            bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
+            bit.user = current_user
+            bit.save
+          end
         end
       end
     else
