@@ -34,12 +34,14 @@ class CampaignsController < ApplicationController
       user = current_user
     end
     if campaign
-      campaign.articles.each do |article|
-        unless user.bits.where(article_id: article.id).first
-          bitly = BitLy.shorten("#{article.url}##{user.id}")
-          bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
-          bit.user = user
-          bit.save
+      begin
+        campaign.articles.each do |article|
+          unless user.bits.where(article_id: article.id).first
+            bitly = BitLy.shorten("#{article.url}##{user.id}")
+            bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
+            bit.user = user
+            bit.save
+          end
         end
       end
     end
