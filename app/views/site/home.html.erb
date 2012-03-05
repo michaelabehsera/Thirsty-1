@@ -1,7 +1,7 @@
 <%= render partial: 'site/header' %>
 <div id="wrap">
           <div id="creatives_count">
-            <p>Creatives at your disposal / <span><%= User.where(type: :marketer).count %></span>
+            <p>Creatives at your disposal / <span><%= User.all.count %></span>
           </div>
           <div class="your_campaigns">
           <div id="devider_line2"></div>
@@ -21,7 +21,10 @@
           <div id="devider_end2"></div>
           <div class="your_campaigns">
           <div id="devider_line2"></div>
-          <h1>Available Campaigns:</h1>
+          <h1 style="display:inline">Available Campaigns:</h1>
+          <% if current_user.type != :marketer %>
+          <%= link_to 'Request Notification for New Campaigns', '/site/notify', remote: true, class: 'btn btn-primary', style: 'float:right', id: 'request' %>
+          <% end %>
           </div>
           <div class="personal_projects">
 

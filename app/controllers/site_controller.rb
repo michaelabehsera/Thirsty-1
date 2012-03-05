@@ -1,5 +1,10 @@
 class SiteController < ApplicationController
 
+  def notify
+    current_user.update_attribute(:type, :marketer)
+    respond_to :js
+  end
+
   def index
     render 'home' if logged_in?
   end
