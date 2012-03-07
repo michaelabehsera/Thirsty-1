@@ -1,3 +1,21 @@
+<div id="article-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3></h3>
+  </div>
+
+  <div class="modal-body">
+      <%= text_area_tag :content, '', placeholder: 'title', style: 'width:98%;height:200px' %>
+      <%= text_area_tag :bio, '', placeholder: 'description', style: 'width:98%;height:100px' %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= link_to 'Deny', '', remote: true, class: 'deny btn btn-danger' %>
+    <%= link_to 'Accept', '', remote: true, class: 'accept btn btn-success' %>
+  </div>
+</div>
+
 <div id="new-theme-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -211,7 +229,7 @@
             <ul class="nav nav-tabs" data-tabs="tabs">
               <li class="active"><a href="#info-tab" data-toggle="tab">Company Info</a></li>
               <li><a href="#goals-tab" data-toggle="tab">Monthly Goals</a></li>
-              <li><a href="#guidelines-tab" data-toggle="tab">Guidelines</a></li>
+              <li><a href="#guidelines-tab" data-toggle="tab">Editorial Guidelines</a></li>
             </ul>
 
           </div>
@@ -267,6 +285,25 @@
 
           </div>
           </div>
+          <div style="margin-bottom:10px" id="timer"><h1><%= distance_of_time_in_words Time.now, campaign.end_date %> left</h1></div>
+
+          <div id="guide_box">
+            <a href="javascript:void(0)" style="float:right"></a>
+            <h1 class="articles">articles</h1>
+            <h1 class="approve" style="display:none">approve</h1>
+            <h1 class="tools" style="display:none">addons</h1>
+            <h1 class="reports" style="display:none">reports</h1>
+            <h1 class="writers" style="display:none">writers</h1>
+            <h1 class="chat" style="display:none">chat</h1>
+            <h1 class="analytics" style="display:none">analytics</h1>
+            <p class="articles">sup</p>
+            <p class="approve" style="display:none">sup</p>
+            <p class="tools" style="display:none">sup</p>
+            <p class="reports" style="display:none">sup</p>
+            <p class="writers" style="display:none">sup</p>
+            <p class="chat" style="display:none">sup</p>
+            <p class="analytics" style="display:none">sup</p>
+          </div>
 
        <div class="tabbable">
 
@@ -276,36 +313,37 @@
 
 
           <ul class="nav nav-tabs" data-tabs="tabs">
-            <li id="articles-link" class="active"><a href="#articles-tab" data-toggle="tab">Article submissions</a></li>
             <% if current_user == campaign.user %>
-              <li id="approve-link"><a href="#approve-tab" data-toggle="tab">Approve articles</a></li>
+              <li id="approve-link" class="active"><a tabname="approve" href="#approve-tab" data-toggle="tab">Approve articles</a></li>
+            <% else %>
+              <li id="articles-link" class="active"><a tabname="articles" href="#articles-tab" data-toggle="tab">Article submissions</a></li>
             <% end %>
-            <li><a href="#tools-tab" data-toggle="tab">Tools</a></li>
-            <li><a href="#themes-tab" data-toggle="tab">Themes</a></li>
-            <li><a href="#reports-tab" data-toggle="tab">Reports</a></li>
-            <li><a href="#writers-tab" data-toggle="tab">Winning writers</a></li>
-            <li><a href="#chat-tab" data-toggle="tab">Chat</a></li>
-            <li><a href="#analytics-tab" data-toggle="tab">Analytics</a></li>
+            <li><a tabname="tools" href="#tools-tab" data-toggle="tab">Wordpress Addons</a></li>
+            <li><a tabname="reports" href="#reports-tab" data-toggle="tab">Reports</a></li>
+            <li><a tabname="writers" href="#writers-tab" data-toggle="tab">Writers</a></li>
+            <li><a tabname="chat" href="#chat-tab" data-toggle="tab">Chat</a></li>
+            <li><a tabname="analytics" href="#analytics-tab" data-toggle="tab">Analytics</a></li>
           </ul>
         </div>
 
           <div class="tab-content">
 
+            <% if current_user != campaign.user %>
             <div id="articles-tab" class="tab-pane active">
-              <div id="articles">
-                <div id="headline-container">
-                  <h3>Have an article idea?</h3>
+                <div class="subheader">
+                  <h3 style="display:inline-block">Have an article idea?</h3>
                   <button href="#headline-modal" class="btn btn-primary" data-toggle="modal">Submit your headline!</button>
                 </div>
-                <%= distance_of_time_in_words Time.now, campaign.end_date %> left<br/>
+              <div id="articles">
                 <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:760px' %>
                 <%= text_area_tag :'send-area', '', style: 'width:767px;height:225px;display:block' %>
                 <%= text_area_tag :'bio', '', style: 'width:767px;height:75px;display:block' %>
                 <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
               </div>
             </div>
+        <% else %>
                 <% if current_user == campaign.user %>
-                  <div id="approve-tab" class="tab-pane">
+                  <div id="approve-tab" class="tab-pane active">
                       <div id="approve">
                   <div id="unread-articles">
                     <% campaign.headlines.desc(:created_at).each do |headline| %>
@@ -346,11 +384,14 @@
                   </div>
                   </div>
                 <% end %>
+                <% end %>
 
             <div id="tools-tab" class="tab-pane">
+                <div class="subheader"></div>
               <div id="tools">
                 <% if current_user.admin %>
-                  <%= link_to 'Add new', '#new-plugin-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
+                  <%= link_to 'Add new plugin', '#new-plugin-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
+                  <%= link_to 'Add new theme', '#new-theme-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
                 <% end %>
                 <% Plugin.all.each do |plugin| %>
                   <div class="tool" id="plugin<%= plugin.id %>">
@@ -361,14 +402,6 @@
                     <%= link_to 'download', "/wordpress/plugins/#{plugin.filename}" %>
                   </div>
                 <% end %>
-              </div>
-            </div>
-
-            <div id="themes-tab" class="tab-pane">
-                <% if current_user.admin %>
-                  <%= link_to 'Add new', '#new-theme-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
-                <% end %>
-              <div id="themes">
                 <% Theme.all.each do |plugin| %>
                   <div class="tool" id="plugin<%= plugin.id %>">
                     <%= plugin.title %>
@@ -382,6 +415,7 @@
             </div>
 
             <div id="reports-tab" class="tab-pane">
+                <div class="subheader"></div>
               <div id="reports_menu">
                 <div id="devider_line2"></div>
                 <h1><%= campaign_notifications.size %> Reports</h1>
@@ -390,6 +424,7 @@
             </div>
 
             <div id="writers-tab" class="tab-pane">
+                <div class="subheader"></div>
               <div id="winning_writers">
                 <h1 style="display:inline">Writers organized by the best results</h1>
                 <% if current_user == campaign.user %>
@@ -402,6 +437,7 @@
             </div>
 
             <div id="analytics-tab" class="tab-pane">
+                <div class="subheader"></div>
               <div id="analytics">
                 <% articles = campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews) %>
                 <% if articles.count > 0 %>
@@ -418,8 +454,10 @@
 
 
             <div id="chat-tab" class="tab-pane">
+                <div class="subheader"></div>
               <div id="chat">
                 <div id="users">
+                  <div>People in this room</div>
                   <% campaign.subscriptions.each do |user| %>
                     <div class="user" id="user<%= user.id %>"><%= user.name %></div>
                   <% end %>
@@ -447,6 +485,15 @@
 
 <script>
   $(document).ready(function(){
+    $('.nav-tabs li a').click(function(){
+      $('#guide_box').css('display', 'block')
+      $('#guide_box h1').css('display', 'none')
+      $('#guide_box p').css('display', 'none')
+      $('#guide_box .' + $(this).attr('tabname')).css('display', 'block')
+    })
+    $('#guide_box a').click(function(){
+      $('#guide_box').fadeOut('slow')
+    })
     $('#campaign_image').click(function(){
       $('#image-modal').modal()
       $('#image-modal').modal('show')
@@ -526,19 +573,35 @@
       $('#link').attr('readonly', 'true')
     })
 
+    <% if params[:article] %>
+      $.post(
+        '/campaigns/view',
+        { id: '<%= params[:article] %>' },
+        function(rsp) {
+          $('#article-modal').modal()
+          $('#article-modal').modal('show')
+          $('#article-modal h3').text(rsp.title)
+          $('#content').val(rsp.article)
+          $('#bio').val(rsp.bio)
+          $('#article-modal .btn-success').attr('href', '/campaigns/<%=campaign.uuid%>/approve?id=<%=params[:article]%>')
+          $('#article-modal .btn-danger').attr('href', '/campaigns/<%=campaign.uuid%>/deny?id=<%=params[:article]%>')
+        },
+        'json'
+      )
+    <% end %>
+
     $('.view').click(function(){
       $.post(
         '/campaigns/view',
         { id: $(this).attr('aid') },
         function(rsp) {
-          console.log(rsp)
-          $('#approve-tab').removeClass('active')
-          $('#approve-link').removeClass('active')
-          $('#articles-tab').addClass('active')
-          $('#articles-link').addClass('active')
-          $('#title').val(rsp.title)
-          $('.nicEdit-main').first().html(rsp.article)
-          $('.nicEdit-main').last().html(rsp.bio)
+          $('#article-modal').modal()
+          $('#article-modal').modal('show')
+          $('#article-modal h3').text(rsp.title)
+          $('#content').val(rsp.article)
+          $('#bio').val(rsp.bio)
+          $('#article-modal .btn-success').attr('href', '/campaigns/<%=campaign.uuid%>/approve?id=' + $(this).attr('aid'))
+          $('#article-modal .btn-danger').attr('href', '/campaigns/<%=campaign.uuid%>/deny?id=' + $(this).attr('aid'))
         },
         'json'
       )

@@ -4,7 +4,7 @@
   - if notification.comment
     #{user_name} suggests: #{child.message}
   - elsif notification.article
-    #{user_name} wrote: #{link_to child.title, child.url}
+    #{user_name} wrote: #{link_to child.title, "http://thirsty.com/campaigns/#{child.campaign.uuid}?article=#{child.id}"}
   - elsif notification.campaign
     A new campaign has been created! Check it out at http://thirsty.com/campaigns/#{child.uuid}.
   - elsif notification.goal
@@ -13,4 +13,5 @@
       You've approved #{pluralize child.num, child.type.to_s} within this last month :)
     - elsif child.type == :idea
       You've gotten #{pluralize child.num, child.type.to_s} within this last month :)
+  #{distance_of_time_in_words Time.now, child.created_at} ago
   #devider_line
