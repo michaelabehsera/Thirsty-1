@@ -37,6 +37,6 @@ class Article
   end
 
   def parse_content
-    self.content = self.content.gsub('<b>', '<strong>').gsub('<i>', '<em>')
+    self.content = self.content.gsub('<b>', '<strong>').gsub('</b>', '</strong>').gsub('<i>', '<em>').gsub('</i>', '</em>')
   end
 end

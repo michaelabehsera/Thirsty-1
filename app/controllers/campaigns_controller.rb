@@ -1,4 +1,5 @@
 require 'atom/pub'
+require 'xmlrpc/client'
 
 class CampaignsController < ApplicationController
 
@@ -118,8 +119,8 @@ class CampaignsController < ApplicationController
 
   def submit
     user = User.find(params[:id])
-    user.update_attribute(:bio, params[:bio]) unless user.bio
-    article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio])
+    user.update_attribute(:bio, params[:bio])
+    article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
     article.user = user
     if article.save
       article.create_notification
@@ -164,22 +165,27 @@ class CampaignsController < ApplicationController
   end
 
   def approve
-    article = Article.find(params[:id])
-    blog = Wordpress::Blog.new(campaign.url,campaign.username,campaign.pass)
-
-    #post_cat = {:term => "Category", :label => "Category", :scheme => "category"}
-    #blog.add_category post_cat unless blog.category_exists? post_cat
-
-    post = Atom::Entry.new do |post|
-      post.title = article.title
-      post.authors << Atom::Person.new(:name => article.user.name)
-      post.updated = article.created_at
-      post.content = Atom::Content::Html.new (article.content + '<br/><br/><br/>' + article.bio)
+    article = Article.find params[:id]
+    post = {
+      'title' => article.title,
+      'description' => article.content,
+      'mt_keywords' => article.tags.split(/, ?/)
+    }
+    connection = XMLRPC::Client.new(campaign.url.gsub('http://', '').gsub('www.', ''), '/xmlrpc.php')
+    id = connection.call(
+      'metaWeblog.newPost',
+      1,
+      campaign.username,
+      campaign.pass,
+      post,
+      true
+    )
+    tries = 0
+    while !article.url && tries < 5
+      tries = tries + 1
+      article.update_attribute(:url, connection.call('metaWeblog.getPost',id,campaign.username,campaign.pass)['link'])
     end
-
-    rsp = blog.publish_post post
-    article.update_attribute(:url, rsp.id)
-    if article.save && article.url
+    if article.save
       article.update_attribute(:approved, true)
       goal = campaign.goals.where(type: :article).first
       goal.update_attribute(:achieved, true) if goal && campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
@@ -199,8 +205,9 @@ class CampaignsController < ApplicationController
     url = params[:url]
     url = 'http://' + url if url[0..6] != 'http://'
     begin
-      Atom::Pub::Collection.new(href: url + '/wp-app.php/posts').publish(Atom::Entry.new, user: params[:user], pass: params[:pass])
+      Atom::Pub::Collection.new(href: url + '/wp-app.php/collection').publish(Atom::Entry.new, user: params[:user], pass: params[:pass])
     rescue Exception => e
+      binding.pry
       @wordpress = (e.message =~ /Internal/ && true || false)
     end
     if @wordpress

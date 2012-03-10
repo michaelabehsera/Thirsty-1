@@ -6,7 +6,7 @@
 
   <div class="modal-body">
       <%= text_area_tag :content, '', placeholder: 'title', style: 'width:98%;height:200px' %>
-      <%= text_area_tag :bio, '', placeholder: 'description', style: 'width:98%;height:100px' %>
+      <%= text_area_tag :abio, '', placeholder: 'description', style: 'width:98%;height:100px' %>
   </div>
 
   <div class="modal-footer">
@@ -338,6 +338,7 @@
                 <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:760px' %>
                 <%= text_area_tag :'send-area', '', style: 'width:767px;height:225px;display:block' %>
                 <%= text_area_tag :'bio', '', style: 'width:767px;height:75px;display:block' %>
+                <%= text_field_tag :tags, '', style: 'width:760px', placeholder: 'Comma-separated list of tags' %>
                 <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
               </div>
             </div>
@@ -582,7 +583,7 @@
           $('#article-modal').modal('show')
           $('#article-modal h3').text(rsp.title)
           $('#content').val(rsp.article)
-          $('#bio').val(rsp.bio)
+          $('#abio').val(rsp.bio)
           $('#article-modal .btn-success').attr('href', '/campaigns/<%=campaign.uuid%>/approve?id=<%=params[:article]%>')
           $('#article-modal .btn-danger').attr('href', '/campaigns/<%=campaign.uuid%>/deny?id=<%=params[:article]%>')
         },
@@ -611,12 +612,12 @@
     new nicEditor().panelInstance('bio')
     $('.nicEdit-main').parent().css('background-color', 'white')
     $('.nicEdit-main').first().html('article')
-    $('.nicEdit-main').last().html('<%= current_user.bio && current_user.bio.html_safe || "bio" %>')
+    $('.nicEdit-main').last().html('<%= current_user.bio && escape_javascript(current_user.bio).html_safe || "bio" %>')
     $('#send').click(function(){
       $(this).text('Submitting..')
       $.post(
         '/campaigns/<%= campaign.uuid %>/submit',
-        { id: '<%= current_user.id %>', content: $('.nicEdit-main').first().html(), title: $('#title').val(), bio: $('.nicEdit-main').last().html() },
+        { id: '<%= current_user.id %>', content: $('.nicEdit-main').first().html(), tags: $('#tags').val(), title: $('#title').val(), bio: $('.nicEdit-main').last().html() },
         function(rsp){
           if (rsp.success == true) {
             $('#title').val('')
