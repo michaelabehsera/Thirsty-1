@@ -207,7 +207,6 @@ class CampaignsController < ApplicationController
     begin
       Atom::Pub::Collection.new(href: url + '/wp-app.php/collection').publish(Atom::Entry.new, user: params[:user], pass: params[:pass])
     rescue Exception => e
-      binding.pry
       @wordpress = (e.message =~ /Internal/ && true || false)
     end
     if @wordpress
