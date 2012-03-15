@@ -209,6 +209,7 @@ class CampaignsController < ApplicationController
     #rescue Exception => e
     #  @wordpress = (e.message =~ /Internal/ && true || false)
     #end
+    @wordpress = true
     if @wordpress
       @campaign = Campaign.new(uuid: UUID.new.generate)
       @campaign.user = current_user
