@@ -1,4 +1,3 @@
-require 'atom/pub'
 require 'xmlrpc/client'
 
 class CampaignsController < ApplicationController
@@ -203,13 +202,13 @@ class CampaignsController < ApplicationController
 
   def create
     url = params[:url]
-    url = 'http://' + url if url[0..6] != 'http://'
-    #begin
-    #  Atom::Pub::Collection.new(href: url + '/wp-app.php/collection').publish(Atom::Entry.new, user: params[:user], pass: params[:pass])
-    #rescue Exception => e
-    #  @wordpress = (e.message =~ /Internal/ && true || false)
-    #end
     @wordpress = true
+    begin
+      connection = XMLRPC::Client.new(url.gsub('http://', '').gsub('www.', ''), '/xmlrpc.php')
+      connection.call('wp.getUsersBlogs', params[:user], params[:pass])
+    rescue Exception
+      @wordpress = false
+    end
     if @wordpress
       @campaign = Campaign.new(uuid: UUID.new.generate)
       @campaign.user = current_user
