@@ -52,6 +52,11 @@ class CampaignsController < ApplicationController
     redirect_to '/signin' unless logged_in?
   end
 
+  def upgrade
+    Stripe::Customer.retrieve(campaign.stripe_id).update_subscription(plan: params[:plan])
+    respond_to :js
+  end
+
   def headline
     headline = campaign.headlines.new(title: params[:headline])
     headline.user = current_user
@@ -88,7 +93,10 @@ class CampaignsController < ApplicationController
   end
 
   def update_desc
-    campaign.update_attribute(:notes, params[:notes])
+    campaign.tags.each { |t| campaign.tags.delete(t) }
+    params[:tags].split(/, ?/).each do |tag|
+      campaign.tags << Tag.find_or_create_by(name: tag)
+    end
     respond_to :js
   end
 
@@ -196,7 +204,7 @@ class CampaignsController < ApplicationController
   end
 
   def paid
-    campaign.update_attribute(:paid, true)
+    campaign.update_attributes(paid: true, stripe_id: params[:customer_id])
     redirect_to "/campaigns/#{campaign.uuid}"
   end
 
@@ -220,6 +228,9 @@ class CampaignsController < ApplicationController
       @campaign.pass = params[:pass]
       @campaign.analytics_id = params[:aid]
       @campaign.guidelines = params[:guidelines]
+      params[:tags].split(/, ?/).each do |tag|
+        @campaign.tags << Tag.find_or_create_by(name: tag)
+      end
       case @campaign.cocktail.price
         when 149
           @campaign.goals.new(num: 3, type: :article)

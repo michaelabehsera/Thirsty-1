@@ -1,3 +1,21 @@
+<div id="upgrade-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Upgrade Your Plan</h3>
+  </div>
+  <div class="modal-body">
+    <select id="plan">
+      <% Cocktail.all.each do |cocktail| %>
+        <option value="thirsty_<%= cocktail.price %>"><%= cocktail.title.gsub('<h2>', '').gsub('</h2>', '') %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <%= link_to 'Upgrade', "/campaigns/#{campaign.uuid}/upgrade", remote: true, class: 'accept btn btn-success' %>
+  </div>
+</div>
+
 <div id="article-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -61,12 +79,12 @@
 <div id="desc-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
-    <h3>Edit Campaign Description</h3>
+    <h3>Edit Campaign Tags</h3>
   </div>
 
   <div class="modal-body">
     <%= form_tag "/campaigns/#{campaign.uuid}/update_desc", remote: true do %>
-      <%= text_area_tag :notes, campaign.notes %>
+      <%= text_field_tag :tags, campaign.tags %>
     <% end %>
   </div>
 
@@ -222,6 +240,7 @@
       <div id="wrap">
           <div id="company_menu">
               <h1>Campaign: <%= campaign.cocktail.title.html_safe %></h1>
+              <% if campaign.stripe_id %><a href="#upgrade-modal" data-toggle="modal" class="btn btn-primary">Upgrade</a><% end %>
           </div>
           <div class="tabbable">
           <div id="menu_one">
@@ -249,7 +268,7 @@
                 <% end %>
                 </div>
                 <h1><%= campaign.title %></h1>
-                <p>Company Notes: <%= campaign.notes %></p>
+                <p>Tags For This Campaign: <%= campaign.tags.map{|t|t.name}.join(', ') %></p>
                 <% if current_user == campaign.user %>
                   <%= link_to 'edit', '#desc-modal', :'data-toggle' => 'modal' %>
                 <% end %>
