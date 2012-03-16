@@ -193,6 +193,22 @@ class CampaignsController < ApplicationController
       article.update_attribute(:url, connection.call('metaWeblog.getPost',id,campaign.username,campaign.pass)['link'])
     end
     if article.save
+      Pony.mail(
+        to: article.user.email,
+        from: 'mike@thirsty.com',
+        subject: 'Your article has been approved!',
+        body: "Your \"#{article.title}\" article has been approved!",
+        via: :smtp,
+        via_options: {
+          address: 'smtp.gmail.com',
+          port: '587',
+          enable_starttls_auto: true,
+          user_name: 'mike@thirsty.com',
+          password: 'AAA123321',
+          authentication: :plain,
+          domain: 'thirsty.com'
+        }
+      )
       article.update_attribute(:approved, true)
       goal = campaign.goals.where(type: :article).first
       goal.update_attribute(:achieved, true) if goal && campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
