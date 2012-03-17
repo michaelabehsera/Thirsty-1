@@ -1,2 +1,3 @@
 $('#article-modal').modal('hide')
-$('#article<%article.id%> .accept').attr('href', 'javascript:void(0)').text('Accepted!')
+$('#article-modal .btn-success').text('Accept')
+$('#article<%=@article.id%> .accept').attr('href', 'javascript:void(0)').text('Accepted!')

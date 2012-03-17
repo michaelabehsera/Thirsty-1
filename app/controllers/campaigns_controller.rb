@@ -52,6 +52,13 @@ class CampaignsController < ApplicationController
     redirect_to '/signin' unless logged_in?
   end
 
+  def help
+    help = campaign.helps.new
+    help.user = current_user
+    help.save
+    render nothing: true
+  end
+
   def upgrade
     Stripe::Customer.retrieve(campaign.stripe_id).update_subscription(plan: params[:plan])
     respond_to :js
@@ -224,13 +231,22 @@ class CampaignsController < ApplicationController
     redirect_to "/campaigns/#{campaign.uuid}"
   end
 
+  def update
+    campaign.update_attributes params[:campaign]
+    campaign.tags.each { |t| campaign.tags.delete(t) }
+    params[:tags].split(/, ?/).each do |tag|
+      campaign.tags << Tag.find_or_create_by(name: tag)
+    end
+    render nothing: true
+  end
+
   def create
     url = params[:url]
     @wordpress = true
     begin
-      connection = XMLRPC::Client.new(url.gsub('http://', '').gsub('www.', ''), '/xmlrpc.php')
+      connection = XMLRPC::Client.new(url.gsub('http://', ''), '/xmlrpc.php')
       connection.call('wp.getUsersBlogs', params[:user], params[:pass])
-    rescue Exception
+    rescue Exception => e
       @wordpress = false
     end
     if @wordpress
@@ -239,7 +255,6 @@ class CampaignsController < ApplicationController
       @campaign.cocktail = Cocktail.find(params[:id])
       @campaign.title = params[:name]
       @campaign.url = url
-      @campaign.notes = params[:notes]
       @campaign.username = params[:user]
       @campaign.pass = params[:pass]
       @campaign.analytics_id = params[:aid]

@@ -16,6 +16,31 @@
   </div>
 </div>
 
+<div id="update-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Update Company Info</h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_for :campaign, url: "/campaigns/#{campaign.uuid}/update", html: { remote: true } do |f| %>
+      <%= f.text_field :title, placeholder: 'Company name', autocomplete: 'off', value: campaign.title %>
+      <%= f.text_field :url, placeholder: 'Blog URL', autocomplete: 'off', value: campaign.url %>
+      <%= f.text_field :username, placeholder: 'Wordpress username', autocomplete: 'off', value: campaign.username %>
+      <%= f.password_field :pass, placeholder: 'Wordpress password', autocomplete: 'off', value: campaign.pass %>
+      <%= f.text_field :analytics_id, placeholder: 'Google analytics site id (UA-XXXXXXX-X)', autocomplete: 'off', value: campaign.analytics_id %>
+      <%= text_field_tag :tags, '', placeholder: 'Comma-separated tags describing your campaign', autocomplete: 'off', value: campaign.tags.map{|t|t.name}.join(', ') %>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <button class="btn btn-success" data-dismiss="modal" onclick="javascript:$('#update-modal form').submit()">Update</button>
+  </div>
+</div>
+
 <div id="article-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -23,14 +48,14 @@
   </div>
 
   <div class="modal-body">
-      <%= text_area_tag :content, '', placeholder: 'title', style: 'width:98%;height:200px' %>
-      <%= text_area_tag :abio, '', placeholder: 'description', style: 'width:98%;height:100px' %>
+      <div id="article-content"></div>
+      <div id="article-bio"></div>
   </div>
 
   <div class="modal-footer">
     <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
     <%= link_to 'Deny', '', remote: true, class: 'deny btn btn-danger' %>
-    <%= link_to 'Accept', '', remote: true, class: 'accept btn btn-success' %>
+    <%= link_to 'Accept', '', remote: true, class: 'accept btn btn-success', onclick: "javascript:$('#article-modal .btn-success').text('Accepting..')" %>
   </div>
 </div>
 
@@ -239,7 +264,9 @@
 <%= render partial: 'site/header' %>
       <div id="wrap">
           <div id="company_menu">
-              <h1>Campaign: <%= campaign.cocktail.title.html_safe %></h1>
+              <h1>Campaign Type: <%= campaign.cocktail.title %>
+              <a href="#update-modal" data-toggle="modal">Update Campaign Info</a>
+              </h1>
               <% if campaign.stripe_id %><a href="#upgrade-modal" data-toggle="modal" class="btn btn-primary">Upgrade</a><% end %>
           </div>
           <div class="tabbable">
@@ -305,24 +332,49 @@
           </div>
           </div>
           <div style="margin-bottom:10px" id="timer"><h1><%= distance_of_time_in_words Time.now, campaign.end_date %> left</h1></div>
-
-          <div id="guide_box">
-            <a href="javascript:void(0)" style="float:right"></a>
-            <h1 class="articles">articles</h1>
-            <h1 class="approve" style="display:none">approve</h1>
-            <h1 class="tools" style="display:none">addons</h1>
-            <h1 class="reports" style="display:none">reports</h1>
-            <h1 class="writers" style="display:none">writers</h1>
-            <h1 class="chat" style="display:none">chat</h1>
-            <h1 class="analytics" style="display:none">analytics</h1>
-            <p class="articles">sup</p>
-            <p class="approve" style="display:none">sup</p>
-            <p class="tools" style="display:none">sup</p>
-            <p class="reports" style="display:none">sup</p>
-            <p class="writers" style="display:none">sup</p>
-            <p class="chat" style="display:none">sup</p>
-            <p class="analytics" style="display:none">sup</p>
+          <% help = current_user.helps.where(campaign_id: campaign.id).first %>
+          <% unless help && help.inactive %>
+          <div id="guide_box" class="carousel" style="position:relative;">
+            <div class="carousel-inner">
+              <% if current_user == campaign.user %>
+                <div class="active item" selector="approve">
+                  <h1>Approve Articles</h1>
+                  <p>sup</p>
+                </div>
+              <% else %>
+                <div class="active item" selector="articles">
+                  <h1>Articles</h1>
+                  <p>sup</p>
+                </div>
+              <% end %>
+              <div class="item" selector="tools">
+                <h1>Plugins</h1>
+                <p>fool</p>
+              </div>
+              <div class="item" selector="reports">
+                <h1>Reports</h1>
+                <p>fool</p>
+              </div>
+              <div class="item" selector="chat">
+                <h1>Chat</h1>
+                <p>fool</p>
+              </div>
+              <div class="item" selector="writers">
+                <h1>Writers</h1>
+                <p>fool</p>
+              </div>
+              <div class="item" selector="analytics">
+                <h1>Analytics</h1>
+                <p>fool</p>
+              </div>
+            </div>
+            <div style="position:absolute;right:0;bottom:-40px">
+              <a class="blue_button close_button" href="javascript:void(0)">Close</a>
+              <a class="blue_button" href="#guide_box" data-slide="prev">Previous</a>
+              <a style="margin-left:5px" class="blue_button" href="#guide_box" data-slide="next">Next</a>
+            </div>
           </div>
+          <% end %>
 
        <div class="tabbable">
 
@@ -407,7 +459,6 @@
                 <% end %>
 
             <div id="tools-tab" class="tab-pane">
-                <div class="subheader"></div>
               <div id="tools">
                 <% if current_user.admin %>
                   <%= link_to 'Add new plugin', '#new-plugin-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
@@ -435,7 +486,6 @@
             </div>
 
             <div id="reports-tab" class="tab-pane">
-                <div class="subheader"></div>
               <div id="reports_menu">
                 <div id="devider_line2"></div>
                 <h1><%= campaign_notifications.size %> Reports</h1>
@@ -444,7 +494,6 @@
             </div>
 
             <div id="writers-tab" class="tab-pane">
-                <div class="subheader"></div>
               <div id="winning_writers">
                 <h1 style="display:inline">Writers organized by the best results</h1>
                 <% if current_user == campaign.user %>
@@ -457,7 +506,6 @@
             </div>
 
             <div id="analytics-tab" class="tab-pane">
-                <div class="subheader"></div>
               <div id="analytics">
                 <% articles = campaign.articles.where(month: campaign.month, approved: true).desc(:unique_pageviews) %>
                 <% if articles.count > 0 %>
@@ -474,7 +522,6 @@
 
 
             <div id="chat-tab" class="tab-pane">
-                <div class="subheader"></div>
               <div id="chat">
                 <div id="users">
                   <div>People in this room</div>
@@ -506,13 +553,20 @@
 <script>
   $(document).ready(function(){
     $('.nav-tabs li a').click(function(){
-      $('#guide_box').css('display', 'block')
-      $('#guide_box h1').css('display', 'none')
-      $('#guide_box p').css('display', 'none')
-      $('#guide_box .' + $(this).attr('tabname')).css('display', 'block')
+      $('.carousel-inner div').removeClass('active')
+      $('.carousel-inner div[selector="' + $(this).attr('tabname') + '"]').addClass('active')
     })
-    $('#guide_box a').click(function(){
+    $('#guide_box .close_button').click(function(){
       $('#guide_box').fadeOut('slow')
+      $.post('/campaigns/<%=campaign.uuid%>/help')
+    })
+    $('#guide_box').bind('slide', function(){
+      setTimeout(function(){
+        $('.nav-tabs li').removeClass('active')
+        $('.tab-content').children('div').removeClass('active')
+        $('.nav-tabs a[tabname="' + $('#guide_box .active').attr('selector') + '"]').parent().addClass('active')
+        $('.tab-content #' + $('#guide_box .active').attr('selector') + '-tab').addClass('active')
+      }, 750)
     })
     $('#campaign_image').click(function(){
       $('#image-modal').modal()
@@ -601,8 +655,8 @@
           $('#article-modal').modal()
           $('#article-modal').modal('show')
           $('#article-modal h3').text(rsp.title)
-          $('#content').val(rsp.article)
-          $('#abio').val(rsp.bio)
+          $('#article-content').html(rsp.article)
+          $('#article-bio').html(rsp.bio)
           $('#article-modal .btn-success').attr('href', '/campaigns/<%=campaign.uuid%>/approve?id=<%=params[:article]%>')
           $('#article-modal .btn-danger').attr('href', '/campaigns/<%=campaign.uuid%>/deny?id=<%=params[:article]%>')
         },
@@ -611,17 +665,18 @@
     <% end %>
 
     $('.view').click(function(){
+      id = $(this).attr('aid')
       $.post(
         '/campaigns/view',
-        { id: $(this).attr('aid') },
+        { id: id },
         function(rsp) {
           $('#article-modal').modal()
           $('#article-modal').modal('show')
           $('#article-modal h3').text(rsp.title)
-          $('#content').val(rsp.article)
-          $('#bio').val(rsp.bio)
-          $('#article-modal .btn-success').attr('href', '/campaigns/<%=campaign.uuid%>/approve?id=' + $(this).attr('aid'))
-          $('#article-modal .btn-danger').attr('href', '/campaigns/<%=campaign.uuid%>/deny?id=' + $(this).attr('aid'))
+          $('#article-content').html(rsp.article)
+          $('#article-bio').html(rsp.bio)
+          $('#article-modal .btn-success').attr('href', '/campaigns/<%=campaign.uuid%>/approve?id=' + id)
+          $('#article-modal .btn-danger').attr('href', '/campaigns/<%=campaign.uuid%>/deny?id=' + id)
         },
         'json'
       )

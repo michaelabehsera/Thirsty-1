@@ -35,6 +35,7 @@ class Campaign
   has_one :notification
   has_and_belongs_to_many :marketers, class_name: 'User', inverse_of: :active_campaigns
   has_and_belongs_to_many :tags
+  has_many :helps
   has_many :headlines
   has_many :chats
   has_many :goals
