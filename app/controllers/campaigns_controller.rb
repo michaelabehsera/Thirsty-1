@@ -232,12 +232,12 @@ class CampaignsController < ApplicationController
   end
 
   def update
+    campaign.tags.each { |t| campaign.tags.delete(t) }
     campaign.update_attributes params[:campaign]
     campaign.tags.each { |t| campaign.tags.delete(t) }
     params[:tags].split(/, ?/).each do |tag|
       campaign.tags << Tag.find_or_create_by(name: tag)
     end
-    render nothing: true
   end
 
   def create

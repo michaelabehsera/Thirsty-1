@@ -21,7 +21,7 @@
     <link href='http://fonts.googleapis.com/css?family=Signika+Negative|Acme|Ropa+Sans|Quicksand:400,700|Gudea:400,700|Ubuntu+Condensed|Homenaje|Balthazar|Terminal+Dosis:400,700|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>    
   %body
     = yield
-    - if request.path != '/'
+    - unless request.path == '/' && !current_user || request.path =~ /\/profile/
       #devider_footer
       #footer-bottom-bar
         #footer_nav

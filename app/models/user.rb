@@ -7,6 +7,8 @@ class User
   is_gravtastic
   gravtastic size: 35
 
+  before_create :preset_background
+
   field :first_name, type: String
   field :last_name, type: String
   field :username, type: String
@@ -16,6 +18,7 @@ class User
   field :tags, type: String
   field :title, type: String
   field :admin, type: Boolean, default: false
+  field :preset_image, type: String
 
   mount_uploader :avatar, AvatarUploader
   mount_uploader :background, BackgroundUploader
@@ -35,6 +38,11 @@ class User
   has_many :comments
   has_many :articles
   has_many :bits
+
+  def preset_background
+    rsp = HTTParty.get 'http://colourlovers.com/api/patterns/top'
+    self.preset_image = rsp['patterns']['pattern'].shuffle.first['imageUrl']
+  end
 
   def name
     self.first_name.to_s + ' ' + self.last_name.to_s

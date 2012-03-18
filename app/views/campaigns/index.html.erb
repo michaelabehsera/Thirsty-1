@@ -341,12 +341,6 @@
                   <h1>Approve Articles</h1>
                   <p>sup</p>
                 </div>
-              <% else %>
-                <div class="active item" selector="articles">
-                  <h1>Articles</h1>
-                  <p>sup</p>
-                </div>
-              <% end %>
               <div class="item" selector="tools">
                 <h1>Plugins</h1>
                 <p>fool</p>
@@ -355,6 +349,12 @@
                 <h1>Reports</h1>
                 <p>fool</p>
               </div>
+              <% else %>
+                <div class="active item" selector="articles">
+                  <h1>Articles</h1>
+                  <p>sup</p>
+                </div>
+              <% end %>
               <div class="item" selector="chat">
                 <h1>Chat</h1>
                 <p>fool</p>
@@ -386,11 +386,11 @@
           <ul class="nav nav-tabs" data-tabs="tabs">
             <% if current_user == campaign.user %>
               <li id="approve-link" class="active"><a tabname="approve" href="#approve-tab" data-toggle="tab">Approve articles</a></li>
+            <li><a tabname="tools" href="#tools-tab" data-toggle="tab">Wordpress Addons</a></li>
+            <li><a tabname="reports" href="#reports-tab" data-toggle="tab">Reports</a></li>
             <% else %>
               <li id="articles-link" class="active"><a tabname="articles" href="#articles-tab" data-toggle="tab">Article submissions</a></li>
             <% end %>
-            <li><a tabname="tools" href="#tools-tab" data-toggle="tab">Wordpress Addons</a></li>
-            <li><a tabname="reports" href="#reports-tab" data-toggle="tab">Reports</a></li>
             <li><a tabname="writers" href="#writers-tab" data-toggle="tab">Writers</a></li>
             <li><a tabname="chat" href="#chat-tab" data-toggle="tab">Chat</a></li>
             <li><a tabname="analytics" href="#analytics-tab" data-toggle="tab">Analytics</a></li>
