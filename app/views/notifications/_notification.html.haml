@@ -6,7 +6,10 @@
   - elsif notification.article
     #{user_name} wrote: #{link_to child.title, "http://thirsty.com/campaigns/#{child.campaign.uuid}?article=#{child.id}"}
   - elsif notification.campaign
-    A new campaign has been created! #{link_to 'Check it out.', "http://thirsty.com/campaigns/#{child.uuid}"}
+    - if defined?(campaign) && notification.campaign == campaign
+      Your campaign has been created!
+    - else
+      A new campaign has been created! #{link_to 'Check it out.', "http://thirsty.com/campaigns/#{child.uuid}"}
   - elsif notification.goal
     A goal has been reached!
     - if child.type == :article
