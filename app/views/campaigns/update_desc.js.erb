@@ -1,4 +1,4 @@
 $('#desc-modal').modal()
 $('#desc-modal').modal('hide')
 $('#desc-modal .btn-success').text('Submit')
-$('#info-tab p').html('Company Notes: <%= campaign.notes %>')
+$('#info-tab p').html('Tags For This Campaign: <%= campaign.tags.map{|t|t.name}.join(', ') %>')

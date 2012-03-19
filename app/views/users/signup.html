@@ -18,7 +18,7 @@
             </script>
           <% end %>
         <% end %>
-         <%= form_for :user, url: '/users/create' do |f| %>
+        <%= form_for :user, url: '/users/create', html: { id: 'user_form' } do |f| %>
            <p>Username</p>
            <%= f.text_field :username, placeholder: 'Username', autocomplete: 'off' %>
            <p>First Name</p>
@@ -29,6 +29,8 @@
            <%= f.password_field :password, placeholder: 'Password', autocomplete: 'off' %>
            <p>Email Address</p>
            <%= f.email_field :email, placeholder: 'Email', autocomplete: 'off' %>
+           <p>Sign up as a:</p>
+           <%= f.select(:type, [['Marketer', :marketer],['Business', :business]], { include_blank: true }) %>
            <br />
   <button class="button_submit_page" style="margin:10px -2px 0 9px">Sign up</button>
   <a href="/signin" style="margin-top:21px;">Have an account? Sign in</a>
@@ -41,3 +43,11 @@
 
 
   </div><!--End of wrap-->
+
+<script>
+  $('#user_form').validate({
+    rules: {
+      'user[type]': { required: true }
+    }
+  })
+</script>

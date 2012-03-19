@@ -153,7 +153,6 @@ img {
 }
 
 #signup input {
-    float:left;
     background-color:#f5f5f5;
     border: 1px solid #d1d1d1;
     color: #8f8f8f;
@@ -181,7 +180,6 @@ img {
 }
 
 #signup p {
-    float:left;
     color:#525252;
     font-size:13px;
     margin:10px 0 -3px 1px;

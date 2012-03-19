@@ -3,6 +3,10 @@
   <style>
     body { background:url(<%= user.background %>);background-size:100% }
   </style>
+<% else %>
+  <style>
+    body { background:url(<%= user.preset_image %>) }
+  </style>
 <% end %>
 <div id="profile">
             <h1><%= user.name %></h1>

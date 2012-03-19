@@ -1,8 +1,10 @@
 <%= render partial: 'site/header' %>
 <div id="wrap">
+          <% if current_user.type == :buiness %>
           <div id="creatives_count">
             <p>Creatives at your disposal / <span><%= User.all.count %></span>
           </div>
+          <% end %>
           <div class="your_campaigns">
           <div id="devider_line2"></div>
           <h1>Active Campaigns:</h1>
@@ -14,26 +16,15 @@
 
             <% current_user.active_campaigns.where(paid: true).each do |campaign| %>
 
-              <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %>
-              <% campaign.tags.each do |tag| %>
-                <span style="float:right" class="tags"><%= tag.name %>
-                <% if tag == campaign.tags.last %>
-                   <%= '.' %>
-                <% else %>
-                   <%= ', ' %>
-               <% end %></span>
-              <% end %>
-               </p></a>
+              <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %><% campaign.tags.reverse.each do |tag| %><span style="float:right" class="tags"><%= tag.name %><% if tag == campaign.tags.last %><%= '.' %><% else %><%= ',&nbsp;'.html_safe %><% end %></span><% end %></p></a>
               <div id="devider_line"></div>
             <% end %>
           <% end %>
+          <% if current_user.type == :marketer %>
           <div id="devider_end2"></div>
           <div class="your_campaigns">
           <div id="devider_line2"></div>
           <h1 style="display:inline">Available Campaigns:</h1>
-          <% if current_user.type != :marketer %>
-          <%= link_to 'Request Notification for New Campaigns', '/site/notify', remote: true, class: 'blue_button', style: 'float:right', id: 'request' %>
-          <% end %>
           </div>
           <div class="personal_projects">
 
@@ -45,6 +36,7 @@
             <% end %>
             <% end %>
 
+          </div>
   </div>
-  </div>
+      <% end %>
   </div>

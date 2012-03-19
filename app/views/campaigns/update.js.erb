@@ -1,0 +1,2 @@
+$('#info-tab p').html('Tags For This Campaign: <%= campaign.tags.map{|t|t.name}.join(', ') %>')
+$('#info-tab h1').text('<%= campaign.title %>')
