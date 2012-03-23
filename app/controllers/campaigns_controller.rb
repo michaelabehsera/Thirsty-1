@@ -200,6 +200,7 @@ class CampaignsController < ApplicationController
       article.update_attribute(:url, connection.call('metaWeblog.getPost',id,campaign.username,campaign.pass)['link'])
     end
     if article.save
+      Stalker.enqueue 'analytics.send', { id: article.id }, ttr: 999
       Pony.mail(
         to: article.user.email,
         from: 'mike@thirsty.com',
@@ -284,6 +285,22 @@ class CampaignsController < ApplicationController
           @campaign.goals.new(num: 25000, type: :traffic)
       end
       if @campaign.save
+        Pony.mail(
+          to: @campaign.user.email,
+          from: 'mike@thirsty.com',
+          subject: 'Thanks for signing up!',
+          body: "Thanks for signing up with Thirsty!",
+          via: :smtp,
+          via_options: {
+            address: 'smtp.gmail.com',
+            port: '587',
+            enable_starttls_auto: true,
+            user_name: 'mike@thirsty.com',
+            password: 'AAA123321',
+            authentication: :plain,
+            domain: 'thirsty.com'
+          }
+        )
         @campaign.create_notification
         current_user.active_campaigns << @campaign
         @campaign.articles.each do |article|

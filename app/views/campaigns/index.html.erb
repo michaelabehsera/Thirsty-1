@@ -296,7 +296,7 @@
                 </div>
                 <h1><%= campaign.title %></h1>
                 <p>Tags For This Campaign: <%= campaign.tags.map{|t|t.name}.join(', ') %></p>
-                <% if current_user == campaign.user %>
+                <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                   <%= link_to 'edit', '#desc-modal', :'data-toggle' => 'modal' %>
                 <% end %>
               </div>
@@ -304,7 +304,7 @@
             <div id="guidelines-tab" class="tab-pane">
               <div id="guidelines">
                 <p><%= campaign.guidelines %></p>
-                <% if current_user == campaign.user %>
+                <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                   <%= link_to 'edit', '#guidelines-modal', :'data-toggle' => 'modal' %>
                 <% end %>
               </div>
@@ -336,7 +336,7 @@
           <% unless help && help.inactive %>
           <div id="guide_box" class="carousel" style="position:relative;">
             <div class="carousel-inner">
-              <% if current_user == campaign.user %>
+              <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                 <div class="active item" selector="approve">
                   <h1>Approve Articles</h1>
                   <p>sup</p>
@@ -384,11 +384,12 @@
 
 
           <ul class="nav nav-tabs" data-tabs="tabs">
-            <% if current_user == campaign.user %>
+            <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
               <li id="approve-link" class="active"><a tabname="approve" href="#approve-tab" data-toggle="tab">Approve articles</a></li>
-            <li><a tabname="tools" href="#tools-tab" data-toggle="tab">Wordpress Addons</a></li>
-            <li><a tabname="reports" href="#reports-tab" data-toggle="tab">Reports</a></li>
-            <% else %>
+              <li><a tabname="tools" href="#tools-tab" data-toggle="tab">Wordpress Addons</a></li>
+              <li><a tabname="reports" href="#reports-tab" data-toggle="tab">Reports</a></li>
+            <% end %>
+            <% if current_user != campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
               <li id="articles-link" class="active"><a tabname="articles" href="#articles-tab" data-toggle="tab">Article submissions</a></li>
             <% end %>
             <li><a tabname="writers" href="#writers-tab" data-toggle="tab">Writers</a></li>
@@ -399,7 +400,7 @@
 
           <div class="tab-content">
 
-            <% if current_user != campaign.user %>
+            <% if current_user != campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
             <div id="articles-tab" class="tab-pane active">
                 <div class="subheader">
                   <h3 style="display:inline-block">Have an article idea?</h3>
@@ -413,8 +414,8 @@
                 <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
               </div>
             </div>
-        <% else %>
-                <% if current_user == campaign.user %>
+        <% end %>
+        <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                   <div id="approve-tab" class="tab-pane active">
                       <div id="approve">
                   <div id="unread-articles">
@@ -455,7 +456,6 @@
                   </div>
                   </div>
                   </div>
-                <% end %>
                 <% end %>
 
             <div id="tools-tab" class="tab-pane">
@@ -637,8 +637,17 @@
 
     $('#chat_form').submit(function(){
       var message = $('#message').val()
+      date = new Date()
+      hour = date.getHours().toString()
+      minute = date.getMinutes()
+      if (minute < 10) {
+        minute = '0' + minute.toString()
+      } else {
+        minute = minute.toString()
+      }
+      timestamp = hour + ':' + minute
       if (message != '') {
-        $('#chat_messages').append(new_message(message, '<%= current_user.name %>', $.format.date(new Date(), 'HH:mm')))
+        $('#chat_messages').append(new_message(message, '<%= current_user.name %>', timestamp))
         $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
       }
     })
@@ -711,3 +720,18 @@
     })
   })
 </script>
+
+<% if params[:article] %>
+  <script>
+      $.post(
+        '/campaigns/analytics',
+        { id: $(this).attr('aid') },
+        function(rsp){
+          $('#analytics-modal .modal-body').html(rsp)
+          $('#analytics-modal').modal()
+          $('#analytics-modal').modal('show')
+        },
+        'html'
+      )
+  </script>
+<% end %>

@@ -1,6 +1,6 @@
 <%= render partial: 'site/header' %>
 <div id="wrap">
-          <% if current_user.type == :buiness %>
+          <% if current_user.type == :business || current_user.email == 'michaelabehsera@gmail.com' %>
           <div id="creatives_count">
             <p>Creatives at your disposal / <span><%= User.all.count %></span>
           </div>

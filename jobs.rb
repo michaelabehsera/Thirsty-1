@@ -24,6 +24,31 @@ job 'theme.upload' do |args|
   end
 end
 
+job 'analytics.send' do |args|
+  article = Article.find args['id']
+  User.where(type: :marketer).each do |marketer|
+    unless marketer == article.user
+      Pony.mail(
+        to: marketer.email,
+        from: 'mike@thirsty.com',
+        subject: 'A new article has been submitted!',
+        body: "A new article has been submitted to the #{article.campaign.title} campaign. Check it out in the #{link_to 'analytics tab', "http://thirsty.com/campaigns/#{article.campaign.uuid}?article=#{article.id}"}",
+        headers: { 'Content-Type' => 'text/html' },
+        via: :smtp,
+        via_options: {
+          address: 'smtp.gmail.com',
+          port: '587',
+          enable_starttls_auto: true,
+          user_name: 'mike@thirsty.com',
+          password: 'AAA123321',
+          authentication: :plain,
+          domain: 'thirsty.com'
+        }
+      )
+    end
+  end
+end
+
 job 'notification.send' do |args|
   notification = Notification.find args['id']
   child = notification.article || notification.comment || notification.campaign || notification.goal
@@ -40,7 +65,7 @@ job 'notification.send' do |args|
     end
   message =
     if notification.article
-      "#{user_name} just submitted an article for your <a href=\"http://thirsty.com/campaigns/#{child.campaign.uuid}\">#{child.campaign.title}</a> campaign. Check it out in your article submissions tab."
+      "#{link_to user_name, "http://thirsty.com/profile/#{child.user.username}"} just submitted an article for your <a href=\"http://thirsty.com/campaigns/#{child.campaign.uuid}\">#{child.campaign.title}</a> campaign. Check it out in your #{link_to 'article submissions tab', "http://thirsty.com/campaigns/#{child.campaign.uuid}"}."
     elsif notification.comment
       "#{user_name} just suggested an idea for your #{child.campaign.title} campaign.<br/><br/>#{child.title}:<br/>#{child.message}"
     elsif notification.campaign
