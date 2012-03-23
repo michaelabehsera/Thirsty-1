@@ -141,7 +141,7 @@ img {
 #signup {
     width:335px;
     padding:25px;
-    height:467px;
+    height:515px;
     margin:0 auto;
     margin-top:80px;
     border:1px solid #D1D1D1;
@@ -240,6 +240,7 @@ img {
 
 #signup select {
     float:left;
+    width:335px;
     margin:10px 0 10px 0;
      
 }

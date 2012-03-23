@@ -368,10 +368,10 @@
                 <p>fool</p>
               </div>
             </div>
-            <div style="position:absolute;right:0;bottom:-40px">
-              <a class="blue_button close_button" href="javascript:void(0)">Close</a>
-              <a class="blue_button" href="#guide_box" data-slide="prev">Previous</a>
-              <a style="margin-left:5px" class="blue_button" href="#guide_box" data-slide="next">Next</a>
+            <div style="position:absolute;right:0;bottom:-30px">
+              <a style="margin-left:2px" class="orange_button close_button" href="javascript:void(0)">Close</a>
+              <a style="margin-left:2px" class="blue_button" href="#guide_box" data-slide="prev">Previous</a>
+              <a style="margin-left:2px" class="blue_button" href="#guide_box" data-slide="next">Next</a>
             </div>
           </div>
           <% end %>
@@ -403,15 +403,15 @@
             <% if current_user != campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
             <div id="articles-tab" class="tab-pane active">
                 <div class="subheader">
-                  <h3 style="display:inline-block">Have an article idea?</h3>
-                  <button href="#headline-modal" class="btn btn-primary" data-toggle="modal">Submit your headline!</button>
+                  <h3 style="display:inline-block; margin-top:5px;">Have an article idea?</h3>
+                  <button style="margin:-9px 0 0 10px" href="#headline-modal" class="orange_button" data-toggle="modal">Submit your headline!</button>
                 </div>
               <div id="articles">
                 <%= text_field_tag :title, '', placeholder: 'Title', style: 'width:760px' %>
                 <%= text_area_tag :'send-area', '', style: 'width:767px;height:225px;display:block' %>
                 <%= text_area_tag :'bio', '', style: 'width:767px;height:75px;display:block' %>
                 <%= text_field_tag :tags, '', style: 'width:760px', placeholder: 'Comma-separated list of tags' %>
-                <%= link_to 'Submit', 'javascript:void(0)', id: 'send', class: 'btn btn-success', style: 'margin-top: 10px' %>
+                <%= link_to 'Submit your article', 'javascript:void(0)', id: 'send', class: 'blue_button', style: 'margin-top: 3px; float:right;' %>
               </div>
             </div>
         <% end %>
@@ -539,7 +539,7 @@
                 <% end %>
                 </div>
                 <%= form_tag "/campaigns/#{campaign.uuid}/chat_message", id: 'chat_form', remote: true do %>
-                  <%= text_field_tag :message, '', style: 'width:700px' %>
+                  <%= text_field_tag :message, '', style: 'width:647px' %>
                   <%= submit_tag :submit, style: 'display:none' %>
                 <% end %>
               </div>
