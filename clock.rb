@@ -18,8 +18,11 @@ handler do |job|
         clicks = campaign.articles.map{|a|a.bits.map{|b|b.clicks}}.flatten.compact.reduce(:+)
         goal.update_attribute(:achieved, true) if goal && clicks && clicks >= goal.num
       end
+    else
+      Stalker.enqueue job
   end
 end
 
-every 1.day, 'campaigns.advance'
 every 1.hour, 'bits.update'
+every 1.day, 'campaigns.advance'
+every 1.week, 'reminder_email.send'

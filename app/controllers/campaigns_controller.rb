@@ -59,6 +59,33 @@ class CampaignsController < ApplicationController
     render nothing: true
   end
 
+  def edit_article
+    article = Article.find params[:id]
+    render json: { title: article.title, content: article.content, tags: article.tags, id: article.id }
+  end
+
+  def request_edit
+    article = Article.find params[:id]
+    Pony.mail(
+      to: article.user.email,
+      from: 'mike@thirsty.com',
+      subject: 'You have some feedback',
+      body: "Your \"#{article.title}\" has received some feedback:<br/><br/>#{params[:request]}",
+      headers: { 'Content-Type' => 'text/html' },
+      via: :smtp,
+      via_options: {
+        address: 'smtp.gmail.com',
+        port: '587',
+        enable_starttls_auto: true,
+        user_name: 'mike@thirsty.com',
+        password: 'AAA123321',
+        authentication: :plain,
+        domain: 'thirsty.com'
+      }
+    )
+    render nothing: true
+  end
+
   def upgrade
     Stripe::Customer.retrieve(campaign.stripe_id).update_subscription(plan: params[:plan])
     respond_to :js
@@ -134,13 +161,19 @@ class CampaignsController < ApplicationController
   def submit
     user = User.find(params[:id])
     user.update_attribute(:bio, params[:bio])
-    article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
-    article.user = user
-    if article.save
-      article.create_notification
-      render json: { success: true, id: article.id, title: article.title, name: user.name }
+    if params[:edit] == 'false'
+      article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
+      article.user = user
+      if article.save
+        article.create_notification
+        render json: { success: true, id: article.id, title: article.title, name: user.name }
+      else
+        render json: { success: false }
+      end
     else
-      render json: { success: false }
+      article = Article.find params[:aid]
+      article.update_attributes(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
+      render json: { success: true, id: article.id, title: article.title, name: user.name }
     end
   end
 

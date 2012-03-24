@@ -1,9 +1,18 @@
 <%= render partial: 'site/header' %>
 <div id="wrap">
           <% if current_user.type == :business || current_user.email == 'michaelabehsera@gmail.com' %>
+          <div id="initial_welcome">
+            <h1>Welcome to the Thirsty Business Portal!</h1>
+            <p>From here, you can start a campaign, approve community-submitted ideas and articles, get real-time reports campaign performance, and much more.</p>
+          </div>
           <div id="creatives_count">
             <p>Creatives at your disposal / <span><%= User.all.count %></span>
           </div>
+          <% else %>
+            <div id="initial_welcome">
+              <h1>Welcome to the Thirsty Writer Portal!</h1>
+              <p>From here, you can browse available campaigns, submit ideas to clients, get real-time reports on the performance of your work, and much more.</p>
+            </div>
           <% end %>
           <div class="your_campaigns">
           <div id="devider_line2"></div>

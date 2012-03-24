@@ -996,7 +996,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 }
 
-#ideas, #articles, #approve {
+#ideas, #articles, #approve, #myarticles {
     padding:10px;
     width:770px;
     height:450px;

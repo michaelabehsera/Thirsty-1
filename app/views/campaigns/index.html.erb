@@ -16,6 +16,23 @@
   </div>
 </div>
 
+<div id="request-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Request Edits</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag "/campaigns/#{campaign.uuid}/request_edit", remote: true do %>
+      <%= text_area_tag :request, '', placeholder: 'enter your request here' %>
+      <%= hidden_field_tag :id, '', class: 'hidden' %>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <button class="btn btn-success" data-dismiss="modal" onclick="javascript:$('#request-modal form').submit()">Send Request</button>
+  </div>
+</div>
+
 <div id="update-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -339,25 +356,25 @@
               <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                 <div class="active item" selector="approve">
                   <h1>Approve Articles</h1>
-                  <p>sup</p>
+                  <p>Review article ideas and completed articles. Approve the ones you like; reject the ones you don’t.</p>
                 </div>
               <div class="item" selector="tools">
                 <h1>Plugins</h1>
-                <p>fool</p>
+                <p>Install the latest WordPress plugins and themes to your blog with just one click!</p>
               </div>
               <div class="item" selector="reports">
                 <h1>Reports</h1>
-                <p>fool</p>
+                <p>View the latest status updates from your campaign.</p>
               </div>
               <% else %>
                 <div class="active item" selector="articles">
                   <h1>Articles</h1>
-                  <p>sup</p>
+                  <p>Submit your ideas for articles for this campaign. Once approved, you can write your articles here and publish them. Your article will compete against two others to see which performs best. Winning article gets $50!</p>
                 </div>
               <% end %>
               <div class="item" selector="chat">
                 <h1>Chat</h1>
-                <p>fool</p>
+                <p>Join the conversation! Interact with clients, marketers, and other writers to share ideas and discuss campaigns.</p>
               </div>
               <div class="item" selector="writers">
                 <h1>Writers</h1>
@@ -365,7 +382,11 @@
               </div>
               <div class="item" selector="analytics">
                 <h1>Analytics</h1>
-                <p>fool</p>
+                <% if current_user != campaign.user %>
+                <p>Monitor the performance of campaigns you’re working on in real time. Writers, see how your articles are performing against others. Marketers, track the number of clicks you’re generating on the content you’re promoting.</p>
+                <% else %>
+                <p>Track the performance of your campaign in real time with traffic reports, writer rankings, marketer rankings, and much more.</p>
+                <% end %>
               </div>
             </div>
             <div style="position:absolute;right:0;bottom:-30px">
@@ -391,6 +412,7 @@
             <% end %>
             <% if current_user != campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
               <li id="articles-link" class="active"><a tabname="articles" href="#articles-tab" data-toggle="tab">Article submissions</a></li>
+              <li id="myarticles-link"><a tabname="myarticles" href="#myarticles-tab" data-toggle="tab">My Articles</a></li>
             <% end %>
             <li><a tabname="writers" href="#writers-tab" data-toggle="tab">Writers</a></li>
             <li><a tabname="chat" href="#chat-tab" data-toggle="tab">Chat</a></li>
@@ -411,10 +433,35 @@
                 <%= text_area_tag :'send-area', '', style: 'width:767px;height:225px;display:block' %>
                 <%= text_area_tag :'bio', '', style: 'width:767px;height:75px;display:block' %>
                 <%= text_field_tag :tags, '', style: 'width:760px', placeholder: 'Comma-separated list of tags' %>
+                <%= hidden_field_tag :edit, 'false' %>
+                <%= hidden_field_tag :aid %>
                 <%= link_to 'Submit your article', 'javascript:void(0)', id: 'send', class: 'blue_button', style: 'margin-top: 3px; float:right;' %>
               </div>
             </div>
         <% end %>
+        <div id="myarticles-tab" class="tab-pane">
+          <div id="myarticles">
+            <% articles = current_user.articles.where(campaign_id: campaign.id).reverse %>
+            <% articles.each do |article| %>
+                      <div class="article" id="article<%= article.id %>">
+                         "<%= article.title %>": written
+                         <%= distance_of_time_in_words Time.now, article.created_at %> ago
+                         -- 
+                         <% if article.approved %>
+                         <span class="approved-status approved">Approved</span>
+                         <% elsif article.approved == false %>
+                         <span class="approved-status denied">Denied</span>
+                         <% else %>
+                         <span class="approved-status in-review">In Review</span>
+                         <%= link_to 'edit', 'javascript:void(0)', class: 'edit', aid: article.id %>
+                         <% end %>
+                       </div>
+                  <% if articles.count == 0 %>
+                    no articles
+                  <% end %>
+            <% end %>
+          </div>
+        </div>
         <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                   <div id="approve-tab" class="tab-pane active">
                       <div id="approve">
@@ -447,7 +494,8 @@
                          <%= link_to 'accept', "/campaigns/#{campaign.uuid}/approve?id=#{article.id}", remote: true, class: 'accept' %>
                          <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true, class: 'deny' %>
                          <% end %>
-                         <%= link_to 'edit', 'javascript:void(0)', class: 'view', aid: article.id %>
+                         <%= link_to 'view', 'javascript:void(0)', class: 'view', aid: article.id %>
+                         <%= link_to 'request edits', '#request-modal', :'data-toggle' => 'modal', class: 'request', aid: article.id %>
                        </div>
                     <% end %>
                   <% if campaign.articles.count == 0 && campaign.headlines.count == 0 %>
@@ -568,6 +616,24 @@
         $('.tab-content #' + $('#guide_box .active').attr('selector') + '-tab').addClass('active')
       }, 750)
     })
+    $('.edit').click(function(){
+      $('.nav-tabs li').removeClass('active')
+      $('.tab-content').children('div').removeClass('active')
+      $('#articles-link').addClass('active')
+      $('#articles-tab').addClass('active')
+      $.post(
+        '/campaigns/<%=campaign.uuid%>/edit_article',
+        { id: $(this).attr('aid') },
+        function(rsp) {
+          console.log(rsp)
+          $('#title').val(rsp.title)
+          $('#tags').val(rsp.tags)
+          $('.nicEdit-main').first().html(rsp.content)
+          $('#edit').val('true')
+          $('#aid').val(rsp.id)
+        }, 'json'
+      )
+    })
     $('#campaign_image').click(function(){
       $('#image-modal').modal()
       $('#image-modal').modal('show')
@@ -673,6 +739,11 @@
       )
     <% end %>
 
+    $('.request').click(function(){
+      $('#request').val('')
+      $('#request-modal form .hidden').val($(this).attr('aid'))
+    })
+
     $('.view').click(function(){
       id = $(this).attr('aid')
       $.post(
@@ -700,7 +771,7 @@
       $(this).text('Submitting..')
       $.post(
         '/campaigns/<%= campaign.uuid %>/submit',
-        { id: '<%= current_user.id %>', content: $('.nicEdit-main').first().html(), tags: $('#tags').val(), title: $('#title').val(), bio: $('.nicEdit-main').last().html() },
+        { edit: $('#edit').val(), id: '<%= current_user.id %>', content: $('.nicEdit-main').first().html(), tags: $('#tags').val(), title: $('#title').val(), bio: $('.nicEdit-main').last().html(), aid: $('#aid').val() },
         function(rsp){
           if (rsp.success == true) {
             $('#title').val('')
