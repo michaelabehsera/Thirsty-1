@@ -2,13 +2,16 @@ class SiteController < ApplicationController
 
   def stripe
     event = JSON.parse request.body.read
-    if event['type'] == 'customer.subscription.created' && event['data']['object']['plan']['amount'] == 7999
-      Left.create type: :incoming, amount: 79, customer: event['data']['object']['customer']
+    if event['type'] == 'customer.subscription.created'
+      Left.create type: :incoming, amount: event['data']['object']['plan']['amount'] / 100, customer: event['data']['object']['customer']
       left = Leftronic.new 'llyYZJ65kVcDDhvITRNF'
-      left.push 'inrev', Left.where(type: :incoming).count
-    else
-      render nothing: true
+      left.push 'inrev', Left.where(type: :incoming).map{|l|l.amount}.reduce(:+)
+    elsif event['type'] == 'customer.subscription.deleted'
+      Left.where(type: :incoming, customer: event['data']['object']['customer']).first.destroy
+      left = Leftronic.new 'llyYZJ65kVcDDhvITRNF'
+      left.push 'inrev', Left.where(type: :incoming).map{|l|l.amount}.reduce(:+)
     end
+    render nothing: true
   end
 
   def notify
