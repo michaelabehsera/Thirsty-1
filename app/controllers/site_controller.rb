@@ -1,5 +1,16 @@
 class SiteController < ApplicationController
 
+  def stripe
+    event = JSON.parse request.body.read
+    if event['type'] == 'customer.subscription.created' && event['data']['object']['plan']['amount'] == 7999
+      Left.create type: :incoming79
+      left = Leftronic.new 'llyYZJ65kVcDDhvITRNF'
+      left.push_number 'inrev', Left.where(type: :incoming79).count
+    else
+      render nothing: true
+    end
+  end
+
   def notify
     current_user.update_attribute(:type, :marketer)
     respond_to :js

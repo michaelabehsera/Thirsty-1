@@ -378,8 +378,12 @@
               </div>
               <div class="item" selector="writers">
                 <h1>Writers</h1>
-                <p>fool</p>
-              </div>
+                <% if current_user == campaign.user %>
+                <p>Check out our unbiased, real-time rankings of Thirsty writers based on their performance (traffic, unique impressions, social media shares, etc.).</p>
+                <% else %>
+                <p>How do you stack up against your fellow writers? Below, you’ll see our unbiased, real-time rankings of Thirsty writers based on performance (traffic, unique impressions, social media shares, etc.).</p>
+                <% end %>
+                </div>
               <div class="item" selector="analytics">
                 <h1>Analytics</h1>
                 <% if current_user != campaign.user %>
