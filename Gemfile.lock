@@ -98,6 +98,9 @@ GEM
     juggernaut (2.1.1)
       redis
     kgio (2.7.2)
+    leftronic (0.0.3)
+      json (>= 1.4.6)
+      rest-client (>= 1.6.1)
     less (2.0.9)
       commonjs (~> 0.2.0)
       therubyracer (~> 0.9.9)
@@ -175,6 +178,8 @@ GEM
       json (~> 1.4)
     redis (2.2.2)
     responders (0.6.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rest-open-uri (1.0.0)
     rmagick (2.13.1)
     sass (3.1.15)
@@ -242,6 +247,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   juggernaut
+  leftronic
   less
   libarchive
   mechanize

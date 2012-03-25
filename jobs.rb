@@ -25,29 +25,31 @@ job 'theme.upload' do |args|
 end
 
 job 'reminder_email.send' do |args|
-  campaigns = Campaign.all.map { |campaign|
-    campaign.goals.where(achieved: false).first && campaign || nil
-  }.compact.map { |campaign|
-    "<a href=\"http://thirsty.com/campaigns/#{campaign.uuid}\">#{campaign.title}</a> needs: #{campaign.goals.where(achieved: false).map{|g| pluralize(g.num, g.type.to_s)}.join(', ')}"
-  }.join('<br/>')
-  User.where(type: :marketer).each do |marketer|
-    Pony.mail(
-      to: marketer.email,
-      from: 'mike@thirsty.com',
-      subject: 'These campaigns need your help!',
-      body: campaigns,
-      headers: { 'Content-Type' => 'text/html' },
-      via: :smtp,
-      via_options: {
-        address: 'smtp.gmail.com',
-        port: '587',
-        enable_starttls_auto: true,
-        user_name: 'mike@thirsty.com',
-        password: 'AAA123321',
-        authentication: :plain,
-        domain: 'thirsty.com'
-      }
-    )
+  if [7,14,21,28].include?(Time.now.day)
+    campaigns = Campaign.all.map { |campaign|
+      campaign.goals.where(achieved: false).first && campaign || nil
+    }.compact.map { |campaign|
+      "<a href=\"http://thirsty.com/campaigns/#{campaign.uuid}\">#{campaign.title}</a> needs: #{campaign.goals.where(achieved: false).map{|g| pluralize(g.num, g.type.to_s)}.join(', ')}"
+    }.join('<br/>')
+    User.where(type: :marketer).each do |marketer|
+      Pony.mail(
+        to: marketer.email,
+        from: 'mike@thirsty.com',
+        subject: 'These campaigns need your help!',
+        body: campaigns,
+        headers: { 'Content-Type' => 'text/html' },
+        via: :smtp,
+        via_options: {
+          address: 'smtp.gmail.com',
+          port: '587',
+          enable_starttls_auto: true,
+          user_name: 'mike@thirsty.com',
+          password: 'AAA123321',
+          authentication: :plain,
+          domain: 'thirsty.com'
+        }
+      )
+    end
   end
 end
 

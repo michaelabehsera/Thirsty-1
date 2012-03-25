@@ -25,4 +25,4 @@ end
 
 every 1.hour, 'bits.update'
 every 1.day, 'campaigns.advance'
-every 1.week, 'reminder_email.send'
+every 1.day, 'reminder_email.send'

@@ -3,9 +3,9 @@ class SiteController < ApplicationController
   def stripe
     event = JSON.parse request.body.read
     if event['type'] == 'customer.subscription.created' && event['data']['object']['plan']['amount'] == 7999
-      Left.create type: :incoming79
+      Left.create type: :incoming, amount: 79, customer: event['data']['object']['customer']
       left = Leftronic.new 'llyYZJ65kVcDDhvITRNF'
-      left.push_number 'inrev', Left.where(type: :incoming79).count
+      left.push_number 'inrev', Left.where(type: :incoming).count
     else
       render nothing: true
     end
