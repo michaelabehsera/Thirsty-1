@@ -39,8 +39,6 @@ img {
     margin:0 auto;
     padding:0;
     width:717px;
-    margin-top:110px;
-    margin-bottom:100px;
 
 }
 
@@ -54,7 +52,19 @@ img {
 
 }
 
+#header ul {
+    float:right;
+    margin:17px 20px 0 0;
+    
+}
 
+#header li {
+    list-style:none;
+    display:inline;
+    margin:0 10px 0 0;
+    float:right;
+    
+}
 
 #header a {
    color: #fff;
@@ -64,7 +74,7 @@ img {
     text-decoration: none;
     font-size:13px;
     float:right;
-    margin:15px 17px 0 0;
+    margin:0 0 0 0;
     padding:5px 15px;
     background: #ededed;
     border-radius:3px;
@@ -104,19 +114,11 @@ img {
 }
 
 #main_content {
-    margin-top:-50px;
-
-}
-
-#header ul {
-    float:right;
-    margin:0 0 0 0;
-
-}
-
-#header li {
-    display:inline;
-    list-style:none;
+    width:100%;
+    height:170px;
+    margin-top:50px;
+    margin-bottom:50px;
+    background:url(images/bg_banner.png)repeat;
 
 }
 
@@ -124,176 +126,10 @@ img {
 /*-------------------------Header end-------------------------*/
 
 
-/*-------------------------Footer-------------------------*/
-
-
-#devider_footer {
-    margin:50px 0 0 0;
-    border-top:1px solid #000;
-    border-bottom:1px solid #252525;
-}
-
-
-#footer-bottom-bar {
-    bottom:0;
-    width:100%;
-    height:100%;
-
-}
-
-#footer_nav {
-    width:69%;
-    margin:0 auto;
-
-}
-
-#footer_nav ul {
-    float:right;
-    margin:18px 0px 5px 0px;
-
-}
-
-#footer_nav li {
-    color:#717171;
-    display:inline;
-    list-style:none;
-    font-size:13px;
-    margin:0 0 0 5px;
-    text-shadow:0 -1px 0 #000;
-    -moz-text-shadow:0 -1px 0 #000;
-    -webkit-text-shadow:0 -1px 0 #000; 
-    -moz-transition: .4s ease-in-out;
-    -webkit-transition: .4s ease-in-out;
-
-}
-
-#footer_nav li:hover {
-    color:#fff;
-    -moz-transition: .4s ease-in-out;
-    -webkit-transition: .4s ease-in-out;
-
-}
-
-#footer_nav a {
-    color:#717171;
-    font-size:13px;
-    text-decoration:none;
-    text-shadow:0 -1px 0 #000;
-    -moz-text-shadow:0 -1px 0 #000;
-    -webkit-text-shadow:0 -1px 0 #000;  
-    -moz-transition: .3s ease-in-out;
-    -webkit-transition: .3s ease-in-out; 
-
-}
-
-#footer_nav a:hover {
-    color:#32777e;
-
-}
-
-
-/*-------------------------Footer end-------------------------*/
-
-
-/*-------------------------Final button-------------------------*/
-
-
-button.button_main {
-    padding:5px 13px;
-    border-radius:5px;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    text-shadow: 0 -1px #6d2100;
-    -moz-text-shadow: 0 -1px #6d2100;
-    -webkit-text-shadow: 0 -1px #6d2100;
-    color: white;
-    border: 1px solid #862d06;
-    background: #f1743c; /* Old browsers */
-    background: -moz-linear-gradient(top,  #f1743c 0%, #cc501a 100%, #c95b08 100%, #d04907 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1743c), color-stop(100%,#cc501a), color-stop(100%,#c95b08), color-stop(100%,#d04907)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #f1743c 0%,#cc501a 100%,#c95b08 100%,#d04907 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #f1743c 0%,#cc501a 100%,#c95b08 100%,#d04907 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #f1743c 0%,#cc501a 100%,#c95b08 100%,#d04907 100%); /* IE10+ */
-    background: linear-gradient(top,  #f1743c 0%,#cc501a 100%,#c95b08 100%,#d04907 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1743c', endColorstr='#d04907',GradientType=0 ); /* IE6-9 */
-    box-shadow:0px 1px 5px #a3a3a3;
-    -moz-box-shadow:0px 1px 5px #a3a3a3;
-    -webkit-box-shadow:0px 1px 5px #a3a3a3;
-    cursor:pointer;
-    text-decoration:none;
-
-}
-
-button.button_main:hover {
-    border: 1px solid #862d06;
-    cursor:pointer;
-    background-color: #cc501a;
-    box-shadow:0px 0px 0px #a3a3a3;
-    -moz-box-shadow:0px 0px 0px #a3a3a3;
-    -webkit-box-shadow:0px 0px 0px #a3a3a3;
-
-}
-
-button.button_main:active {
-    background: -webkit-linear-gradient(top, #be440e, #be440e);
-    background: -moz-linear-gradient(top, #be440e, #be440e);
-    background: -ms-linear-gradient(top, #be440e, #be440e);
-    background: -o-linear-gradient(top, #be440e, #be440e);
-    box-shadow: inset 0px 1px 7px #4a1701;
-    -moz-box-shadow: inset 0px 1px 7px #4a1701;
-    -webkit-box-shadow: inset 0px 1px 7px #4a1701;
-
-}
-
-
-/*-------------------------Final button-------------------------*/
-
-
 /*-------------------------Home page body-------------------------*/
 
 
-li.index_users { background-image:url("images/eva.jpg"); width:150px; height:150px;}
-/* SOCIAL ICONS - CSS3 */
-#css3:hover li { opacity:0.2; }
-
-#css3 li { -webkit-transition-property: opacity; -webkit-transition-duration: 500ms;
- -moz-transition-property: opacity; -moz-transition-duration: 500ms; }
-#css3 li a strong { opacity:0;
- -webkit-transition-property: opacity, top; -webkit-transition-duration: 300ms;
- -moz-transition-property: opacity, top; -moz-transition-duration: 300ms; }
-
-#css3 li:hover { opacity:1; }
-#css3 li:hover a strong { opacity:1; top:-10px; }
-
-.social { list-style:none;}
-.social li { display:inline; float:left; background-repeat:no-repeat; margin:7px 0 0 7px; }
-.social li a { display:block; width:150px; height:150px; padding-right:10px; position:relative; text-decoration:none; }
-.social li a strong { font-weight:normal; position:absolute; left:20px; top:-1px; color:#fff; padding:3px; z-index:9999;
- text-shadow:1px 1px 0 rgba(0, 0, 0, 0.75); background-color:rgba(0, 0, 0, 0.7);
- -moz-border-radius:3px; -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); -webkit-border-radius:3px; -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); border-radius:3px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-
-}
-
-#stiches_1 {
-    width:770px;
-    height:2px;
-    margin:0 auto;
-    margin-top:60px;
-    background:url(images/seperator_main.png)repeat;
-
-}
-
-
-#stiches_2 {
-    width:770px;
-    height:2px;
-    margin:0 auto;
-    margin-top:40px;
-    background:url(images/seperator_main.png)repeat;
-
-}
-
-#main_content a {
+a.blue_button {
     color: #fff;
     text-shadow: 0px -1px 0px #000;
     -moz-text-shadow: 0px -1px 0px #000;
@@ -303,7 +139,7 @@ li.index_users { background-image:url("images/eva.jpg"); width:150px; height:150
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     font-size:14px;
-    padding:11px 25px;
+    padding:9px 93px;
     background: #ededed;
     background: -webkit-linear-gradient(top, #427ebd, #1a5796);
     background: -moz-linear-gradient(top, #427ebd, #1a5796);
@@ -318,7 +154,7 @@ li.index_users { background-image:url("images/eva.jpg"); width:150px; height:150
    
 }
 
-#main_content a:hover {
+a.blue_button:hover {
     text-decoration:none !important;
     background: -webkit-linear-gradient(top, #1a5796, #2d6eb2);
     background: -moz-linear-gradient(top, #1a5796, #2d6eb2);
@@ -330,7 +166,7 @@ li.index_users { background-image:url("images/eva.jpg"); width:150px; height:150
 
 }
 
-#main_content a:active {
+a.blue_button:active {
     background: -webkit-linear-gradient(top, #16508d, #16508d);
     background: -moz-linear-gradient(top, #16508d, #16508d);
     background: -ms-linear-gradient(top, #16508d, #16508d);
@@ -341,25 +177,37 @@ li.index_users { background-image:url("images/eva.jpg"); width:150px; height:150
 
 }
 
-#button_width {
-    width:180px;
+#content_width {
+    width:730px;
     margin:0 auto;
-    margin-top:60px;
 
 }
+
 
 /*-------------------------Home page body-------------------------*/
 
 
+#button_width {
+    width:577px;
+    margin:0 auto;
+
+}
+
+#button_width p {
+    font-size:19px;
+    color:#252525;
+
+}
+
 #second_part {
-    width:645px;
-    background-color:whitesmoke;
+    width:345px;
     margin:0 auto;
     padding:20px;
     border-radius:3px;
-    margin-left:12px;
-    margin-top:72px;
-    border:1px solid #878787;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    margin-top:20px;
+    margin-bottom:200px;
 
 
 }
@@ -396,7 +244,7 @@ li.index_users { background-image:url("images/eva.jpg"); width:150px; height:150
 }
 
 #second_part p {
-    color:#525252;
+    color:#252525;
 
 }
 
@@ -418,3 +266,131 @@ li.index_users { background-image:url("images/eva.jpg"); width:150px; height:150
     text-decoration:none;
 
 }
+
+#second_part ul {
+    margin:0 0 0 0;
+
+}
+
+#second_part li {
+    color:#252525;
+    margin:5px 0 0 0;
+
+}
+
+#second_part input {
+    background-color:#fff;
+    border:1px solid #fff;
+    color:#252525;
+    display:block;
+    font-size:13px;
+    width:310px;
+    height:27px;
+    margin:12px 0 0 0;
+    outline:none;
+    padding:7px;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+
+}
+
+#second_part input:focus {
+    
+    border:1px solid #fff;
+    background-color:#fbff8e;
+    -moz-transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;  
+
+}
+
+
+/*-------------------------Home page body end-------------------------*/
+
+
+/*-------------------------Learn more popup-------------------------*/
+
+
+#popup {
+    width:500px;
+    margin:0 auto;
+    padding:20px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    margin-top:20px;
+    margin-bottom:200px;
+    border:3px solid #a3a3a3;
+    background-color:whitesmoke;
+
+
+}
+
+#popup h1 {
+    width:510px;
+    font-size:17px;
+    color:#252525;
+    padding:15px;
+    margin-left:-20px;
+    margin-top:-20px;
+    background-color:#e3e3e3;
+    border-bottom:1px solid #adadad;
+    border-radius:3px 3px 0 0;
+    -moz-border-radius:3px 3px 0 0;
+    -webkit-border-radius:3px 3px 0 0;
+    text-shadow:0 1px 0 #fff;
+    -moz-text-shadow:0 1px 0 #fff;
+    -webkit-text-shadow:0 1px 0 #fff;
+
+}
+
+#popup span {
+    color:#1a5796;
+    text-shadow:0 1px 0 #fff;
+    -moz-text-shadow:0 1px 0 #fff;
+    -webkit-text-shadow:0 1px 0 #fff;
+
+}
+
+#popup h2 {
+    color:#3b3b3b;
+
+}
+
+#popup p {
+    color:#252525;
+
+}
+
+#popup a {
+    color:#fff;
+    background-color:#1a5796;
+    text-decoration:none;
+
+}
+
+#popup a:hover {
+    background-color:#0d3e72;
+    text-decoration:none;
+
+}
+
+#popup a:active {
+    background-color:#07305b;
+    text-decoration:none;
+
+}
+
+#popup ul {
+    margin:0 0 0 0;
+
+}
+
+#popup li {
+    color:#252525;
+    margin:5px 0 0 0;
+
+}
+
+
+/*-------------------------Learn more popup end-------------------------*/
