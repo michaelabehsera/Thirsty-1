@@ -21,10 +21,8 @@
         <%= form_for :user, url: '/users/create', html: { id: 'user_form' } do |f| %>
            <p>Username</p>
            <%= f.text_field :username, placeholder: 'Username', autocomplete: 'off' %>
-           <p>First Name</p>
-           <%= f.text_field :first_name, placeholder: 'First Name', autocomplete: 'off' %>
-           <p>Last Name</p>
-           <%= f.text_field :last_name, placeholder: 'Last Name', autocomplete: 'off' %>
+           <p>Name</p>
+           <%= f.text_field :name, placeholder: 'Name', autocomplete: 'off' %>
            <p>Password</p>
            <%= f.password_field :password, placeholder: 'Password', autocomplete: 'off' %>
            <p>Email Address</p>

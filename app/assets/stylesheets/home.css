@@ -45,7 +45,6 @@ img {
 
 /*-------------------------Header end-------------------------*/
 
-
 #header {
     top:0;
     display:block;
@@ -311,7 +310,7 @@ a.blue_button:active {
 /*-------------------------Learn more popup-------------------------*/
 
 
-#popup {
+#popup, #writers_popup {
     width:500px;
     margin:0 auto;
     padding:20px;
@@ -326,7 +325,7 @@ a.blue_button:active {
 
 }
 
-#popup h1 {
+#popup h1, #writers_popup h1 {
     width:510px;
     font-size:17px;
     color:#252525;
@@ -344,7 +343,7 @@ a.blue_button:active {
 
 }
 
-#popup span {
+#popup span, #writers_popup span {
     color:#1a5796;
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
@@ -352,41 +351,41 @@ a.blue_button:active {
 
 }
 
-#popup h2 {
+#popup h2, #writers_popup h2 {
     color:#3b3b3b;
 
 }
 
-#popup p {
+#popup p, #writers_popup p {
     color:#252525;
 
 }
 
-#popup a {
+#popup a, #writers_popup a {
     color:#fff;
     background-color:#1a5796;
     text-decoration:none;
 
 }
 
-#popup a:hover {
+#popup a:hover, #writers_popup a:hover {
     background-color:#0d3e72;
     text-decoration:none;
 
 }
 
-#popup a:active {
+#popup a:active, #writers_popup a:active {
     background-color:#07305b;
     text-decoration:none;
 
 }
 
-#popup ul {
+#popup ul, #writers_popup ul {
     margin:0 0 0 0;
 
 }
 
-#popup li {
+#popup li, #writers_popup li {
     color:#252525;
     margin:5px 0 0 0;
 
