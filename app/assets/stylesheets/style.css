@@ -6,8 +6,9 @@ body {
     background:url(/images/background_main.png)repeat;
 
 }
-.tool {padding:12px;border-bottom:thin solid #d1d1d1}
+.tool {padding:12px;border-bottom:1px solid #d1d1d1}
 .tool p {width:730px}
+
 .notifications{background-color:whitesmoke;padding:11px;border-bottom:thin solid #d1d1d1;width:768px;border-right:thin solid #d1d1d1;border-left:thin solid #d1d1d1}
 #initial_welcome { margin-top: 110px }
 
@@ -1466,12 +1467,11 @@ button.button_submit:active {
 
 }
 
-#tools, #analytics, #themes, #guidelines {
+#tools {
     margin:0 0 0 0;
     min-height: 100px;
     position: relative;
     width:790px;
-    padding:9px;
     border-left:1px solid #d1d1d1;
     border-right:1px solid #d1d1d1;
     border-bottom:1px solid #d1d1d1;
@@ -1479,13 +1479,51 @@ button.button_submit:active {
 
 }
 
+#analytics {
+    margin:0 0 0 0;
+    min-height: 100px;
+    position: relative;
+    width:790px;
+    border-left:1px solid #d1d1d1;
+    border-right:1px solid #d1d1d1;
+    border-bottom:1px solid #d1d1d1;
+    background-color:whitesmoke;
+
+}
+
+#themes {
+    margin:0 0 0 0;
+    min-height: 100px;
+    position: relative;
+    width:790px;
+    border-left:1px solid #d1d1d1;
+    border-right:1px solid #d1d1d1;
+    border-bottom:1px solid #d1d1d1;
+    background-color:whitesmoke;
+
+}
+
+#guidelines {
+    margin:0 0 0 0;
+    min-height: 100px;
+    position: relative;
+    width:790px;
+    border-left:1px solid #d1d1d1;
+    border-right:1px solid #d1d1d1;
+    border-bottom:1px solid #d1d1d1;
+    background-color:whitesmoke;
+
+}
+
+
 #chat {
     margin:0 0 0 0;
     height: 250px;
     position: relative;
     width:791px;
-    border-left:1px solid #d1d1d1;
-    border-right:1px solid #d1d1d1;
+    padding: 9px;
+    font-size: 14px;
+    color: #252525;
     border-bottom:1px solid #d1d1d1;
     background-color:whitesmoke;
 
@@ -2058,6 +2096,7 @@ input.blue_button {
 
 
 /*-------------------------Signup/Signin end-------------------------*/
+
 
 
 
