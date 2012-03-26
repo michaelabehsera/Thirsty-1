@@ -9,8 +9,7 @@ class User
 
   before_create :preset_background
 
-  field :first_name, type: String
-  field :last_name, type: String
+  field :name, type: String
   field :username, type: String
   field :email, type: String
   field :type, type: Symbol
@@ -24,8 +23,6 @@ class User
   mount_uploader :background, BackgroundUploader
 
   validates_presence_of :email
-  validates_presence_of :first_name
-  validates_presence_of :last_name
   validates_uniqueness_of :email
   validates_uniqueness_of :username
 
@@ -42,10 +39,6 @@ class User
   def preset_background
     rsp = HTTParty.get 'http://colourlovers.com/api/patterns/top'
     self.preset_image = rsp['patterns']['pattern'].shuffle.first['imageUrl']
-  end
-
-  def name
-    self.first_name.to_s + ' ' + self.last_name.to_s
   end
 
   def self.subscribe

@@ -1,3 +1,49 @@
+<div id="writers_popup" style="display:none">
+        <h1>&nbsp; Introducing our first product: <span>Blog Domination—Business Blog Builder</span></h1>
+        <p>Do you want to flood your business blog with tons of targeted traffic? Do you want to build deeper relationships with your 
+target audience through blogging? Most importantly, do you want to grow your business and generate new leads and new customers with your 
+business blog?</p>
+
+        <p>If you answered yes to any of these questions, Thirsty’s newest product Blog Domination—Business Blog Builder will turn your 
+blog into a media hub. Your blog will get fresh, viral, original content that attracts your target audience. And the best part? You don’t 
+have to lift a finger or type another blog post again!</p>
+
+        <h2>How it works</h2>
+        <ul>
+            <li>Sign up for free and pick a campaign package</li>
+            <li>Approve blog ideas you like from our top writers and marketers</li>
+            <li>Marketers aggressively promote your blog across the web on Twitter, Facebook, StumbleUpon, Reddit, Digg, and other popular 
+sites</li>
+            <li>Pay-for-performance model ensures you only pay for blog posts that perform well
+            Monitor results in real-time</li>
+        </ul>
+        <a href="#">Signup for free &amp; pick a package</a> or 
+        <a href="#">Signup as a writer</a>
+    </div>
+
+<div id="popup" style="display:none">
+        <h1>&nbsp; Introducing our first product: <span>Blog Domination—Business Blog Builder</span></h1>
+        <p>Do you want to flood your business blog with tons of targeted traffic? Do you want to build deeper relationships with your 
+target audience through blogging? Most importantly, do you want to grow your business and generate new leads and new customers with your 
+business blog?</p>
+
+        <p>If you answered yes to any of these questions, Thirsty’s newest product Blog Domination—Business Blog Builder will turn your 
+blog into a media hub. Your blog will get fresh, viral, original content that attracts your target audience. And the best part? You don’t 
+have to lift a finger or type another blog post again!</p>
+
+        <h2>How it works</h2>
+        <ul>
+            <li>Sign up for free and pick a campaign package</li>
+            <li>Approve blog ideas you like from our top writers and marketers</li>
+            <li>Marketers aggressively promote your blog across the web on Twitter, Facebook, StumbleUpon, Reddit, Digg, and other popular 
+sites</li>
+            <li>Pay-for-performance model ensures you only pay for blog posts that perform well
+            Monitor results in real-time</li>
+        </ul>
+        <a href="#">Signup for free &amp; pick a package</a> or 
+        <a href="#">Signup as a writer</a>
+    </div>
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -11,7 +57,7 @@
 <img src="/images/logo_new.png" style="margin:0px 0 0 7px" width="66" height="57" alt="Thirsty logo">
     <ul>
     <li><a href="#">LOGIN</a></li>
-    <li><a href="#">WE WANT YOU!</a></li>
+    <li><a href="javascript:$('#writers_popup').bPopup()">WE WANT YOU!</a></li>
     <li>Are you a writer?</li>
     </ul>
         
@@ -27,15 +73,17 @@
     </div></div>
  <div id="wrap">
     <div id="button_width">
-        <p>Introducing our first product: Business blogging <a href="#">Learn More</a> or call us at 1877-778-7789</p>
+        <p>Introducing our first product: Business blogging <a href="javascript:$('#popup').bPopup()">Learn More</a> or call us at 1877-778-7789</p>
     </div>
     <div id="second_part">
-        <input type="text" name="firstname" value="Name/Business Name" class="cleardefault"/></input>
-        <input type="text" name="firstname" value="Username" class="cleardefault"/></input>
-        <input type="text" name="firstname" value="Email Address" class="cleardefault"/></input>
-        <input type="text" style="margin-bottom:3px;" name="firstname" value="Password" class="cleardefault"/></input>
+        <%= form_for :user, url: '/users/create', html: { id: 'user_form' } do |f| %>
+          <%= f.text_field :name, placeholder: 'Name/Business Name' %>
+          <%= f.text_field :username, placeholder: 'Profile URL' %>
+          <%= f.text_field :email, placeholder: 'Email' %>
+          <%= f.password_field :password, placeholder: 'Password' %>
         <br/>
-        <a class="blue_button" href="#">Signup for Free & Pick a Package</a>
+        <button class="blue_button" href="#">Signup for Free & Pick a Package</a>
+        <% end %>
     </div>
 
 <div id="social_icons" style="margin-bottom:15px;margin-left:14px">

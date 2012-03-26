@@ -9,6 +9,7 @@ body {
 .tool {padding:12px;border-bottom:thin solid #d1d1d1}
 .tool p {width:730px}
 .notifications{background-color:whitesmoke;padding:11px;border-bottom:thin solid #d1d1d1;width:768px;border-right:thin solid #d1d1d1;border-left:thin solid #d1d1d1}
+#initial_welcome { margin-top: 110px }
 
 .blue_button {
     color: #fff;
