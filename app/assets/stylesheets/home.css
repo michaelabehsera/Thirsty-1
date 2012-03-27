@@ -102,7 +102,7 @@ body {
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     font-size:13px;
-    padding:6px 15px;
+    padding:11px 73px;
     background: #ededed;
     background: -webkit-linear-gradient(top, #427ebd, #1a5796);
     background: -moz-linear-gradient(top, #427ebd, #1a5796);
@@ -320,7 +320,7 @@ a.blue_button:active {
 
 
 #inner_wrap {
-    margin-bottom:450px;
+    margin-bottom:200px;
 
 }
 
@@ -328,13 +328,12 @@ a.blue_button:active {
 #second_part input:-moz-input-placeholder { color: #252525 }
 
 #second_part {
-    width:345px;
+    width:350px;
     margin:0 auto;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     margin-top:20px;
-    margin-bottom:200px;
 
 }
 
