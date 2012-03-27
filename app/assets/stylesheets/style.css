@@ -903,7 +903,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 }
 
-#company_info p {
+#company_info #info-tab p {
     color:#3e3e3e;
     font-size:12px;
     padding:7px 0 0 0;
@@ -1743,8 +1743,7 @@ button.button_submit_page  {
 
 #settings {
     width:420px;
-    height:692px;
-    padding:30px;
+    padding: 30px 30px 60px 30px;
     margin:0 auto;
     margin-top:90px;
     margin-bottom:100px;

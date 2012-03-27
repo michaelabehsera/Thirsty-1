@@ -319,12 +319,10 @@
               </div>
 
             <div id="guidelines-tab" class="tab-pane">
-              <div id="guidelines">
                 <p><%= campaign.guidelines %></p>
                 <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                   <%= link_to 'edit', '#guidelines-modal', :'data-toggle' => 'modal' %>
                 <% end %>
-              </div>
             </div>
 
               <div id="goals-tab" class="tab-pane">

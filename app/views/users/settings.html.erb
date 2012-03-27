@@ -36,11 +36,11 @@
             <%= f.file_field :background %>
             <p>Add a title</p>
             <%= f.text_field :title, value: user.title, placeholder: 'title', autocomplete: 'off' %>
-            <p>Add some tags that describe you</p>
-            <%= f.text_area :bio, value: user.bio, placeholder: 'bio', autocomplete: 'off' %>
+            <p>Add a personal bio</p>
+            <%= f.text_area :bio, value: user.bio, placeholder: 'bio', autocomplete: 'off', style: 'width:325px;height:75px' %>
             <p>Add some tags that describe you</p>
             <%= f.text_field :tags, value: user.tags, placeholder: 'tag', autocomplete: 'off' %>
-            <%= f.submit :submit, class: 'blue_button' %>
+            <%= f.submit :submit, class: 'blue_button', style: 'height:30px' %>
             <% end %>
 
             <p>Add one of the following links to your profile:</p>

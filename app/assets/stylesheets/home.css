@@ -264,7 +264,6 @@ a.blue_button:active {
     margin:12px 0 0 0;
     outline:none;
     padding:7px;
-    float:right;
     border-radius:3px;
     box-shadow: 0 0 17px #fff, inset 0 0 5px #505050;
     -moz-box-shadow: 0 0 17px #fff, inset 0 0 5px #505050;
