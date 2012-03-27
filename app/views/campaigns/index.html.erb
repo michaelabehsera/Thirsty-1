@@ -348,7 +348,7 @@
 
           </div>
           </div>
-          <div style="margin-bottom:10px" id="timer"><h1><%= distance_of_time_in_words Time.now, campaign.end_date %> left</h1></div>
+          <div style="margin-bottom:10px" id="timer"><h1><%= distance_of_time_in_words Time.now, campaign.end_date %> left to accomplish campaign goals.</h1></div>
           <% help = current_user.helps.where(campaign_id: campaign.id).first %>
           <% unless help && help.inactive %>
           <div id="guide_box" class="carousel" style="position:relative;">

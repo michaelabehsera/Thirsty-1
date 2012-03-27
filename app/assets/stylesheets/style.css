@@ -10,6 +10,9 @@ body {
 .tool p {width:730px}
 
 .notifications{background-color:whitesmoke;padding:11px;border-bottom:thin solid #d1d1d1;width:768px;border-right:thin solid #d1d1d1;border-left:thin solid #d1d1d1}
+.notification{padding:10px;border-bottom:thin solid #d1d1d1}
+.notification2{padding:10px;border-bottom:thin solid #d1d1d1;border-right:thin solid #d1d1d1;border-left:thin solid #d1d1d1;background-color:whiteSmoke;width:770px}
+.article{padding:9px;border-bottom:thin solid #d1d1d1}
 #initial_welcome { margin-top: 110px }
 
 .blue_button {
@@ -998,7 +1001,31 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 }
 
-#ideas, #articles, #approve, #myarticles {
+#articles {
+    width:790px;
+    height:483px;
+    margin:0 0 120px 0;
+    border:1px solid #d1d1d1;
+    border-radius:0 0 5px 5px;
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius:0 0 5px 5px;
+    background-color:whitesmoke;
+
+}
+
+#approve {
+    width:790px;
+    height:450px;
+    margin:0 0 120px 0;
+    border:1px solid #d1d1d1;
+    border-radius:0 0 5px 5px;
+    -moz-border-radius:0 0 5px 5px;
+    -webkit-border-radius:0 0 5px 5px;
+    background-color:whitesmoke;
+
+}
+
+#ideas, #myarticles {
     padding:10px;
     width:770px;
     height:450px;
@@ -1520,8 +1547,9 @@ button.button_submit:active {
     margin:0 0 0 0;
     height: 250px;
     position: relative;
-    width:791px;
-    padding: 9px;
+    width:790px;
+    border-left:1px solid #d1d1d1;
+    border-right:1px solid #d1d1d1;
     font-size: 14px;
     color: #252525;
     border-bottom:1px solid #d1d1d1;
@@ -1537,12 +1565,11 @@ button.button_submit:active {
 
 #reports {
     margin:0 0 0 0;
-    width:764px;
+    width:790px;
     border-left:1px solid #d1d1d1;
     border-right:1px solid #d1d1d1;
     background-color:whitesmoke;
     font-size: 14px;
-    padding:10px;
     border-bottom:1px solid #d1d1d1;
 
 }
@@ -1587,7 +1614,6 @@ button.button_submit:active {
     width:790px;
     height:5px;
     margin:0 0 0 1px;
-    border-top:1px solid #fff;
     border-left:1px solid #d1d1d1;
     border-right:1px solid #d1d1d1;
     border-bottom:1px solid #d1d1d1;

@@ -18,7 +18,7 @@
       = javascript_include_tag 'http://localhost:8081/application.js'
     - else
       = javascript_include_tag root_url[0..-2] + ':8081/application.js'
-    <link href='http://fonts.googleapis.com/css?family=Signika+Negative|Acme|Ropa+Sans|Quicksand:400,700|Gudea:400,700|Ubuntu+Condensed|Homenaje|Balthazar|Terminal+Dosis:400,700|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>    
+    <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Poiret+One|Open+Sans+Condensed:700|Marvel|Open+Sans:400,300' rel='stylesheet' type='text/css'>
   %body
     = yield
     - unless request.path == '/' && !current_user || request.path =~ /\/profile/
