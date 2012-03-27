@@ -56,9 +56,9 @@ sites</li>
 <div id="header"> 
 <img src="/images/logo_new.png" style="margin:0px 0 0 7px" width="66" height="57" alt="Thirsty logo">
     <ul>
-    <li><a href="#">LOGIN</a></li>
-    <li><a href="javascript:$('#writers_popup').bPopup()">WE WANT YOU!</a></li>
-    <li>Are you a writer?</li>
+    <li><a class="button_black" href="/signin">Login</a></li>
+    <li style="margin-top:5px;"><a href="#">Learn More</a></li>
+    <li style="margin-top:5px;">Are you a writer?</li>
     </ul>
         
 </div>
@@ -66,18 +66,20 @@ sites</li>
   <div class="clear"></div>
 <div id="main_content">
 <div id="content_width">
-    <img style="margin-left:10px; margin-top:12px" src="/images/tagline.png" width="647" height="141" alt="cut up to 90% of your online 
-    We’re flipping the marketing world on it’s head by cutting the middle man (ad agencies) and connect you directly to
-    programs and top marketers to reach your individual marketing goals.">
-    
+    <h1 align="center">CUT UP TO 90% OF YOUR MARKETING EXPENSES!</h1>
+    <p align="center">We're flipping the marketing world on it's head by cutting the middle man (ad agencies) and connect you directly to an army of performance based marketers working for you to accomlish your individual marketing goals.</p>
+    <p align="center"><span>// In simple words we want to kill as agencies</span> </p>
     </div></div>
  <div id="wrap">
-    <div id="button_width">
-        <p>Introducing our first product: Business blogging <a href="javascript:$('#popup').bPopup()">Learn More</a> or call us at 1877-778-7789</p>
+   <div id="stiches_1"></div>
+     <div id="button_width">
+        <p align="center">Introducing our first product: Business blogging signup below or <a class="button_black" href="#">Learn More</a></p>
     </div>
+    <div id="stiches_2"></div>
+    <div id="inner_wrap">
     <div id="second_part">
-        <%= form_for :user, url: '/users/create', html: { id: 'user_form' } do |f| %>
-          <%= f.text_field :name, placeholder: 'Name/Business Name' %>
+          <span>Username/</span><%= form_for :user, url: '/users/create', html: { id: 'user_form' } do |f| %>
+          <%= f.text_field :name, placeholder: '' %>
           <%= f.text_field :username, placeholder: 'Profile URL' %>
           <%= f.text_field :email, placeholder: 'Email' %>
           <%= f.password_field :password, placeholder: 'Password' %>
@@ -86,11 +88,7 @@ sites</li>
         <% end %>
     </div>
 
-<div id="social_icons" style="margin-bottom:15px;margin-left:14px">
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://thirsty.com" data-text="Thirsty.com is killing ad 
-agencies and saving companies billions of dollars, pretty awesome!" data-via="thirstyapp" data-related="thirstyapp">Tweet</a>
-<a href="https://twitter.com/intent/tweet?screen_name=thirstyapp" class="twitter-mention-button" data-related="thirstyapp">Tweet to 
-@thirstyapp</a>
+
 
 <script>!function(d,s,id){var 
 js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
