@@ -126,7 +126,7 @@
 
   <div class="modal-body">
     <%= form_tag "/campaigns/#{campaign.uuid}/update_desc", remote: true do %>
-      <%= text_field_tag :tags, campaign.tags %>
+      <%= text_field_tag :tags, campaign.tags.map{|t|t.name}.join(', ') %>
     <% end %>
   </div>
 
