@@ -57,6 +57,7 @@ Click here to create your free account today!</p>
     <div id="inner_wrap">
     <div id="second_part">
           <span>profile/</span><%= form_for :user, url: '/users/create', html: { id: 'user_form' } do |f| %>
+          <%= f.hidden_field :type, value: 'business' %>
           <%= f.text_field :username, placeholder: 'Profile URL', style: 'margin-left:65px;width:266px' %>
           <%= f.text_field :name, placeholder: 'Name/Business Name' %>
           <%= f.text_field :email, placeholder: 'Email' %>

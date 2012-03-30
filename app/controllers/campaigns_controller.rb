@@ -275,10 +275,16 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    url = params[:url]
+    url = params[:url].gsub('http://', '')
+    host = url.split('/')[0]
+    if url.split('/').count > 1
+      path = '/' + url.split('/')[1..-1].join('/') + '/xmlrpc.php'
+    else
+      path = '/xmlrpc.php'
+    end
     @wordpress = true
     begin
-      connection = XMLRPC::Client.new(url.gsub('http://', ''), '/xmlrpc.php')
+      connection = XMLRPC::Client.new(host, path)
       connection.call('wp.getUsersBlogs', params[:user], params[:pass])
     rescue Exception => e
       @wordpress = false

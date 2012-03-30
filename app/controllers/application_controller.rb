@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
   before_filter :auth_from_cookie
 
   def auth_from_cookie
-    auto_login(User.find(cookies[:thirsty_uid])) if cookies[:thirsty_uid].present?
+    begin
+      auto_login(User.find(cookies[:thirsty_uid])) if cookies[:thirsty_uid].present?
+    rescue
+    end
   end
 
   expose(:notifications) {
