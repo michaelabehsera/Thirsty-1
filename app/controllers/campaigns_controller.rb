@@ -216,7 +216,7 @@ class CampaignsController < ApplicationController
     post = {
       'title' => article.title,
       'description' => article.content,
-      'mt_keywords' => article.tags.split(/, ?/)
+      'mt_keywords' => !article.tags && '' || article.tags.split(/, ?/)
     }
     connection = XMLRPC::Client.new(campaign.url.gsub('http://', '').gsub('www.', ''), '/xmlrpc.php')
     id = connection.call(
