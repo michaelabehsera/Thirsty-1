@@ -9,7 +9,7 @@
 }
 
 .inner_footer {
-    width:505px;
+    width:432px;
     margin:0 auto;
 
 }
@@ -27,6 +27,7 @@
     display:inline;
     margin:0 0 0 5px;
     color:#535353;
+    font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -49,6 +50,7 @@
 .inner_footer p {
     font-size:12px;
     color:#535353;
+    font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -102,7 +104,7 @@ body {
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     font-size:13px;
-    padding:11px 73px;
+    padding:11px 75px;
     background: #ededed;
     background: -webkit-linear-gradient(top, #427ebd, #1a5796);
     background: -moz-linear-gradient(top, #427ebd, #1a5796);
@@ -402,8 +404,9 @@ a.blue_button:active {
 
 #button_width p {
     font-size:20px;
-    color:#252525;
+    color:#fff;
     margin-top:31px;
+    text-shadow:0 -1px 0 #000;
     font-family: 'Open Sans', sans-serif;
 
 }
