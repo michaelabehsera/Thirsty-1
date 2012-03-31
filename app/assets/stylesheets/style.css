@@ -66,10 +66,10 @@ body {
 }
 
 .orange_button {
-    color: #fff;
-    text-shadow: 0px -1px 0px #000;
-    -moz-text-shadow: 0px -1px 0px #000;
-    -webkit-text-shadow: 0px -1px 0px #000;
+    color: #5b5b5b;
+    text-shadow: 0px 1px 0px #fff;
+    -moz-text-shadow: 0px 1px 0px #fff;
+    -webkit-text-shadow: 0px 1px 0px #fff;
     text-decoration: none;
     border-radius:3px;
     -moz-border-radius:3px;
@@ -77,42 +77,41 @@ body {
     font-size:13px;
     padding:6px 15px;
     background: #ededed;
-    background: -webkit-linear-gradient(top, #F7751E, #E05E07);
-    background: -moz-linear-gradient(top, #F7751E, #E05E07);
-    background: -ms-linear-gradient(top, #F7751E, #E05E07);
-    background: -o-linear-gradient(top, #F7751E, #E05E07);
-    border:solid 1px #8C3A03;
-    box-shadow: inset 0px 1px 0px #F78A40;
-    -moz-box-shadow: inset 0px 1px 0px #F78A40;
-    -webkit-box-shadow: inset 0px 1px 0px #F78A40;
+    background: -webkit-linear-gradient(top, #EBEBEB, #DEDEDE);
+    background: -moz-linear-gradient(top, #EBEBEB, #DEDEDE);
+    background: -ms-linear-gradient(top, #EBEBEB, #DEDEDE);
+    background: -o-linear-gradient(top, #EBEBEB, #DEDEDE);
+    border:solid 1px #8A8A8A;
+    box-shadow: inset 0px 1px 0px #fff;
+    -moz-box-shadow: inset 0px 1px 0px #fff;
+    -webkit-box-shadow: inset 0px 1px 0px #fff;
     cursor:pointer;
     font-weight:normal;
 
 }
 
 .orange_button:hover {
-    color:#fff;
+    color:#5E5E5E;
     text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #E05E07, #ED6D18);
-    background: -moz-linear-gradient(top, #E05E07, #ED6D18);
-    background: -ms-linear-gradient(top, #E05E07, #ED6D18);
-    background: -o-linear-gradient(top, #E05E07, #ED6D18);
-    box-shadow: inset 0px 1px 0px #F78A40;
-    -moz-box-shadow: inset 0px 1px 0px #F78A40;
-    -webkit-box-shadow: inset 0px 1px 0px #F78A40;
+    background: -webkit-linear-gradient(top, #DEDEDE, #EBEBEB);
+    background: -moz-linear-gradient(top, #DEDEDE, #EBEBEB);
+    background: -ms-linear-gradient(top, #DEDEDE, #EBEBEB);
+    background: -o-linear-gradient(top, #DEDEDE, #EBEBEB);
+    box-shadow: inset 0px 1px 0px #fff;
+    -moz-box-shadow: inset 0px 1px 0px #fff;
+    -webkit-box-shadow: inset 0px 1px 0px #fff;
 
 }
 
 .orange_button:active {
-    color:#fff;
-    border:solid 1px #7A3100;
-    background: -webkit-linear-gradient(top, #BA4E06, #BA4E06);
-    background: -moz-linear-gradient(top, #BA4E06, #BA4E06);
-    background: -ms-linear-gradient(top, #BA4E06, #BA4E06);
-    background: -o-linear-gradient(top, #BA4E06, #BA4E06);
-    box-shadow: inset 0px 0px 7px #692A01, 0px 0px 0px #04284e;
-    -moz-box-shadow: inset 0px 0px 7px #692A01, 0px 0px 0px #04284e;
-    -webkit-box-shadow: inset 0px 0px 7px #692A01, 0px 0px 0px #04284e;
+    border:solid 1px #575757;
+    background: -webkit-linear-gradient(top, #B5B5B5, #B5B5B5);
+    background: -moz-linear-gradient(top, #B5B5B5, #B5B5B5);
+    background: -ms-linear-gradient(top, #B5B5B5, #B5B5B5);
+    background: -o-linear-gradient(top, #B5B5B5, #B5B5B5);
+    box-shadow: inset 0px 0px 7px #252525, 0px 0px 0px #04284e;
+    -moz-box-shadow: inset 0px 0px 7px #252525, 0px 0px 0px #04284e;
+    -webkit-box-shadow: inset 0px 0px 7px #252525, 0px 0px 0px #04284e;
 
 }
 
@@ -135,9 +134,10 @@ margin: 0px 0 0 0;
 #timer h1 { text-align: center; font-size:24px }
 
 #guide_box p {
-font-size: 12px;
+font-size: 14px;
 color: #252525;
-margin: 0px 0 0 0;
+margin: 10px 0 0 0;
+
 }
 
 img {
@@ -1002,8 +1002,9 @@ li.posterous { background-image:url("/images/posterous.png"); }
 }
 
 #articles {
-    width:790px;
+    width:770px;
     height:483px;
+    padding:10px;
     margin:0 0 120px 0;
     border:1px solid #d1d1d1;
     border-radius:0 0 5px 5px;
