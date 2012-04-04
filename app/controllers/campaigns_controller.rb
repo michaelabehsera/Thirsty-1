@@ -207,7 +207,7 @@ class CampaignsController < ApplicationController
 
   def deny_headline
     @headline  = Headline.find params[:id]
-    @headline.update_attribute(approved: false)
+    @headline.update_attribute(:approved, false)
     respond_to :js
   end
 
