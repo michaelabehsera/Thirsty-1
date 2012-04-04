@@ -218,7 +218,14 @@ class CampaignsController < ApplicationController
       'description' => article.content,
       'mt_keywords' => !article.tags && '' || article.tags.split(/, ?/)
     }
-    connection = XMLRPC::Client.new(campaign.url.gsub('http://', '').gsub('www.', ''), '/xmlrpc.php')
+    url = campaign.url.gsub('http://', '')
+    host = url.split('/')[0]
+    if url.split('/').count > 1
+      path = '/' + url.split('/')[1..-1].join('/') + '/xmlrpc.php'
+    else
+      path = '/xmlrpc.php'
+    end
+    connection = XMLRPC::Client.new(host, path)
     id = connection.call(
       'metaWeblog.newPost',
       1,
