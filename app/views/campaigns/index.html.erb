@@ -438,6 +438,7 @@
                 <%= hidden_field_tag :edit, 'false' %>
                 <%= hidden_field_tag :aid %>
                 <%= link_to 'Submit your article', 'javascript:void(0)', id: 'send', class: 'blue_button', style: 'margin-top: 3px; float:right;' %>
+                <%= link_to 'Save to Draft', 'javascript:void(0)', id: 'draft', class: 'blue_button', style: 'margin-top: 3px; float:right;' %>
               </div>
             </div>
         <% end %>
@@ -454,7 +455,11 @@
                          <% elsif article.approved == false %>
                          <span class="approved-status denied">Denied</span>
                          <% else %>
-                         <span class="approved-status in-review">In Review</span>
+                           <% if article.submitted %>
+                             <span class="approved-status in-review">In Review</span>
+                           <% else %>
+                             <span class="approved-status not-submitted">Not Submitted</span>
+                           <% end %>
                          <%= link_to 'edit', 'javascript:void(0)', class: 'edit', aid: article.id %>
                          <% end %>
                        </div>
@@ -483,7 +488,7 @@
                          <% end %>
                       </div>
                     <% end %>
-                    <% campaign.articles.desc(:created_at).each do |article| %>
+                    <% campaign.articles.where(submitted: true).desc(:created_at).each do |article| %>
                       <div class="article" id="article<%= article.id %>">
                          "<%= article.title %>" was written by: <%= article.user.name %>
                          <%= distance_of_time_in_words Time.now, article.created_at %> ago
@@ -796,6 +801,28 @@
               }
               $('#myarticles').append('<div class="article" id="article' + rsp.id + '">"' + rsp.title + '" -- In Review')
             }
+          } else {
+            $('#send').text('Failed :(')
+          }
+        },
+        'json'
+      )
+    })
+    $('#draft').click(function(){
+      $(this).text('Saving..')
+      $.post(
+        '/campaigns/<%= campaign.uuid %>/draft',
+        { edit: $('#edit').val(), id: '<%= current_user.id %>', content: $('.nicEdit-main').first().html(), tags: $('#tags').val(), title: $('#title').val(), bio: $('.nicEdit-main').last().html(), aid: $('#aid').val() },
+        function(rsp){
+          if (rsp.success == true) {
+            $('#title').val('')
+            $('.nicEdit-main').html('')
+            $('#draft').text('Save')
+            $('#articles-tab').prepend('<div style="margin-top:10px;width:100px" class="alert alert-success"><a data-dismiss="alert" class="close">x</a>Article saved!</div>')
+            if ( !($('#myarticles').html().search('no articles') == -1)) {
+              $('#myarticles').html('')
+            }
+            $('#myarticles').append('<div class="article" id="article' + rsp.id + '">"' + rsp.title + '" -- Not Submitted')
           } else {
             $('#send').text('Failed :(')
           }

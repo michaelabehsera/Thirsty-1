@@ -142,11 +142,29 @@ class CampaignsController < ApplicationController
     render nothing: true
   end
 
-  def submit
+  def draft
     user = User.find(params[:id])
     user.update_attribute(:bio, params[:bio])
     if params[:edit] == 'false'
       article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
+      article.user = user
+      if article.save
+        render json: { success: true, id: article.id, title: article.title, name: user.name }
+      else
+        render json: { success: false }
+      end
+    else
+      article = Article.find params[:aid]
+      article.update_attributes(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
+      render json: { success: true, id: article.id, title: article.title, name: user.name }
+    end
+  end
+
+  def submit
+    user = User.find(params[:id])
+    user.update_attribute(:bio, params[:bio])
+    if params[:edit] == 'false'
+      article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags], submitted: true)
       article.user = user
       if article.save
         article.create_notification
@@ -156,7 +174,8 @@ class CampaignsController < ApplicationController
       end
     else
       article = Article.find params[:aid]
-      article.update_attributes(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
+      article.create_notification unless article.submitted
+      article.update_attributes(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags], submitted: true)
       render json: { success: true, id: article.id, title: article.title, name: user.name }
     end
   end
