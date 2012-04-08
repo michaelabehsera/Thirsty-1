@@ -1,5 +1,10 @@
 class SiteController < ApplicationController
 
+  def timestamp
+    User.find(params[:id]).update_attribute(:timestamp, Time.now.to_i)
+    render nothing: true
+  end
+
   def stripe
     event = JSON.parse request.body.read
     if event['type'] == 'customer.subscription.created'

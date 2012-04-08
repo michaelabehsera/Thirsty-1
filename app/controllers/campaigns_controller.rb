@@ -128,7 +128,7 @@ class CampaignsController < ApplicationController
 
   def update_desc
     campaign.tags.each { |t| campaign.tags.delete(t) }
-    params[:tags].split(/, ?/).each do |tag|
+    params[:tags].split(/, ?/).first(2).each do |tag|
       campaign.tags << Tag.find_or_create_by(name: tag)
     end
     respond_to :js
