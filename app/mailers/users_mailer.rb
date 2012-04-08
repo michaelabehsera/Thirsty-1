@@ -1,8 +1,9 @@
 class UsersMailer < ActionMailer::Base
-  default from: 'turfbot@myturf.com', content_type: 'text/html'
+  default from: 'thirsty-bot@thirsty.com', content_type: 'text/html'
 
-  def reset_password to
-    mail to: to, subject: 'blah'
+  def response(from, to, email, subject, body)
+    @body = body
+    mail from: "thirsty-bot+#{to}|#{from}@thirsty.com", to: email, subject: subject
   end
 
 end

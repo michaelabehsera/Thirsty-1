@@ -50,6 +50,11 @@ Thirsty::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { host: 'thirsty.com' }
+  config.action_mailer.delivery_method = :postmark
+  config.action_mailer.postmark_settings = { api_key: 'c4e032f8-ddb9-41ec-ac77-e6215865fae1' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default charset: 'utf-8'
 
   # Enable threaded mode
   # config.threadsafe!

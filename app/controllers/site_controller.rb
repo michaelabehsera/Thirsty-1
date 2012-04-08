@@ -1,5 +1,12 @@
 class SiteController < ApplicationController
 
+  def inbound
+    from, to = params['MailboxHash'].split('|')
+    user = User.where(username: to).first
+    UsersMailer.response(from, to, user.email, params['Subject'], CGI.unescapeHTML(params['HtmlBody'])).deliver
+    render nothing: true
+  end
+
   def stripe
     event = JSON.parse request.body.read
     if event['type'] == 'customer.subscription.created'
