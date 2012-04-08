@@ -6,7 +6,7 @@
   :javascript
     json = $.parseJSON('#{raw @json}')
     colors = Highcharts.getOptions().colors
-    referrer_names = _.uniq(_.flatten(_.map(json, function(b){ return _.pluck(b.referrers, 'referrer') })))
+    referrer_names = _.compact(_.uniq(_.flatten(_.map(json, function(b){ if (typeof(b.referrers[0]) != 'undefined'){return _.pluck(b.referrers, 'referrer') }}))))
     referrers = _.map(referrer_names, function(n,i) { return { name: n, clicks: 0, color: colors[i] } })
     users = {}
     _.each(referrer_names, function(ref) {
@@ -15,7 +15,9 @@
     _.each(referrers, function(referrer) {
       _.each(json, function(user) {
         ref = _.find(user.referrers, function(r){ return r.referrer == referrer.name})
-        users[ref.referrer].push({ name: user.user, clicks: ref.clicks })
+        if (typeof(ref) != 'undefined'){
+          users[ref.referrer].push({ name: user.user, clicks: ref.clicks })
+        }
       })
     })
     _.each(json, function(b){

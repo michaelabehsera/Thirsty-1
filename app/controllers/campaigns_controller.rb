@@ -66,23 +66,7 @@ class CampaignsController < ApplicationController
 
   def request_edit
     article = Article.find params[:id]
-    Pony.mail(
-      to: article.user.email,
-      from: 'mike@thirsty.com',
-      subject: 'You have some feedback',
-      body: "Your \"#{article.title}\" has received some feedback:<br/><br/>#{params[:request]}",
-      headers: { 'Content-Type' => 'text/html' },
-      via: :smtp,
-      via_options: {
-        address: 'smtp.gmail.com',
-        port: '587',
-        enable_starttls_auto: true,
-        user_name: 'mike@thirsty.com',
-        password: 'AAA123321',
-        authentication: :plain,
-        domain: 'thirsty.com'
-      }
-    )
+    UsersMailer.response(current_user.username, article.user.username, article.user.email, 'You have some feedback', "Your \"#{article.title}\" has received some feedback:<br/><br/>#{params[:request]}").deliver
     render nothing: true
   end
 
@@ -207,7 +191,7 @@ class CampaignsController < ApplicationController
 
   def deny_headline
     @headline  = Headline.find params[:id]
-    @headline.update_attribute(approved: false)
+    @headline.update_attribute(:approved, false)
     respond_to :js
   end
 

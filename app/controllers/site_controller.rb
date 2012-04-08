@@ -1,5 +1,12 @@
 class SiteController < ApplicationController
 
+  def inbound
+    from, to = params['MailboxHash'].split('|')
+    user = User.where(username: to).first
+    UsersMailer.response(from, to, user.email, params['Subject'], CGI.unescapeHTML(params['HtmlBody'])).deliver
+    render nothing: true
+  end
+
   def timestamp
     User.find(params[:id]).update_attribute(:timestamp, Time.now.to_i)
     render nothing: true

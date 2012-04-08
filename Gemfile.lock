@@ -143,6 +143,11 @@ GEM
     polyglot (0.3.3)
     pony (1.4)
       mail (> 2.0)
+    postmark (0.9.8)
+    postmark-rails (0.4.1)
+      actionmailer
+      postmark (>= 0.9.0)
+      rake
     pry (0.9.8.2)
       coderay (~> 1.0.5)
       method_source (~> 0.7)
@@ -255,6 +260,8 @@ DEPENDENCIES
   nokogiri
   oauth
   pony
+  postmark
+  postmark-rails
   pry
   rails
   ratom
