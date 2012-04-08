@@ -1,0 +1,5 @@
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', :'http-equiv' => 'Content-Type'}
+  %body The #{@headline.campaign.title} campaign has suggested the #{@headline.title} headline! Head over to #{link_to 'thirsty.com', "http://thirsty.com/#{@headline.campaign.uuid}"} to claim it.

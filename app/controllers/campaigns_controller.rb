@@ -78,8 +78,24 @@ class CampaignsController < ApplicationController
   def headline
     headline = campaign.headlines.new(title: params[:headline])
     headline.user = current_user
+    headline.public = true if params[:type] == 'public'
     headline.save
+    if headline.public
+      campaign.marketers.each do |user|
+        UsersMailer.public_headline(headline, user.email).deliver
+      end
+    else
+      UsersMailer.headline(headline).deliver
+    end
     respond_to :js
+  end
+
+  def claim
+    headline = Headline.find params[:id]
+    headline.user = current_user
+    headline.claimed = true
+    headline.save
+    render json: { id: headline.id }
   end
 
   def view

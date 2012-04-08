@@ -16,4 +16,14 @@ class UsersMailer < ActionMailer::Base
     mail to: article.campaign.user.email, subject: "An article has received updates"
   end
 
+  def headline(headline)
+    @headline = headline
+    mail to: headline.campaign.user.email, subject: "A new headline has been suggested"
+  end
+
+  def public_headline(headline, email)
+    @headline = headline
+    mail to: email, subject: "A new headline has been suggested"
+  end
+
 end
