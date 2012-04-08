@@ -14,10 +14,12 @@ class User
   field :email, type: String
   field :type, type: Symbol
   field :bio, type: String
+  field :profile, type: String
   field :tags, type: String
   field :title, type: String
   field :admin, type: Boolean, default: false
   field :preset_image, type: String
+  field :timestamp, type: Integer
 
   mount_uploader :avatar, AvatarUploader
   mount_uploader :background, BackgroundUploader
