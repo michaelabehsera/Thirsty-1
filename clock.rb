@@ -6,7 +6,7 @@ handler do |job|
     when 'subscriptions.check'
       Campaign.all.each do |campaign|
         campaign.subscriptions.each do |user|
-          if user.timestamp < (Time.now - 4.minutes).to_i
+          if user.timestamp && user.timestamp < (Time.now - 4.minutes).to_i
             campaign.subscriptions.delete user
             Juggernaut.publish campaign.uuid, { user_id: user.id, event_type: 'unsubscribe' }
           end
