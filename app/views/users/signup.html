@@ -1,5 +1,8 @@
  <%= render partial: 'site/signup_pages_header' %>
  <div id="wrap">
+        <div id="logo_signup">
+          <img src="/images/logo.png" width="" height="" alt="Thirsty Logo">
+        </div>
       <div id="signup">
         <h1>Create a Thirsty account</h1>
         <% if @user %>
@@ -19,19 +22,16 @@
           <% end %>
         <% end %>
         <%= form_for :user, url: '/users/create', html: { id: 'user_form' } do |f| %>
-           <p>Username</p>
            <%= f.text_field :username, placeholder: 'Username', autocomplete: 'off' %>
-           <p>Name</p>
            <%= f.text_field :name, placeholder: 'Name', autocomplete: 'off' %>
-           <p>Password</p>
            <%= f.password_field :password, placeholder: 'Password', autocomplete: 'off' %>
-           <p>Email Address</p>
            <%= f.email_field :email, placeholder: 'Email', autocomplete: 'off' %>
-           <p>Sign up as a:</p>
            <%= f.select(:type, [['Marketer', :marketer],['Business', :business]], { include_blank: true }) %>
            <br />
-  <button class="button_submit_page" style="margin:10px -2px 0 9px">Sign up</button>
-  <a href="/signin" style="margin-top:21px;">Have an account? Sign in</a>
+  <button class="blue_button" style="margin:10px 0 0 10px; padding:9px 130px;">Sign up</button>
+      <ul>
+        <li><a align="center" href="/signin">Have an account? Sign in</a></li>
+      </ul>   
          <% end %>
          </div>
 

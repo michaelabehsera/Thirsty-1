@@ -15,7 +15,7 @@
 }
 
 .inner_footer ul {
-    margin:24px 0 0 0;
+    margin:24px 0 0 19px;
     float:left;
 
 
@@ -70,30 +70,7 @@ body {
     font-family: 'Homenaje', sans-serif;
 
 }
-.blue_button_home:hover {
-    color:#fff;
-    text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -moz-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -ms-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -o-linear-gradient(top, #1a5796, #2d6eb2);
-    box-shadow: inset 0px 1px 0px #1366bd;
-    -moz-box-shadow: inset 0px 1px 0px #1366bd;
-    -webkit-box-shadow: inset 0px 1px 0px #1366bd;
 
-}
-
-.blue_button_home:active {
-    color:#fff;
-    background: -webkit-linear-gradient(top, #16508d, #16508d);
-    background: -moz-linear-gradient(top, #16508d, #16508d);
-    background: -ms-linear-gradient(top, #16508d, #16508d);
-    background: -o-linear-gradient(top, #16508d, #16508d);
-    box-shadow: inset 0px 0px 7px #04284e;
-    -moz-box-shadow: inset 0px 0px 7px #04284e;
-    -webkit-box-shadow: inset 0px 0px 7px #04284e;
-
-}
 .blue_button_home {
     color: #fff;
     text-shadow: 0px -1px 0px #000;
@@ -103,19 +80,43 @@ body {
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    font-size:13px;
-    padding:11px 75px;
+    font-size:14px;
+    padding:9px 51px;
     background: #ededed;
-    background: -webkit-linear-gradient(top, #427ebd, #1a5796);
-    background: -moz-linear-gradient(top, #427ebd, #1a5796);
-    background: -ms-linear-gradient(top, #427ebd, #1a5796);
-    background: -o-linear-gradient(top, #427ebd, #1a5796);
-    border:solid 1px #002041;
-    box-shadow: inset 0px 1px 0px #468ed9;
-    -moz-box-shadow: inset 0px 1px 0px #468ed9;
-    -webkit-box-shadow: inset 0px 1px 0px #468ed9;
+    background: -webkit-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -moz-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -ms-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -o-linear-gradient(top, #1ba9ea, #0e6791);
+    border:solid 1px #002b3e;
+    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
+    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
+    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
     cursor:pointer;
     font-weight:normal;
+   
+}
+
+.blue_button_home:hover {
+    text-decoration:none !important;
+    background: -webkit-linear-gradient(top, #0e6791, #189fdd);
+    background: -moz-linear-gradient(top, #0e6791, #189fdd);
+    background: -ms-linear-gradient(top, #0e6791, #189fdd);
+    background: -o-linear-gradient(top, #0e6791, #189fdd);
+    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
+    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
+    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
+
+}
+
+.blue_button_home:active {
+    border:1px solid #001a25;
+    background: -webkit-linear-gradient(top, #0e6791, #0e6791);
+    background: -moz-linear-gradient(top, #0e6791, #0e6791);
+    background: -ms-linear-gradient(top, #0e6791, #0e6791);
+    background: -o-linear-gradient(top, #0e6791, #0e6791);
+    box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
+    -moz-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
+    -webkit-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
 
 }
 
@@ -156,18 +157,21 @@ img {
 
 
 /*-------------------------Header end-------------------------*/
-/*-------------------------Header end-------------------------*/
 
 
 #header {
     top:0;
     display:block;
+     background-color:#fff;
+    height:50px;
+    width:100%;
+    box-shadow:0px 0px 7px 0px #000;
 
 }
 
 #header ul {
     float:right;
-    margin:12px 7px 0 0;
+    margin:14px 7px 0 0;
     
 }
 
@@ -176,64 +180,64 @@ img {
     display:inline;
     margin:0 8px 0 0;
     float:right;
-    color:#fff;
+    color:#5b5b5b;
     font-size:13px;
     font-family: 'Open Sans', sans-serif;
     
 }
 
 #header a {
-    color:#fff;
-    font-size:13px;
+    color:#5b5b5b;
+    font-size:12px;
     text-decoration:underline;
     
 }
 
 a.button_black {
-    color: #fff;
+    color:#5b5b5b;
     text-decoration:none !important;
-    text-shadow: 0px -1px 0px #000;
-    -moz-text-shadow: 0px -1px 0px #000;
-    -webkit-text-shadow: 0px -1px 0px #000;
-    text-decoration: none;
-    font-size:13px;
+    font-size:12px;
     float:right;
-    margin:0 0 0 0;
+    margin:-2px 0 0 0;
     padding:4px 13px;
     background: #ededed;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    background: -webkit-linear-gradient(top, #252525, #151515);
-    background: -moz-linear-gradient(top, #252525, #151515);
-    background: -ms-linear-gradient(top, #252525, #151515);
-    background: -o-linear-gradient(top, #252525, #151515);
-    border:solid 1px #000;
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #3d3d3d;
-    -moz-box-shadow: inset 0px 1px 0px #3d3d3d;
-    -webkit-box-shadow: inset 0px 1px 0px #3d3d3d;
+    background: -webkit-linear-gradient(top, #fff, #f8f8f8);
+    background: -moz-linear-gradient(top, #fff, #f8f8f8);
+    background: -ms-linear-gradient(top, #fff, #f8f8f8);
+    background: -o-linear-gradient(top, #fff, #f8f8f8);
+    border:solid 1px #d2d2d2;
+    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #fff;
+    -moz-box-shadow: inset 0px 1px 0px #fff;
+    -webkit-box-shadow: inset 0px 1px 0px #fff;
     cursor:pointer;
     font-weight:normal;
+    text-shadow:0px 0px 0px #000 !important;
+    -moz-text-shadow:0px 0px 0px #000 !important;
+    -webkit-text-shadow:0px 0px 0px #000 !important;
    
 }
 
 a.button_black:hover {
     text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #151515, #252525);
-    background: -moz-linear-gradient(top, #151515, #252525);
-    background: -ms-linear-gradient(top, #151515, #252525);
-    background: -o-linear-gradient(top, #151515, #252525);
+    background: -webkit-linear-gradient(top, #f8f8f8, #fff);
+    background: -moz-linear-gradient(top, #f8f8f8, #fff);
+    background: -ms-linear-gradient(top, #f8f8f8, #fff);
+    background: -o-linear-gradient(top, #f8f8f8, #fff);
 
 }
 
 a.button_black:active {
-    background: -webkit-linear-gradient(top, #121212, #121212);
-    background: -moz-linear-gradient(top, #121212, #121212);
-    background: -ms-linear-gradient(top, #121212, #121212);
-    background: -o-linear-gradient(top, #121212, #121212);
-    box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151;
-    -moz-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151;
-    -webkit-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151;
+    border:1px solid #b3b3b3;
+    background: -webkit-linear-gradient(top, #ededed, #ededed);
+    background: -moz-linear-gradient(top, #ededed, #ededed);
+    background: -ms-linear-gradient(top, #ededed, #ededed);
+    background: -o-linear-gradient(top, #ededed, #ededed);
+    box-shadow: inset 0px 0px 7px #bebebe;
+    -moz-box-shadow: inset 0px 0px 7px #bebebe;
+    -webkit-box-shadow: inset 0px 0px 7px #bebebe;
 
 }
 
@@ -244,76 +248,24 @@ a.button_black:active {
 /*-------------------------Home page body-------------------------*/
 
 
-#stiches_1 {
+.stiches_2 {
     width:720px;
-    height:2px;
+    height:1px;
     margin:0 auto;
-    margin-top:0;
-    border-bottom:1px dashed #fff;
-
-}
-
-
-#stiches_2 {
-    width:720px;
-    height:2px;
-    margin:0 auto;
-    margin-top:30px;
-    border-bottom:1px dashed #fff;
-
-}
-
-a.blue_button {
-    color: #fff;
-    text-shadow: 0px -1px 0px #000;
-    -moz-text-shadow: 0px -1px 0px #000;
-    -webkit-text-shadow: 0px -1px 0px #000;
-    text-decoration: none;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    font-size:14px;
-    padding:9px 65px;
-    background: #ededed;
-    background: -webkit-linear-gradient(top, #50518b, #414275);
-    background: -moz-linear-gradient(top, #50518b, #414275);
-    background: -ms-linear-gradient(top, #50518b, #414275);
-    background: -o-linear-gradient(top, #50518b, #414275);
-    border:solid 1px #2d2e59;
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #5d5eaa;
-    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #5d5eaa;
-    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #5d5eaa;
-    cursor:pointer;
-    font-weight:normal;
-   
-}
-
-a.blue_button:hover {
-    text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -moz-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -ms-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -o-linear-gradient(top, #1a5796, #2d6eb2);
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-
-}
-
-a.blue_button:active {
-    background: -webkit-linear-gradient(top, #16508d, #16508d);
-    background: -moz-linear-gradient(top, #16508d, #16508d);
-    background: -ms-linear-gradient(top, #16508d, #16508d);
-    background: -o-linear-gradient(top, #16508d, #16508d);
-    box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
-    -moz-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
-    -webkit-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
+    background: -moz-linear-gradient(left,  rgba(163,163,163,0) 0%, rgba(163,163,163,1) 50%, rgba(163,163,163,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(163,163,163,0)), color-stop(50%,rgba(163,163,163,1)), color-stop(100%,rgba(163,163,163,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(163,163,163,0) 0%,rgba(163,163,163,1) 50%,rgba(163,163,163,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(163,163,163,0) 0%,rgba(163,163,163,1) 50%,rgba(163,163,163,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(163,163,163,0) 0%,rgba(163,163,163,1) 50%,rgba(163,163,163,0) 100%); /* IE10+ */
+    background: linear-gradient(left,  rgba(163,163,163,0) 0%,rgba(163,163,163,1) 50%,rgba(163,163,163,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a3a3a3', endColorstr='#00a3a3a3',GradientType=1 ); /* IE6-9 */
 
 }
 
 #content_width {
     width:730px;
     margin:0 auto;
+    margin-top:65px;
 
 }
 
@@ -322,7 +274,8 @@ a.blue_button:active {
 
 
 #inner_wrap {
-    margin-bottom:200px;
+    margin-left:-23px;
+    margin-bottom:450px;
 
 }
 
@@ -330,12 +283,13 @@ a.blue_button:active {
 #second_part input:-moz-input-placeholder { color: #252525 }
 
 #second_part {
-    width:350px;
+    width:370px;
     margin:0 auto;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    margin-top:20px;
+    margin-top:35px;
+    margin-bottom:200px;
 
 }
 
@@ -346,20 +300,18 @@ a.blue_button:active {
     -webkit-text-shadow:0 1px 0 #fff;
     position:relative;
     top:40px;
-    right:1px;
+    right:-53px;
     font-size:13px;
     background: #EDEDED;
-    background: -webkit-linear-gradient(top, #fafafa, #e5e5e5);
-    background: -moz-linear-gradient(top, #fafafa, #e5e5e5);
-    background: -ms-linear-gradient(top, #fafafa, #e5e5e5);
-    background: -o-linear-gradient(top, #fafafa, #e5e5e5);
-    border: solid 1px #8C3A03;
-    padding:10px;
-    border:1px solid #fff;
+    background: -webkit-linear-gradient(top, #fff, #f8f8f8);
+    background: -moz-linear-gradient(top, #fff, #f8f8f8);
+    background: -ms-linear-gradient(top, #fff, #f8f8f8);
+    background: -o-linear-gradient(top, #fff, #f8f8f8);
+    border:1px solid #5d5d5d;
+    padding:9px;
     border-radius:3px 0 0 3px;
     -moz-border-radius:3px 0 0 3px;
     -webkit-border-radius:3px 0 0 3px;
-    border:1px solid #151515;
     box-shadow: 0 0 17px #fff;
     -moz-box-shadow: 0 0 17px #fff;
     -webkit-box-shadow: 0 0 17px #fff;
@@ -369,20 +321,20 @@ a.blue_button:active {
 
 #second_part input {
     background-color:#fff;
-    border:1px solid #151515;
-    color:#252525;
+    border:1px solid #5d5d5d;
+    color:#5d5d5d;
     display:block;
     font-size:13px;
-    width:330px;
+    width:301px;
     height:22px;
     margin:12px 0 0 0;
     outline:none;
     padding:7px;
+    float:right;
     border-radius:3px;
-    box-shadow: 0 0 17px #fff, inset 0 0 5px #505050;
-    -moz-box-shadow: 0 0 17px #fff, inset 0 0 5px #505050;
-    -webkit-box-shadow: 0 0 17px #fff, inset 0 0 5px #505050;
-    background:url(images/bg_signup.png)repeat;
+    box-shadow: 0 0 10px #fff, inset 0 0 3px #505050;
+    -moz-box-shadow: 0 0 10px #fff, inset 0 0 3px #505050;
+    -webkit-box-shadow: 0 0 10px #fff, inset 0 0 3px #505050;
     -moz-transition: .4s ease-in-out;
     -webkit-transition: .4s ease-in-out;
     font-family: 'Open Sans', sans-serif;
@@ -390,6 +342,7 @@ a.blue_button:active {
 }
 
 #second_part input:focus {
+    color:#252525;
     background:url(images/bg_signup.png)repeat;
     -moz-transition: .4s ease-in-out;
     -webkit-transition: .4s ease-in-out;  
@@ -405,15 +358,46 @@ a.blue_button:active {
 #button_width p {
     font-size:20px;
     color:#fff;
-    margin-top:31px;
     text-shadow:0 -1px 0 #000;
+    -moz-text-shadow:0 -1px 0 #000;
+    -webkit-text-shadow:0 -1px 0 #000;
     font-family: 'Open Sans', sans-serif;
 
 }
 
+#second_part input {
+    background-color:#fff;
+    border:1px solid #5d5d5d;
+    color:#5d5d5d;
+    display:block;
+    font-size:13px;
+    width:301px;
+    height:22px;
+    margin:12px 0 0 0;
+    outline:none;
+    padding:7px;
+    float:right;
+    border-radius:3px;
+    box-shadow: 0 0 10px #fff, inset 0 0 3px #505050;
+    -moz-box-shadow: 0 0 10px #fff, inset 0 0 3px #505050;
+    -webkit-box-shadow: 0 0 10px #fff, inset 0 0 3px #505050;
+    -moz-transition: .4s ease-in-out;
+    -webkit-transition: .4s ease-in-out;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+#second_part input:focus {
+    color:#000;
+    background:url(images/bg_signup.png)repeat;
+    -moz-transition: .4s ease-in-out;
+    -webkit-transition: .4s ease-in-out;  
+
+}
+
 #main_content {
-    width:730;
-    height:170px;
+    width:730px;
+    height:135px;
     margin:0 auto;
     margin-top:50px;
     margin-bottom:50px;
@@ -444,6 +428,7 @@ a.blue_button:active {
     font-size:15px;
     font-family: 'Open Sans', sans-serif;
     font-weight:italic;
+
 }
 
 
