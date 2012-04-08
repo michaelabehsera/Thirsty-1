@@ -1,10 +1,10 @@
 .notification2
   - child = notification.comment || notification.article || notification.campaign || notification.goal
-  - user_name = child.user.name unless notification.campaign || notification.goal
+  - user = child.user unless notification.campaign || notification.goal
   - if notification.comment
-    #{user_name} suggests: #{child.message}
+    #{link_to user.name, "http://thirsty.com/profile/#{user.username}"} suggests: #{child.message}
   - elsif notification.article
-    #{user_name} wrote: #{link_to child.title, "http://thirsty.com/campaigns/#{child.campaign.uuid}?article=#{child.id}"}
+    #{link_to user.name, "http://thirsty.com/profile/#{user.username}"} wrote: #{link_to child.title, "http://thirsty.com/campaigns/#{child.campaign.uuid}?article=#{child.id}"}
   - elsif notification.campaign
     - if defined?(campaign) && notification.campaign == campaign
       Your campaign has been created!

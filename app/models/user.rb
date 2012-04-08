@@ -8,6 +8,11 @@ class User
   gravtastic size: 35
 
   before_create :preset_background
+  after_create :send_notification
+
+  def send_notification
+    UsersMailer.new_account(self)
+  end
 
   field :name, type: String
   field :username, type: String
@@ -52,7 +57,7 @@ class User
           case event
             when :subscribe
               campaign.subscriptions << user
-              Juggernaut.publish campaign.uuid, { user_id: user.id, username: user.name, event_type: 'subscribe' }
+              Juggernaut.publish campaign.uuid, { user_id: user.id, username: user.username, name: user.name, event_type: 'subscribe' }
             when :unsubscribe
               campaign.subscriptions.delete user
               Juggernaut.publish campaign.uuid, { user_id: user.id, event_type: 'unsubscribe' }

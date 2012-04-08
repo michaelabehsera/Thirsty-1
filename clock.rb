@@ -14,7 +14,12 @@ handler do |job|
       end
     when 'campaigns.advance'
       Campaign.all.each do |campaign|
-        campaign.update_attribute(:month, campaign.month + 1) if Time.now.day == campaign.start_day && Time.now.to_date != campaign.created_at.to_date
+        if Time.now.day == campaign.start_day && Time.now.to_date != campaign.created_at.to_date
+          campaign.update_attribute(:month, campaign.month + 1)
+          campaign.goals.each do |goal|
+            goal.update_attribute(:achieved, false)
+          end
+        end
       end
     when 'bits.update'
       Campaign.all.each do |campaign|
@@ -26,6 +31,10 @@ handler do |job|
         goal = campaign.goals.where(type: :traffic).first
         clicks = campaign.articles.map{|a|a.bits.map{|b|b.clicks}}.flatten.compact.reduce(:+)
         goal.update_attribute(:achieved, true) if goal && clicks && clicks >= goal.num
+        if clicks && clicks >= goal.next_step
+          goal.update_attribute(:next_step, goal.next_step + 50)
+          UsersMailer.traffic_update(campaign, clicks).deliver
+        end
       end
     else
       Stalker.enqueue job

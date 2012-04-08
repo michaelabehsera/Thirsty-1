@@ -78,8 +78,24 @@ class CampaignsController < ApplicationController
   def headline
     headline = campaign.headlines.new(title: params[:headline])
     headline.user = current_user
+    headline.public = true if params[:type] == 'public'
     headline.save
+    if headline.public
+      campaign.marketers.each do |user|
+        UsersMailer.public_headline(headline, user.email).deliver
+      end
+    else
+      UsersMailer.headline(headline).deliver
+    end
     respond_to :js
+  end
+
+  def claim
+    headline = Headline.find params[:id]
+    headline.user = current_user
+    headline.claimed = true
+    headline.save
+    render json: { id: headline.id }
   end
 
   def view
@@ -142,11 +158,29 @@ class CampaignsController < ApplicationController
     render nothing: true
   end
 
-  def submit
+  def draft
     user = User.find(params[:id])
     user.update_attribute(:bio, params[:bio])
     if params[:edit] == 'false'
       article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
+      article.user = user
+      if article.save
+        render json: { success: true, id: article.id, title: article.title, name: user.name }
+      else
+        render json: { success: false }
+      end
+    else
+      article = Article.find params[:aid]
+      article.update_attributes(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
+      render json: { success: true, id: article.id, title: article.title, name: user.name }
+    end
+  end
+
+  def submit
+    user = User.find(params[:id])
+    user.update_attribute(:bio, params[:bio])
+    if params[:edit] == 'false'
+      article = campaign.articles.new(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags], submitted: true)
       article.user = user
       if article.save
         article.create_notification
@@ -156,7 +190,12 @@ class CampaignsController < ApplicationController
       end
     else
       article = Article.find params[:aid]
-      article.update_attributes(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags])
+      if article.submitted
+        UsersMailer.edit(article).deliver
+      else
+        article.create_notification
+      end
+      article.update_attributes(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags], submitted: true)
       render json: { success: true, id: article.id, title: article.title, name: user.name }
     end
   end
