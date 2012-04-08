@@ -1,6 +1,11 @@
 class UsersMailer < ActionMailer::Base
   default from: 'thirsty-bot@thirsty.com', content_type: 'text/html'
 
+  def new_account(user)
+    @user = user
+    mail to: 'mike@thirsty.com', subject: 'New Thirsty Account!'
+  end
+
   def response(from, to, email, subject, body)
     @body = body
     mail from: "thirsty-bot+#{to}|#{from}@thirsty.com", to: email, subject: subject

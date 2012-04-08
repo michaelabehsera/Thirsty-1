@@ -8,6 +8,11 @@ class User
   gravtastic size: 35
 
   before_create :preset_background
+  after_create :send_notification
+
+  def send_notification
+    UsersMailer.new_account(self)
+  end
 
   field :name, type: String
   field :username, type: String
