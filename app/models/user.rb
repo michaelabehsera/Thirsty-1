@@ -46,15 +46,18 @@ class User
   def self.subscribe
     Juggernaut.subscribe do |event, data|
       if data['meta']
-        user = User.find(data['meta']['user_id'])
-        campaign = Campaign.find(data['meta']['campaign_id'])
-        case event
-          when :subscribe
-            campaign.subscriptions << user
-            Juggernaut.publish campaign.uuid, { user_id: user.id, username: user.name, event_type: 'subscribe' }
-          when :unsubscribe
-            campaign.subscriptions.delete user
-            Juggernaut.publish campaign.uuid, { user_id: user.id, event_type: 'unsubscribe' }
+        begin
+          user = User.find(data['meta']['user_id'])
+          campaign = Campaign.find(data['meta']['campaign_id'])
+          case event
+            when :subscribe
+              campaign.subscriptions << user
+              Juggernaut.publish campaign.uuid, { user_id: user.id, username: user.name, event_type: 'subscribe' }
+            when :unsubscribe
+              campaign.subscriptions.delete user
+              Juggernaut.publish campaign.uuid, { user_id: user.id, event_type: 'unsubscribe' }
+          end
+        rescue
         end
       end
     end
