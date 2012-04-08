@@ -71,8 +71,11 @@
 
   <div class="modal-footer">
     <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
-    <%= link_to 'Deny', '', remote: true, class: 'deny btn btn-danger' %>
-    <%= link_to 'Accept', '', remote: true, class: 'accept btn btn-success', onclick: "javascript:$('#article-modal .btn-success').text('Accepting..')" %>
+    <% if current_user == campaign.user %>
+      <%= link_to 'Deny', '', remote: true, class: 'deny btn btn-danger' %>
+      <%= link_to 'Accept', '', remote: true, class: 'accept btn btn-success', onclick: "javascript:$('#article-modal .btn-success').text('Accepting..')" %>
+    <% else %>
+    <% end %>
   </div>
 </div>
 
@@ -744,8 +747,11 @@
           $('#article-modal h3').text(rsp.title)
           $('#article-content').html(rsp.article)
           $('#article-bio').html(rsp.bio)
+          <% if current_user == campaign.user %>
           $('#article-modal .btn-success').attr('href', '/campaigns/<%=campaign.uuid%>/approve?id=<%=params[:article]%>')
           $('#article-modal .btn-danger').attr('href', '/campaigns/<%=campaign.uuid%>/deny?id=<%=params[:article]%>')
+          <% else %>
+          <% end %>
         },
         'json'
       )

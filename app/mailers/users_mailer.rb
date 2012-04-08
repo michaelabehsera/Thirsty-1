@@ -11,4 +11,9 @@ class UsersMailer < ActionMailer::Base
     mail to: campaign.user.email, subject: "#{clicks} clicks for #{campaign.title}!"
   end
 
+  def edit(article)
+    @article = article
+    mail to: article.campaign.user.email, subject: "An article has received updates"
+  end
+
 end

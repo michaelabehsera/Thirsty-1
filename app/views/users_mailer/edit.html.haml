@@ -1,0 +1,5 @@
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', :'http-equiv' => 'Content-Type'}
+  %body #{@article.title} written by #{@article.user.name} for your #{@article.campaign.title} has been edited based on your requests! Please #{link_to 'check it out', "http://thirsty.com/campaign/#{@article.campaign.uuid}?article=#{@article.id}"}.

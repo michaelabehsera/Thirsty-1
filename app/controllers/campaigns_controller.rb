@@ -174,7 +174,11 @@ class CampaignsController < ApplicationController
       end
     else
       article = Article.find params[:aid]
-      article.create_notification unless article.submitted
+      if article.submitted
+        UsersMailer.edit(article).deliver
+      else
+        article.create_notification
+      end
       article.update_attributes(content: params[:content], title: params[:title], bio: params[:bio], tags: params[:tags], submitted: true)
       render json: { success: true, id: article.id, title: article.title, name: user.name }
     end
