@@ -14,7 +14,12 @@ handler do |job|
       end
     when 'campaigns.advance'
       Campaign.all.each do |campaign|
-        campaign.update_attribute(:month, campaign.month + 1) if Time.now.day == campaign.start_day && Time.now.to_date != campaign.created_at.to_date
+        if Time.now.day == campaign.start_day && Time.now.to_date != campaign.created_at.to_date
+          campaign.update_attribute(:month, campaign.month + 1)
+          campaign.goals.each do |goal|
+            goal.update_attribute(:achieved, false)
+          end
+        end
       end
     when 'bits.update'
       Campaign.all.each do |campaign|
