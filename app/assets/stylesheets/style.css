@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Homenaje', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background:url(/images/background_main.png)repeat;
 
 }
@@ -14,6 +14,26 @@ body {
 .notification2{padding:10px;border-bottom:thin solid #d1d1d1;border-right:thin solid #d1d1d1;border-left:thin solid #d1d1d1;background-color:whiteSmoke;width:770px}
 .article{padding:9px;border-bottom:thin solid #d1d1d1}
 #initial_welcome { margin-top: 110px }
+
+#initial_welcome h1 {  
+    color:#0D87BF;
+    font-size:23px;
+    text-shadow:0 1px 0 #fff;
+    -moz-text-shadow:0 1px 0 #fff;
+    -webkit-text-shadow:0 1px 0 #fff;
+
+}
+
+#initial_welcome p { 
+    color:#3B3B3B;
+    width:720px; 
+    font-size:12px;
+    margin-top: 15px;
+    text-shadow:0 1px 0 #fff;
+    -moz-text-shadow:0 1px 0 #fff;
+    -webkit-text-shadow:0 1px 0 #fff;
+
+}
 
 .blue_button {
     color: #fff;
@@ -27,116 +47,69 @@ body {
     font-size:13px;
     padding:6px 15px;
     background: #ededed;
-    background: -webkit-linear-gradient(top, #427ebd, #1a5796);
-    background: -moz-linear-gradient(top, #427ebd, #1a5796);
-    background: -ms-linear-gradient(top, #427ebd, #1a5796);
-    background: -o-linear-gradient(top, #427ebd, #1a5796);
-    border:solid 1px #002041;
-    box-shadow: inset 0px 1px 0px #468ed9;
-    -moz-box-shadow: inset 0px 1px 0px #468ed9;
-    -webkit-box-shadow: inset 0px 1px 0px #468ed9;
+    background: -webkit-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -moz-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -ms-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -o-linear-gradient(top, #1ba9ea, #0e6791);
+    border:solid 1px #002b3e;
+    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
+    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
+    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
     cursor:pointer;
     font-weight:normal;
-
+   
 }
 
 .blue_button:hover {
-    color:#fff;
+    color:#fff !important;
     text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -moz-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -ms-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -o-linear-gradient(top, #1a5796, #2d6eb2);
-    box-shadow: inset 0px 1px 0px #1366bd;
-    -moz-box-shadow: inset 0px 1px 0px #1366bd;
-    -webkit-box-shadow: inset 0px 1px 0px #1366bd;
+    background: -webkit-linear-gradient(top, #0e6791, #189fdd);
+    background: -moz-linear-gradient(top, #0e6791, #189fdd);
+    background: -ms-linear-gradient(top, #0e6791, #189fdd);
+    background: -o-linear-gradient(top, #0e6791, #189fdd);
+    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
+    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
+    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
 
 }
 
 .blue_button:active {
-    color:#fff;
-    background: -webkit-linear-gradient(top, #16508d, #16508d);
-    background: -moz-linear-gradient(top, #16508d, #16508d);
-    background: -ms-linear-gradient(top, #16508d, #16508d);
-    background: -o-linear-gradient(top, #16508d, #16508d);
-    box-shadow: inset 0px 0px 7px #04284e;
-    -moz-box-shadow: inset 0px 0px 7px #04284e;
-    -webkit-box-shadow: inset 0px 0px 7px #04284e;
-
-}
-
-.orange_button {
-    color: #5b5b5b;
-    text-shadow: 0px 1px 0px #fff;
-    -moz-text-shadow: 0px 1px 0px #fff;
-    -webkit-text-shadow: 0px 1px 0px #fff;
-    text-decoration: none;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    font-size:13px;
-    padding:6px 15px;
-    background: #ededed;
-    background: -webkit-linear-gradient(top, #EBEBEB, #DEDEDE);
-    background: -moz-linear-gradient(top, #EBEBEB, #DEDEDE);
-    background: -ms-linear-gradient(top, #EBEBEB, #DEDEDE);
-    background: -o-linear-gradient(top, #EBEBEB, #DEDEDE);
-    border:solid 1px #8A8A8A;
-    box-shadow: inset 0px 1px 0px #fff;
-    -moz-box-shadow: inset 0px 1px 0px #fff;
-    -webkit-box-shadow: inset 0px 1px 0px #fff;
-    cursor:pointer;
-    font-weight:normal;
-
-}
-
-.orange_button:hover {
-    color:#5E5E5E;
-    text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #DEDEDE, #EBEBEB);
-    background: -moz-linear-gradient(top, #DEDEDE, #EBEBEB);
-    background: -ms-linear-gradient(top, #DEDEDE, #EBEBEB);
-    background: -o-linear-gradient(top, #DEDEDE, #EBEBEB);
-    box-shadow: inset 0px 1px 0px #fff;
-    -moz-box-shadow: inset 0px 1px 0px #fff;
-    -webkit-box-shadow: inset 0px 1px 0px #fff;
-
-}
-
-.orange_button:active {
-    border:solid 1px #575757;
-    background: -webkit-linear-gradient(top, #B5B5B5, #B5B5B5);
-    background: -moz-linear-gradient(top, #B5B5B5, #B5B5B5);
-    background: -ms-linear-gradient(top, #B5B5B5, #B5B5B5);
-    background: -o-linear-gradient(top, #B5B5B5, #B5B5B5);
-    box-shadow: inset 0px 0px 7px #252525, 0px 0px 0px #04284e;
-    -moz-box-shadow: inset 0px 0px 7px #252525, 0px 0px 0px #04284e;
-    -webkit-box-shadow: inset 0px 0px 7px #252525, 0px 0px 0px #04284e;
+    border:1px solid #001a25;
+    background: -webkit-linear-gradient(top, #0e6791, #0e6791);
+    background: -moz-linear-gradient(top, #0e6791, #0e6791);
+    background: -ms-linear-gradient(top, #0e6791, #0e6791);
+    background: -o-linear-gradient(top, #0e6791, #0e6791);
+    box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
+    -moz-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
+    -webkit-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
 
 }
 
 #guide_box, #timer {
-width: 755px;
-padding: 17px;
-border-radius: 5px;
--moz-border-radius: 5px;
--webkit-border-radius: 5px;
-background-color: whiteSmoke;
-border: 1px solid #D1D1D1;
+    width: 755px;
+    padding: 17px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: whiteSmoke;
+    border: 1px solid #D1D1D1;
+
 }
 
 #guide_box h1 {
-font-size: 17px;
-color: #252525;
-margin: 0px 0 0 0;
+    font-size: 17px;
+    color: #252525;
+    margin: 0px 0 0 0;
+
 }
 
-#timer h1 { text-align: center; font-size:24px }
+#timer h1 { text-align: center; font-size:21px }
 
 #guide_box p {
-font-size: 14px;
-color: #252525;
-margin: 10px 0 0 0;
+    height:30px;
+    font-size: 12px;
+    color: #252525;
+    margin: 10px 0 0 0;
 
 }
 
@@ -195,11 +168,12 @@ li.active a {
 }
 
 #analytics-modal {
-  width: 80%;
-  min-height: 575px;
-  left: 10%;
-  top: 5%;
-  margin: 0;
+    width: 80%;
+    min-height: 575px;
+    left: 10%;
+    top: 5%;
+    margin: 0;
+
 }
 
 #settings {
@@ -344,6 +318,7 @@ li.active a {
 .social li a strong { font-weight:normal; position:absolute; left:20px; top:-1px; color:#fff; padding:3px; z-index:9999;
  text-shadow:1px 1px 0 rgba(0, 0, 0, 0.75); background-color:rgba(0, 0, 0, 0.7);
  -moz-border-radius:3px; -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); -webkit-border-radius:3px; -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); border-radius:3px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
 }
 
 li.dribbble { background-image:url("/images/dribbble.png"); }
@@ -385,14 +360,13 @@ li.posterous { background-image:url("/images/posterous.png"); }
 }
 
 #creatives_count p {
-    font-size: 27px;
+    font-size: 23px;
     margin: 0 auto;
     margin-left: 240px;
     color:#8A8A8A;
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
     -webkit-text-shadow:0 1px 0 #fff;
-    font-family: 'Homenaje', sans-serif;
 
 }
 
@@ -413,10 +387,9 @@ li.posterous { background-image:url("/images/posterous.png"); }
 }
 
 .your_campaigns h1 {
-    color: rgb(55, 55, 55);
-    font-size: 17px;
+    color:#252525;
+    font-size: 15px;
     margin: 0 0 0 0;
-    font-family: 'Homenaje', sans-serif;
 
 }
 
@@ -424,12 +397,12 @@ li.posterous { background-image:url("/images/posterous.png"); }
     font-size:13px;
     color: rgb(91, 91, 91);
     text-decoration: none;
-    font-family: 'Homenaje', sans-serif;
 
 }
 
 .personal_projects p {
-    font-size: 15px;
+    font-size: 12px;
+    color:#3b3b3b;
     padding: 10px;
     margin: 0 0 0 1px;
     width: 770px;
@@ -438,7 +411,6 @@ li.posterous { background-image:url("/images/posterous.png"); }
     background-color:whitesmoke;
     border-left:1px solid #d1d1d1;
     border-right:1px solid #d1d1d1;
-    font-family: 'Homenaje', sans-serif;
 
 }
 
@@ -471,18 +443,21 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 #header {
     z-index: 1;
-    top:0;
-    width:100%;
-    height:52px;
-    display:block;
     position:fixed;
-    background:url(/images/header_bg.png)repeat;
+    top:0;
+    display:block;
+    background-color:#fff;
+    height:50px;
+    width:100%;
+    box-shadow:0px 0px 7px 0px #000;
+    -moz-box-shadow:0px 0px 7px 0px #000;
+    -webkit-box-shadow:0px 0px 7px 0px #000;
 
 }
 
 #header ul {
     float:right;
-    margin:16px 15px 0 0;
+    margin:14px 15px 0 0;
 
 }
 
@@ -494,10 +469,8 @@ li.posterous { background-image:url("/images/posterous.png"); }
 }
 
 #header a {
-    color:#fff;
-    text-shadow:0 -1px 0 #000;
-    -moz-text-shadow:0 -1px 0 #000;
-    -webkit-text-shadow:0 -1px 0 #000;
+    color:#5B5B5B;
+    font-size:11px;
 
 }
 
@@ -640,9 +613,8 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 #user_guide p {
     color:#fff;
-    font-size:15px;
+    font-size:12px;
     text-shadow:0 1px 0 #000;
-    font-family: 'Homenaje', sans-serif;
     
 }
 
@@ -732,8 +704,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 .campaign_box p {
     color:#252525;
-    font-size:14px;
-    font-family: 'Homenaje', sans-serif;
+    font-size:12px;
 
 }
 
@@ -792,7 +763,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
 
 #company_menu h1 {
     color:#373737;
-    font-size:17px;
+    font-size:15px;
     width:770px;
     margin:0 0 0 0;
 
@@ -829,7 +800,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
     -moz-text-shadow: 0px -1px 0px #000;
     -webkit-text-shadow: 0px -1px 0px #000;
     text-decoration: none;
-    font-size:13px;
+    font-size:12px;
     padding:7px 15px 7px 15px;
     background: #ededed;
     background: -webkit-linear-gradient(top, #252525, #151515);
@@ -963,7 +934,7 @@ li.posterous { background-image:url("/images/posterous.png"); }
     -moz-text-shadow: 0px -1px 0px #000;
     -webkit-text-shadow: 0px -1px 0px #000;
     text-decoration: none;
-    font-size:13px;
+    font-size:12px;
     padding:7px 15px 7px 15px;
     background:#151515;
     background: -webkit-linear-gradient(top, #252525, #151515);
@@ -1208,7 +1179,7 @@ button.button_submit:active {
 }
 
 #footer_nav li {
-    color:#717171;
+    color:#3b3b3b;
     display:inline;
     list-style:none;
     font-size:13px;
@@ -1216,21 +1187,21 @@ button.button_submit:active {
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
     -webkit-text-shadow:0 1px 0 #fff; 
-    -moz-transition: .4s ease-in-out;
-    -webkit-transition: .4s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
 
 }
 
 #footer_nav li:hover {
-    color:#1a5796;
-    -moz-transition: .4s ease-in-out;
-    -webkit-transition: .4s ease-in-out;
+    color:#0D87BF;
+    -moz-transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
 
 }
 
 #footer_nav a {
-    color:#717171;
-    font-size:13px;
+    color:#3b3b3b;
+    font-size:12px;
     text-decoration:none;
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
@@ -1241,7 +1212,7 @@ button.button_submit:active {
 }
 
 #footer_nav a:hover {
-    color:#1a5796;
+    color:#0D87BF;
 
 }
 
@@ -1551,7 +1522,7 @@ button.button_submit:active {
     width:790px;
     border-left:1px solid #d1d1d1;
     border-right:1px solid #d1d1d1;
-    font-size: 14px;
+    font-size: 11px;
     color: #252525;
     border-bottom:1px solid #d1d1d1;
     background-color:whitesmoke;
@@ -1690,26 +1661,6 @@ a.button_grey:active {
     -moz-box-shadow: inset 0px 1px 7px #757575;
     -webkit-box-shadow: inset 0px 1px 7px #757575;
 
-}
-
-button.button_submit_page  {
-    color: #fff;
-    font-size:12px;
-    padding:10px 32px;
-    background: #1363D4;
-    background: -webkit-linear-gradient(top, #FA752D, #F25B0A);
-    background: -moz-linear-gradient(top, #FA752D, #F25B0A);
-    background: -ms-linear-gradient(top, #FA752D, #F25B0A);
-    background: -o-linear-gradient(top, #FA752D, #F25B0A);
-    border: solid 1px #000;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    cursor:pointer;
-    text-shadow: 0 -1px 0 #000;
-    -moz-text-shadow: 0 -1px 0 #000;
-    -webkit-text-shadow: 0 -1px 0 #000;
-     
 }
 
 #signup button:hover {
@@ -1999,125 +1950,57 @@ input.blue_button {
 }
 
 #signin {
-    width:335px;
-    padding:25px;
-    height:260px;
+    width:325px;
+    padding:12px;
+    height:195px;
     margin:0 auto;
-    margin-top:100px;
-    border:1px solid #D1D1D1;
+    margin-top:75px;
+    margin-bottom:170px;
+    border:1px solid #fff;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    background-color:#F5F5F5;
+    background-color:#fff;
+    box-shadow:0 0 3px 0 #121212;
+    -moz-box-shadow:0 0 3px 0 #121212;
+    -webkit-box-shadow:0 0 3px 0 #121212;
   
-
 }
 
 #signin input {
     float:left;
-    background-color:#f5f5f5;
+    background-color:#fff;
     border: 1px solid #d1d1d1;
     color: #757575;
     display: block;
     font-size: 12px;
-    width: 320px;
+    width: 290px;
     height: 21px;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    margin:10px 0 0 0;
+    margin:10px 0 0 9px;
     padding: 7px;    
     outline:none;
 
 }
 
+#signin input:focus {
+    border:1px solid #1ba9ea;
+    -moz-transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out; 
+    box-shadow:0 0 5px 0 #1ba9ea;
+
+}
+
 #signin h1 {
-    color:#3B3B3B;
+    color:#252525;
     font-size:17px;
-    margin:0 0 7px 1px;
+    margin:0 0 0 0;
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
     -webkit-text-shadow:0 1px 0 #fff;
          
-}
-
-#signin p {
-    float:left;
-    color:#525252;
-    font-size:13px;
-    margin:10px 0 -3px 1px;
-    text-shadow:0 1px 0 #fff;
-    -moz-text-shadow:0 1px 0 #fff;
-    -webkit-text-shadow:0 1px 0 #fff;
-   
-}
-
-#signin button {
-    color: #fff;
-    text-shadow: 0px -1px 0px #000;
-    -moz-text-shadow: 0px -1px 0px #000;
-    -webkit-text-shadow: 0px -1px 0px #000;
-    text-decoration: none;
-    border-radius:30px;
-    -moz-border-radius:30px;
-    -webkit-border-radius:30px;
-    font-size:13px;
-    padding:7px 30px 7px 30px;
-    background: #ededed;
-    background: -webkit-linear-gradient(top, #427ebd, #1a5796);
-    background: -moz-linear-gradient(top, #427ebd, #1a5796);
-    background: -ms-linear-gradient(top, #427ebd, #1a5796);
-    background: -o-linear-gradient(top, #427ebd, #1a5796);
-    border:solid 1px #002041;
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
-    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
-    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
-    cursor:pointer;
-    font-weight:normal;
-    float:right;
-       
-}
-
-#signin button:hover {
-    text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -moz-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -ms-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -o-linear-gradient(top, #1a5796, #2d6eb2);
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-
-}
-
-#signin button:active {
-    background: -webkit-linear-gradient(top, #16508d, #16508d);
-    background: -moz-linear-gradient(top, #16508d, #16508d);
-    background: -ms-linear-gradient(top, #16508d, #16508d);
-    background: -o-linear-gradient(top, #16508d, #16508d);
-    box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
-    -moz-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
-    -webkit-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
-
-}
-
-#signin select {
-    float:left;
-    margin:10px 0 10px 0;
-     
-}
-
-#signin form a {
-    float:right;
-    color:#1a5796;
-    font-size:12px;
-    text-decoration:none;
-     
-}
-
-#signin a:hover {
-    text-decoration:underline;
-     
 }
 
 

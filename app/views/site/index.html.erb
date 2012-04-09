@@ -41,7 +41,7 @@ Get paid for winning content!</p>
 <p>Ready to join one of the fastest growing writing communities on the web today? It’s free to open your account, and we pay out big cash 
 prizes every day!
 Click here to create your free account today!</p>
-        <a style="padding:8px 15px;" class="blue_button_home" href="/signup">Signup as a writer</a>
+        <a style="padding:8px 15px; float:left; margin:10px 0 0 0;" class="blue_button_home" href="/signup">Signup as a writer</a>
     </div>
 
 <div id="fb-root"></div>
@@ -54,7 +54,7 @@ Click here to create your free account today!</p>
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="header"> 
-<img src="/images/logo_new.png" style="margin:0px 0 0 7px" width="66" height="57" alt="Thirsty logo">
+<img src="/images/logo.png" style="margin:9px 0 0 7px" width="76" height="32" alt="Thirsty logo">
     <ul>
     <li><a class="button_black" href="/signin">Login</a></li>
     <li style="margin-top:5px;"><a href="javascript:$('#writers_popup').bPopup()">Learn More</a></li>
@@ -68,24 +68,23 @@ Click here to create your free account today!</p>
 <div id="content_width">
     <h1 align="center">CUT  YOUR MARKETING EXPENSES BY UP TO 90%</h1>
     <p align="center">We're flipping the marketing world on it's head by cutting out the middle man (ad agencies) and connecting you directly to our army of performance-based marketers. They work directly for you to accomplish your individual marketing goals.</p>
-    <p align="center"><span>// In simple words we want to kill ad agencies</span> </p>
     </div></div>
  <div id="wrap">
-   <div id="stiches_1"></div>
+   <div class="stiches_2"></div>
      <div id="button_width">
         <p align="center">Introducing our first product: Business blogging. signup below or <a class="button_black" href="javascript:$('#popup').bPopup()">Learn More</a></p>
-    </div>
-    <div id="stiches_2"></div>
+    </div> 
+    <div class="stiches_2"></div>
     <div id="inner_wrap">
     <div id="second_part">
           <span>profile/</span><%= form_for :user, url: '/users/create', html: { id: 'user_form' } do |f| %>
           <%= f.hidden_field :type, value: 'business' %>
-          <%= f.text_field :username, placeholder: 'Profile URL', style: 'margin-left:61px;width:269px' %>
+          <%= f.text_field :username, placeholder: '  Profile URL', style: 'margin-left:61px;width:247px' %>
           <%= f.text_field :name, placeholder: 'Name/Business Name' %>
           <%= f.text_field :email, placeholder: 'Email' %>
           <%= f.password_field :password, placeholder: 'Password' %>
         <br/>
-        <button class="blue_button_home" style="margin-top:-8px;margin-left:0" href="/signup">Signup for Free & Pick a Package</a>
+        <button class="blue_button_home" style="margin-top:10px; margin-right:0px; float:right;" href="/signup">Signup for Free & Pick a Package</a>
         <% end %>
     </div>
 

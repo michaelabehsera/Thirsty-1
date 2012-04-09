@@ -1,18 +1,22 @@
- <%= render partial: 'site/signup_pages_header' %>
  <div id="wrap">
+        <div id="logo_signup">
+          <img src="/images/logo.png" width="" height="" alt="Thirsty Logo">
+        </div>
       <div id="signin" style="text-align:center">
-        <h1>Sign in to your Thirsty account</h1>
+        <h1>Welcome back!</h1>
          <% if flash[:alert] == 'error' %>
          <label style="display:inline-block;margin-top:10px" class="label label-important">Sign in failed.</label>
          <% end %>
          <%= form_for :user, url: '/users/auth' do |f| %>
-           <p>Email Address</p>
            <%= f.email_field :email, placeholder: 'Email', autocomplete: 'off' %>
-           <p>Password</p>
            <%= f.password_field :password, placeholder: 'Password', autocomplete: 'off' %>
-  <button class="button_submit_page" style="margin:19px -2px 0 9px">Sign in</button>
-  <a href="/signup" style="margin-top:29px;">Don't have an account? Sign up</a>
-  <a href="/forgot" style="margin-top:70px;">Forgot your password?</a>
+  <button class="blue_button" style="margin:12px 2px 0 0px">Sign in</button>
+  <ul>
+      <li><a href="/signup" style="margin-top:29px;">Don't have an account? Sign up</a></li>
+      <li>|</li>
+      <li><a href="/forgot" style="margin-top:70px;">Forgot your password?</a></li>
+  </ul>           
+
          <% end %>
 
 

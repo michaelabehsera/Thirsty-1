@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background:url(/images/background_main.png)repeat;
-    font-family: Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -17,17 +17,20 @@ img {
 }
 
 ::selection {
-    background: #FFF891; 
+    background: #151515;
+    color:#fff; 
 
 }
 
 ::-moz-selection {
-    background: #FFF891; /* Firefox */
+    background: #151515; /* Firefox */
+    color:#fff;
 
 }
 
 ::-webkit-selection {
-    background: #FFF891; /* Chrome */
+    background: #151515; /* Chrome */
+    color:#fff;
 
 }
 
@@ -66,13 +69,14 @@ img {
 }
 
 #header {
-    z-index:1;
     top:0;
+    display:block;
+    background-color:#fff;
     height:50px;
     width:100%;
-    display:block;
-    position:fixed;
-    background:url(/images/header_bg.png)repeat;
+    box-shadow:0px 0px 7px 0px #000;
+    -moz-box-shadow:0px 0px 7px 0px #000;
+    -webkit-box-shadow:0px 0px 7px 0px #000;
 
 }
 
@@ -90,46 +94,10 @@ img {
 }
 
 #header a {
-   color: #717171;
-    text-shadow: 0px -1px 0px #000;
-    -moz-text-shadow: 0px -1px 0px #000;
-    -webkit-text-shadow: 0px -1px 0px #000;
-    text-decoration: none;
-    font-size:13px;
-    padding:8px 12px 8px 12px;
-    background: #ededed;
-    background: -webkit-linear-gradient(top, #252525, #151515);
-    background: -moz-linear-gradient(top, #252525, #151515);
-    background: -ms-linear-gradient(top, #252525, #151515);
-    background: -o-linear-gradient(top, #252525, #151515);
-    border:solid 1px #000;
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #3d3d3d;
-    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #3d3d3d;
-    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #3d3d3d;
-    cursor:pointer;
-    font-weight:normal;
-    font-family: 'Homenaje', sans-serif;
-   
-}
-
-#header a:hover {
-    text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #151515, #252525);
-    background: -moz-linear-gradient(top, #151515, #252525);
-    background: -ms-linear-gradient(top, #151515, #252525);
-    background: -o-linear-gradient(top, #151515, #252525);
-
-}
-
-#header a:active {
-    background: -webkit-linear-gradient(top, #121212, #121212);
-    background: -moz-linear-gradient(top, #121212, #121212);
-    background: -ms-linear-gradient(top, #121212, #121212);
-    background: -o-linear-gradient(top, #121212, #121212);
-    box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151;
-    -moz-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151;
-    -webkit-box-shadow: inset 0px 0px 7px #000, 0px 0px 3px #515151;
-
+    color:#5b5b5b;
+    font-size:12px;
+    text-decoration:underline;
+    
 }
 
 #logo_width {
@@ -139,40 +107,54 @@ img {
 }
 
 #signup {
-    width:335px;
-    padding:25px;
-    height:515px;
+    width:325px;
+    padding:12px;
+    height:331px;
     margin:0 auto;
-    margin-top:80px;
-    border:1px solid #D1D1D1;
+    margin-top:15px;
+    margin-bottom:170px;
+    border:1px solid #fff;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    background-color:#f5f5f5;
+    background-color:#fff;
+    box-shadow:0 0 3px 0 #121212;
+    -moz-box-shadow:0 0 3px 0 #121212;
+    -webkit-box-shadow:0 0 3px 0 #121212;
+  
 
 }
 
 #signup input {
-    background-color:#f5f5f5;
+    float:left;
+    background-color:#fff;
     border: 1px solid #d1d1d1;
-    color: #8f8f8f;
+    color: #757575;
     display: block;
     font-size: 12px;
-    width: 320px;
+    width: 290px;
     height: 21px;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    margin:10px 0 0 0;
+    margin:10px 0 0 9px;
     padding: 7px;    
     outline:none;
 
 }
 
+#signup input:focus {
+    border:1px solid #1ba9ea;
+    -moz-transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out; 
+    box-shadow:0 0 5px 0 #1ba9ea;
+
+}
+
 #signup h1 {
-    color:#3b3b3b;
+    color:#252525;
     font-size:17px;
-    margin:0 0 7px 1px;
+    margin:0 0 0px 59px;
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
     -webkit-text-shadow:0 1px 0 #fff;
@@ -189,73 +171,48 @@ img {
    
 }
 
-#signup button {
-    color: #fff;
-    text-shadow: 0px -1px 0px #000;
-    -moz-text-shadow: 0px -1px 0px #000;
-    -webkit-text-shadow: 0px -1px 0px #000;
-    text-decoration: none;
-    border-radius:30px;
-    -moz-border-radius:30px;
-    -webkit-border-radius:30px;
-    font-size:13px;
-    padding:7px 30px 7px 30px;
-    background: #ededed;
-    background: -webkit-linear-gradient(top, #427ebd, #1a5796);
-    background: -moz-linear-gradient(top, #427ebd, #1a5796);
-    background: -ms-linear-gradient(top, #427ebd, #1a5796);
-    background: -o-linear-gradient(top, #427ebd, #1a5796);
-    border:solid 1px #002041;
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
-    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
-    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
-    cursor:pointer;
-    font-weight:normal;
-    float:right;
-       
-}
-
-#signup button:hover {
-    text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -moz-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -ms-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -o-linear-gradient(top, #1a5796, #2d6eb2);
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
-
-}
-
-#signup button:active {
-    background: -webkit-linear-gradient(top, #16508d, #16508d);
-    background: -moz-linear-gradient(top, #16508d, #16508d);
-    background: -ms-linear-gradient(top, #16508d, #16508d);
-    background: -o-linear-gradient(top, #16508d, #16508d);
-    box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
-    -moz-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
-    -webkit-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
-
-}
-
 #signup select {
     float:left;
-    width:335px;
-    margin:10px 0 10px 0;
+    width:304px;
+    margin:10px 0 3px 10px;
      
 }
 
-#signup form a {
-    float:right;
-    color:#1a5796;
+#signup ul {
+    margin:53px 0 0 -13px;
+    background-color: rgb(0,0,0); opacity: 0.8;
+    border-radius:3px;
+    padding:10px;
+    width:332px;
+
+}
+
+#signup li {
+    color:#fff;
     font-size:12px;
-    text-decoration:none;
-     
+    list-style:none;
+    display:inline;
+    text-shadow:0 1px 0 #000;
+    -moz-text-shadow:0 1px 0 #000;
+    -webkit-text-shadow:0 1px 0 #000;
+
 }
 
-#signup a:hover {
-    text-decoration:underline;
-     
+#signup a {
+    color:#fff;
+    margin-left:97px;
+    font-size:12px;
+    text-shadow:0 1px 0 #000;
+    -moz-text-shadow:0 1px 0 #000;
+    -webkit-text-shadow:0 1px 0 #000;
+
+}
+
+#logo_signup {
+    margin:0 auto;
+    width:90px;
+    margin-top:50px;
+
 }
 
 
@@ -263,42 +220,53 @@ img {
 
 
 #signin {
-    width:335px;
-    padding:25px;
-    height:260px;
+    width:325px;
+    padding:12px;
+    height:195px;
     margin:0 auto;
-    margin-top:100px;
-    border:1px solid #D1D1D1;
+    margin-top:15px;
+    margin-bottom:170px;
+    border:1px solid #fff;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    background-color:#F5F5F5;
+    background-color:#fff;
+    box-shadow:0 0 3px 0 #121212;
+    -moz-box-shadow:0 0 3px 0 #121212;
+    -webkit-box-shadow:0 0 3px 0 #121212;
   
-
 }
 
 #signin input {
     float:left;
-    background-color:#f5f5f5;
+    background-color:#fff;
     border: 1px solid #d1d1d1;
     color: #757575;
     display: block;
     font-size: 12px;
-    width: 320px;
+    width: 290px;
     height: 21px;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    margin:10px 0 0 0;
+    margin:10px 0 0 9px;
     padding: 7px;    
     outline:none;
 
 }
 
+#signin input:focus {
+    border:1px solid #1ba9ea;
+    -moz-transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out; 
+    box-shadow:0 0 5px 0 #1ba9ea;
+
+}
+
 #signin h1 {
-    color:#3B3B3B;
+    color:#252525;
     font-size:17px;
-    margin:0 0 7px 1px;
+    margin:0 0 0 0;
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
     -webkit-text-shadow:0 1px 0 #fff;
@@ -316,74 +284,83 @@ img {
    
 }
 
-#signin button {
+.blue_button {
     color: #fff;
     text-shadow: 0px -1px 0px #000;
     -moz-text-shadow: 0px -1px 0px #000;
     -webkit-text-shadow: 0px -1px 0px #000;
     text-decoration: none;
-    border-radius:30px;
-    -moz-border-radius:30px;
-    -webkit-border-radius:30px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
     font-size:13px;
-    padding:7px 30px 7px 30px;
+    padding:9px 132px;
     background: #ededed;
-    background: -webkit-linear-gradient(top, #427ebd, #1a5796);
-    background: -moz-linear-gradient(top, #427ebd, #1a5796);
-    background: -ms-linear-gradient(top, #427ebd, #1a5796);
-    background: -o-linear-gradient(top, #427ebd, #1a5796);
-    border:solid 1px #002041;
-    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
-    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
-    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #468ed9;
+    background: -webkit-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -moz-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -ms-linear-gradient(top, #1ba9ea, #0e6791);
+    background: -o-linear-gradient(top, #1ba9ea, #0e6791);
+    border:solid 1px #002b3e;
+    box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
+    -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
+    -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #58bbea;
     cursor:pointer;
     font-weight:normal;
-    float:right;
-       
+   
 }
 
-#signin button:hover {
+.blue_button:hover {
     text-decoration:none !important;
-    background: -webkit-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -moz-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -ms-linear-gradient(top, #1a5796, #2d6eb2);
-    background: -o-linear-gradient(top, #1a5796, #2d6eb2);
+    background: -webkit-linear-gradient(top, #0e6791, #189fdd);
+    background: -moz-linear-gradient(top, #0e6791, #189fdd);
+    background: -ms-linear-gradient(top, #0e6791, #189fdd);
+    background: -o-linear-gradient(top, #0e6791, #189fdd);
     box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
     -moz-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
     -webkit-box-shadow: 0px 0px 3px #515151, inset 0px 1px 0px #1366bd;
 
 }
 
-#signin button:active {
-    background: -webkit-linear-gradient(top, #16508d, #16508d);
-    background: -moz-linear-gradient(top, #16508d, #16508d);
-    background: -ms-linear-gradient(top, #16508d, #16508d);
-    background: -o-linear-gradient(top, #16508d, #16508d);
+.blue_button:active {
+    border:1px solid #001a25;
+    background: -webkit-linear-gradient(top, #0e6791, #0e6791);
+    background: -moz-linear-gradient(top, #0e6791, #0e6791);
+    background: -ms-linear-gradient(top, #0e6791, #0e6791);
+    background: -o-linear-gradient(top, #0e6791, #0e6791);
     box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
     -moz-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
     -webkit-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 3px #04284e;
 
 }
 
-#signin select {
-    float:left;
-    margin:10px 0 10px 0;
-     
+#signin ul {
+    margin:50px 0 0 -13px;
+    background-color: rgb(0,0,0); opacity: 0.8;
+    border-radius:3px;
+    padding:10px;
+    width:332px;
+
 }
 
-#signin form a {
-    float:right;
-    color:#1a5796;
+#signin li {
+    color:#fff;
     font-size:12px;
-    text-decoration:none;
-     
+    list-style:none;
+    display:inline;
+    text-shadow:0 1px 0 #000;
+    -moz-text-shadow:0 1px 0 #000;
+    -webkit-text-shadow:0 1px 0 #000;
+
 }
 
-#signin a:hover {
-    text-decoration:underline;
-     
-}
+#signin a {
+    color:#fff;
+    font-size:12px;
+    text-shadow:0 1px 0 #000;
+    -moz-text-shadow:0 1px 0 #000;
+    -webkit-text-shadow:0 1px 0 #000;
 
+}
 
 #devider_footer {
     margin:50px 0 0 0;
