@@ -7,6 +7,7 @@ class Goal
   field :num, type: Integer
   field :type, type: Symbol
   field :achieved, type: Boolean, default: false
+  field :next_step, type: Integer, default: 50
 
   validates_uniqueness_of :type, scope: :campaign_id
 

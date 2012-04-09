@@ -1,5 +1,5 @@
 .writer
   %p
     %span ##{article_counter + 1}
-    #{article.user.name} wrote:
+    #{link_to article.user.name, "http://thirsty.com/profile/#{article.user.username}"} wrote:
     = link_to article.title, article.url

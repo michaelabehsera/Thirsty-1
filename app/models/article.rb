@@ -13,6 +13,7 @@ class Article
   field :month, type: Integer
   field :approved, type: Boolean
   field :tags, type: String
+  field :submitted, type: Boolean, default: false
 
   has_many :bits
   has_one :notification

@@ -71,8 +71,11 @@
 
   <div class="modal-footer">
     <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
-    <%= link_to 'Deny', '', remote: true, class: 'deny btn btn-danger' %>
-    <%= link_to 'Accept', '', remote: true, class: 'accept btn btn-success', onclick: "javascript:$('#article-modal .btn-success').text('Accepting..')" %>
+    <% if current_user == campaign.user %>
+      <%= link_to 'Deny', '', remote: true, class: 'deny btn btn-danger' %>
+      <%= link_to 'Accept', '', remote: true, class: 'accept btn btn-success', onclick: "javascript:$('#article-modal .btn-success').text('Accepting..')" %>
+    <% else %>
+    <% end %>
   </div>
 </div>
 
@@ -164,6 +167,7 @@
   <div class="modal-body">
     <%= form_tag "/campaigns/#{campaign.uuid}/headline", remote: true do %>
       <%= text_field_tag :headline, '', placeholder: 'enter your headline' %>
+      <%= hidden_field_tag :type, 'private' %>
     <% end %>
   </div>
 
@@ -438,11 +442,36 @@
                 <%= hidden_field_tag :edit, 'false' %>
                 <%= hidden_field_tag :aid %>
                 <%= link_to 'Submit your article', 'javascript:void(0)', id: 'send', class: 'blue_button', style: 'margin-top: 3px; float:right;' %>
+                <%= link_to 'Save to Draft', 'javascript:void(0)', id: 'draft', class: 'blue_button', style: 'margin-top: 3px; float:right;' %>
               </div>
             </div>
         <% end %>
         <div id="myarticles-tab" class="tab-pane">
           <div id="myarticles">
+            <% headlines = campaign.headlines.where(public: true, claimed: false).reverse %>
+            <% headlines.each do |headline| %>
+                      <div class="article" id="headline<%=headline.id%>">
+                         The headline "<%= headline.title %>" has been suggested by the campaign manager
+                         -- 
+                         <%= link_to 'claim', 'javascript:void(0)', class: 'claim', hid: headline.id %>
+                      </div>
+            <% end %>
+            <% headlines = current_user.headlines.where(campaign_id: campaign.id).reverse %>
+            <% headlines.each do |headline| %>
+                      <div class="article" id="headline<%=headline.id%>">
+                         You suggested the headline "<%= headline.title %>"
+                         -- 
+                         <% if headline.approved %>
+                         <span class="approved-status approved">Approved</span>
+                         <% elsif headline.approved == false %>
+                         <span class="approved-status denied">Denied</span>
+                         <% elsif headline.claimed %>
+                         <span class="approved-status claimed">Claimed</span>
+                         <% else %>
+                         <span class="approved-status in-review">In Review</span>
+                         <% end %>
+                      </div>
+            <% end %>
             <% articles = current_user.articles.where(campaign_id: campaign.id).reverse %>
             <% articles.each do |article| %>
                       <div class="article" id="article<%= article.id %>">
@@ -454,7 +483,11 @@
                          <% elsif article.approved == false %>
                          <span class="approved-status denied">Denied</span>
                          <% else %>
-                         <span class="approved-status in-review">In Review</span>
+                           <% if article.submitted %>
+                             <span class="approved-status in-review">In Review</span>
+                           <% else %>
+                             <span class="approved-status not-submitted">Not Submitted</span>
+                           <% end %>
                          <%= link_to 'edit', 'javascript:void(0)', class: 'edit', aid: article.id %>
                          <% end %>
                        </div>
@@ -467,6 +500,10 @@
         <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                   <div id="approve-tab" class="tab-pane active">
                       <div id="approve">
+                <div class="subheader">
+                  <h3 style="display:inline-block; margin-top:5px;">Have an article idea?</h3>
+                  <button id="business_headline" style="margin:-9px 0 0 10px" href="#headline-modal" class="orange_button" data-toggle="modal">Submit a headline!</button>
+                </div>
                   <div id="unread-articles">
                     <% campaign.headlines.desc(:created_at).each do |headline| %>
                       <div class="article" id="headline<%=headline.id%>">
@@ -483,9 +520,9 @@
                          <% end %>
                       </div>
                     <% end %>
-                    <% campaign.articles.desc(:created_at).each do |article| %>
+                    <% campaign.articles.where(submitted: true).desc(:created_at).each do |article| %>
                       <div class="article" id="article<%= article.id %>">
-                         "<%= article.title %>" was written by: <%= article.user.name %>
+                         "<%= article.title %>" was written by: <%= link_to article.user.name, "http://thirsty.com/profile/#{article.user.username}" %>
                          <%= distance_of_time_in_words Time.now, article.created_at %> ago
                          -- 
                          <% if article.approved %>
@@ -576,7 +613,7 @@
                 <div id="users">
                   <div>People in this room</div>
                   <% campaign.subscriptions.each do |user| %>
-                    <div class="user" id="user<%= user.id %>"><%= user.name %></div>
+                    <div class="user" id="user<%= user.id %>"><%= link_to user.name, "http://thirsty.com/profile/#{user.username}" %></div>
                   <% end %>
                 </div>
                 <div id="chat_messages">
@@ -602,6 +639,9 @@
 
 <script>
   $(document).ready(function(){
+    $('#business_headline').click(function(){
+      $('#type').val('public')
+    })
     setInterval(function(){
       $.post(
         '/timestamp',
@@ -623,6 +663,16 @@
         $('.nav-tabs a[tabname="' + $('#guide_box .active').attr('selector') + '"]').parent().addClass('active')
         $('.tab-content #' + $('#guide_box .active').attr('selector') + '-tab').addClass('active')
       }, 750)
+    })
+    $('.claim').click(function(){
+      $('#headline' + $(this).attr('hid') + ' a').text('Claiming..')
+      $.post(
+        '/campaigns/<%=campaign.uuid%>/claim',
+        { id: $(this).attr('hid') },
+        function(rsp) {
+          $('#headline' + rsp.id + ' a').text('Claimed!')
+        }, 'json'
+      )
     })
     $('.edit').click(function(){
       $('.nav-tabs li').removeClass('active')
@@ -687,11 +737,11 @@
 
     jug.subscribe('<%= campaign.uuid %>', function(data) {
       if (data.message && data.message != '') {
-        $('#chat_messages').append(new_message(data.message, data.username, data.timestamp))
+        $('#chat_messages').append(new_message(data.message, data.name, data.timestamp))
         $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
         $('#message').val('')
       } else if (data.event_type == 'subscribe') {
-        $('#users').append('<div class="user" id="user' + data.user_id + '">' + data.username + '</div>')
+      $('#users').append('<div class="user" id="user' + data.user_id + '"><a href="http://thirsty.com/profile/' + data.username + '">' + data.name + '</a></div>')
       } else if (data.event_type == 'unsubscribe') {
         $('#user' + data.user_id).fadeOut()
       } else if (data.event_type == 'install_success') {
@@ -739,8 +789,11 @@
           $('#article-modal h3').text(rsp.title)
           $('#article-content').html(rsp.article)
           $('#article-bio').html(rsp.bio)
+          <% if current_user == campaign.user %>
           $('#article-modal .btn-success').attr('href', '/campaigns/<%=campaign.uuid%>/approve?id=<%=params[:article]%>')
           $('#article-modal .btn-danger').attr('href', '/campaigns/<%=campaign.uuid%>/deny?id=<%=params[:article]%>')
+          <% else %>
+          <% end %>
         },
         'json'
       )
@@ -796,6 +849,28 @@
               }
               $('#myarticles').append('<div class="article" id="article' + rsp.id + '">"' + rsp.title + '" -- In Review')
             }
+          } else {
+            $('#send').text('Failed :(')
+          }
+        },
+        'json'
+      )
+    })
+    $('#draft').click(function(){
+      $(this).text('Saving..')
+      $.post(
+        '/campaigns/<%= campaign.uuid %>/draft',
+        { edit: $('#edit').val(), id: '<%= current_user.id %>', content: $('.nicEdit-main').first().html(), tags: $('#tags').val(), title: $('#title').val(), bio: $('.nicEdit-main').last().html(), aid: $('#aid').val() },
+        function(rsp){
+          if (rsp.success == true) {
+            $('#title').val('')
+            $('.nicEdit-main').html('')
+            $('#draft').text('Save')
+            $('#articles-tab').prepend('<div style="margin-top:10px;width:100px" class="alert alert-success"><a data-dismiss="alert" class="close">x</a>Article saved!</div>')
+            if ( !($('#myarticles').html().search('no articles') == -1)) {
+              $('#myarticles').html('')
+            }
+            $('#myarticles').append('<div class="article" id="article' + rsp.id + '">"' + rsp.title + '" -- Not Submitted')
           } else {
             $('#send').text('Failed :(')
           }
