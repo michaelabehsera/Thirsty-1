@@ -67,7 +67,7 @@ body {
     padding: 0;
     background-size:100%;
     background:url('/images/bg_img.png') no-repeat;
-    font-family: 'Homenaje', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -299,7 +299,7 @@ a.button_black:active {
     -moz-text-shadow:0 1px 0 #fff;
     -webkit-text-shadow:0 1px 0 #fff;
     position:relative;
-    top:40px;
+    top:41px;
     right:-53px;
     font-size:13px;
     background: #EDEDED;
@@ -455,7 +455,7 @@ a.button_black:active {
 
 #popup h1, #writers_popup h1 {
     width:510px;
-    font-size:17px;
+    font-size:15px;
     color:#252525;
     padding:15px;
     margin-left:-20px;
@@ -472,7 +472,7 @@ a.button_black:active {
 }
 
 #popup span, #writers_popup span {
-    color:#1a5796;
+    color:#189fdd;
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
     -webkit-text-shadow:0 1px 0 #fff;
@@ -481,11 +481,13 @@ a.button_black:active {
 
 #popup h2, #writers_popup h2 {
     color:#3b3b3b;
+    font-size:15px;
 
 }
 
 #popup p, #writers_popup p {
     color:#252525;
+    font-size:12px;
 
 }
 
@@ -515,6 +517,7 @@ a.button_black:active {
 
 #popup li, #writers_popup li {
     color:#252525;
+    font-size:12px;
     margin:5px 0 0 0;
 
 }
