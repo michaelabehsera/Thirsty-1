@@ -239,6 +239,7 @@ DEPENDENCIES
   bitly
   bootstrap-sass
   bson_ext
+  carrierwave
   carrierwave-mongoid
   clockwork
   coffee-rails
