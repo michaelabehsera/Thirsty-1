@@ -61,6 +61,7 @@ body {
 }
 
 .blue_button:hover {
+    color:#fff !important;
     text-decoration:none !important;
     background: -webkit-linear-gradient(top, #0e6791, #189fdd);
     background: -moz-linear-gradient(top, #0e6791, #189fdd);
@@ -92,7 +93,7 @@ body {
     -webkit-border-radius: 5px;
     background-color: whiteSmoke;
     border: 1px solid #D1D1D1;
-    
+
 }
 
 #guide_box h1 {
@@ -1521,7 +1522,7 @@ button.button_submit:active {
     width:790px;
     border-left:1px solid #d1d1d1;
     border-right:1px solid #d1d1d1;
-    font-size: 14px;
+    font-size: 11px;
     color: #252525;
     border-bottom:1px solid #d1d1d1;
     background-color:whitesmoke;
