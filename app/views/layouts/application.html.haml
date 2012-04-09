@@ -4,7 +4,7 @@
     %title
       Thirsty | 
       = yield :title
-    - if request.path == '/signin' || request.path == '/signup' || request.path == '/users/create'
+    - if request.path == '/signin' || request.path == '/signup' || request.path == '/users/create' || request.path == '/forgot'
       = stylesheet_link_tag 'signup'
       = stylesheet_link_tag 'twitter-bootstrap'
     - elsif (request.path == '/about' || request.path == '/') && !logged_in?
@@ -22,7 +22,7 @@
     <link href='http://fonts.googleapis.com/css?family=Signika+Negative|Acme|Ropa+Sans|Quicksand:400,700|Gudea:400,700|Ubuntu+Condensed|Homenaje|Balthazar|Terminal+Dosis:400,700|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
   %body
     = yield
-    - unless request.path == '/' && !current_user || request.path =~ /\/profile/
+    - unless request.path == '/' && !current_user || request.path =~ /\/profile/ || request.path == '/signup' || request.path == '/signin' || request.path == '/forgot'
       #devider_footer
       #footer-bottom-bar
         #footer_nav

@@ -1,17 +1,19 @@
- <%= render partial: 'site/signup_pages_header' %>
  <div id="wrap">
+ 		<div id="logo_signup">
+          <img src="/images/logo.png" width="" height="" alt="Thirsty Logo">
+        </div>
       <div id="signin" style="text-align:center">
         <h1>Forgot Password</h1>
          <%= form_tag '/users/forgot_email' do %>
-           <p>Email Address</p>
            <%= email_field_tag :email, '', placeholder: 'Email', autocomplete: 'off' %>
-  <button class="button_submit_page" style="margin:19px -2px 0 9px">Send</button>
+  <button class="blue_button" style="margin:13px 2px 0 0px; padding:9px 137px;">Send</button>
+   <ul style="margin-top:95px;">
+      <li><a href="/signup" style="margin-top:29px;">Don't have an account? Sign up</a></li>
+      <li>|</li>
+      <li><a href="/signin" style="margin-top:70px;">Signin</a></li>
+  </ul>   
          <% end %>
 
-
-
       </div>
-
-
 
   </div><!--End of wrap-->
