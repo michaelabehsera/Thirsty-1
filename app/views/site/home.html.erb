@@ -24,7 +24,7 @@
           <h1>Active Campaigns:</h1>
           </div>
           <div class="personal_projects">
-          <% if current_user.active_campaigns.where(paid: true).empty? %>
+          <% if current_user.active_campaigns.where(paid: true).empty? && current_user.type != :marketer %>
           <p>&nbspNo campaigns started <a href="/cocktails" class="button_grey" style="margin:0 0 0 10px">Pick a campaign & get started!</a></p> 
           <% else %>
 
