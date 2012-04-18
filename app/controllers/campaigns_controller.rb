@@ -320,7 +320,10 @@ class CampaignsController < ApplicationController
       @wordpress = false
     end
     if @wordpress
-      @campaign = Campaign.new(uuid: UUID.new.generate)
+      @campaign = Campaign.new
+      binding.pry
+      @campaign.uuid = UUID.new.generate
+      binding.pry
       @campaign.user = current_user
       @campaign.cocktail = Cocktail.find(params[:id])
       @campaign.title = params[:name]
