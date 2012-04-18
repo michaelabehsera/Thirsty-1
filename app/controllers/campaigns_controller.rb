@@ -321,9 +321,7 @@ class CampaignsController < ApplicationController
     end
     if @wordpress
       @campaign = Campaign.new
-      binding.pry
       @campaign.uuid = UUID.new.generate
-      binding.pry
       @campaign.user = current_user
       @campaign.cocktail = Cocktail.find(params[:id])
       @campaign.title = params[:name]
