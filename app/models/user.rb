@@ -11,7 +11,8 @@ class User
   after_create :send_notification
 
   def send_notification
-    UsersMailer.new_account(self)
+    UsersMailer.new_account(self).deliver
+    UsersMailer.welcome(self).deliver
   end
 
   field :name, type: String
@@ -48,23 +49,4 @@ class User
     self.preset_image = rsp['patterns']['pattern'].shuffle.first['imageUrl']
   end
 
-  def self.subscribe
-    Juggernaut.subscribe do |event, data|
-      if data['meta']
-        begin
-          user = User.find(data['meta']['user_id'])
-          campaign = Campaign.find(data['meta']['campaign_id'])
-          case event
-            when :subscribe
-              campaign.subscriptions << user
-              Juggernaut.publish campaign.uuid, { user_id: user.id, username: user.username, name: user.name, event_type: 'subscribe' }
-            when :unsubscribe
-              campaign.subscriptions.delete user
-              Juggernaut.publish campaign.uuid, { user_id: user.id, event_type: 'unsubscribe' }
-          end
-        rescue
-        end
-      end
-    end
-  end
 end

@@ -1,3 +1,21 @@
+<div id="wordpress-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Upgrade Your Wordpress Info</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag "/campaigns/#{campaign.uuid}/update_wordpress", remote: true do %>
+      <%= text_field_tag :username, campaign.username, placeholder: 'Username' %>
+      <%= text_field_tag :pass, campaign.pass, placeholder: 'Password'%>
+      <%= text_field_tag :url, campaign.url, placeholder: 'Blog URL'%>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <button class="btn btn-success" data-dismiss="modal" onclick="javascript:$('#wordpress-modal form').submit()">Update</button>
+  </div>
+</div>
+
 <div id="upgrade-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -407,13 +425,19 @@
 
        <div id="marketers_tab">
 
-       <p>Marketers:</p>
+           <p>
+           Wordpress connectivity:
+           <% if campaign.status %>
+             <span class="label label-success">online</span>
+           <% else %>
+             <a href="#wordpress-modal" data-toggle="modal"><span class="label label-important">offline</span></a>
+           <% end %>
+           </p>
 
 
           <ul class="nav nav-tabs" data-tabs="tabs">
             <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
               <li id="approve-link" class="active"><a tabname="approve" href="#approve-tab" data-toggle="tab">Approve articles</a></li>
-              <li><a tabname="tools" href="#tools-tab" data-toggle="tab">Wordpress Addons</a></li>
               <li><a tabname="reports" href="#reports-tab" data-toggle="tab">Reports</a></li>
             <% end %>
             <% if current_user != campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
@@ -421,7 +445,6 @@
               <li id="myarticles-link"><a tabname="myarticles" href="#myarticles-tab" data-toggle="tab">My Articles</a></li>
             <% end %>
             <li><a tabname="writers" href="#writers-tab" data-toggle="tab">Writers</a></li>
-            <li><a tabname="chat" href="#chat-tab" data-toggle="tab">Chat</a></li>
             <li><a tabname="analytics" href="#analytics-tab" data-toggle="tab">Analytics</a></li>
           </ul>
         </div>
@@ -545,33 +568,6 @@
                   </div>
                 <% end %>
 
-            <div id="tools-tab" class="tab-pane">
-              <div id="tools">
-                <% if current_user.admin %>
-                  <%= link_to 'Add new plugin', '#new-plugin-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
-                  <%= link_to 'Add new theme', '#new-theme-modal', :'data-toggle' => 'modal', class: 'btn btn-primary' %>
-                <% end %>
-                <% Plugin.all.each do |plugin| %>
-                  <div class="tool" id="plugin<%= plugin.id %>">
-                    <%= plugin.title %>
-                    <img align="left" src="<%= plugin.image %>">
-                    <p><%= plugin.description%></p>
-                    <%= link_to 'install', '#plugin-modal', :'data-toggle' => 'modal', class: 'plugin-link', pid: plugin.id, filename: plugin.filename %>
-                    <%= link_to 'download', "/wordpress/plugins/#{plugin.filename}" %>
-                  </div>
-                <% end %>
-                <% Theme.all.each do |plugin| %>
-                  <div class="tool" id="plugin<%= plugin.id %>">
-                    <%= plugin.title %>
-                    <img align="left" src="<%= plugin.image %>">
-                    <p><%= plugin.description%></p>
-                    <%= link_to 'install', '#theme-modal', :'data-toggle' => 'modal', class: 'theme-link', tid: plugin.id, filename: plugin.filename %>
-                    <%= link_to 'download', "/wordpress/themes/#{plugin.filename}" %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-
             <div id="reports-tab" class="tab-pane">
               <div id="reports_menu">
                 <div id="devider_line2"></div>
@@ -608,30 +604,6 @@
             </div>
 
 
-            <div id="chat-tab" class="tab-pane">
-              <div id="chat">
-                <div id="users">
-                  <div>People in this room</div>
-                  <% campaign.subscriptions.each do |user| %>
-                    <div class="user" id="user<%= user.id %>"><%= link_to user.name, "http://thirsty.com/profile/#{user.username}" %></div>
-                  <% end %>
-                </div>
-                <div id="chat_messages">
-                <% campaign.chats.each do |chat| %>
-                  <div class="chat_message">
-                    <span class="timestamp">[<%= chat.timestamp %>]</span>
-                    <span class="username"><%= chat.user.name %>: </span>
-                    <span class="message_content"><%= chat.message %></span>
-                  </div>
-                <% end %>
-                </div>
-                <%= form_tag "/campaigns/#{campaign.uuid}/chat_message", id: 'chat_form', remote: true do %>
-                  <%= text_field_tag :message, '', style: 'width:647px' %>
-                  <%= submit_tag :submit, style: 'display:none' %>
-                <% end %>
-              </div>
-            </div>
-
           </div>
         </div>
 
@@ -642,12 +614,6 @@
     $('#business_headline').click(function(){
       $('#type').val('public')
     })
-    setInterval(function(){
-      $.post(
-        '/timestamp',
-        { id: '<%= current_user.id %>' }
-      )
-    }, 60000)
     $('.nav-tabs li a').click(function(){
       $('.carousel-inner div').removeClass('active')
       $('.carousel-inner div[selector="' + $(this).attr('tabname') + '"]').addClass('active')
@@ -724,59 +690,6 @@
       }, 500)
       $(this).text('denying..')
       $(this).parent().children('.accept').remove()
-    })
-    function new_message(message, username, timestamp) {
-        return '<div class="chat_message"><span class="timestamp">[' + timestamp + ']</span> <span class="username">' + username + ': </span><span class="message_content">' + message + '</span></div>'
-    }
-
-    var jug = new Juggernaut({port: '8081'})
-    jug.meta = {
-      user_id: '<%= current_user.id %>',
-      campaign_id: '<%= campaign.id %>'
-    }
-
-    jug.subscribe('<%= campaign.uuid %>', function(data) {
-      if (data.message && data.message != '') {
-        $('#chat_messages').append(new_message(data.message, data.name, data.timestamp))
-        $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
-        $('#message').val('')
-      } else if (data.event_type == 'subscribe') {
-      $('#users').append('<div class="user" id="user' + data.user_id + '"><a href="http://thirsty.com/profile/' + data.username + '">' + data.name + '</a></div>')
-      } else if (data.event_type == 'unsubscribe') {
-        $('#user' + data.user_id).fadeOut()
-      } else if (data.event_type == 'install_success') {
-        $('.plugin-submit').html('installed!')
-      } else if (data.event_type == 'install_failure') {
-        $('.plugin-submit').html('failed :(')
-      }
-    })
-
-    var session_check = setInterval(function(){
-      if (jug.sessionID) {
-        clearInterval(session_check)
-        $('#chat_form').append('<input type="hidden" name="sessionID" value="' + jug.sessionID + '">')
-      }
-    }, 100)
-
-    $('#chat_form').submit(function(){
-      var message = $('#message').val()
-      date = new Date()
-      hour = date.getHours().toString()
-      minute = date.getMinutes()
-      if (minute < 10) {
-        minute = '0' + minute.toString()
-      } else {
-        minute = minute.toString()
-      }
-      timestamp = hour + ':' + minute
-      if (message != '') {
-        $('#chat_messages').append(new_message(message, '<%= current_user.name %>', timestamp))
-        $('#chat_messages').scrollTop($('#chat_messages')[0].scrollHeight)
-      }
-    })
-
-    $('#tool_form').submit(function(e){
-      $('#link').attr('readonly', 'true')
     })
 
     <% if params[:article] %>

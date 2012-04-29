@@ -2,7 +2,7 @@
   <div class="modal-header"><a class="close" data-dismiss="modal">×</a><h2></h2></div>
   <div class="modal-body">
     <%= form_tag "/profile/#{user.username}/link", remote: true do %>
-     <%= text_field_tag :url, '', placeholder: 'url', autocomplete: 'off' %>
+     <%= text_field_tag :handle, '', placeholder: 'handle', autocomplete: 'off' %>
      <%= hidden_field_tag :name %>
   </div>
   <div class="modal-footer">
@@ -81,7 +81,7 @@
   $('.social li a').click(function(){
     $('#social form #name').val($(this).text())
     $('#social h2').text('Link your ' + $(this).text())
-    $('#social form #url').val('')
+    $('#social form #handle').val('')
   })
   $('#social .btn-success').click(function(){
     $('#social form').submit()

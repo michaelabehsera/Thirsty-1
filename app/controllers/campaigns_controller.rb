@@ -75,6 +75,11 @@ class CampaignsController < ApplicationController
     respond_to :js
   end
 
+  def update_wordpress
+    campaign.update_attributes(username: params[:username], pass: params[:pass], url: params[:url])
+    respond_to :js
+  end
+
   def headline
     headline = campaign.headlines.new(title: params[:headline])
     headline.user = current_user
@@ -305,22 +310,9 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    url = params[:url].gsub('http://', '')
-    host = url.split('/')[0]
-    if url.split('/').count > 1
-      path = '/' + url.split('/')[1..-1].join('/') + '/xmlrpc.php'
-    else
-      path = '/xmlrpc.php'
-    end
-    @wordpress = true
-    begin
-      connection = XMLRPC::Client.new(host, path)
-      connection.call('wp.getUsersBlogs', params[:user], params[:pass])
-    rescue Exception => e
-      @wordpress = false
-    end
-    if @wordpress
-      @campaign = Campaign.new(uuid: UUID.new.generate)
+    if Campaign.check(params[:url], params[:user], params[:pass])
+      @campaign = Campaign.new
+      @campaign.uuid = UUID.new.generate
       @campaign.user = current_user
       @campaign.cocktail = Cocktail.find(params[:id])
       @campaign.title = params[:name]

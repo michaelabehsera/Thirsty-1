@@ -8,6 +8,7 @@ class Campaign
   index :uuid, unique: true
 
   field :paid, type: Boolean, default: false
+  field :status, type: Boolean, default: true
 
   field :title, type: String
   field :notes, type: String
@@ -58,4 +59,25 @@ class Campaign
     self.month = self.month + 1
     self.end_date = Time.now + 1.month
   end
+
+  def check
+    Campaign.check(self.url, self.username, self.pass)
+  end
+
+  def self.check(url, user, pass)
+    host = url.gsub('http://', '').split('/')[0]
+    if url.split('/').count > 1
+      path = '/' + url.split('/')[1..-1].join('/') + '/xmlrpc.php'
+    else
+      path = '/xmlrpc.php'
+    end
+    begin
+      connection = XMLRPC::Client.new(host, path)
+      connection.call('wp.getUsersBlogs', user, pass)
+    rescue Exception => e
+      return false
+    end
+    return true
+  end
+
 end

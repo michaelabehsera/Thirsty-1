@@ -35,7 +35,26 @@ class UsersController < InheritedResources::Base
 
   def link
     social = user.socials.where(name: params[:name]).first || user.socials.new(name: params[:name])
-    social.url = params[:url]
+    case social.name
+      when 'Dribbble'
+        social.url = "http://dribbble.com/#{params[:handle]}"
+      when 'Posterous'
+        social.url = "http://#{params[:handle]}.posterous.com"
+      when 'Twitter'
+        social.url = "http://twitter.com/#{params[:handle]}"
+      when 'Digg'
+        social.url = "http://digg.com/#{params[:handle]}"
+      when 'LinkedIn'
+        social.url = "http://linkedin.com/in/#{params[:handle]}"
+      when 'Reddit'
+        social.url = "http://reddit.com/user/#{params[:handle]}"
+      when 'Google +'
+        social.url = "http://plus.google.com/#{params[:handle]}"
+      when 'Tumblr'
+        social.url = "http://#{params[:handle]}.tumblr.com"
+      else
+        social.url = params[:handle]
+    end
     social.save
     render nothing: true
   end
