@@ -3,13 +3,12 @@ include Clockwork
 
 handler do |job|
   case job
-    when 'subscriptions.check'
+    when 'wordpress.check'
       Campaign.all.each do |campaign|
-        campaign.subscriptions.each do |user|
-          if user.timestamp && user.timestamp < (Time.now - 4.minutes).to_i
-            campaign.subscriptions.delete user
-            Juggernaut.publish campaign.uuid, { user_id: user.id, event_type: 'unsubscribe' }
-          end
+        if campaign.check
+          campaign.update_attribute(:status, true)
+        else
+          campaign.update_attribute(:status, false)
         end
       end
     when 'campaigns.advance'
@@ -41,7 +40,7 @@ handler do |job|
   end
 end
 
-every 4.minutes, 'subscriptions.check'
 every 1.hour, 'bits.update'
+every 12.hours, 'wordpress.check'
 every 1.day, 'campaigns.advance'
 every 1.day, 'reminder_email.send'
