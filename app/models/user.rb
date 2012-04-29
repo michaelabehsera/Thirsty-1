@@ -19,7 +19,7 @@ class User
   field :username, type: String
   field :email, type: String
   field :type, type: Symbol
-  field :bio, type: String
+  field :bio, type: String, default: "Darth Vader (born Anakin Skywalker) I am Well known as being the innocent boy who turns into the pinnacle of all evil. I break vital rules that a jedi must obey, and in doing this, I seal my fate of turning to the 'Dark side'. It is my love for my wife Padme that causes me this change. A Jedi Shall not know anger, nor hatred, nor love. I know all these things that I should not. But as you know I am 'the chosen one', the one who will bring the force back into balance. Go to settings to change your bio if your not the real Darth Vadar."
   field :profile, type: String
   field :tags, type: String
   field :title, type: String
