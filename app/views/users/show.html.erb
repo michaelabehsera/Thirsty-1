@@ -20,7 +20,7 @@
 
             <ul style="margin-left:19px;" class="social" id="css3">
             <% user.socials.each do |social| %>
-              <li class="<%= social.name.downcase %>">
+              <li class="<%= social.name == 'Google +' && 'google_plus' || social.name.downcase %>">
                 <a href="<%= social.url %>"><strong><%= social.name %></strong></a>
               </li>
             <% end %>
