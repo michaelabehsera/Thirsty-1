@@ -6,6 +6,11 @@ class UsersMailer < ActionMailer::Base
     mail to: 'mike@thirsty.com', subject: 'New Thirsty Account!'
   end
 
+  def welcome(user)
+    @user = user
+    mail to: user.email, subject: 'Welcome!', postmark_attachments: [File.open("#{Rails.root}/public/guidelines.pdf")]
+  end
+
   def response(from, to, email, subject, body)
     @body = body
     mail from: "thirsty-bot+#{to}|#{from}@thirsty.com", to: email, subject: subject

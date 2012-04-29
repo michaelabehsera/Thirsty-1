@@ -11,7 +11,8 @@ class User
   after_create :send_notification
 
   def send_notification
-    UsersMailer.new_account(self)
+    UsersMailer.new_account(self).deliver
+    UsersMailer.welcome(self).deliver
   end
 
   field :name, type: String
