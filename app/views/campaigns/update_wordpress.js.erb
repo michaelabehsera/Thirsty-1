@@ -1,1 +1,7 @@
+<% if @status %>
+  $('#marketers_tab p:first .label').removeClass('label-important').addClass('label-success').html('online')
+<% else %>
+  $('#marketers_tab p:first .label').removeClass('label-success').addClass('label-important').html('offline')
+<% end %>
+$('#wordpress-modal').modal()
 $('#wordpress-modal').modal('hide')

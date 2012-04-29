@@ -77,6 +77,8 @@ class CampaignsController < ApplicationController
 
   def update_wordpress
     campaign.update_attributes(username: params[:username], pass: params[:pass], url: params[:url])
+    @status = campaign.check
+    @status ? campaign.update_attribute(:status, true) : campaign.update_attribute(:status, false)
     respond_to :js
   end
 
@@ -287,7 +289,10 @@ class CampaignsController < ApplicationController
       )
       article.update_attribute(:approved, true)
       goal = campaign.goals.where(type: :article).first
-      goal.update_attribute(:achieved, true) if goal && campaign.articles.where(month: campaign.month, approved: true).count >= goal.num
+      if goal
+        goal.update_attribute(:num_achieved, campaign.articles.where(month: campaign.month, approved: true).count)
+        goal.update_attribute(:achieved, true) if goal.num_achieved >= goal.num
+      end
       @article = article
       render 'approve'
     else

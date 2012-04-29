@@ -12,7 +12,7 @@
   </div>
   <div class="modal-footer">
     <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
-    <button class="btn btn-success" data-dismiss="modal" onclick="javascript:$('#wordpress-modal form').submit()">Update</button>
+    <button class="btn btn-success" onclick="javascript:$('#wordpress-modal form').submit()">Update</button>
   </div>
 </div>
 
@@ -351,9 +351,9 @@
                 <% campaign.goals.each do |goal| %>
                   <div class="goal">
                     <% if goal.type == :traffic %>
-                      <p style="border:none;display:inline"><%= goal.num %> additional unique visitors</p>
+                      <p style="border:none;display:inline"><%= goal.num_achieved %>/<%= goal.num %> additional unique visitors</p>
                     <% else %>
-                      <p style="border:none;display:inline"><%= pluralize goal.num, goal.type.to_s %></p>
+                      <p style="border:none;display:inline"><%= goal.num_achieved %>/<%= pluralize goal.num, goal.type.to_s %></p>
                     <% end %>
                     <% if goal.achieved %>
                       <div class="label label-success" style="display:inline">achieved</div>
