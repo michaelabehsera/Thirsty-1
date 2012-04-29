@@ -311,7 +311,8 @@ class CampaignsController < ApplicationController
 
   def create
     if Campaign.check(params[:url], params[:user], params[:pass])
-      @campaign = Campaign.new(uuid: UUID.new.generate)
+      @campaign = Campaign.new
+      @campaign.uuid = UUID.new.generate
       @campaign.user = current_user
       @campaign.cocktail = Cocktail.find(params[:id])
       @campaign.title = params[:name]
