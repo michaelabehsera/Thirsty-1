@@ -1,7 +1,7 @@
 <div id="header">
       <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/cocktails">Pick a cocktail</a></li>
+          <li><a href="/register_campaign">Create Your Campaign</a></li>
           <li class="dropdown" data-dropdown="dropdown"><a data-toggle="dropdown" href="javascript:void(0)">My campaigns</a>
             <ul class="dropdown-menu">
               <% current_user.active_campaigns.where(paid: true).each do |campaign| %>

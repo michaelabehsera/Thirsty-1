@@ -2,13 +2,16 @@ class Campaign
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
-  before_create :time_setup, :check_price
+  before_create :time_setup
 
   field :uuid, type: String
   index :uuid, unique: true
 
   field :paid, type: Boolean, default: false
   field :status, type: Boolean, default: true
+  field :num_articles, type: Integer
+  field :num_traffic, type: Integer
+  field :price, type: Integer
 
   field :title, type: String
   field :notes, type: String
@@ -32,7 +35,6 @@ class Campaign
   mount_uploader :image, CampaignImage
 
   belongs_to :user
-  belongs_to :cocktail
   has_one :notification
   has_and_belongs_to_many :marketers, class_name: 'User', inverse_of: :active_campaigns
   has_and_belongs_to_many :tags
@@ -45,10 +47,6 @@ class Campaign
   has_many :articles
   has_many :tools
   has_and_belongs_to_many :subscriptions, class_name: 'User', inverse_of: nil
-
-  def check_price
-    self.paid = true if self.cocktail.price == 0
-  end
 
   def time_setup
     self.start_day = Time.now.day

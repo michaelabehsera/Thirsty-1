@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   expose(:notifications) {
-    current_user.campaigns.where(paid: true).map {|campaign| (Campaign.where(paid: true).map{|c|c.notification} + campaign.cocktail.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification})}.flatten.compact.sort_by(&:created_at).reverse if current_user
+    current_user.campaigns.where(paid: true).map {|campaign| (Campaign.where(paid: true).map{|c|c.notification} + campaign.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification})}.flatten.compact.sort_by(&:created_at).reverse if current_user
   }
 end

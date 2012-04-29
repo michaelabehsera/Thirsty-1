@@ -1,0 +1,207 @@
+<div id="wrap">
+<% if params[:step] == '1' %>
+<div id="startup_menu">
+            <h1>Pick the amount of articles & traffic you want</h1>
+          </div>
+          <div id="company_input">
+          <div class="inner_text">
+          <p>Every article comes with the following:</p>
+           <ul>
+              <li>Benifit #1</li>
+              <li>Benifit #2</li>
+              <li>Benifit #3</li>
+              <li>Benifit #4</li>
+              <li>Benifit #5</li>
+              <li>Benifit #6</li>
+              <li>Benifit #7</li>
+              <li>Benifit #8</li>
+            </ul>
+          <p>Have any questions? 1-888-777-7777</p>
+          <span>If you order above 10 articles a month, call us and we will give you a discount</span>
+          </div>
+          <div class="inner_info" style="margin-top:7px"> 
+            <div class="title" style="margin-left:12px; font-size:30px;">Number of articles:</div>
+            <div class='year'>
+              <select style="font-size:32px; width:158px; margin-left:15px;" id='year'>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+              <p style="margin-left:12px;">Total monthly payment: <span id="price">$99</span></p>
+        <a class="blue_button" style="float:right; padding:13px 145px; margin-top:10px; margin-right:3px;" href="#">Proceed to checkout</a>
+        </div>
+        </div>
+
+        </div>
+
+<script>
+  $(document).ready(function(){
+    $('select').change(function(){
+      if ($('select').val() == '1') {
+        $('#price').text('$99')
+      } else {
+        $('#price').text( '$' + (parseInt($('select').val())-1) + '99' )
+      }
+    })
+    $('.blue_button').click(function(){
+      window.location = '/register_campaign?step=2&articles=' + $('select').val()
+    })
+  })
+</script>
+<% elsif params[:step] == '2' %>
+<div id="startup_menu">
+            <h1>Enter your company info below to get started!</h1>
+          </div>
+          <div id="company_input">
+          <div class="inner_text">
+           <p>Plan Picked: $<%= params[:articles].to_i * 100 - 1 %> <a href="#">Change Plan</a></p>
+           <ul>
+              <li><span>1 Step:</span> Company Info</li>
+              <li><span>2nd Step:</span> Payment</li>
+            </ul>
+          <p>Have any questions? 1-888-777-7777</p>
+          </div>
+          <div class="inner_info">
+        <%= form_for :campaign, url: '/campaigns/create' do |f| %>
+          <%= f.text_field :title, placeholder: 'Company name' %>
+          <%= f.text_field :url, placeholder: 'Blog URL' %>
+          <%= f.text_field :username, placeholder: 'Wordpress Username' %>
+          <%= f.text_field :pass, placeholder: 'Wordpress Pass' %>
+          <%= f.text_field :analytics_id, placeholder: 'Google analytics site id (UA-XXXXXXX-X)' %>
+          <%= f.text_field :tags, placeholder: 'Comma-separated keywords' %>
+          <%= f.text_area :guidelines, placeholder: 'Editorial guidelines' %>
+          <%= f.hidden_field :num_articles, value: params[:articles] %>
+          <%= f.submit 'Next step', class: 'blue_button', style: 'float:right; padding:13px 181px; margin-top:10px' %>
+        <% end %>
+        </div>
+        </div>
+
+        </div>
+<% elsif params[:step] == '3' %>
+<div id="startup_menu">
+            <h1>Enter your payment info</h1>
+          </div>
+          <div id="company_input">
+          <div class="inner_text">
+           <p>Plan Picked: $<%= Campaign.where(uuid: params[:uuid]).first.num_articles * 100 - 1 %> <a href="#">Change Plan</a></p>
+           <ul>
+              <li><span>1 Step:</span> Company Info</li>
+              <li><span>2nd Step:</span> Payment</li>
+            </ul>
+          <p>Have any questions? 1-888-777-7777</p>
+          </div>
+          <div class="inner_info"> 
+          <img src="/images/amex.png" style="margin-left:10px;" width="32" height="32" alt="Amex">
+          <img src="/images/discover.png" width="32" height="32" alt="Discover">    
+          <img src="/images/mastercard.png" width="32" height="32" alt="MasterCard">  
+          <img src="/images/visa.png" width="32" height="32" alt="Visa">  
+          <%= form_tag "/campaigns/#{params[:uuid]}/paid", remote: true, id: 'pay_form' do %>
+            <%= text_field_tag :first_name, '', placeholder: 'First Name' %>
+            <%= text_field_tag :last_name, '', placeholder: 'Last Name' %>
+            <%= text_field_tag :number, '', placeholder: 'Card Number', style: 'width:332px; float:left; margin-right:7px;' %>
+            <%= text_field_tag :cvc, '', placeholder: 'CVV', style: 'width: 55px;' %>
+         <div class="field expires">
+            <div class="title">Expires</div>
+            <div class="month">
+              <select id="month">
+                <option value="01">01 - January</option>
+                <option value="02">02 - Febuary</option>
+                <option value="03">03 - March</option>
+                <option value="04">04 - April</option>
+                <option value="05">05 - May</option>
+                <option value="06">06 - June</option>
+                <option value="07">07 - July</option>
+                <option value="08">08 - August</option>
+                <option value="09">09 - September</option>
+                <option value="10">10 - October</option>
+                <option value="11">11 - November</option>
+                <option value="12">12 - December</option>
+              </select>
+            </div>
+            <div class='year'>
+              <select id='year'>
+                <option name="2011">2011</option>
+                <option name="2012">2012</option>
+                <option name="2013">2013</option>
+                <option name="2014">2014</option>
+                <option name="2015">2015</option>
+                <option name="2016">2016</option>
+                <option name="2017">2017</option>
+                <option name="2018">2018</option>
+                <option name="2019">2019</option>
+                <option name="2020">2020</option>
+                <option name="2021">2021</option>
+              </select>
+        <div class="footer">
+        <%= content_tag :button, 'Pay', class: 'submit blue_button', style: 'float:right; padding: 13px 199px; margin-top:10px; margin-right:3px' %>
+        </div>
+        <% end %>
+        </div>
+        </div>
+
+        </div>
+<script>
+  <% if Rails.env == 'production' %>
+    Stripe.publishableKey = 'pk_WiYhiX7VpCB53MRxFofuw1Qznh3FO'
+  <% else %>
+    Stripe.publishableKey = 'pk_wqJPCWAhAftZ8T7zAmhedstMv50wc'
+  <% end %>
+  $(document).ready(function(){
+    $('.submit').click(function(){
+      $('.submit').text('Loading..')
+    })
+
+    function submit(form) {
+      $('.submit').attr('disabled', 'disabled');
+
+      var amount = '<%= Campaign.where(uuid: params[:uuid]).first.price * 100 %>'
+      Stripe.createToken({
+          number: $('#number').val(),
+          cvc: $('#cvc').val(),
+          exp_month: $('#month').val(),
+          exp_year: $('#year').val(),
+          name: $('#first_name').val() + ' ' + $('#last_name').val()
+        }, amount, function(status, response) {
+          if (response.error) {
+            $('.submit').removeAttr('disabled');
+            $('.submit').text('Pay')
+            $('span#error').remove()
+            $('.footer').append('<span id="error">' + response.error.message + '</span>');
+          } else {
+            var token = response["id"];
+            $.ajax({
+              type: 'POST',
+              url: '/campaigns/<%= params[:uuid] %>/paid',
+              data: { stripeToken: token, amount: amount, utf8: $('#pay_form input[name=utf8]').val(), authenticity_token: $('#pay_form input[name=authenticity_token]').val() }
+            });
+          }
+      });
+      return false;
+    }
+
+    jQuery.validator.addMethod("cardNumber", Stripe.validateCardNumber, "Please enter a valid card");
+    jQuery.validator.addMethod("cardCVC", Stripe.validateCVC, "Please enter a valid security code");
+    jQuery.validator.addMethod("cardExpiry", function() {
+      return Stripe.validateExpiry($('#expm').val(),$('#expy').val())
+    }, "Please enter a valid expiration date");
+
+    $('#pay_form').validate({
+      submitHandler: submit,
+      rules: {
+        'cvc' : { cardCVC: true, required: true },
+        'number' : { cardNumber: true, required: true},
+        'expy' : 'cardExpiry'
+      }
+    });
+
+    });
+</script>
+<% end %>
+</div>

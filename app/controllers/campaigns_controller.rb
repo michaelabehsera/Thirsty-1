@@ -14,8 +14,12 @@ class CampaignsController < ApplicationController
        :authorize_path => '/accounts/OAuthAuthorizeToken'})
   }
   expose(:campaign_notifications) {
-    ([campaign.notification] + campaign.cocktail.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification}).flatten.compact.sort_by(&:created_at).reverse if current_user
+    ([campaign.notification] + campaign.goals.map {|g|g.notification} + campaign.articles.map {|a|a.notification}).flatten.compact.sort_by(&:created_at).reverse if current_user
   }
+
+  def index
+    render nothing: true if !campaign.paid
+  end
 
   def associate
     user = nil
@@ -301,8 +305,35 @@ class CampaignsController < ApplicationController
   end
 
   def paid
-    campaign.update_attributes(paid: true, stripe_id: params[:customer_id])
-    redirect_to "/campaigns/#{campaign.uuid}"
+    Pony.mail(
+      to: campaign.user.email,
+      from: 'mike@thirsty.com',
+      subject: 'Thanks for signing up!',
+      body: "Thanks for signing up with Thirsty!",
+      via: :smtp,
+      via_options: {
+        address: 'smtp.gmail.com',
+        port: '587',
+        enable_starttls_auto: true,
+        user_name: 'mike@thirsty.com',
+        password: 'AAA123321',
+        authentication: :plain,
+        domain: 'thirsty.com'
+      }
+    )
+    begin
+      customer = Stripe::Customer.create(
+        card: params[:stripeToken],
+        email: campaign.user.email
+      )
+      customer.update_subscription(plan: "thirsty_#{campaign.num_articles}")
+      campaign.create_notification
+      current_user.active_campaigns << campaign
+      campaign.update_attributes(paid: true, stripe_id: customer.id)
+      @campaign = campaign
+    rescue Exception => @error
+      render 'pay_fail'
+    end
   end
 
   def update
@@ -315,69 +346,19 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    if Campaign.check(params[:url], params[:user], params[:pass])
-      @campaign = Campaign.new
-      @campaign.uuid = UUID.new.generate
-      @campaign.user = current_user
-      @campaign.cocktail = Cocktail.find(params[:id])
-      @campaign.title = params[:name]
-      @campaign.url = url
-      @campaign.username = params[:user]
-      @campaign.pass = params[:pass]
-      @campaign.analytics_id = params[:aid]
-      @campaign.guidelines = params[:guidelines]
-      params[:tags].split(/, ?/).each do |tag|
-        @campaign.tags << Tag.find_or_create_by(name: tag)
+    if Campaign.check(params[:campaign][:url], params[:campaign][:username], params[:campaign][:pass])
+      tags = params[:campaign][:tags]
+      params[:campaign].delete :tags
+      campaign = current_user.campaigns.new params[:campaign]
+      campaign.uuid = UUID.new.generate
+      campaign.price = campaign.num_articles * 100 - 1
+      tags.split(/, ?/).each do |tag|
+        campaign.tags << Tag.find_or_create_by(name: tag)
       end
-      case @campaign.cocktail.price
-        when 149
-          @campaign.goals.new(num: 3, type: :article)
-        when 299
-          @campaign.goals.new(num: 6, type: :article)
-        when 499
-          @campaign.goals.new(num: 12, type: :article)
-          @campaign.goals.new(num: 500, type: :traffic)
-        when 999
-          @campaign.goals.new(num: 21, type: :article)
-          @campaign.goals.new(num: 1500, type: :traffic)
-        when 1999
-          @campaign.goals.new(num: 45, type: :article)
-          @campaign.goals.new(num: 4000, type: :traffic)
-        when 4999
-          @campaign.goals.new(num: 100, type: :article)
-          @campaign.goals.new(num: 10000, type: :traffic)
-        when 9999
-          @campaign.goals.new(num: 200, type: :article)
-          @campaign.goals.new(num: 25000, type: :traffic)
-      end
-      if @campaign.save
-        Pony.mail(
-          to: @campaign.user.email,
-          from: 'mike@thirsty.com',
-          subject: 'Thanks for signing up!',
-          body: "Thanks for signing up with Thirsty!",
-          via: :smtp,
-          via_options: {
-            address: 'smtp.gmail.com',
-            port: '587',
-            enable_starttls_auto: true,
-            user_name: 'mike@thirsty.com',
-            password: 'AAA123321',
-            authentication: :plain,
-            domain: 'thirsty.com'
-          }
-        )
-        @campaign.create_notification
-        current_user.active_campaigns << @campaign
-        @campaign.articles.each do |article|
-          unless current_user.bits.where(article_id: article.id).first
-            bitly = BitLy.shorten("#{article.url}##{current_user.id}")
-            bit = article.bits.new(url: bitly.short_url, hash: bitly.user_hash)
-            bit.user = current_user
-            bit.save
-          end
-        end
-      end
+      campaign.goals.new(num: campaign.num_articles, type: :article)
+      campaign.goals.new(num: campaign.num_traffic, type: :traffic) if campaign.num_traffic
+      render 'create_fail' unless campaign.save
+      @campaign = campaign
     else
       render 'create_fail'
     end

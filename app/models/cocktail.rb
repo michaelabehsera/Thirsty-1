@@ -4,6 +4,8 @@ class Cocktail
   field :title, type: String
   field :description, type: String
   field :price, type: Integer
+  field :articles, type: Integer
+  field :traffic, type: Integer
 
   validates_presence_of :title
   validates_uniqueness_of :title

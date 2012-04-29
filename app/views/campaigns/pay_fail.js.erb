@@ -1,0 +1,4 @@
+$('.submit').removeAttr('disabled')
+$('.submit').text('Pay')
+$('span#error').remove()
+$('.footer').append('<span id="error"><%= @error.message %></span>')

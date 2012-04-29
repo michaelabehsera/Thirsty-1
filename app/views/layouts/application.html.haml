@@ -14,10 +14,6 @@
     = javascript_include_tag 'application'
     = javascript_include_tag '/javascripts/nicEdit.js'
     = javascript_include_tag '/javascripts/highcharts.js'
-    - if Rails.env == 'development'
-      = javascript_include_tag 'http://localhost:8081/application.js'
-    - else
-      = javascript_include_tag root_url[0..-2] + ':8081/application.js'
     <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Poiret+One|Open+Sans+Condensed:700|Marvel|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Signika+Negative|Acme|Ropa+Sans|Quicksand:400,700|Gudea:400,700|Ubuntu+Condensed|Homenaje|Balthazar|Terminal+Dosis:400,700|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
     <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-24991696-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>

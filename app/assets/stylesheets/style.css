@@ -6,6 +6,126 @@ body {
     background:url(/images/background_main.png)repeat;
 
 }
+
+#startup_menu {
+    width:790px;
+    margin-top:150px;
+    background-color:#fff;
+
+}
+
+#startup_menu p {
+    padding:12px;
+    font-size:13px;
+    background-color:whitesmoke;
+
+}
+
+#startup_menu ul {
+    
+    
+}
+
+#startup_menu li {
+    display:inline;
+    list-style:none;
+    background-color:red;
+    background: #ededed; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ededed 0%, #f9f9f9 100%, #207cca 100%, #7db9e8 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#f9f9f9), 
+color-stop(100%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ededed 0%,#f9f9f9 100%,#207cca 100%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ededed 0%,#f9f9f9 100%,#207cca 100%,#7db9e8 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ededed 0%,#f9f9f9 100%,#207cca 100%,#7db9e8 100%); /* IE10+ */
+    background: linear-gradient(top,  #ededed 0%,#f9f9f9 100%,#207cca 100%,#7db9e8 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+    border:1px solid #d1d1d1;
+    padding:10px;
+    font-size:13px;
+    
+}
+
+#company_input {
+    height:467px;
+    padding:12px;
+    border:1px solid #d1d1d1;
+    background-color:whitesmoke;
+
+}
+
+.inner_info {
+    width:437px;
+    float:left;
+
+}
+
+.inner_text {
+    width:300px;
+    float:right;
+    padding:12px;
+    margin:10px 12px 0 0;
+    background-color:#ebebeb;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+
+}
+
+#company_input input {
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    color: #757575;
+    display: block;
+    font-size: 12px;
+    width: 410px;
+    height: 27px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    margin: 10px 0 0 9px;
+    padding: 7px;
+    outline: none;
+
+}
+
+#company_input textarea {
+    background-color: white;
+    border: 1px solid #D1D1D1;
+    color: #757575;
+    display: block;
+    font-size: 12px;
+    width: 410px;
+    height: 57px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    margin: 10px 0 0 9px;
+    padding: 7px;
+    outline: none;
+
+}
+
+.field, .expires {
+    width:427px;
+    float:right;
+    margin-top:10px;
+
+}
+
+.title {
+    margin-top:3px;
+    float:left;
+    font-size:13px;
+
+}
+
+.month {
+    float:right;
+    width:310px;
+    margin-right:3px;
+
+}
+
 .tool {padding:12px;border-bottom:1px solid #d1d1d1}
 .tool p {width:730px}
 
