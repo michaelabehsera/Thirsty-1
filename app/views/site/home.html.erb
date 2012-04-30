@@ -25,7 +25,7 @@
           </div>
           <div class="personal_projects">
           <% if current_user.active_campaigns.where(paid: true).empty? && current_user.type != :marketer %>
-          <p>&nbspNo campaigns started <a href="/register_campaign" class="button_grey" style="margin:0 0 0 10px">Register your campaign & get started!</a></p> 
+          <p>&nbspNo campaigns started <a href="/register_campaign?step=1" class="button_grey" style="margin:0 0 0 10px">Register your campaign & get started!</a></p> 
           <% else %>
 
             <% current_user.active_campaigns.where(paid: true).each do |campaign| %>
