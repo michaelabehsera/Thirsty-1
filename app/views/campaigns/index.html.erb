@@ -23,9 +23,6 @@
   </div>
   <div class="modal-body">
     <select id="plan">
-      <% Cocktail.all.each do |cocktail| %>
-        <option value="thirsty_<%= cocktail.price %>"><%= cocktail.title.gsub('<h2>', '').gsub('</h2>', '') %></option>
-      <% end %>
     </select>
   </div>
   <div class="modal-footer">
@@ -303,7 +300,7 @@
 <%= render partial: 'site/header' %>
       <div id="wrap">
           <div id="company_menu">
-              <h1>Campaign Type: <%= campaign.cocktail.title %>
+              <h1>
               <a href="#update-modal" data-toggle="modal">Update Campaign Info</a>
               </h1>
               <% if campaign.stripe_id %><a href="#upgrade-modal" data-toggle="modal" class="btn btn-primary">Upgrade</a><% end %>
