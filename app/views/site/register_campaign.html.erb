@@ -69,7 +69,7 @@
           <p>Have any questions? 1-888-777-7777</p>
           </div>
           <div class="inner_info">
-        <%= form_for :campaign, url: '/campaigns/create' do |f| %>
+        <%= form_for :campaign, url: '/campaigns/create', remote: true do |f| %>
           <%= f.text_field :title, placeholder: 'Company name' %>
           <%= f.text_field :url, placeholder: 'Blog URL' %>
           <%= f.text_field :username, placeholder: 'Wordpress Username' %>
