@@ -153,6 +153,7 @@ img {
 
 #signup h1 {
     color:#252525;
+    line-height: 36px;
     font-size:17px;
     margin:0 0 0px 59px;
     text-shadow:0 1px 0 #fff;
@@ -267,6 +268,7 @@ img {
     color:#252525;
     font-size:17px;
     margin:0 0 0 0;
+    line-height: 36px;
     text-shadow:0 1px 0 #fff;
     -moz-text-shadow:0 1px 0 #fff;
     -webkit-text-shadow:0 1px 0 #fff;
