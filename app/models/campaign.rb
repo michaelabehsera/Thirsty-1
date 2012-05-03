@@ -63,7 +63,8 @@ class Campaign
   end
 
   def self.check(url, user, pass)
-    host = url.gsub('http://', '').split('/')[0]
+    url.gsub!('http://', '')
+    host = url.split('/')[0]
     if url.split('/').count > 1
       path = '/' + url.split('/')[1..-1].join('/') + '/xmlrpc.php'
     else
