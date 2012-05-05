@@ -15,9 +15,9 @@ class UsersMailer < ActionMailer::Base
     @body = body
     edit = Edit.where(uuid: uuid).first
     if receiver == 'f'
-      mail from: "thirsty-bot+#{uuid}|t@thirsty.com", to: edit.to.email, subject: subject
+      mail from: "thirsty-bot+#{uuid}|t@thirsty.com", to: edit.from.email, subject: subject
     else
-      mail from: "thirsty-bot+#{uuid}|f@thirsty.com", to: edit.from.email, subject: subject
+      mail from: "thirsty-bot+#{uuid}|f@thirsty.com", to: edit.to.email, subject: subject
     end
   end
 
