@@ -68,15 +68,20 @@ class CampaignsController < ApplicationController
     render json: { title: article.title, content: article.content, tags: article.tags, id: article.id }
   end
 
+  def edits
+    render layout: false
+  end
+
   def request_edit
     article = Article.find params[:id]
-    edit = Edit.new(message: params[:request])
+    edit = Edit.new
+    edit.messages.create(content: params[:request])
     edit.from = current_user
     edit.to = article.user
     edit.campaign = campaign
     edit.article = article
     edit.uuid = UUID.new.generate
-    edit.save
+    edit.messages.create(content: params[:request]) if edit.save
     UsersMailer.response(edit.uuid, 't', 'You have some feedback', "Your \"#{article.title}\" has received some feedback:<br/><br/>#{params[:request]}").deliver
     render nothing: true
   end
