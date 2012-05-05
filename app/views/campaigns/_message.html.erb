@@ -1,0 +1,16 @@
+<div class="message">
+<% if message.user == edit.from %>
+  <div class="user_img">
+<% else %>
+  <div class="user_img_left">
+<% end %>
+<img style="margin:6px 0px 0 0px;" src="<%= message.user.avatar.url || message.user.gravatar_url || '/images/no_image.jpg' %>" width="50" height="50" alt="">
+</div>
+<div class="comment_box">
+    <a href="javascript:void(0)"><%= distance_of_time_in_words_to_now(message.created_at) %> ago</a>
+<p><%= message.content %></p>
+</div>
+<div class="action_buttons">
+</div>
+<div class="clear"></div>
+</div>

@@ -31,19 +31,17 @@
   </div>
 </div>
 
-<div id="request-modal" class="hide">
-    <h3>Request Edits</h3>
+<div id="request-modal" class="hide" style="margin-top:-40px">
       <div id="dashboard">
             <div class="edits_header">
             <h1>Request for edits</h1>
-            <a class="blue_tip" style="float:right; padding:6px 7px; margin-top:-32px; margin-right:11px;" href="javascript:void(0)">Close</a>
+            <a class="blue_tip" style="float:right; padding:6px 7px; margin-top:-32px; margin-right:11px;" onclick="javascript:$('#request-modal').bPopup().close()" href="javascript:void(0)">Close</a>
             </div>
-            <div id="edit_form_container">
+            <div id="request_form_container">
     <%= form_tag "/campaigns/#{campaign.uuid}/request_edit", remote: true do %>
       <%= text_area_tag :request, '', placeholder: 'enter your request here' %>
       <%= hidden_field_tag :id, '', class: 'hidden' %>
     <% end %>
-    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
     <button class="btn btn-success" data-dismiss="modal" onclick="javascript:$('#request-modal form').submit()">Send Request</button>
             </div>
             <div id="edits"></div>
@@ -721,6 +719,11 @@
         {},
         function(html) {
           $('#edits').html(html)
+          if (html != '' && html != ' ') {
+            $('#request_form_container .btn-success').text('Reply')
+          } else {
+            $('#request_form_container .btn-success').text('Send Request')
+          }
         },
         'html'
       )
