@@ -16,6 +16,7 @@ class Article
   field :submitted, type: Boolean, default: false
 
   has_many :bits
+  has_many :edits
   has_one :notification
   belongs_to :user
   belongs_to :campaign

@@ -70,7 +70,14 @@ class CampaignsController < ApplicationController
 
   def request_edit
     article = Article.find params[:id]
-    UsersMailer.response(current_user.username, article.user.username, article.user.email, 'You have some feedback', "Your \"#{article.title}\" has received some feedback:<br/><br/>#{params[:request]}").deliver
+    edit = Edit.new(message: params[:request])
+    edit.from = current_user
+    edit.to = article.user
+    edit.campaign = campaign
+    edit.article = article
+    edit.uuid = UUID.new.generate
+    edit.save
+    UsersMailer.response(edit.uuid, 't', 'You have some feedback', "Your \"#{article.title}\" has received some feedback:<br/><br/>#{params[:request]}").deliver
     render nothing: true
   end
 

@@ -1,57 +1,31 @@
 <%= render partial: 'site/header' %>
 <div id="wrap">
-          <% if current_user.type == :business || current_user.email == 'michaelabehsera@gmail.com' %>
-          <div id="initial_welcome">
-            <h1>Welcome to the Thirsty Business Portal!</h1>
-              <p>You have successfully logged in as a Business. We are excited to have you as a valued client!
-              Below, you can take the first steps to starting a new campaign. If you haven’t yet started a campaign, just click the button that says “Pick a campaign & get started!” 
-              If you already have an active campaign, you can see it listed below and click on it to monitor its latest progress.
-              We want the Thirsty Business Portal to be the best tool on the web. <br />If you have any questions, suggestions, or need help, <a href="mailto:mike@thirsty.com">click here</a> or call (877) 927-7075 to contact us for support.</p>
-          </div>
-          <div id="creatives_count">
-            <p>Creatives at your disposal / <span><%= User.all.count %></span>
-          </div>
-          <% else %>
-            <div id="initial_welcome">
-              <h1>Welcome to the Thirsty Writer Portal!</h1>
-              <p>You have successfully logged in as a Writer. We’re excited to have you on our talented team!
-              Below, you can browse available campaigns that need content writing help and manage your active campaigns. Just click on a campaign to learn more about that project.
-              <br />Have a question? Have an idea for making our Writer Portal even better? We’re always here to help. Just <a href="mailto:mike@thirsty.com">click here</a> or call <br />(877) 927-7075 to contact us today for support.</p>
-            </div>
-          <% end %>
-          <div class="your_campaigns">
-          <div id="devider_line2"></div>
-          <h1>Active Campaigns:</h1>
-          </div>
-          <div class="personal_projects">
-          <% if current_user.active_campaigns.where(paid: true).empty? && current_user.type != :marketer %>
-          <p>&nbspNo campaigns started <a href="/register_campaign?step=1" class="button_grey" style="margin:0 0 0 10px">Register your campaign & get started!</a></p> 
-          <% else %>
+<div id="dashboard">
+  <div class="dashboard_header">
 
-            <% current_user.active_campaigns.where(paid: true).each do |campaign| %>
-
-              <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %><% campaign.tags.reverse.each do |tag| %><span style="float:right" class="tags"><%= tag.name %><% if tag == campaign.tags.last %><%= '.' %><% else %><%= ',&nbsp;'.html_safe %><% end %></span><% end %></p></a>
-              <div id="devider_line"></div>
-            <% end %>
-          <% end %>
-          <% if current_user.type == :marketer %>
-          <div id="devider_end2"></div>
-          <div class="your_campaigns">
-          <div id="devider_line2"></div>
-          <h1 style="display:inline">Available Campaigns:</h1>
-          </div>
-          <div class="personal_projects">
-
-            <% Campaign.where(paid: true).each do |campaign| %>
-                <% unless current_user.active_campaigns.where(paid: true).include?(campaign) %>
-
-              <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %></p></a>
-              <div id="devider_line"></div>
-            <% end %>
-            <% end %>
-
-          </div>
+    <ul style="margin-left:-33px;" id="dashboard_menu">
+      <li><img style="margin:-11px 7px 0 -3px; padding:3px; border:1px solid #003249; box-shadow: inset 0px 0px 7px #04284e, 0px 0px 0px #04284e; -moz-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 0px #04284e; -webkit-box-shadow: inset 0px 0px 7px #04284e, 0px 0px 0px #04284e;" src="<%= current_user.avatar.url || current_user.gravatar_url || '/images/no_image.jpg' %>" align="left" width="35" height="35" alt=""></li>
+      <li>Hi Michael Abehsera!</li>
+      <li>You are loged in as a writer & have</li>
+      <li><a style="margin-left:0px;" href="#"> (37) available campaigns <img src="images/arrow_blue.png" style="position:relative; top:-2px;" width="" height="" alt=""></a></li>
+    </ul>
+    <a class="blue_tip" style="float:right; padding:6px 7px; margin-top:-38px; margin-right:11px;" href="#">How it works</a>
   </div>
+
+  <% Campaign.where(paid: true).each do |campaign| %>
+    <div class="campaign_items">
+    <img style="margin:6px 8px 0 -4px" src="<%= campaign.image.url || '/images/no_image.jpg' %>" align="left" width="30" height="30">
+    <% article_goal = campaign.goals.where(type: :article).first  %>
+    <% traffic_goal = campaign.goals.where(type: :traffic).first  %>
+    <a href="/campaigns/<%= campaign.uuid %>"><p><%= campaign.title %></p>
+      <% if article_goal %>
+        <span style="float:right">Articles <%= article_goal.num_achieved %>/<%= article_goal.num %></span>
       <% end %>
-  </div>
+      <% if traffic_goal %>
+        <span style="float:right">Traffic <%= traffic_goal.num_achieved %>/<%= traffic_goal.num %></span>
+      <% end %>
+    </a>
+    </div><div class="devider_items"></div>
+  <% end %>
+</div>
 </div>

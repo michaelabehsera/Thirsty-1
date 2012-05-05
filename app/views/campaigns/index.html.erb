@@ -31,21 +31,41 @@
   </div>
 </div>
 
-<div id="request-modal" class="modal hide fade">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
+<div id="request-modal" class="hide">
     <h3>Request Edits</h3>
-  </div>
-  <div class="modal-body">
+      <div id="dashboard">
+            <div class="edits_header">
+                <h1><%= campaign.edits.where(completed: false).count %> pending requests for edits</h1>
+            <a class="blue_tip" style="float:right; padding:6px 7px; margin-top:-32px; margin-right:11px;" href="javascript:void(0)">Close</a>
+            </div>
+
+              <% campaign.edits.each_with_index do |edit, index| %>
+              <% if index % 2 == 0 %>
+                <div class="user_img">
+              <% else %>
+                <div class="user_img_left">
+              <% end %>
+              <img style="margin:6px 0px 0 0px;" src="<%= edit.to.avatar.url || edit.to.gravatar_url || '/images/no_image.jpg' %>" width="50" height="50" alt="">
+              </div>
+              <div class="comment_box">
+                  <a href="javascript:void(0)"><%= distance_of_time_in_words_to_now(edit.created_at) %> ago, to <%= edit.to.name %></a>
+              <p><%= edit.message %></p>
+              </div>
+              <div class="action_buttons">
+              <a class="blue_tip" style="float:right; padding:4px 5px; margin:0 0 0 5px;" href="javascript:void(0)">Edit done</a>
+              <a class="blue_tip" style="float:right; padding:4px 5px;" href="javascript:void(0)">Reply</a>
+              </div>
+              <div class="clear"></div>
+              <% end %>
+    <div>
     <%= form_tag "/campaigns/#{campaign.uuid}/request_edit", remote: true do %>
       <%= text_area_tag :request, '', placeholder: 'enter your request here' %>
       <%= hidden_field_tag :id, '', class: 'hidden' %>
     <% end %>
-  </div>
-  <div class="modal-footer">
     <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
     <button class="btn btn-success" data-dismiss="modal" onclick="javascript:$('#request-modal form').submit()">Send Request</button>
-  </div>
+    </div>
+    </div>
 </div>
 
 <div id="update-modal" class="modal hide fade">
@@ -554,7 +574,7 @@
                          <%= link_to 'deny', "/campaigns/#{campaign.uuid}/deny?id=#{article.id}", remote: true, class: 'deny' %>
                          <% end %>
                          <%= link_to 'view', 'javascript:void(0)', class: 'view', aid: article.id %>
-                         <%= link_to 'request edits', '#request-modal', :'data-toggle' => 'modal', class: 'request', aid: article.id %>
+                         <%= link_to 'request edits', 'javascript:void(0)', onclick: "$('#request-modal').bPopup()", :'data-toggle' => 'modal', class: 'request', aid: article.id %>
                        </div>
                     <% end %>
                   <% if campaign.articles.count == 0 && campaign.headlines.count == 0 %>

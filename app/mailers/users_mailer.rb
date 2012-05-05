@@ -11,9 +11,14 @@ class UsersMailer < ActionMailer::Base
     mail to: user.email, subject: 'Welcome!', postmark_attachments: [File.open("#{Rails.root}/public/guidelines.pdf")]
   end
 
-  def response(from, to, email, subject, body)
+  def response(uuid, receiver, subject, body)
     @body = body
-    mail from: "thirsty-bot+#{to}|#{from}@thirsty.com", to: email, subject: subject
+    edit = Edit.where(uuid: uuid).first
+    if receiver == 'f'
+      mail from: "thirsty-bot+#{uuid}|t@thirsty.com", to: edit.to.email, subject: subject
+    else
+      mail from: "thirsty-bot+#{uuid}|f@thirsty.com", to: edit.from.email, subject: subject
+    end
   end
 
   def traffic_update(campaign, clicks)
