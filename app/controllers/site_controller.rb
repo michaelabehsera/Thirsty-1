@@ -2,6 +2,14 @@ class SiteController < ApplicationController
 
   def inbound
     uuid, receiver = params['MailboxHash'].split('|')
+    edit = Edit.where(uuid: uuid).first
+    message = edit.messages.new(content: params['TextBody'].match(/((.|\n)*)\n\nOn \w{3}, \w{3} \d, \d{4}(.|\n)*wrote/).captures.first)
+    if receiver == 'f'
+      message.user = edit.to
+    else
+      message.user = edit.from
+    end
+    message.save
     UsersMailer.response(uuid, receiver, params['Subject'], CGI.unescapeHTML(params['HtmlBody'])).deliver
     render nothing: true
   end

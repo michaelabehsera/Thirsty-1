@@ -74,16 +74,21 @@ class CampaignsController < ApplicationController
 
   def request_edit
     article = Article.find params[:id]
-    edit = Edit.new
-    edit.messages.create(content: params[:request])
-    edit.from = current_user
-    edit.to = article.user
-    edit.campaign = campaign
-    edit.article = article
-    edit.uuid = UUID.new.generate
-    edit.messages.create(content: params[:request]) if edit.save
-    UsersMailer.response(edit.uuid, 't', 'You have some feedback', "Your \"#{article.title}\" article has received some feedback:<br/><br/>#{params[:request]}").deliver
-    render nothing: true
+    if campaign.edits.last.completed
+      @edit = Edit.new
+      @edit.from = current_user
+      @edit.to = article.user
+      @edit.campaign = campaign
+      @edit.article = article
+      @edit.uuid = UUID.new.generate
+    else
+      @edit = campaign.edits.last
+    end
+    @message = @edit.messages.new(content: params[:request])
+    @message.user = current_user
+    @message.save && @edit.save
+    UsersMailer.response(@edit.uuid, 't', 'You have some feedback', "Your \"#{article.title}\" has received some feedback:<br/><br/>#{params[:request]}").deliver
+    respond_to :js
   end
 
   def upgrade
