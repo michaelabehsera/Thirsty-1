@@ -82,7 +82,7 @@ class CampaignsController < ApplicationController
     edit.article = article
     edit.uuid = UUID.new.generate
     edit.messages.create(content: params[:request]) if edit.save
-    UsersMailer.response(edit.uuid, 't', 'You have some feedback', "Your \"#{article.title}\" has received some feedback:<br/><br/>#{params[:request]}").deliver
+    UsersMailer.response(edit.uuid, 't', 'You have some feedback', "Your \"#{article.title}\" article has received some feedback:<br/><br/>#{params[:request]}").deliver
     render nothing: true
   end
 

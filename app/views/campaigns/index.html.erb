@@ -140,6 +140,30 @@
   </div>
 </div>
 
+<div id="guidelines-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Editorial Guidelines</h3>
+  </div>
+
+  <div class="modal-body">
+    <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
+      <%= form_tag "/campaigns/#{campaign.uuid}/update_guidelines", remote: true do %>
+        <%= text_field_tag :guidelines, campaign.guidelines %>
+      <% end %>
+    <% else %>
+      <p><%= campaign.guidelines %></p>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
+    <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
+      <%= content_tag :button, 'Update', class: 'btn btn-success', onclick: "javascript:$('#guidelines-modal form').submit()" %>
+    <% end %>
+  </div>
+</div>
+
 <div id="desc-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -157,25 +181,6 @@
     <%= content_tag :button, 'Submit', class: 'btn btn-success', onclick: "javascript:$('#desc-modal form').submit();$('#desc-modal .btn-success').text('Submitting..')" %>
   </div>
 </div>
-
-<div id="guidelines-modal" class="modal hide fade">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>Edit Campaign Guidelines</h3>
-  </div>
-
-  <div class="modal-body">
-    <%= form_tag "/campaigns/#{campaign.uuid}/update_guidelines", remote: true do %>
-      <%= text_area_tag :guidelines, campaign.guidelines %>
-    <% end %>
-  </div>
-
-  <div class="modal-footer">
-    <%= content_tag :button, 'Close', :'data-dismiss' => 'modal', class: 'btn' %>
-    <%= content_tag :button, 'Submit', class: 'btn btn-success', onclick: "javascript:$('#guidelines-modal form').submit();$('#guidelines-modal .btn-success').text('Submitting..')" %>
-  </div>
-</div>
-
 
 <div id="headline-modal" class="modal hide fade">
   <div class="modal-header">
@@ -305,26 +310,13 @@
       <div id="wrap">
           <div id="company_menu">
               <h1>
-              <a href="#update-modal" data-toggle="modal">Update Campaign Info</a>
+              <a href="#update-modal" data-toggle="modal"><%= campaign.title %></a>
               </h1>
               <% if campaign.stripe_id %><a href="#upgrade-modal" data-toggle="modal" class="btn btn-primary">Upgrade</a><% end %>
           </div>
-          <div class="tabbable">
-          <div id="menu_one">
-
-            <ul class="nav nav-tabs" data-tabs="tabs">
-              <li class="active"><a href="#info-tab" data-toggle="tab">Company Info</a></li>
-              <li><a href="#goals-tab" data-toggle="tab">Monthly Goals</a></li>
-              <li><a href="#guidelines-tab" data-toggle="tab">Editorial Guidelines</a></li>
-            </ul>
-
-          </div>
-
 
 
           <div id="company_info">
-
-            <div class="tab-content">
 
               <div id="info-tab" class="tab-pane active">
                 <div id="campaign_image">
@@ -341,14 +333,14 @@
                 <% end %>
               </div>
 
-            <div id="guidelines-tab" class="tab-pane">
+            <div id="guidelines-tab" class="tab-pane hide">
                 <p><%= campaign.guidelines %></p>
                 <% if current_user == campaign.user || current_user.email == 'michaelabehsera@gmail.com' %>
                   <%= link_to 'edit', '#guidelines-modal', :'data-toggle' => 'modal' %>
                 <% end %>
             </div>
 
-              <div id="goals-tab" class="tab-pane">
+              <div id="goals-tab" class="tab-pane hide">
                 <% campaign.goals.each do |goal| %>
                   <div class="goal">
                     <% if goal.type == :traffic %>
@@ -365,9 +357,7 @@
                 <% end %>
               </div>
 
-            </div>
 
-          </div>
           </div>
           <div style="margin-bottom:10px" id="timer"><h1><%= distance_of_time_in_words Time.now, campaign.end_date %> left to accomplish campaign goals.</h1></div>
           <% help = current_user.helps.where(campaign_id: campaign.id).first %>
@@ -467,6 +457,7 @@
                 <%= hidden_field_tag :aid %>
                 <%= link_to 'Submit your article', 'javascript:void(0)', id: 'send', class: 'blue_button', style: 'margin-top: 3px; float:right;' %>
                 <%= link_to 'Save to Draft', 'javascript:void(0)', id: 'draft', class: 'blue_button', style: 'margin-top: 3px; float:right;' %>
+                <%= link_to 'Editorial guidelines', '#guidelines-modal', class: 'blue_button', style: 'margin-top:3px; float:right', :'data-toggle' => 'modal' %>
               </div>
             </div>
         <% end %>
